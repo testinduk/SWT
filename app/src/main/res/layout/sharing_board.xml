@@ -138,8 +138,8 @@
 
     <TextView
         android:id="@+id/textchat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="46dp"
@@ -156,7 +156,7 @@
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="30dp"
-        android:layout_height="0dp"
+        android:layout_height="30dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="603dp"
         android:backgroundTint="#ffffff"
@@ -185,7 +185,7 @@
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="225dp"
-        android:layout_height="0dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="516dp"
         android:background="@drawable/searching"
         app:layout_constraintBottom_toTopOf="@+id/homeButton"
@@ -196,8 +196,8 @@
 
     <Button
         android:id="@+id/writingButton"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#ffffff"
