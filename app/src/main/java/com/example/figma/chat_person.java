@@ -15,9 +15,18 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 
 public class chat_person extends AppCompatActivity {
+
+    private RecyclerView mRecyclerView; // 아래에 있는 mRecyclerView와 연결
+    private Teacher_RecyclerAdapter mRecyclerAdapter; // 아래에 있는 mRecyclerAdapter과 연결
+    private ArrayList<Teacheritem> mTeacherItem;
+
     // 다른페이지에서 채팅 버튼 눌렀을 때
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +98,29 @@ public class chat_person extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Adapter와 LayoutManager 연결
+        mRecyclerView = (RecyclerView) findViewById(R.id.TeacherList);
+
+        /* initiate adapter */
+        mRecyclerAdapter = new Teacher_RecyclerAdapter();
+
+        /* initiate recyclerview */
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        /* adapt data 프로필 정보 ㅅ*/
+        mTeacherItem = new ArrayList<>();
+        for(int i=1;i<=10;i++){
+            if(i%2==0)
+                mTeacherItem.add(new Teacheritem(R.drawable.profile,"황선철교수님","02-950-0000"));
+            else
+                mTeacherItem.add(new Teacheritem(R.drawable.profile,i+"번째 사람",i+"번째 상태메시지"));
+
+        }
+        mRecyclerAdapter.setTeacherList(mTeacherItem);
+
     }
 }
 
