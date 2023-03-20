@@ -96,7 +96,7 @@ public class sharing_writing extends Activity {
         Timestamp timestamp = Timestamp.now();
         sharing_DB sharing_db = new sharing_DB(title, content, uid);
 
-        DatabaseReference sharingRef = databaseReference.child("sharing Board").child(uid).push();
+        DatabaseReference sharingRef = databaseReference.child("User").child(uid).push();
         sharingRef.setValue(sharing_db);
 
         Calendar expiration = Calendar.getInstance();
@@ -104,7 +104,7 @@ public class sharing_writing extends Activity {
         long expirationTimestamp = expiration.getTimeInMillis();
         //child는 해당 키 위치로 이동하는 함수입니다.
         //키가 없는데 "sharing Board"와 title,content 같이 값을 지정한 경우 자동으로 생성합니다.
-        databaseReference.child("sharing Board").child(uid).child(sharingRef.getKey()).push().setValue(expirationTimestamp);
+        databaseReference.child("User").child(uid).child(sharingRef.getKey()).push().setValue(expirationTimestamp);
 
         Intent i = new Intent(sharing_writing.this , sharing_board.class);
         startActivity(i);
