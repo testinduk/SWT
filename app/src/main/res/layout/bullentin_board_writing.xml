@@ -27,7 +27,7 @@
         android:background="#00ff0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back"
+        android:src="@drawable/back"
         tools:ignore="MissingConstraints" />
 
     <TextView

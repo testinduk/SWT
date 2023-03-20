@@ -68,8 +68,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="380dp"
-        android:layout_height="400dp"
+        android:layout_width="376dp"
+        android:layout_height="418dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="93dp"
         android:layout_marginEnd="20dp"
@@ -168,7 +168,7 @@
         android:id="@+id/writingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="28dp"
         android:backgroundTint="#FFFFFF"
         android:stateListAnimator="@null"
