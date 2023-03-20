@@ -43,6 +43,8 @@
         <activity android:name=".main_home" />
         <activity android:name=".sharing_details" />
         <activity android:name=".notice_details"/>
+        <activity android:name=".sharing_writing"/>
+        <activity android:name=".sign_up"/>
 
 
 
