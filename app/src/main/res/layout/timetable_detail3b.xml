@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/table_outside"
+        app:columnCount="6"
+        app:useDefaultMargins="false"
+        app:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            android:gravity="center"
+            android:text="구   분"
+            android:textSize="18sp"
+            app:layout_columnWeight="1.2"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            android:text="월" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/table_outside"
+            android:text="화" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/table_outside"
+            android:text="수" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/table_outside"
+            android:text="목" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@drawable/table_outside"
+            android:text="금" />
+
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="09:00~09:50"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/c_outside"
+            android:text="실전취업\n송재철\n304"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/b_outside"
+            android:text="네트워크\n보안"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="10:00~10:50"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:text="AI와\n영상처리"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:background="@drawable/g_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="알고리즘"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:background="@drawable/h_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/i_outside"
+            android:text="사물\n인터넷"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:text="이보영\n206"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:background="@drawable/b_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="11:00~11:50"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/g_outside"
+            android:text="황선철\n302"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="전광일\n302"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:background="@drawable/h_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/i_outside"
+            android:text="조돈제\n302"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/b_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="12:00~12:50"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/g_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/h_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/i_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="13:00~13:50"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1"
+            android:text="14:00~14:50" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/a_outside"
+            android:text="네트워크2"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/d_outside"
+            android:text="캡스톤\n디자인1"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/e_outside"
+            android:text="네트워크\n프로그래밍"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/f_outside"
+            android:text="디지털\n전송\n시스템"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            android:text="15:00~15:50" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/a_outside"
+            android:text="김행민\n205"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/d_outside"
+            android:text="나경필\n204"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/e_outside"
+            android:text="한성일\n206"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/f_outside"
+            android:text="유봉선\n304"
+            android:textColor="@color/black"
+            android:textSize="12sp"            />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            android:text="16:00~16:50" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/table_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/a_outside"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/d_outside"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/e_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/f_outside"
+            />
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
+            app:layout_rowWeight="1"
+            android:text="17:00~17:50" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
+
+
+
+
+
+    </androidx.gridlayout.widget.GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

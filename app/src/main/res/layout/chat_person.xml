@@ -9,7 +9,7 @@
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="10dp"
+        android:layout_width="0dp"
         android:layout_height="21dp"
         android:layout_marginStart="17dp"
         android:layout_marginTop="32dp"
@@ -27,7 +27,7 @@
         android:onClick="chatButton"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintEnd_toEndOf="@+id/textchat"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView4"
+        app:layout_constraintStart_toStartOf="@+id/AssistantList"
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
         app:srcCompat="@drawable/chat"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -41,7 +41,7 @@
         android:background="#ffffff"
         android:onClick="mypageButton"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView3"
+        app:layout_constraintEnd_toEndOf="@+id/TeacherList"
         app:layout_constraintStart_toStartOf="@+id/textmypage"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
         app:srcCompat="@drawable/mypage"
@@ -129,7 +129,7 @@
         android:onClick="sharingButton"
         app:layout_constraintBottom_toBottomOf="@+id/homeButton"
         app:layout_constraintEnd_toEndOf="@+id/texthome"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintStart_toStartOf="@+id/StudentList"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
         app:srcCompat="@drawable/heart"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -145,7 +145,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sharingButton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/StudentList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
@@ -158,7 +158,7 @@
         app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView4"
+        android:id="@+id/AssistantList"
         android:layout_width="0dp"
         android:layout_height="147dp"
         android:layout_marginStart="19dp"
@@ -180,10 +180,10 @@
 
     <ImageButton
         android:id="@+id/imageButton7"
-        android:layout_width="19dp"
-        android:layout_height="0dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:background="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+        app:layout_constraintBottom_toTopOf="@+id/TeacherList"
         app:layout_constraintEnd_toEndOf="@+id/backButton"
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="@+id/textView"
@@ -192,20 +192,20 @@
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:layout_width="0dp"
-        android:layout_height="21dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="187dp"
         android:layout_marginBottom="187dp"
         android:background="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="@+id/imageButton16"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView3"
+        app:layout_constraintStart_toStartOf="@+id/TeacherList"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:srcCompat="@drawable/polygon2"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
+        android:id="@+id/TeacherList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="17dp"
@@ -214,8 +214,10 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/imageButton8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -235,19 +237,19 @@
         android:layout_marginTop="28dp"
         android:text="학생"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+        app:layout_constraintStart_toStartOf="@+id/StudentList"
+        app:layout_constraintTop_toBottomOf="@+id/AssistantList" />
 
     <ImageButton
         android:id="@+id/imageButton16"
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="8dp"
         android:background="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+        app:layout_constraintBottom_toTopOf="@+id/StudentList"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintStart_toStartOf="@+id/StudentList"
         app:layout_constraintTop_toTopOf="@+id/searchView"
         app:srcCompat="@drawable/polygon2"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
@@ -261,9 +263,9 @@
         android:background="@drawable/searching"
         android:layout_marginBottom="221dp"
         app:layout_constraintBottom_toBottomOf="@+id/textmypage"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
+        app:layout_constraintEnd_toEndOf="@+id/StudentList"
         app:layout_constraintStart_toStartOf="@+id/texthome"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/TeacherList" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

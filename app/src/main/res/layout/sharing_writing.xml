@@ -9,11 +9,12 @@
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="10dp"
+        android:layout_width="20dp"
         android:layout_height="20dp"
+        android:backgroundTint="@color/white"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/vector"
+        android:src="@drawable/vector"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
