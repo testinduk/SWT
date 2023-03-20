@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textboard"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
-        app:srcCompat="@drawable/mypage" />
+        android:src="@drawable/mypage" />
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
-        app:srcCompat="@drawable/hut" />
+        android:src="@drawable/hut" />
 
     <ImageButton
         android:id="@+id/chatButton"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
-        app:srcCompat="@drawable/chat" />
+        android:src="@drawable/chat" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textboard"
         app:layout_constraintEnd_toEndOf="@+id/textboard"
         app:layout_constraintStart_toStartOf="@+id/textboard"
-        app:srcCompat="@drawable/plus" />
+        android:src="@drawable/plus" />
 
     <ImageButton
         android:id="@+id/sharingButton"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="@+id/texthome"
         app:layout_constraintStart_toStartOf="@+id/textchat"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/heart" />
+        android:src="@drawable/heart" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -91,7 +91,7 @@
         android:backgroundTint="#ffffff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
+        android:src="@drawable/back" />
 
     <TextView
         android:id="@+id/textchat"
