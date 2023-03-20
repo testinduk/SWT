@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textmypage"
         app:layout_constraintStart_toStartOf="@+id/textmypage"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
-        app:srcCompat="@drawable/mypage" />
+        android:src="@drawable/mypage" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="@+id/textboard"
         app:layout_constraintStart_toStartOf="@+id/textboard"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/plus" />
+        android:src="@drawable/plus" />
 
     <ImageButton
         android:id="@+id/sharingButton"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@+id/homeButton"
         app:layout_constraintStart_toStartOf="@+id/textchat"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/heart" />
+        android:src="@drawable/heart" />
 
     <ImageButton
         android:id="@+id/chatButton"
@@ -62,7 +62,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintEnd_toEndOf="@+id/textchat"
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
-        app:srcCompat="@drawable/chat"
+        android:src="@drawable/chat"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@+id/texthome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/hut" />
+        android:src="@drawable/hut" />
 
     <TextView
         android:id="@+id/textchat"
@@ -182,9 +182,10 @@
         android:layout_marginEnd="21dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

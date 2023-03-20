@@ -14,18 +14,12 @@ import androidx.annotation.Nullable;
 
 public class warning_message extends Activity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.warning_message);
-    }
-
-
     // 다른 페이지에서 게시판 버튼 눌렀을 때
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bullentin_board);
+        setContentView(R.layout.warning_message);
+
 
         // 취소버튼
         Button noButton = findViewById(R.id.noButton);

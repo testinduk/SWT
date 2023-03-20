@@ -17,9 +17,8 @@
         tools:targetApi="31">
         <activity
 
-
-            android:name=".sharing_board"
-            android:exported="true">
+            android:exported="true"
+            android:name=".login">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +42,11 @@
         <activity android:name=".bullentin_board_details" />
         <activity android:name=".main_home" />
         <activity android:name=".sharing_details" />
+        <activity android:name=".notice_details"/>
+        <activity android:name=".sharing_writing"/>
+        <activity android:name=".sign_up"/>
+
+
 
     </application>
 

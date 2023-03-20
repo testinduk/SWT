@@ -30,11 +30,17 @@ public class bullentin_board_details extends Activity {
         ImageButton btn_bul_amend = findViewById(R.id.btn_bul_amend);
 
         btn_bul_amend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), bullentin_board_writing.class);
+                startActivity(intent);
+            }
+        });
+
 
         // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), bullentin_board.class);
@@ -43,21 +49,9 @@ public class bullentin_board_details extends Activity {
         });
 
 
-        ImageButton btn_amend = findViewById(R.id.btn_amend);
-        btn_amend.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), bullentin_board_writing.class);
-                startActivity(intent);
-            }
-        });
-
-
         // 삭제 메시지
-        ImageButton btn_bul_del = findViewById(R.id.btn_bul_del);
-        btn_bul_del.setOnClickListener(new View.OnClickListener() {
+        ImageButton btn_dul_delete = findViewById(R.id.btn_bul_del);
+        btn_dul_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(bullentin_board_details.this);
@@ -74,6 +68,5 @@ public class bullentin_board_details extends Activity {
                 builder.create().show();
             }
         });
-
     }
 }

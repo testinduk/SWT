@@ -20,15 +20,7 @@ public class bullentin_board_writing extends Activity {
         setContentView(R.layout.bullentin_board_writing);
 
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.bullentin_board_details);
-
-
-
-        // 뒤로가기 버튼
+            // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
 

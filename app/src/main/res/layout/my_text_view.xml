@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/TextView1"
-        android:background="@drawable/chat_bubble"
+        android:background="@drawable/text_bubble"
         android:padding="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="5dp"

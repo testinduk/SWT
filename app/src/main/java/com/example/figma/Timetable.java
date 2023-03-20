@@ -12,7 +12,7 @@ public class Timetable extends Activity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.timetable2);
+        setContentView(R.layout.timetable);
 
         // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.backButton);
