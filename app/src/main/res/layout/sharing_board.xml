@@ -174,8 +174,8 @@
         app:layout_constraintStart_toEndOf="@+id/textView38"
         app:layout_constraintTop_toTopOf="@+id/textView38" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView9"
+    <ListView
+        android:id="@+id/shar_list_view"
         android:layout_width="350dp"
         android:layout_height="430dp"
         android:layout_marginStart="21dp"
