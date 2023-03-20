@@ -42,7 +42,7 @@ public class sharing_board extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_board);
 
-        recyclerView = findViewById(R.id.recyclerView9); //아이디 연결
+        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
         recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
