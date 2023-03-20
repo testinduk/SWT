@@ -184,10 +184,12 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="290dp"
-        android:stretchColumns="0, 1, 2, 3"
+        android:stretchColumns="0, 1, 2, 3, 4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -196,54 +198,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/gray"
-                android:text="1학년"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="35dp"
-                tools:layout_editor_absoluteY="453dp" />
 
-            <Button
-
-                android:id="@+id/button13"
+            <CheckBox
+                android:id="@+id/chk_class1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/gray"
-                android:text="2학년"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="174dp"
-                tools:layout_editor_absoluteY="454dp" />
+                android:text="1학년" />
 
-            <Button
-                android:id="@+id/button15"
+            <CheckBox
+                android:id="@+id/chk_class2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/gray"
-                android:text="3학년"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="197dp"
-                tools:layout_editor_absoluteY="527dp" />
+                android:text="2학년" />
 
-            <Button
-                android:id="@+id/button14"
+            <CheckBox
+                android:id="@+id/chk_class3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/gray"
-                android:text="4학년"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="297dp"
-                tools:layout_editor_absoluteY="453dp" />
+                android:text="3학년" />
+
+            <CheckBox
+                android:id="@+id/chk_class4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4학년" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/class_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선택"
+                android:textColor="@color/black" />
 
         </TableRow>
 
