@@ -20,7 +20,7 @@ public class bullentin_board_writing extends Activity {
         setContentView(R.layout.bullentin_board_writing);
 
 
-            // 뒤로가기 버튼
+        // 뒤로가기 버튼
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
 

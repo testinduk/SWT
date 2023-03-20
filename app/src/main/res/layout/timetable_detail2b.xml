@@ -95,47 +95,49 @@
             android:text="09:00~09:50"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
+            />
 
-        <Button
-            android:id="@+id/button27"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button28"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button29"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button30"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button31"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <TextView
@@ -146,57 +148,55 @@
             android:text="10:00~10:50"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
 
-        <Button
-            android:id="@+id/button37"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button38"
+            android:id="@+id/button2_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#D5F13B3B"
-            android:text="채플\n강당"
-            android:textColor="#000000"
+            android:background="@drawable/d_outside"
+            android:text="서버\n시스템"
+            android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button39"
+            android:id="@+id/button2_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#E8938DE6"
-            android:text="비전과\n진로\n이보영\n304"
+            android:background="@drawable/g_outside"
+            android:text="데이터\n통신\n시스템"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-        <Button
-            android:id="@+id/button40"
+            app:layout_rowWeight="1"  />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button41"
+            android:id="@+id/button2_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#48DAB0"
-            android:text="전자통신\n공학\n(이론)"
-            android:textColor="@color/black"
-            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside" />
 
         <TextView
             android:id="@+id/textView27"
@@ -206,57 +206,55 @@
             android:text="11:00~11:50"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
 
-        <Button
-            android:id="@+id/button47"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button48"
+            android:id="@+id/button3_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:color/holo_orange_light"
-            android:text="정보통신\n개론"
+            android:background="@drawable/d_outside"
+            android:text="신범수\n203"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button49"
+            android:id="@+id/button3_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#C3F1EE35"
-            android:text="컴퓨터\n공학\n개론"
+            android:background="@drawable/g_outside"
+            android:text="황선철\n305"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
-        <Button
-            android:id="@+id/button50"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button3_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button51"
+            android:id="@+id/button3_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#48DAB0"
-            android:text="전광일\n305"
-            android:textColor="@color/black"
-            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside" />
 
 
         <TextView
@@ -267,58 +265,50 @@
             android:text="12:00~12:50"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
 
-        <Button
-            android:id="@+id/button52"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button53"
+            android:id="@+id/button4_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:color/holo_orange_light"
-            android:text="송재철\n306"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/d_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button57"
+            android:id="@+id/button4_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#C3F1EE35"
-            android:text="이보영\n304"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/g_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
-        <Button
-            android:id="@+id/button59"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button4_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button60"
+            android:id="@+id/button4_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#756EEFA1"
-            android:text="전자통신\n공학\n(실습)\n305"
-            android:textColor="@color/black"
-            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside" />
 
 
         <TextView
@@ -329,50 +319,49 @@
             android:text="13:00~13:50"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
 
-        <Button
-            android:id="@+id/button67"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button68"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button69"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button70"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button5_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button71"
+            android:id="@+id/button5_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#756EEFA1"
-            android:text="전광일\n106"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             />
 
         <TextView
@@ -382,56 +371,57 @@
             android:gravity="center"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
             android:text="14:00~14:50" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button77"
+            android:id="@+id/button6_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#E2F6A9A9"
-            android:text="대학수학"
-            android:textColor="@color/black"
+            android:background="@drawable/a_outside"
+            android:text="데이터\n통신"
+            android:textColor="#000000"
             android:textSize="12sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button78"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#F2D5B569"
-            android:text="C언어"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button79"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#C64ED5E6"
-            android:text="인공지능\n개론"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-        <Button
-            android:id="@+id/button80"
+            android:id="@+id/button6_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/f_outside"
+            android:text="아날로그\n통신\n시스템"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/b_outside"
+            android:text="모바일\n프로그래밍"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             />
-        <Button
-            android:id="@+id/button81"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button6_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <TextView
@@ -442,58 +432,59 @@
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
             android:text="15:00~15:50" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button82"
+            android:id="@+id/button7_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#E2F6A9A9"
-            android:text="한성일\n203"
-            android:textColor="@color/black"
+            android:background="@drawable/a_outside"
+            android:text="최흥택\n304"
+            android:textColor="#000000"
             android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button83"
+            android:id="@+id/button7_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#F2D5B569"
-            android:text="유봉선\n302"
-            android:textColor="@color/black"
-            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button84"
+            android:id="@+id/button7_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#C64ED5E6"
-            android:text="황선철\n305"
+            android:background="@drawable/f_outside"
+            android:text="유봉선\n305"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
 
-        <Button
-            android:id="@+id/button89"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/b_outside"
+            android:text="송재철\n203"
+            android:textColor="@color/black"
+            android:textSize="12dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
             />
-        <Button
-            android:id="@+id/button90"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button7_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
         <TextView
@@ -504,50 +495,50 @@
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
+            android:background="@drawable/table_outside"
             android:text="16:00~16:50" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button98"
+            android:id="@+id/button8_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#E2F6A9A9"
+            android:background="@drawable/a_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button99"
+            android:id="@+id/button8_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#F2D5B569"
-            android:textSize="12sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:background="@drawable/table_outside" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button100"
+            android:id="@+id/button8_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#C64ED5E6"
+            android:background="@drawable/f_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
-        <Button
-            android:id="@+id/button101"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/b_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
             />
-        <Button
-            android:id="@+id/button102"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button8_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
         <TextView
             android:id="@+id/textView33"
@@ -556,48 +547,49 @@
             android:gravity="center"
             android:textSize="12sp"
             app:layout_columnWeight="1.2"
+            android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
             android:text="17:00~17:50" />
 
-        <Button
-            android:id="@+id/button107"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button108"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button109"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button110"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
-        <Button
-            android:id="@+id/button111"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button9_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="#00000000"
+            android:background="@drawable/table_outside"
             />
 
 
