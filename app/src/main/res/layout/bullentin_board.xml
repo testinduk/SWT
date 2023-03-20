@@ -40,8 +40,8 @@
         android:text="글쓰기"
         android:textColor="@color/black"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView2"
-        app:layout_constraintEnd_toEndOf="@+id/searchView2"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintStart_toEndOf="@+id/textboard"
         app:layout_constraintTop_toTopOf="@+id/boardtitle" />
 

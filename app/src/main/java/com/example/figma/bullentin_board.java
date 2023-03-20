@@ -2,8 +2,10 @@ package com.example.figma;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.view.KeyboardShortcutGroup;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class bullentin_board extends Activity {
@@ -101,6 +107,19 @@ public class bullentin_board extends Activity {
                 startActivity(intent);
             }
         });
+
+        int permissionCheck1 = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (permissionCheck1 == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "저장소 읽기 권한 주어져 있음.", Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "저장소 읽기 권한 없음.", Toast.LENGTH_LONG).show();
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+    public ArrayList<HashMap<String, String>> getFilelist(String absolutePath){
+        return null;
     }
 }
 
