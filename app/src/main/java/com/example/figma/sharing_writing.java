@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.Timestamp;
 
 import java.text.SimpleDateFormat;
 import java.util.Map;
@@ -46,7 +47,7 @@ import java.util.Date;
 public class sharing_writing extends Activity {
     //uid 불러오기.
     public String uid = null ;
-    public String timestamp;
+    public Timestamp timestamp;
     //파이어베이스 데이터베이스 연동
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     //DatabaseReference는 데이터베이스의 특정 위치로 연결하는 거라고 생각하면 된다.
@@ -92,18 +93,18 @@ public class sharing_writing extends Activity {
         //여기에서 직접 변수를 만들어서 값을 직접 넣는것도 가능합니다.
         // ex) 갓 태어난 동물만 입력해서 int age=1; 등을 넣는 경우
         //sharing_DB.java에서 선언했던 함수.
-        String timestamp = String.valueOf(ServerValue.TIMESTAMP);
-        sharing_DB sharing_db = new sharing_DB(title, content, timestamp);
+        Timestamp timestamp = Timestamp.now();
+        sharing_DB sharing_db = new sharing_DB(title, content, uid);
 
-        DatabaseReference sharingRef = databaseReference.child("sharing Board").child(uid).push();
+        DatabaseReference sharingRef = databaseReference.child("User").push();
         sharingRef.setValue(sharing_db);
 
-        Calendar expiration = Calendar.getInstance();
-        expiration.add(Calendar.HOUR_OF_DAY, 12);
-        long expirationTimestamp = expiration.getTimeInMillis();
-        //child는 해당 키 위치로 이동하는 함수입니다.
-        //키가 없는데 "sharing Board"와 title,content 같이 값을 지정한 경우 자동으로 생성합니다.
-        databaseReference.child("sharing Board").child(uid).child(sharingRef.getKey()).push().setValue(expirationTimestamp);
+//        Calendar expiration = Calendar.getInstance();
+//        expiration.add(Calendar.HOUR_OF_DAY, 12);
+//        long expirationTimestamp = expiration.getTimeInMillis();
+//        //child는 해당 키 위치로 이동하는 함수입니다.
+//        //키가 없는데 "sharing Board"와 title,content 같이 값을 지정한 경우 자동으로 생성합니다.
+//        databaseReference.child("User").push().child(uid).child(sharingRef.getKey()).setValue(expirationTimestamp);
 
         Intent i = new Intent(sharing_writing.this , sharing_board.class);
         startActivity(i);
