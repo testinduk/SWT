@@ -69,7 +69,7 @@ public class mypage extends AppCompatActivity {
             }
         });
 
-
+        // 로그아웃
         Button logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
