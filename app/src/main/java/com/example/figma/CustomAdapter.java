@@ -40,9 +40,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getProfile())
                 .into(holder.iv_profile);
-        holder.tv_id.setText(arrayList.get(position).getId());
-        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
-        holder.tv_userName.setText(arrayList.get(position).getUserName());
+//        holder.tv_id.setText(arrayList.get(position).getId());
+//        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
+//        holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_content.setText(arrayList.get(position).getContent());
 
@@ -56,18 +56,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageButton iv_profile;
-        Button tv_id;
-        Button tv_pw;
-        Button tv_userName;
+//        Button tv_id;
+//        Button tv_pw;
+//        Button tv_userName;
         Button tv_title;
         Button tv_content;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
-            this.tv_id = itemView.findViewById(R.id.tv_id);
-            this.tv_pw = itemView.findViewById(R.id.tv_pw);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+//            this.tv_id = itemView.findViewById(R.id.tv_id);
+//            this.tv_pw = itemView.findViewById(R.id.tv_pw);
+//            this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_content = itemView.findViewById(R.id.tv_content);
         }
