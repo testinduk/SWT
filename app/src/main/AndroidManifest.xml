@@ -38,11 +38,14 @@
         <activity android:name=".chatting_main" />
         <activity android:name=".sharing_board" />
         <activity android:name=".bullentin_board" />
+        <activity android:name=".warning_message"/>
+        <activity android:name=".my_inf_details"/>
         <activity android:name=".bullentin_board_writing" />
         <activity android:name=".mypage" />
         <activity android:name=".bullentin_board_details" />
         <activity android:name=".main_home" />
         <activity android:name=".sharing_details" />
+        <activity android:name=".sign_up"/>
         <activity android:name=".sharing_writing" />
         <activity android:name=".notice_details"/>
 
