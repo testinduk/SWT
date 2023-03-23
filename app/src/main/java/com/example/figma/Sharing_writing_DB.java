@@ -1,14 +1,23 @@
 package com.example.figma;
 
-public class User {
+public class Sharing_writing_DB {
     private String profile;
     private String id;
     private int pw;
     private String userName;
     private String title;
     private String content;
+    private String uid;
 
-    public User(){}
+    public Sharing_writing_DB(){}
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getTitle() {
         return title;

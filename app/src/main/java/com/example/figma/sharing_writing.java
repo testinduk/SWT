@@ -96,7 +96,7 @@ public class sharing_writing extends Activity {
         Timestamp timestamp = Timestamp.now();
         sharing_DB sharing_db = new sharing_DB(title, content, uid);
 
-        DatabaseReference sharingRef = databaseReference.child("User").push();
+        DatabaseReference sharingRef = databaseReference.child("sharing Board").push();
         sharingRef.setValue(sharing_db);
 
 //        Calendar expiration = Calendar.getInstance();
