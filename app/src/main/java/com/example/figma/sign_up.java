@@ -29,7 +29,7 @@ public class sign_up extends AppCompatActivity {
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
-    private Button finishBT, button; //회원가입 버튼
+    private Button finishBT; //회원가입 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,18 @@ public class sign_up extends AppCompatActivity {
         editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
         editTextTextPersonName2 = findViewById(R.id.editTextTextPersonName2);
         editTextNumberPassword = findViewById(R.id.editTextNumberPassword);
-        button = findViewById(R.id.button); //인증버튼
+        ImageButton backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), login.class);
+                startActivity(intent);
+            }
+        });
+
 
         finishBT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +72,6 @@ public class sign_up extends AppCompatActivity {
 
                 if (strUsername.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
-
                         //FirebaseAuth 진행
                         mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -76,10 +86,14 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setUsername(strUsername);
                                     sign_up_db.setStudentNumber(strStudentNumber);
 
+
                                     //setValue는 database에 insert 행휘
                                     mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
 
                                     Toast.makeText(sign_up.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), sign_up_email.class);
+                                    startActivity(intent);
+
                                 } else {
                                     Toast.makeText(sign_up.this, "회원가입에 실패하셨습니다", Toast.LENGTH_SHORT).show();
                                 }
@@ -91,6 +105,33 @@ public class sign_up extends AppCompatActivity {
                 } else {
                     Toast.makeText(sign_up.this, "빈칸을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
+
+
+            }
+        });
+
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(editTextTextPersonName4 != null){
+//                    mUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if(task.isSuccessful()){
+//                                Toast.makeText(sign_up.this, "메일 전송 완료",Toast.LENGTH_SHORT).show();
+//                            }else {
+//                                Toast.makeText(sign_up.this,"메일 전송 실패",Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                }else{
+//                    Toast.makeText(sign_up.this,"메일을 입력해주세요",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+    }
+}
+
 
 //                button.setOnClickListener(new View.OnClickListener() {
 //
@@ -111,19 +152,7 @@ public class sign_up extends AppCompatActivity {
 //                    }
 //                });
 
-                ImageButton backButton = findViewById(R.id.backButton);
-                backButton.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), login.class);
-                        startActivity(intent);
-                    }
-                });
-            }
-        });
-    }
-}
 
 //                @Override
 //                public void onClick(View view) {
@@ -147,7 +176,7 @@ public class sign_up extends AppCompatActivity {
 
 //                findViewById(R.id.finishBT).setOnClickListener(onClickListener);
 
-            // 뒤로가기 버튼
+//             뒤로가기 버튼
 
 
 //    View.OnClickListener onClickListener = new View.OnClickListener() {
