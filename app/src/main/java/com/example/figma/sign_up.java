@@ -35,6 +35,8 @@ public class sign_up extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
+
+
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
         mUser = mAuth.getCurrentUser();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("sign_up");
