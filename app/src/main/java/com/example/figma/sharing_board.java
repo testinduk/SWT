@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,17 +21,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class sharing_board extends Activity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<User> arrayList;
+    private ArrayList<Sharing_writing_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,30 +44,27 @@ public class sharing_board extends Activity {
 
         database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("User");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-                    arrayList.add(user);
-                }
+                                   arrayList.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String uid = snapshot.getKey();
+                        Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                        arrayList.add(user);
+                    }
                 adapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity",String.valueOf(databaseError.toException()));
+                Log.e("MainActivity", String.valueOf(databaseError.toException()));
             }
         });
 
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
-
-
 
 
         // 글쓰기 버튼
@@ -150,9 +142,9 @@ public class sharing_board extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 }
+
 
 //    private void readUser() {
 //        mDatabase.child("Sharing Board").child("1").addValueEventListener(new ValueEventListener() {
