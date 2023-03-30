@@ -6,17 +6,17 @@ public class sign_up_DB {
     private String emailId;
     private String password;
     private String idToken;
-    private String username;
+    private String userName;
     private String studentNumber;
 
     public sign_up_DB(){ }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 
     public String getStudentNumber() {
