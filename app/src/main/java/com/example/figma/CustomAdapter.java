@@ -41,7 +41,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 //        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
 //        holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_content.setText(arrayList.get(position).getContent());
+        holder.tv_userName.setText(arrayList.get(position).getUserName());
+        holder.tv_studentNumber.setText((arrayList.get(position).getStudentNumber()));
 
 
     }
@@ -57,7 +58,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 //        Button tv_pw;
 //        Button tv_userName;
         Button tv_title;
-        Button tv_content;
+        Button tv_userName;
+        Button tv_studentNumber;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +68,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 //            this.tv_pw = itemView.findViewById(R.id.tv_pw);
 //            this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.tv_title = itemView.findViewById(R.id.tv_title);
-            this.tv_content = itemView.findViewById(R.id.tv_content);
+            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
+
         }
     }
 }

@@ -66,11 +66,11 @@ public class sign_up extends AppCompatActivity {
                 //회원가입 처리 시작
                 String strEmail = editTextTextPersonName4.getText().toString();
                 String strPwd = editTextTextPassword.getText().toString();
-                String strUsername = editTextTextPersonName.getText().toString();
+                String strUserName = editTextTextPersonName.getText().toString();
                 String strStudentNumber = editTextTextPersonName2.getText().toString();
                 String pwdCheck = editTextNumberPassword.getText().toString();
 
-                if (strUsername.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
+                if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
                         //FirebaseAuth 진행
                         mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(sign_up.this, new OnCompleteListener<AuthResult>() {
@@ -83,7 +83,7 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setEmailId(firebaseUser.getEmail());
                                     sign_up_db.setPassword(strPwd);
                                     sign_up_db.setIdToken(firebaseUser.getUid());
-                                    sign_up_db.setUsername(strUsername);
+                                    sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
 
 
