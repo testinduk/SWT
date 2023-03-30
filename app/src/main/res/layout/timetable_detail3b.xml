@@ -93,7 +93,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="09:00~09:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -121,7 +121,10 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/c_outside"
+            android:text="실전취업\n송재철\n304"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1_4"
@@ -129,7 +132,10 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/b_outside"
+            android:text="네트워크\n보안"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1_5"
@@ -146,7 +152,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="10:00~10:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -157,17 +163,20 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:text="AI와\n영상처리"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:background="@drawable/g_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/a_outside"
-            android:text="채플\n강당"
-            android:textColor="#000000"
-            android:textSize="12sp"
+            android:text="알고리즘"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:background="@drawable/h_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -175,10 +184,10 @@
             android:id="@+id/button2_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/b_outside"
-            android:text="비전과\n진로\n이보영\n304"
+            android:background="@drawable/i_outside"
+            android:text="사물\n인터넷"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
         <androidx.appcompat.widget.AppCompatButton
@@ -187,17 +196,17 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:text="이보영\n206"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:background="@drawable/b_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/h_outside"
-            android:text="전자통신\n공학\n(이론)"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -207,7 +216,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="11:00~11:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -218,17 +227,20 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/g_outside"
+            android:text="황선철\n302"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/c_outside"
-            android:text="정보통신\n개론"
+            android:text="전광일\n302"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
+            android:background="@drawable/h_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -236,10 +248,10 @@
             android:id="@+id/button3_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/d_outside"
-            android:text="컴퓨터\n공학\n개론"
+            android:background="@drawable/i_outside"
+            android:text="조돈제\n302"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
         <androidx.appcompat.widget.AppCompatButton
@@ -248,17 +260,14 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/b_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/h_outside"
-            android:text="전광일\n305"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -269,7 +278,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="12:00~12:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -280,17 +289,14 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/g_outside"
             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button4_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/c_outside"
-            android:text="송재철\n306"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/h_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -298,10 +304,7 @@
             android:id="@+id/button4_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/d_outside"
-            android:text="이보영\n304"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/i_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -318,10 +321,7 @@
             android:id="@+id/button4_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/i_outside"
-            android:text="전자통신\n공학\n(실습)\n305"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -332,7 +332,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="13:00~13:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -376,9 +376,8 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/i_outside"
-            android:text="전광일\n106"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
+            android:textSize="10sp"
             />
 
         <TextView
@@ -386,7 +385,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
@@ -396,10 +395,7 @@
             android:id="@+id/button6_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/e_outside"
-            android:text="대학수학"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -407,10 +403,10 @@
             android:id="@+id/button6_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/f_outside"
-            android:text="C언어"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/a_outside"
+            android:text="네트워크2"
+            android:textColor="#000000"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -418,10 +414,10 @@
             android:id="@+id/button6_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/g_outside"
-            android:text="인공지능\n개론"
+            android:background="@drawable/d_outside"
+            android:text="캡스톤\n디자인1"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
         <androidx.appcompat.widget.AppCompatButton
@@ -430,7 +426,10 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/e_outside"
+            android:text="네트워크\n프로그래밍"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button6_5"
@@ -438,7 +437,10 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/f_outside"
+            android:text="디지털\n전송\n시스템"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
 
         <TextView
@@ -446,7 +448,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -457,10 +459,7 @@
             android:id="@+id/button7_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/e_outside"
-            android:text="한성일\n203"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -468,10 +467,10 @@
             android:id="@+id/button7_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/f_outside"
-            android:text="유봉선\n302"
+            android:background="@drawable/a_outside"
+            android:text="김행민\n205"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -479,10 +478,10 @@
             android:id="@+id/button7_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/g_outside"
-            android:text="황선철\n305"
+            android:background="@drawable/d_outside"
+            android:text="나경필\n204"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -493,7 +492,10 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/e_outside"
+            android:text="한성일\n206"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7_5"
@@ -501,15 +503,17 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            android:background="@drawable/f_outside"
+            android:text="유봉선\n304"
+            android:textColor="@color/black"
+            android:textSize="10sp"            />
 
         <TextView
             android:id="@+id/textView32"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -520,7 +524,7 @@
             android:id="@+id/button8_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/e_outside"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -528,8 +532,8 @@
             android:id="@+id/button8_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/f_outside"
-            android:textSize="12sp"
+            android:background="@drawable/a_outside"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -538,7 +542,7 @@
             android:id="@+id/button8_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/g_outside"
+            android:background="@drawable/d_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -548,7 +552,7 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/e_outside"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8_5"
@@ -556,14 +560,14 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/f_outside"
             />
         <TextView
             android:id="@+id/textView33"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
