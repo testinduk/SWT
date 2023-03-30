@@ -15,7 +15,7 @@
         android:layout_marginEnd="40dp"
         android:background="#00ff0000"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constrainㅅtEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textboard"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
         android:src="@drawable/mypage" />
