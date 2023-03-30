@@ -8,8 +8,17 @@ public class Sharing_writing_DB {
     private String title;
     private String content;
     private String uid;
+    private String studentNumber;
 
     public Sharing_writing_DB(){}
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
 
     public String getUid() {
         return uid;
