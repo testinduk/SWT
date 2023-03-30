@@ -16,8 +16,6 @@ public class main_home extends AppCompatActivity {
         setContentView(R.layout.main_home);
 
 
-
-
         // (공지)더보기 버튼
         Button show_notice_more = findViewById(R.id.show_notice_more);
         show_notice_more.setOnClickListener(new View.OnClickListener() {

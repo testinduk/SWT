@@ -22,22 +22,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/recyclerView"
-
-        android:id="@+id/recyclerView7"
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="100dp"
         android:background="@color/gray"
-
-        app:layout_constraintBottom_toTopOf="@id/edt"
-
-        app:layout_constraintBottom_toTopOf="@id/EditText2"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +36,6 @@
         app:layout_constraintTop_toBottomOf="@id/TextView1"
         app:layout_constraintVertical_bias="0.0" />
 
-        app:layout_constraintTop_toBottomOf="@id/TextView1" />
 
 
     <EditText
@@ -58,10 +48,6 @@
         android:background="@drawable/text_bubble"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintStart_toStartOf="@id/ImageButton3"
-        app:layout_constraintEnd_toEndOf="@id/btnSend"
-
-        app:layout_constraintEnd_toEndOf="@id/ImageButton2"
         app:layout_constraintStart_toStartOf="@id/ImageButton3"
 
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -97,6 +83,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/TextView1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.735"
-        tools:layout_editor_absoluteX="15dp" />
+        tools:layout_editor_absoluteX="15dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

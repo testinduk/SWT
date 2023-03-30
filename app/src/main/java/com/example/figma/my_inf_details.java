@@ -24,8 +24,6 @@ public class my_inf_details extends Activity {
     private ImageView imageView;
 
 
-public class my_inf_details extends AppCompatActivity{
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +39,9 @@ public class my_inf_details extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
         // warningButton
-        Button warningButton = findViewById(R.id.warningButton);
+        Button warningButton = findViewById(R.id.remove);
         warningButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,4 +85,3 @@ public class my_inf_details extends AppCompatActivity{
         }
     }
 }
-

@@ -5,13 +5,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class login extends Activity {
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private Button buttonLogIn;
+    private Button buttonSignUp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -27,16 +44,18 @@ public class login extends Activity {
             }
         });
 
-//        buttonSignUp = (Button) findViewById(R.id.sign);// 회원가입 버튼 클릭시
-//        buttonSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // SignUpActivity 연결
-//                Intent intent = new Intent(getApplicationContext(), sign_up.class); //회원가입 화면으로 전환
-//                startActivity(intent);
-//            }
-//        });
-        buttonLogIn = (Button) findViewById(R.id.button); //로그인 버튼 클릭시
+        buttonSignUp = (Button) findViewById(R.id.sign);// 회원가입 버튼 클릭시
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // SignUpActivity 연결
+                Intent intent = new Intent(getApplicationContext(), sign_up.class); //회원가입 화면으로 전환
+                startActivity(intent);
+            }
+        });
+
+
+        buttonLogIn = (Button) findViewById(R.id.btn_login); //로그인 버튼 클릭시
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +112,6 @@ public class login extends Activity {
         if (firebaseAuthListener != null) {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }
-
     }
 
     private class override {
