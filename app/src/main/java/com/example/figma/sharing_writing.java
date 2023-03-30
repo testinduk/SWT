@@ -63,7 +63,7 @@ public class sharing_writing extends Activity {
                             String emailId = dataSnapshot.child("emailId").getValue(String.class);
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String username = dataSnapshot.child("username").getValue(String.class);
+                            String userName = dataSnapshot.child("userName").getValue(String.class);
 
                             String title = edit1.getText().toString();
                             String content = edit2.getText().toString();
@@ -73,7 +73,7 @@ public class sharing_writing extends Activity {
                             boardRef.child("emailId").setValue(emailId);
                             boardRef.child("idToken").setValue(idToken);
                             boardRef.child("studentNumber").setValue(studentNumber);
-                            boardRef.child("username").setValue(username);
+                            boardRef.child("userName").setValue(userName);
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
 
