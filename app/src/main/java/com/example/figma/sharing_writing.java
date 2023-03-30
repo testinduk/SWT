@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 
@@ -89,17 +90,17 @@ public class sharing_writing extends Activity {
             }
         });
 
+        // 뒤로가기 버튼
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                startActivity(intent);
+            }
+        });
     }
-//    public void add_sharing(String title,String content){
-//        sharing_DB sharing_db = new sharing_DB(title, content);
-//
-//        DatabaseReference sharingRef = databaseReference.child("sharing Board").push();
-//        sharingRef.setValue(sharing_db);
-//
-//        Intent i = new Intent(sharing_writing.this, sharing_board.class);
-//        startActivity(i);
-//        finish();
-//    }
 }
     //uid 불러오기.
 //    public String uid = null ;
