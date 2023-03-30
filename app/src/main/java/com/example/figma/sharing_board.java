@@ -44,10 +44,11 @@ public class sharing_board extends Activity {
 
         database = FirebaseDatabase.getInstance();
 
+        databaseReference = database.getReference("sharing Board");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                   arrayList.clear();
+                arrayList.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String uid = snapshot.getKey();
                         Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
