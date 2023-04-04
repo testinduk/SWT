@@ -67,7 +67,6 @@ public class sharing_board extends Activity {
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
-
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);
         writingButton.setOnClickListener(new View.OnClickListener() {

@@ -169,9 +169,9 @@ public class sign_up extends AppCompatActivity {
 //                        }
 //                    });
 //            });
-        
-        
-                                      
+
+
+
 
 
 //                findViewById(R.id.finishBT).setOnClickListener(onClickListener);
