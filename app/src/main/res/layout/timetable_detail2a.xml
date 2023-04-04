@@ -93,7 +93,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="09:00~09:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -130,7 +130,7 @@
             android:background="@drawable/c_outside"
             android:text="모바일\n프로그래밍"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="10dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -149,7 +149,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="10:00~10:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -161,7 +161,7 @@
             android:background="@drawable/a_outside"
             android:text="데이터\n통신"
             android:textColor="#000000"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -173,7 +173,7 @@
             android:background="@drawable/f_outside"
             android:text="아날로그\n통신\n시스템"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"  />
 
@@ -191,7 +191,7 @@
             android:background="@drawable/c_outside"
             android:text="송재철\n203"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="10dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -210,7 +210,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="11:00~11:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -222,7 +222,7 @@
             android:background="@drawable/a_outside"
             android:text="최흥택\n304"
             android:textColor="#000000"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -234,7 +234,7 @@
             android:background="@drawable/f_outside"
             android:text="유봉선\n305"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -269,7 +269,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="12:00~12:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -323,7 +323,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="13:00~13:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -375,7 +375,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
@@ -396,7 +396,7 @@
             android:background="@drawable/d_outside"
             android:text="서버\n시스템"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -407,7 +407,7 @@
             android:background="@drawable/g_outside"
             android:text="데이터\n베이스"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
         <androidx.appcompat.widget.AppCompatButton
@@ -432,7 +432,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -454,7 +454,7 @@
             android:background="@drawable/d_outside"
             android:text="신범수\n203"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -465,7 +465,7 @@
             android:background="@drawable/g_outside"
             android:text="채성수\n305"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -492,7 +492,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -512,7 +512,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/d_outside"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -546,7 +546,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"

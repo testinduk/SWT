@@ -1,6 +1,8 @@
 package com.example.figma;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
         holder.tv_username.setText(arrayList.get(position).getUserName());
+        holder.tv_userName.setText(arrayList.get(position).getUserName());
+        holder.tv_studentNumber.setText((arrayList.get(position).getStudentNumber()));
+
+        holder.tv_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(context, sharing_details.class);
+                context.startActivity(intent);
+            }
+        });
 
 
     }
@@ -54,13 +66,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         Button tv_title;
         Button tv_studentNumber;
         Button tv_username;
+        Button tv_userName;
+
+        Button tv_detail;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_title = itemView.findViewById(R.id.tv_title);
+
             this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
             this.tv_username = itemView.findViewById(R.id.tv_userName);
+            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
+
+            this.tv_detail = itemView.findViewById(R.id.tv_detail);
         }
+
     }
 }
