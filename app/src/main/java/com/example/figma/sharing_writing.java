@@ -79,8 +79,6 @@ public class sharing_writing extends Activity {
                             boardRef.child("userName").setValue(username);
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
-
-
                         }
                     }
 
@@ -94,12 +92,6 @@ public class sharing_writing extends Activity {
         });
         ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
-
-        // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), sharing_board.class);
