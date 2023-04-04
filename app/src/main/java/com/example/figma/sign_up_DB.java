@@ -9,6 +9,7 @@ public class sign_up_DB {
     private String userName;
     private String studentNumber;
 
+
     public sign_up_DB(){ }
 
     public String getUserName() {

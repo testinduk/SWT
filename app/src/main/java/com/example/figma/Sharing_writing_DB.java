@@ -10,7 +10,17 @@ public class Sharing_writing_DB {
     private String uid;
     private String studentNumber;
 
+    private String shar_key;
+
     public Sharing_writing_DB(){}
+
+    public String getShar_key() {
+        return shar_key;
+    }
+
+    public void setShar_key(String shar_key) {
+        this.shar_key = shar_key;
+    }
 
     public String getStudentNumber() {
         return studentNumber;
