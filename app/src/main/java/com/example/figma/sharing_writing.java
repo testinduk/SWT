@@ -94,6 +94,12 @@ public class sharing_writing extends Activity {
         });
         ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
+
+        // 뒤로가기 버튼
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), sharing_board.class);
@@ -101,6 +107,7 @@ public class sharing_writing extends Activity {
             }
         });
     }
+
 
 
     //    public void add_sharing(String title,String content){
