@@ -15,7 +15,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,15 +31,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class sharing_writing extends Activity {
 
-    Button btn;
+    Button btn, backButton;
     EditText edit1, edit2;
     String title, content;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_writing);
-
 
         btn = findViewById(R.id.button); //버튼 아이디 연결
         edit1 = findViewById(R.id.editTextTextPersonName); // 제목 적는 곳
@@ -63,7 +65,8 @@ public class sharing_writing extends Activity {
                             String emailId = dataSnapshot.child("emailId").getValue(String.class);
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String userName = dataSnapshot.child("userName").getValue(String.class);
+                            String username = dataSnapshot.child("userName").getValue(String.class);
+
 
                             String title = edit1.getText().toString();
                             String content = edit2.getText().toString();
@@ -73,11 +76,9 @@ public class sharing_writing extends Activity {
                             boardRef.child("emailId").setValue(emailId);
                             boardRef.child("idToken").setValue(idToken);
                             boardRef.child("studentNumber").setValue(studentNumber);
-                            boardRef.child("userName").setValue(userName);
+                            boardRef.child("userName").setValue(username);
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
-
-
                         }
                     }
 
@@ -87,10 +88,21 @@ public class sharing_writing extends Activity {
                     }
                 });
             }
-        });
 
+        });
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                startActivity(intent);
+            }
+        });
     }
-//    public void add_sharing(String title,String content){
+
+
+
+    //    public void add_sharing(String title,String content){
 //        sharing_DB sharing_db = new sharing_DB(title, content);
 //
 //        DatabaseReference sharingRef = databaseReference.child("sharing Board").push();
