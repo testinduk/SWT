@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,18 +21,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class sharing_board extends Activity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<sharing_DB> arrayList;
+    private ArrayList<Sharing_writing_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,35 +37,38 @@ public class sharing_board extends Activity {
         setContentView(R.layout.sharing_board);
 
         recyclerView = findViewById(R.id.recyclerView); //아이디 연결
-        recyclerView.setHasFixedSize(true); //리사이클러뷰 기존 성능 강화
+        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        arrayList = new ArrayList<>(); //sharing_DB를 담을 어레이 리스트(어텝터 쪽으로)
+        arrayList = new ArrayList<>();
 
-        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터베이스 연동
+        database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("sharing_DB");// DB 테이블 연결
+        databaseReference = database.getReference("sharing Board");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-                arrayList.clear();//기존 배열리스트가 존재하지 않게 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { //반복문으로 데이터 리스트를 추출
-                    sharing_DB sharing_db = snapshot.getValue(sharing_DB.class); // sharing_DB 객체에 데이터 담는다
-                    arrayList.add(sharing_db); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
-                }
-                adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //db 가져오던 중 에러 발생 시
-                Log.e("에러가 발생했습니다. 다시 시도해주세요.", String.valueOf(error.toException())); //에러문 출력
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                    arrayList.add(user);
 
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("MainActivity", String.valueOf(databaseError.toException()));
             }
         });
-        adapter = new CustomAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
 
+
+        adapter = new CustomAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);
@@ -148,9 +145,9 @@ public class sharing_board extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 }
+
 
 //    private void readUser() {
 //        mDatabase.child("Sharing Board").child("1").addValueEventListener(new ValueEventListener() {
@@ -169,4 +166,3 @@ public class sharing_board extends Activity {
 //            public void onCancelled(@NonNull DatabaseError error) {
 //                //Getting Post failed, Log a message
 //                Log.w("FireBaseData", "loadPost:onCancelled");
-

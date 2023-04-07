@@ -39,6 +39,7 @@ public class my_inf_details extends Activity {
                 startActivity(intent);
             }
         });
+
         // warningButton
         Button warningButton = findViewById(R.id.remove);
         warningButton.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +85,3 @@ public class my_inf_details extends Activity {
         }
     }
 }
-
-
