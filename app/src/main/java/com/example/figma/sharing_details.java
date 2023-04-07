@@ -113,6 +113,17 @@ public class sharing_details extends Activity {
                     }
                 }
             });
+            //글 삭제하기.
+            delete_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(shar_idToken != null){
+                        Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                        startActivity(intent);
+                        ref.child("sharing Board").child(shar_key).removeValue();
+                    }
+                }
+            });
 
         } else {
             edit_button.setEnabled(false);
