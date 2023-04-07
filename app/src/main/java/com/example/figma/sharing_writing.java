@@ -204,12 +204,12 @@ public class sharing_writing extends Activity {
 //                });
 
 
-//        Calendar expiration = Calendar.getInstance();
-//        expiration.add(Calendar.HOUR_OF_DAY, 12);
-//        long expirationTimestamp = expiration.getTimeInMillis();
-//        //child는 해당 키 위치로 이동하는 함수입니다.
-//        //키가 없는데 "sharing Board"와 title,content 같이 값을 지정한 경우 자동으로 생성합니다.
-//        databaseReference.child("User").push().child(uid).child(sharingRef.getKey()).setValue(expirationTimestamp);
+                        //        Calendar expiration = Calendar.getInstance();
+                        //        expiration.add(Calendar.HOUR_OF_DAY, 12);
+                        //        long expirationTimestamp = expiration.getTimeInMillis();
+                        //        //child는 해당 키 위치로 이동하는 함수입니다.
+                        //        //키가 없는데 "sharing Board"와 title,content 같이 값을 지정한 경우 자동으로 생성합니다.
+                        //        databaseReference.child("User").push().child(uid).child(sharingRef.getKey()).setValue(expirationTimestamp);
 
 //    private static final int PICK_IMAGE_REQUEST = 1;
 //
@@ -272,3 +272,4 @@ public class sharing_writing extends Activity {
 //        }
 //    }
 //}
+
