@@ -50,12 +50,21 @@ public class sharing_board extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
                     Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
                     arrayList.add(user);
 
                 }
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String uid = snapshot.getKey();
+                        Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                        arrayList.add(user);
+
+                    }
+
                 adapter.notifyDataSetChanged();
 
             }

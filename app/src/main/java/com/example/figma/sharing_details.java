@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,14 +33,38 @@ public class sharing_details extends Activity {
     private TextView tv_username;
     private TextView tv_content;
     private TextView tv_title;
+
     private Button edit_button;
     private ImageButton delete_button;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_details);
 
+        tv_username = findViewById(R.id.textView2);
+        tv_title = findViewById(R.id.textView1);
+        tv_content = findViewById(R.id.textView4);
+
+
+        Intent seconed_intent = getIntent();
+
+        String shar_username = seconed_intent.getStringExtra("username");
+        String shar_title = seconed_intent.getStringExtra("title");
+        String shar_content = seconed_intent.getStringExtra("content");
+
+
+
+        tv_username.setText(shar_username);
+        tv_content.setText(shar_content);
+        tv_title.setText(shar_title);
+
+
+
+
+
+
+        // 수정 버튼
+        ImageButton btn_sha_amend = findViewById(R.id.btn_sha_amend);
 
         tv_username = findViewById(R.id.textView2);
         tv_title = findViewById(R.id.textView1);

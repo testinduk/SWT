@@ -81,6 +81,7 @@ public class sharing_writing extends Activity {
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
+
                         }
                     }
 

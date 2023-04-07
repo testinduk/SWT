@@ -32,6 +32,8 @@ public class Sharing_writing_DB {
 
     private String shar_key;
 
+    private String shar_key;
+
     public Sharing_writing_DB(){}
 
     public String getShar_key() {
