@@ -9,6 +9,28 @@ public class Sharing_writing_DB {
     private String content;
     private String uid;
     private String studentNumber;
+    private String idToken;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getIdToken() {
+
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+
+        this.idToken = idToken;
+    }
+
+    private String shar_key;
 
     private String shar_key;
 

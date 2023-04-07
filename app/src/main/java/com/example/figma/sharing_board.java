@@ -50,12 +50,21 @@ public class sharing_board extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                    arrayList.add(user);
+
+                }
+
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String uid = snapshot.getKey();
                         Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
                         arrayList.add(user);
 
                     }
+
                 adapter.notifyDataSetChanged();
 
             }
@@ -166,4 +175,3 @@ public class sharing_board extends Activity {
 //            public void onCancelled(@NonNull DatabaseError error) {
 //                //Getting Post failed, Log a message
 //                Log.w("FireBaseData", "loadPost:onCancelled");
-

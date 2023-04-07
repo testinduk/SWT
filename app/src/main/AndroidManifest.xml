@@ -47,9 +47,19 @@
         <activity android:name=".main_home" />
         <activity android:name=".sharing_details" />
         <activity android:name=".sharing_writing" />
+
+        <activity android:name=".notice_details"/>
+        <activity android:name=".sign_up_email"/>
+        <activity android:name=".sign_up"/>
+        <activity android:name="sharing_edit"/>
+
+
+
+
         <activity android:name=".notice_details" />
         <activity android:name=".sign_up_email" />
         <activity android:name=".sign_up" />
+
     </application>
 
 </manifest>
