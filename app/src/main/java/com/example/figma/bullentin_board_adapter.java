@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,16 +15,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_board_adapter.ViewHolder> {
 
     private ArrayList<bullentin_DB> arrayList;
     private Context context;
+    private ArrayList<bullentin_DB> filteredarrayList;
 
 
     public bullentin_board_adapter(ArrayList<bullentin_DB> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
+        this.filteredarrayList = new ArrayList<>(arrayList);
+    }
+
+    public void filter(String query){
+        filteredarrayList.clear();
+        if(query.isEmpty()){
+            filteredarrayList.addAll(arrayList);
+        } else {
+            for(bullentin_DB db : arrayList){
+                if(db.getTitle().toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))){
+                    filteredarrayList.add(db);
+                }
+            }
+        }
+        notifyDataSetChanged();
+        if(filteredarrayList.isEmpty()){
+            Toast.makeText(context,"검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @NonNull
@@ -35,12 +57,6 @@ public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_boar
 
     @Override
     public void onBindViewHolder(@NonNull bullentin_board_adapter.ViewHolder holder, int position) {
-   //     Glide.with(holder.itemView)
-   //             .load(arrayList.get(position).getProfile())
-                //.into(holder.iv_profile);
-//        holder.tv_id.setText(arrayList.get(position).getId());
-//        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
-//        holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.item_title_text.setText(arrayList.get(position).getTitle());
         holder.item_name_text.setText(arrayList.get(position).getUserName());
         holder.item_studentNumber.setText((arrayList.get(position).getStudentNumber()));
@@ -55,19 +71,14 @@ public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_boar
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageButton iv_profile;
-        //        Button tv_id;
-//        Button tv_pw;
-//        Button tv_userName;
         Button item_title_text;
         Button item_name_text;
         Button item_studentNumber;
+        EditText editText;
+        Button searchButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-//            this.tv_id = itemView.findViewById(R.id.tv_id);
-//            this.tv_pw = itemView.findViewById(R.id.tv_pw);
-//            this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.item_title_text = itemView.findViewById(R.id.item_title_text);
             this.item_name_text = itemView.findViewById(R.id.item_name_text);
             this.item_studentNumber = itemView.findViewById(R.id.item_studentNumber);

@@ -73,12 +73,14 @@ public class sharing_writing extends Activity {
 
 
                             DatabaseReference boardRef = databaseReference.child("sharing Board").push();
+                            String boardKey = boardRef.getKey(); //새로운 키 값 가져오기
                             boardRef.child("emailId").setValue(emailId);
                             boardRef.child("idToken").setValue(idToken);
                             boardRef.child("studentNumber").setValue(studentNumber);
                             boardRef.child("userName").setValue(username);
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
+                            boardRef.child("key").setValue(boardKey);
                         }
                     }
 
