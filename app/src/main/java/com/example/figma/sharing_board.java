@@ -64,7 +64,7 @@ public class sharing_board extends Activity {
             }
         });
 
-        adapter = new CustomAdapter(arrayList, this);
+        adapter = new CustomAdapter(arrayList, this); //어댑터 연동
         recyclerView.setAdapter(adapter);
 
 

@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_board_adapter.ViewHolder> {
 
     private ArrayList<bullentin_DB> arrayList;
+    private ArrayList<item_bullentin_board> items = null;
     private Context context;
 
 
@@ -25,55 +27,62 @@ public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_boar
         this.context = context;
     }
 
-    @NonNull
-    @Override
-    public bullentin_board_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main, parent, false);
-        bullentin_board_adapter.ViewHolder holder = new bullentin_board_adapter.ViewHolder(view);
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull bullentin_board_adapter.ViewHolder holder, int position) {
-   //     Glide.with(holder.itemView)
-   //             .load(arrayList.get(position).getProfile())
-                //.into(holder.iv_profile);
-//        holder.tv_id.setText(arrayList.get(position).getId());
-//        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
-//        holder.tv_userName.setText(arrayList.get(position).getUserName());
-        holder.item_title_text.setText(arrayList.get(position).getTitle());
-        holder.item_name_text.setText(arrayList.get(position).getUserName());
-        holder.item_studentNumber.setText((arrayList.get(position).getStudentNumber()));
-
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return (arrayList != null ? arrayList.size():0);
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
-        //        Button tv_id;
-//        Button tv_pw;
-//        Button tv_userName;
         Button item_title_text;
         Button item_name_text;
         Button item_studentNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-//            this.tv_id = itemView.findViewById(R.id.tv_id);
-//            this.tv_pw = itemView.findViewById(R.id.tv_pw);
-//            this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.item_title_text = itemView.findViewById(R.id.item_title_text);
             this.item_name_text = itemView.findViewById(R.id.item_name_text);
             this.item_studentNumber = itemView.findViewById(R.id.item_studentNumber);
 
         }
     }
+
+    // 생성자
+    bullentin_board_adapter(ArrayList<item_bullentin_board> list) {
+        items = list;
+    }
+
+    @NonNull
+    @Override
+    public bullentin_board_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View view = inflater.inflate(R.layout.item_main, parent, false);
+        bullentin_board_adapter.ViewHolder holder = new bullentin_board_adapter.ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull bullentin_board_adapter.ViewHolder holder, int position) {
+        String item_title_text = items.get(position).item_title_text;
+        String item_name_text = items.get(position).item_name_text;
+        String item_studentNumber = items.get(position).item_studentNumber;
+
+
+        holder.item_title_text.setText(arrayList.get(position).getTitle());
+        holder.item_name_text.setText(arrayList.get(position).getUserName());
+        holder.item_studentNumber.setText((arrayList.get(position).getStudentNumber()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return (arrayList != null ? arrayList.size() : 0);
+    }
+
+
+    public void setItems(ArrayList<item_bullentin_board> list) {
+        items = list;
+        notifyDataSetChanged();
+    }
+}
+
+
+
 //    private ArrayList<bullentin_DB> arrayList;
 //    private ArrayList<bullentin_DB> items = null;
 //    private Context context;
@@ -129,4 +138,4 @@ public class bullentin_board_adapter extends RecyclerView.Adapter<bullentin_boar
 //        return (arrayList != null ? arrayList.size():0);
 //    }
 
-}
+
