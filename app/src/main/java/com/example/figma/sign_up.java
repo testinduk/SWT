@@ -149,7 +149,6 @@ public class sign_up extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
@@ -181,7 +180,4 @@ public class sign_up extends AppCompatActivity {
                 break;
         }
     }
-
-
-
 }
