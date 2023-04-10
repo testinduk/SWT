@@ -9,6 +9,16 @@ public class sign_up_DB {
     private String userName;
     private String studentNumber;
 
+    private String sign_up_image;
+
+    public String getSign_up_image() {
+        return sign_up_image;
+    }
+
+    public void setSign_up_image(String sign_up_image) {
+        this.sign_up_image = sign_up_image;
+    }
+
 
     public sign_up_DB(){ }
 
