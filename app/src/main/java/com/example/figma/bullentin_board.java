@@ -28,7 +28,6 @@ public class bullentin_board extends Activity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,19 +37,19 @@ public class bullentin_board extends Activity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        arrayList = new ArrayList<bullentin_DB>();
+        arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("bulletin Board");
+        databaseReference = database.getReference("bullentin Board");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    bullentin_DB user1 = snapshot.getValue(bullentin_DB.class);
-                    arrayList.add(user1);
+                    bullentin_DB user = snapshot.getValue(bullentin_DB.class);
+                    arrayList.add(user);
                 }
                 adapter.notifyDataSetChanged();
 
@@ -64,6 +63,50 @@ public class bullentin_board extends Activity {
 
         adapter = new bullentin_board_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+
+//    private RecyclerView recyclerView;
+//    private RecyclerView.Adapter adapter;
+//    private RecyclerView.LayoutManager layoutManager;
+//    private ArrayList<bullentin_DB> arrayList;
+//    private FirebaseDatabase database;
+//    private DatabaseReference databaseReference;
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.bullentin_board);
+//
+//        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
+//        recyclerView.setHasFixedSize(true);
+//        layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        arrayList = new ArrayList<bullentin_DB>();
+//
+//        database = FirebaseDatabase.getInstance();
+//
+//        databaseReference = database.getReference("bulletin Board");
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                arrayList.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    String uid = snapshot.getKey();
+//                    bullentin_DB user1 = snapshot.getValue(bullentin_DB.class);
+//                    arrayList.add(user1);
+//                }
+//                adapter.notifyDataSetChanged();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.e("MainActivity", String.valueOf(databaseError.toException()));
+//            }
+//        });
+//
+//        adapter = new bullentin_board_adapter(arrayList, this);
+//        recyclerView.setAdapter(adapter);
 
 
         // 글쓰기 버튼
@@ -343,6 +386,5 @@ public class bullentin_board extends Activity {
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        adapter = new bullentin_board_adpter(original_list);
 //        recyclerView.setAdapter(adapter);
-
 
 

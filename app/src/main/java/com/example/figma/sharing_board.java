@@ -44,15 +44,27 @@ public class sharing_board extends Activity {
 
         database = FirebaseDatabase.getInstance();
 
+        databaseReference = database.getReference("sharing Board");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                   arrayList.clear();
+                arrayList.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                    arrayList.add(user);
+
+                }
+
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String uid = snapshot.getKey();
                         Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
                         arrayList.add(user);
+
                     }
+
                 adapter.notifyDataSetChanged();
 
             }
@@ -63,9 +75,9 @@ public class sharing_board extends Activity {
             }
         });
 
+
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);
@@ -163,4 +175,3 @@ public class sharing_board extends Activity {
 //            public void onCancelled(@NonNull DatabaseError error) {
 //                //Getting Post failed, Log a message
 //                Log.w("FireBaseData", "loadPost:onCancelled");
-
