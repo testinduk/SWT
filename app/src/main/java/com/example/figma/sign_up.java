@@ -4,10 +4,9 @@ import static android.content.ContentValues.TAG;
 
 import static com.example.figma.my_inf_details.REQUEST_CODE;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,14 +37,13 @@ import java.util.Random;
 //import com.google.android.auth.AuthResult;
 
 public class sign_up extends AppCompatActivity {
+    private static final int PICK_IMAGE_REQUEST = 200;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
     private Button finishBT; //회원가입 버튼
-    ImageView imageView;
-    ImageButton imageButton;
-    String TAG = "sign_up";
+
 
     private FirebaseStorage storage;
 
@@ -64,6 +62,7 @@ public class sign_up extends AppCompatActivity {
 
         //      Uri file = Uri.fromFile(new File("sign up"))
         //    UploadTask uploadTask = imageRef.putFile(file);
+
 
 
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
@@ -145,8 +144,6 @@ public class sign_up extends AppCompatActivity {
                 } else {
                     Toast.makeText(sign_up.this, "빈칸을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
