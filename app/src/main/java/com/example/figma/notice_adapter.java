@@ -3,8 +3,7 @@ package com.example.figma;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,8 @@ import java.util.ArrayList;
 public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHolder> {
 
     private ArrayList<notice_DB> arrayList;
+
+    private ArrayList<notice_DB> searchList;
     private Context context;
 
     private FirebaseDatabase database;
@@ -35,6 +36,13 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         this.arrayList = arrayList;
         this.context = context;
     }
+
+
+
+//    public notice_search_adapter(ArrayList<notice_DB> searchList, TextWatcher context) {
+//        this.searchList = searchList;
+//        this.context = (Context) context;
+//    }
 
     @NonNull
     @Override
@@ -88,6 +96,12 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
     public int getItemCount() {
         return (arrayList != null ? arrayList.size():0);
     }
+
+
+
+//    public void setItems(ArrayList<notice_DB> ) {
+//        notifyDataSetChanged();
+//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageButton iv_profile;

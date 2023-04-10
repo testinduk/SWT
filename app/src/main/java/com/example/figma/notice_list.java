@@ -97,30 +97,42 @@ public class notice_list extends AppCompatActivity {
 
                 } else {
 
-//                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                                String uid = snapshot.getKey();
-//                                notice_DB user = snapshot.getValue(notice_DB.class);
-//                                arrayList.add(user);
-//
-//                                for (int a = 0; a < arrayList.size(); a++) {
-//                                    if (arrayList.get(a).name.toLowerCase().contains(searchText.toLowerCase())) {
-//                                        searchList.add(arrayList.get(a));
-//                                    }
-//                            }
-//                            adapter.notifyDataSetChanged();
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//                            Log.e("MainActivity", String.valueOf(databaseError.toException()));
-//                        }
-//                    });
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                String uid = snapshot.getKey();
+                                notice_DB user = snapshot.getValue(notice_DB.class);
+                                arrayList.add(user);
+
+                                for (int a = 0; a < arrayList.size(); a++) {
+                                    if (arrayList.get(a).getUserName().toLowerCase().contains(searchText.toLowerCase())) {
+                                        searchList.add(arrayList.get(a));
+                                    }
+                                    if (arrayList.get(a).getContent().toLowerCase().contains(searchText.toLowerCase())) {
+                                        searchList.add(arrayList.get(a));
+                                    }
+                                    if (arrayList.get(a).getProfile().toLowerCase().contains(searchText.toLowerCase())) {
+                                        searchList.add(arrayList.get(a));
+                                    }
+                                    if (arrayList.get(a).getUserName().toLowerCase().contains(searchText.toLowerCase())) {
+                                        searchList.add(arrayList.get(a));
+                                    }
+
+                                }
+
+
+                            }
+                            adapter.notifyDataSetChanged();
+
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.e("MainActivity", String.valueOf(databaseError.toException()));
+                        }
+                    });
 
                 }
             }
@@ -128,11 +140,9 @@ public class notice_list extends AppCompatActivity {
 
         });
 
-
-
-
         adapter = new notice_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);
