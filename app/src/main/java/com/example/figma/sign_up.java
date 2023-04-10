@@ -4,8 +4,6 @@ import static android.content.ContentValues.TAG;
 
 import static com.example.figma.my_inf_details.REQUEST_CODE;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -28,9 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-
-import java.io.InputStream;
 //import com.google.android.auth.AuthResult;
 
 public class sign_up extends AppCompatActivity {
@@ -40,10 +35,6 @@ public class sign_up extends AppCompatActivity {
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
     private Button finishBT; //회원가입 버튼
-
-    ImageView imageView;
-    ImageButton imageButton;
-    String TAG = "sign_up";
 
 
     @Override
