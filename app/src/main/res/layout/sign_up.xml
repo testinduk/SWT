@@ -226,38 +226,5 @@
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        android:background="#00ff0000"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="@+id/finishBT"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.49"
-        app:srcCompat="@drawable/camera"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="80dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="63dp"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="@+id/finishBT"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/passwd" />
-
-=======
->>>>>>> a4d78dd3b7f5d1676686957e469947a9d6f256f5
 
 </androidx.constraintlayout.widget.ConstraintLayout>
