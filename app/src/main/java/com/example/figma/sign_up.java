@@ -71,9 +71,6 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-
-
-
         backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -133,26 +130,6 @@ public class sign_up extends AppCompatActivity {
 
             }
         });
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(editTextTextPersonName4 != null){
-//                    mUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful()){
-//                                Toast.makeText(sign_up.this, "메일 전송 완료",Toast.LENGTH_SHORT).show();
-//                            }else {
-//                                Toast.makeText(sign_up.this,"메일 전송 실패",Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }else{
-//                    Toast.makeText(sign_up.this,"메일을 입력해주세요",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -171,95 +148,3 @@ public class sign_up extends AppCompatActivity {
     }
 
 }
-
-
-//                button.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View view) {
-//                        ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder().setUrl("https://induk-project.firebaseapp.com/__/auth/action?mode=action&oobCode=code")
-//                                .setHandleCodeInApp(true).setAndroidPackageName("com.example.figma", true, "12").build();
-//                        FirebaseAuth auth = FirebaseAuth.getInstance();
-//                        auth.sendSignInLinkToEmail(strEmail, actionCodeSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "Email sent");
-//                                }
-//                            }
-//                        });
-//
-//                    }
-//                });
-
-
-
-//                @Override
-//                public void onClick(View view) {
-//                    mAuth.sendSignInLinkToEmail(email, actionCode {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                Log.d(TAG, "Email sent");
-//                                Toast.makeText(sign_up.this, "메일 확인 요망" + mUser.getEmail(), Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Log.e(TAG, "메세지 보내기 실패", task.getException());
-//                                Toast.makeText(sign_up.this, "메일 실패", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//            });
-
-
-
-
-
-//                findViewById(R.id.finishBT).setOnClickListener(onClickListener);
-
-//             뒤로가기 버튼
-
-
-//    View.OnClickListener onClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            switch (view.getId()) {
-//                case R.id.finishBT:
-//                    signUp();
-//                    break;
-//            }
-//        }
-//    };
-//}
-//    private void signUp() {
-//        String id = ((EditText) findViewById(R.id.editTextTextPersonName2)).getText().toString();
-//        String password = ((EditText) findViewById(R.id.editTextTextPassword)).getText().toString();
-//        String passwordCheck = ((EditText) findViewById(R.id.editTextNumberPassword)).getText().toString();
-//
-//        if (id.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
-//            if (password.equals(passwordCheck)) {
-//                mAuth.createUserWithEmailAndPassword(id, password)
-//                        .addOnCompleteListener(this, new
-//                                OnCompleteListener<AuthResult>() //사용자가 입력한 아이디와 비밀번호를 파이어베이스에 저장시켜주는 코드
-//                                {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                                        if (task.isSuccessful()) //정상적으로 회원정보가 저장된 경우
-//                                        {
-//                                            Toast.makeText(com.example.figma.sign_up.this, "회원가입에 성공했습니다", Toast.LENGTH_SHORT).show();
-//                                            ;
-//                                        } else {
-//                                            if (task.getException().toString() != null) //정상적으로 회원정보가 저장되지 않는 경우
-//                                            {
-//                                                Toast.makeText(com.example.figma.sign_up.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-//                                            } //Toast.makeText()토스트 알림을 띄워주는 함수
-//                                        }
-//                                    }
-//                                });
-//            } else {
-//                Toast.makeText(com.example.figma.sign_up.this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
-//            }
-//        } else {
-//            Toast.makeText(com.example.figma.sign_up.this, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//}
