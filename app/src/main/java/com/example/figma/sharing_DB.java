@@ -1,7 +1,5 @@
 package com.example.figma;
 
-import com.google.firebase.Timestamp;
-
 public class sharing_DB {
 //테이블이라고 생각하고, 테이블에 들어갈 속성값을 넣기
 //파이어베이스는 RDBMS와 다르기 때문에 테이블이라는 개념이 없음. 원래는 키값이라고 부름
@@ -10,13 +8,15 @@ public class sharing_DB {
     private String title;
     private String content;
     private String uid;
+    private String userName;
+    private String studentNumber;
 //    private String timestamp;
 //    String title; //제목
 //    String content; //내용
 //    String uid;
 //    String timestamp;
 
-    public sharing_DB(){}
+    public sharing_DB(String title, String content){}
 
     //getter, setter 설정
     public String getProfile(){
@@ -71,5 +71,17 @@ public class sharing_DB {
         this.title = title;
         this.content = content;
         this.uid = uid;
+    }
+
+    public void setUserName(String userName) {
+    }
+
+    public void setStudentNumber(String studentNumber) {
+    }
+
+    public void getUserName(String userName) {
+    }
+
+    public void getStudentNumber(String studentNumber) {
     }
 }

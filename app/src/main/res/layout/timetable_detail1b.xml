@@ -93,7 +93,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="09:00~09:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -133,7 +133,7 @@
             android:background="@drawable/g_outside"
             android:text="인공지능\n개론"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -152,7 +152,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="10:00~10:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -173,7 +173,7 @@
             android:background="@drawable/a_outside"
             android:text="채플\n강당"
             android:textColor="#000000"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -184,7 +184,7 @@
             android:background="@drawable/h_outside"
             android:text="전자통신\n공학\n(이론)"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
         <androidx.appcompat.widget.AppCompatButton
@@ -194,7 +194,7 @@
             android:background="@drawable/g_outside"
             android:text="황선철\n305"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -206,7 +206,7 @@
             android:background="@drawable/e_outside"
             android:text="대학수학"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -216,7 +216,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="11:00~11:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -237,7 +237,7 @@
             android:background="@drawable/d_outside"
             android:text="컴퓨터\n공학\n개론"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"/>
 
@@ -248,7 +248,7 @@
             android:background="@drawable/h_outside"
             android:text="전광일\n305"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"  />
         <androidx.appcompat.widget.AppCompatButton
@@ -267,7 +267,7 @@
             android:background="@drawable/e_outside"
             android:text="한성일\n203"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -278,7 +278,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="12:00~12:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -299,7 +299,7 @@
             android:background="@drawable/d_outside"
             android:text="이보영\n304"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -310,7 +310,7 @@
             android:background="@drawable/i_outside"
             android:text="전자통신\n공학\n(실습)\n305"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -338,7 +338,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="13:00~13:50"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1" />
@@ -367,7 +367,7 @@
             app:layout_rowWeight="1"
             android:background="@drawable/i_outside"
             android:text="전광일\n106"
-            android:textSize="12sp"
+            android:textSize="10sp"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5_4"
@@ -392,7 +392,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
@@ -413,7 +413,7 @@
             android:background="@drawable/c_outside"
             android:text="정보통신\n개론"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"/>
 
@@ -431,7 +431,7 @@
             android:background="@drawable/f_outside"
             android:text="C언어"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -449,7 +449,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -471,7 +471,7 @@
             android:background="@drawable/c_outside"
             android:text="송재철\n306"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -491,7 +491,7 @@
             android:background="@drawable/f_outside"
             android:text="유봉선\n302"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -509,7 +509,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
@@ -546,7 +546,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/f_outside"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
@@ -563,7 +563,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
             app:layout_rowWeight="1"
