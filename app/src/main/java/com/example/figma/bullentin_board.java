@@ -3,12 +3,16 @@ package com.example.figma;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,11 +26,16 @@ import java.util.ArrayList;
 
 public class bullentin_board extends Activity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private RecyclerView.Adapter adapter;  //어댑터
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<bullentin_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    ArrayList<item_bullentin_board> search_list = new ArrayList<>();  // 검색시 같은 이름이 있는 아이템이 담길 리스트
+    ArrayList<item_bullentin_board> original_list = new ArrayList<>(); // recyclerView에 추가할 아이템 리스트
+
+    //어댑터
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class bullentin_board extends Activity {
         arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
+
 
         databaseReference = database.getReference("bullentin Board");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -63,50 +73,6 @@ public class bullentin_board extends Activity {
 
         adapter = new bullentin_board_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
-//    private RecyclerView recyclerView;
-//    private RecyclerView.Adapter adapter;
-//    private RecyclerView.LayoutManager layoutManager;
-//    private ArrayList<bullentin_DB> arrayList;
-//    private FirebaseDatabase database;
-//    private DatabaseReference databaseReference;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.bullentin_board);
-//
-//        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
-//        recyclerView.setHasFixedSize(true);
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//        arrayList = new ArrayList<bullentin_DB>();
-//
-//        database = FirebaseDatabase.getInstance();
-//
-//        databaseReference = database.getReference("bulletin Board");
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                arrayList.clear();
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    String uid = snapshot.getKey();
-//                    bullentin_DB user1 = snapshot.getValue(bullentin_DB.class);
-//                    arrayList.add(user1);
-//                }
-//                adapter.notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Log.e("MainActivity", String.valueOf(databaseError.toException()));
-//            }
-//        });
-//
-//        adapter = new bullentin_board_adapter(arrayList, this);
-//        recyclerView.setAdapter(adapter);
 
 
         // 글쓰기 버튼
@@ -155,7 +121,6 @@ public class bullentin_board extends Activity {
         // 게시판 버튼
         ImageButton boardButton = findViewById(R.id.boardButton);
         boardButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), bullentin_board.class);
@@ -166,7 +131,6 @@ public class bullentin_board extends Activity {
         // 마이페이지 버튼
         ImageButton mypageButton = findViewById(R.id.mypageButton);
         mypageButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), mypage.class);
@@ -184,8 +148,49 @@ public class bullentin_board extends Activity {
                 startActivity(intent);
             }
         });
+
+
+        editText = findViewById(R.id.editText);
+
+        //editText 리스트 작성
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String searchText = editText.getText().toString();
+                search_list.clear();
+
+                if (searchText.equals("")) {
+                    adapter.setItems(original_list);
+                }
+                else {
+                    // 검색 단어를 포함하는지 확인
+                    for (int a = 0; a < original_list.size(); a++) {
+                        if (original_list.get(a).Name.toLowerCase().contains(searchText.toLowerCase())) {
+                            search_list.add(original_list.get(a));
+                        }
+                        adapter.setItems(search_list);
+                    }
+                }
+            }
+        });
+
+        // 리사이클러뷰, 어댑터 연결
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        adapter = new bullentin_board_adapter(original_list);
+        recyclerView.setAdapter(adapter);
     }
 }
+
 
 //    private RecyclerView recyclerView;
 //    private RecyclerView.Adapter adapter;
@@ -318,9 +323,6 @@ public class bullentin_board extends Activity {
 //    }
 //    });
 //}
-
-
-
 
 
 //
