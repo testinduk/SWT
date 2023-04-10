@@ -41,31 +41,9 @@ public class sharing_details extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_details);
 
-        tv_username = findViewById(R.id.textView2);
-        tv_title = findViewById(R.id.textView1);
-        tv_content = findViewById(R.id.textView4);
-
-
-        Intent seconed_intent = getIntent();
-
-        String shar_username = seconed_intent.getStringExtra("username");
-        String shar_title = seconed_intent.getStringExtra("title");
-        String shar_content = seconed_intent.getStringExtra("content");
-
-
-
-        tv_username.setText(shar_username);
-        tv_content.setText(shar_content);
-        tv_title.setText(shar_title);
-
-
-
-
-
-
+       
         // 수정 버튼
         ImageButton btn_sha_amend = findViewById(R.id.btn_sha_amend);
-
         tv_username = findViewById(R.id.textView2);
         tv_title = findViewById(R.id.textView1);
         tv_content = findViewById(R.id.textView4);

@@ -153,7 +153,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <SearchView
+    <EditText
         android:id="@+id/searchView"
         android:layout_width="225dp"
         android:layout_height="30dp"
