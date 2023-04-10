@@ -50,6 +50,7 @@
         <activity android:name=".notice_details" />
         <activity android:name=".sign_up_email" />
         <activity android:name=".sign_up" />
+        <activity android:name=".my_inf_details2"/>
     </application>
 
 </manifest>

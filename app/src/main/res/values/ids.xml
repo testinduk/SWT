@@ -12,4 +12,8 @@
     <item name="email_mod" type="id" />
     <item name="email_ch" type="id" />
     <item name="email_ch1" type="id" />
+    <item name="password2" type="id" />
+    <item name="ch_password2" type="id" />
+    <item name="grade2" type="id" />
+    <item name="class3" type="id" />
 </resources>
