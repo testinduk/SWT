@@ -12,9 +12,13 @@ public class Sharing_writing_DB {
     private String idToken;
     private String key;
 
+    private String shar_key;
+
     public String getKey() {
         return key;
     }
+
+
 
     public void setKey(String key) {
         this.key = key;
@@ -29,8 +33,6 @@ public class Sharing_writing_DB {
 
         this.idToken = idToken;
     }
-
-    private String shar_key;
 
     public Sharing_writing_DB(){}
 

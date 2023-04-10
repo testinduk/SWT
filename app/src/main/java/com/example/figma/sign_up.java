@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
@@ -27,8 +28,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.InputStream;
+import java.util.Random;
 //import com.google.android.auth.AuthResult;
 
 public class sign_up extends AppCompatActivity {
@@ -41,10 +47,23 @@ public class sign_up extends AppCompatActivity {
     ImageButton imageButton;
     String TAG = "sign_up";
 
+    private FirebaseStorage storage;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
+
+        storage = FirebaseStorage.getInstance();
+
+
+        // FirebaseStorage storage = FirebaseStorage.getInstance();
+        // StorageReference storageRef = storage.getReference();
+        // StorageReference imageRef = storageRef.child("sign up");
+
+        //      Uri file = Uri.fromFile(new File("sign up"))
+        //    UploadTask uploadTask = imageRef.putFile(file);
 
 
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
@@ -136,15 +155,29 @@ public class sign_up extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        
+
         switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
                     imageView.setImageURI(uri);
+
+//                    Random random = new Random();
+
+                    String strEmail1 = editTextTextPersonName4.getText().toString();
+
+                    StorageReference storageRef = storage.getReference();
+                    StorageReference riversRef = storageRef.child("sign_up/" + strEmail1);
+                    UploadTask uploadTask = riversRef.putFile(uri);
+
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(sign_up.this, "성공", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 break;
         }
     }
-
 }
