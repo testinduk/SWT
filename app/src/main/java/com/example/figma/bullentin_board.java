@@ -388,4 +388,3 @@ public class bullentin_board extends Activity {
 //        recyclerView.setAdapter(adapter);
 
 
-

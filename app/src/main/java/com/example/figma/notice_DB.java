@@ -1,6 +1,6 @@
 package com.example.figma;
 
-public class Sharing_writing_DB {
+public class notice_DB {
     private String profile;
     private String id;
     private int pw;
@@ -9,32 +9,8 @@ public class Sharing_writing_DB {
     private String content;
     private String uid;
     private String studentNumber;
-    private String idToken;
-    private String key;
 
     private String shar_key;
-
-    public String getKey() {
-        return key;
-    }
-
-
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getIdToken() {
-
-        return idToken;
-    }
-
-    public void setIdToken(String idToken) {
-
-        this.idToken = idToken;
-    }
-
-    public Sharing_writing_DB(){}
 
     public String getShar_key() {
         return shar_key;

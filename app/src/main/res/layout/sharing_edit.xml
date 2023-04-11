@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".sharing_writing">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/vector"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginTop="-100dp"
+        android:gravity="center"
+        android:text="나눔게시판 글쓰기 수정"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="364dp"
+        android:src="@drawable/round_corner" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-380dp"
+        android:layout_marginTop="-50dp"
+        android:text="제목"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-35dp"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/round_corner"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-347dp"
+        android:layout_marginTop="10dp"
+        android:text="글쓰기"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="-54dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/round_corner"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="-350dp"
+        android:layout_marginTop="490dp"
+        android:background="#00ff0000"
+        app:srcCompat="@drawable/camera"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="490dp"
+        android:background="#00ff0000"
+        app:srcCompat="@drawable/attach"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="400dp"
+        android:background="#00ff0000"
+        android:text="수정 완료"
+        android:textColor="#000000" />
+
+
+</LinearLayout>
