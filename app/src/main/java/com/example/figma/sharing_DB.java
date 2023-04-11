@@ -10,6 +10,7 @@ public class sharing_DB {
     private String uid;
     private String userName;
     private String studentNumber;
+    private String sharing_image;
 //    private String timestamp;
 //    String title; //제목
 //    String content; //내용

@@ -1,112 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".sharing_writing">
+    tools:context=".sharing_details">
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/vector"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        android:layout_width="53dp"
+        android:layout_height="59dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector" />
+
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/textView"
+        android:layout_width="120dp"
+        android:layout_height="59dp"
+        android:text="수정페이지"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textView1"
+        android:layout_width="204dp"
+        android:layout_height="59dp"
+        android:text="제목"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-30dp"
-        android:layout_marginTop="-100dp"
-        android:gravity="center"
-        android:text="나눔게시판 글쓰기 수정"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+        android:text="글쓴이"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:text="날짜"
+        android:textColor="@color/black"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView1"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@id/photo_image"
+        android:layout_width="411dp"
+        android:layout_height="200dp"
+        android:background="@drawable/rectangle22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/textView4"
+        android:layout_width="442dp"
+        android:layout_height="198dp"
+        android:text="내용"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#ffffff"
+        android:gravity="left"
+        android:text="첨부파일"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_image" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="364dp"
-        android:src="@drawable/round_corner" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-380dp"
-        android:layout_marginTop="-50dp"
-        android:text="제목"
+        android:layout_marginEnd="16dp"
+        android:background="#00ff0000"
+        android:text="완료"
         android:textColor="#000000"
-        android:textSize="15dp" />
-
-    <EditText
-        android:id="@+id/edit_title"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="-35dp"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/round_corner"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="-347dp"
-        android:layout_marginTop="10dp"
-        android:text="글쓰기"
-        android:textColor="#000000"
-        android:textSize="15dp" />
-
-    <EditText
-        android:id="@+id/edit_content"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:layout_marginLeft="-54dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/round_corner"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintVertical_bias="0.69" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="-350dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginStart="32dp"
         android:background="#00ff0000"
-        app:srcCompat="@drawable/camera"
+        android:src="@drawable/camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintVertical_bias="0.252"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/imageButton7"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="490dp"
         android:background="#00ff0000"
-        app:srcCompat="@drawable/attach"
+        android:src="@drawable/attach"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintVertical_bias="0.252"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <Button
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="210dp"
-        android:layout_marginTop="400dp"
-        android:background="#00ff0000"
-        android:text="수정 완료"
-        android:textColor="#000000" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

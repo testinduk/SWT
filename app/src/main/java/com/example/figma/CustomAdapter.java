@@ -3,13 +3,12 @@ package com.example.figma;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
@@ -47,22 +45,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomAdapter.CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getProfile())
+                .load(arrayList.get(position).getSharing_image())
                 .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
 
+
         String userName = arrayList.get(position).getUserName();
         String title = arrayList.get(position).getTitle();
         String content = arrayList.get(position).getContent();
+        String sharing_image = arrayList.get(position).getSharing_image();
 
         String idToken = arrayList.get(position).getIdToken();
         String shar_key = arrayList.get(position).getKey(); //키값 가져오기
-
-
-
-
 
         database = FirebaseDatabase.getInstance();
 
@@ -79,7 +75,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 shar_intent.putExtra("content", content);
                 shar_intent.putExtra("idToken", idToken);
                 shar_intent.putExtra("key",shar_key);
-                Log.i("key",shar_key);
+                shar_intent.putExtra("image",sharing_image);
 
                 context.startActivity(shar_intent);
             }
@@ -94,7 +90,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
+        ImageView iv_profile;
         Button tv_title;
         Button tv_studentNumber;
         Button tv_userName;
