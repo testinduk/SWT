@@ -49,6 +49,35 @@ public class sign_up extends AppCompatActivity {
 
     private FirebaseStorage storage;
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    imageView.setImageURI(uri);
+
+//                    Random random = new Random();
+
+                    String strEmail1 = editTextTextPersonName4.getText().toString();
+
+                    StorageReference storageRef = storage.getReference();
+                    StorageReference riversRef = storageRef.child("sign_up/" + strEmail1);
+                    UploadTask uploadTask = riversRef.putFile(uri);
+
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(sign_up.this, "성공", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +139,8 @@ public class sign_up extends AppCompatActivity {
                 String strStudentNumber = editTextTextPersonName2.getText().toString();
                 String pwdCheck = editTextNumberPassword.getText().toString();
 
+                StorageReference storageRef = storage.getReference();
+
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
                         //FirebaseAuth 진행
@@ -126,6 +157,13 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
 
+                                    storageRef.child("sign_up/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Log.i ("log", String.valueOf(uri));
+                                            sign_up_db.setSign_up_image(String.valueOf(uri));
+                                        }
+                                    });
 
                                     //setValue는 database에 insert 행휘
                                     mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
@@ -151,33 +189,5 @@ public class sign_up extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    imageView.setImageURI(uri);
-
-//                    Random random = new Random();
-
-                    String strEmail1 = editTextTextPersonName4.getText().toString();
-
-                    StorageReference storageRef = storage.getReference();
-                    StorageReference riversRef = storageRef.child("sign_up/" + strEmail1);
-                    UploadTask uploadTask = riversRef.putFile(uri);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(sign_up.this, "성공", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                break;
-        }
-    }
 }
