@@ -37,8 +37,6 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         this.context = context;
     }
 
-
-
 //    public notice_search_adapter(ArrayList<notice_DB> searchList, TextWatcher context) {
 //        this.searchList = searchList;
 //        this.context = (Context) context;
@@ -67,6 +65,9 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         String title = arrayList.get(position).getTitle();
         String content = arrayList.get(position).getContent();
 
+        String idToken = arrayList.get(position).getIdToken();
+        String notice_key = arrayList.get(position).getKey();
+
 
 
 
@@ -80,24 +81,23 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
             public void onClick(View view) {
 //                String shar_key = databaseReference.getKey();
 //                Log.i("log", arrayList.get(position).getShar_key());
-                Intent shar_intent = new Intent(context, sharing_details.class);
+                Intent shar_intent = new Intent(context, notice_details.class);
                 shar_intent.putExtra("username", userName);
                 shar_intent.putExtra("title", title);
                 shar_intent.putExtra("content", content);
 
+                shar_intent.putExtra("idToken",idToken);
+                shar_intent.putExtra("key", notice_key);
+
                 context.startActivity(shar_intent);
             }
         });
-
-
     }
 
     @Override
     public int getItemCount() {
         return (arrayList != null ? arrayList.size():0);
     }
-
-
 
 //    public void setItems(ArrayList<notice_DB> ) {
 //        notifyDataSetChanged();
