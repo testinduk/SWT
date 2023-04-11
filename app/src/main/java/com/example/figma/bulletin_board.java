@@ -74,7 +74,7 @@ public class bulletin_board extends Activity {
         writingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), sharing_writing.class);
+                Intent intent = new Intent(getApplicationContext(), bulletin_board_writing.class);
                 startActivity(intent);
             }
         });

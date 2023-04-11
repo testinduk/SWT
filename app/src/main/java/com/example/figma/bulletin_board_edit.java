@@ -51,11 +51,11 @@ public class bulletin_board_edit extends Activity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
                 //수정하기 위해 sharing Board밑에 현재 선택된 shar_key와 같은 것을 찾아서 title과 content에 수정된 글 저장하기.
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("sharing Board").child(bulletin_key);
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bulletin Board").child(bulletin_key);
                 ref.child("title").setValue(textView1.getText().toString());
                 ref.child("content").setValue(textView4.getText().toString());
 
-                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                 startActivity(intent);
 
             }

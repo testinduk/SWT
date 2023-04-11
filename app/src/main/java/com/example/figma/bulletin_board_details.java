@@ -92,7 +92,7 @@ public class bulletin_board_details extends Activity {
                     if(bulletin_idToken != null){
                         Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                         startActivity(intent);
-                        ref.child("sharing Board").child(bulletin_key).removeValue();
+                        ref.child("bulletin Board").child(bulletin_key).removeValue();
                     }
                 }
             });
