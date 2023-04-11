@@ -212,7 +212,7 @@ public class notice_list extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), bullentin_board.class);
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                 startActivity(intent);
             }
         });
