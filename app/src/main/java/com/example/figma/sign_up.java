@@ -51,38 +51,8 @@ public class sign_up extends AppCompatActivity {
 
     private FirebaseStorage storage;
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    imageView.setImageURI(uri);
-
-//                    Random random = new Random();
-
-                    String strEmail1 = editTextTextPersonName4.getText().toString();
-
-                    StorageReference storageRef = storage.getReference();
-                    StorageReference riversRef = storageRef.child("sign_up/" + strEmail1);
-                    UploadTask uploadTask = riversRef.putFile(uri);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(sign_up.this, "성공", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                break;
-        }
-    }
-
     private StorageReference storageRef;
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -173,9 +143,6 @@ public class sign_up extends AppCompatActivity {
                 String pwdCheck = editTextNumberPassword.getText().toString();
 
 
-                StorageReference storageRef = storage.getReference();
-
-
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
                         //FirebaseAuth 진행
@@ -192,25 +159,37 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
 
-                                    storageRef.child("sign_up/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
 
-                                            Log.i ("log", String.valueOf(uri));
-                                            sign_up_db.setSign_up_image(String.valueOf(uri));
-                                            Log.i("log", String.valueOf(uri));
-                                            if (uri != null) {
-                                                sign_up_db.setSign_up_image(uri.toString());
+                                    if (storageRef.child("sign_up/" + strEmail) != null) {
 
-                                                //setValue는 database에 insert 행휘
-                                                mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
-                                            } else {
-                                                Log.e("loggg", "실패패패");
+                                        storageRef.child("sign_up/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                Log.i("log", String.valueOf(uri));
+                                                if (uri != null) {
+                                                    sign_up_db.setSign_up_image(uri.toString());
+
+                                                    //setValue는 database에 insert 행휘
+                                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
+                                                } else {
+                                                    Log.e("loggg", "실패패패");
+                                                }
+
                                             }
+                                        });
+                                    } else {
+                                        storageRef.child("profile.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                Log.i("log", String.valueOf(uri));
+                                                if (uri != null) {
+                                                    sign_up_db.setSign_up_image(uri.toString());
 
-
-                                        }
-                                    });
+                                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
+                                                }
+                                            }
+                                        });
+                                    }
 
 
                                     Toast.makeText(sign_up.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
@@ -234,6 +213,5 @@ public class sign_up extends AppCompatActivity {
         });
 
     }
-
 
 }
