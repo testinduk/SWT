@@ -159,37 +159,34 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
 
+                                    storageRef.child("sign_up/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
-                                    if (storageRef.child("sign_up/" + strEmail) != null) {
-
-                                        storageRef.child("sign_up/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                Log.i("log", String.valueOf(uri));
-                                                if (uri != null) {
-                                                    sign_up_db.setSign_up_image(uri.toString());
-
-                                                    //setValue는 database에 insert 행휘
-                                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
-                                                } else {
-                                                    Log.e("loggg", "실패패패");
-                                                }
-
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Log.i("log", String.valueOf(uri));
+                                            if (uri != null) {
+                                                sign_up_db.setSign_up_image(uri.toString());
+                                                //setValue는 database에 insert 행휘
+                                                mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
                                             }
-                                        });
-                                    } else {
-                                        storageRef.child("profile.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                Log.i("log", String.valueOf(uri));
-                                                if (uri != null) {
-                                                    sign_up_db.setSign_up_image(uri.toString());
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
 
-                                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
+                                            storageRef.child("base/profile.jpeg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    Log.i("log", String.valueOf(uri));
+                                                    if (uri != null) {
+
+                                                        sign_up_db.setSign_up_image(uri.toString());
+                                                        mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
+                                                    }
                                                 }
-                                            }
-                                        });
-                                    }
+                                            });
+                                        }
+                                    });
 
 
                                     Toast.makeText(sign_up.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();

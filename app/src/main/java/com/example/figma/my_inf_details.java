@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,11 +20,17 @@ import java.io.InputStream;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
 
 public class my_inf_details extends Activity {
     static final int REQUEST_CODE=0;
     ImageView imageView;
     ImageButton imageButton;
+    EditText chpw1, chpw2, chname, chnum;
 
 
     @Override
@@ -31,8 +38,29 @@ public class my_inf_details extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_inf_details);
 
-        imageView = findViewById(R.id.changeImage);
-        imageButton = findViewById(R.id.cameraButton);
+        imageView = findViewById(R.id.changeImage);     // 이미지
+        imageButton = findViewById(R.id.cameraButton);  // 이미지 변경 버튼
+        chpw1 = findViewById(R.id.password1);           // 새로운 비밀번호
+        chpw2 = findViewById(R.id.ch_password1);        // 비밀번호 확인
+        chname = findViewById(R.id.grade1);             // 이름
+        chnum = findViewById(R.id.class2);              // 학번
+
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
+        String uid = mAuth.getCurrentUser().getUid();    //현재 사용자 uid 저장
+
+        Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+
+
+
+
+
+
+
+
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
