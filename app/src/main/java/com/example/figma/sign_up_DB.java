@@ -35,6 +35,7 @@ public class sign_up_DB {
     }
 
     public void setStudentNumber(String studentNumber) {
+
         this.studentNumber = studentNumber;
     }
 
