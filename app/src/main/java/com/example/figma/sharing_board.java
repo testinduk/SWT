@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class sharing_board extends Activity {
 
+    //선언
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -34,12 +35,12 @@ public class sharing_board extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_board);
+        setContentView(R.layout.sharing_board); //레이아웃의 sharing_board 부분 참조
 
         recyclerView = findViewById(R.id.recyclerView); //아이디 연결
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
+        layoutManager = new LinearLayoutManager(this); //아이템 배치 방향을 수평으로 설정
+        recyclerView.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
         arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
