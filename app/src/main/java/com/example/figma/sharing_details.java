@@ -7,32 +7,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class sharing_details extends Activity {
     private TextView tv_username;
     private TextView tv_content;
     private TextView tv_title;
+    private ImageView photo_image;
 
     private Button edit_button;
     private ImageButton delete_button;
@@ -48,6 +35,7 @@ public class sharing_details extends Activity {
         tv_content = findViewById(R.id.textView4);
         edit_button = findViewById(R.id.btn_sha_amend);
         delete_button = findViewById(R.id.Button3);
+        photo_image = findViewById(R.id.photo_image);
 
         Intent second_intent = getIntent();
 
@@ -56,16 +44,20 @@ public class sharing_details extends Activity {
         String shar_content = second_intent.getStringExtra("content");
         String shar_idToken = second_intent.getStringExtra("idToken");
         String shar_key = second_intent.getStringExtra("key");
+        String sharing_image = second_intent.getStringExtra("image");
+//        Log.e("image",sharing_image);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Log.e("uid", uid);
-        Log.i("shar_idToken", shar_idToken);
+        Log.i("image", sharing_image);
 
         tv_username.setText(shar_username);
         tv_content.setText(shar_content);
         tv_title.setText(shar_title);
+        Glide.with(this)
+                .load(sharing_image)
+                .into(photo_image);
 
         if (uid.equals(shar_idToken)) {
             edit_button.setEnabled(true);
@@ -80,10 +72,12 @@ public class sharing_details extends Activity {
                         intent.putExtra("title",shar_title);
                         intent.putExtra("content",shar_content);
                         intent.putExtra("key",shar_key);
+                        intent.putExtra("image",sharing_image);
                         Log.i("id", shar_idToken);
                         Log.i("title",shar_title);
                         Log.i("content",shar_content);
                         Log.i("key",shar_key);
+                        Log.i("image",sharing_image);
                         startActivity(intent);
                     } else {
                         Log.i("id", "shar_idToken is null");
