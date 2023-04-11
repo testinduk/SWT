@@ -43,7 +43,6 @@ public class sharing_details extends Activity {
 
        
         // 수정 버튼
-        ImageButton btn_sha_amend = findViewById(R.id.btn_sha_amend);
         tv_username = findViewById(R.id.textView2);
         tv_title = findViewById(R.id.textView1);
         tv_content = findViewById(R.id.textView4);

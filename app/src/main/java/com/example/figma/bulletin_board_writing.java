@@ -10,14 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class bullentin_board_writing extends Activity {
+public class bulletin_board_writing extends Activity {
     Button button;
     EditText editTextTextPersonName5, editTextTextPersonName6;
     String title, content;
@@ -33,7 +28,7 @@ public class bullentin_board_writing extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bullentin_board_writing);
+        setContentView(R.layout.bulletin_board_writing);
 
 
         button = findViewById(R.id.button); //버튼 아이디 연결
@@ -46,10 +41,8 @@ public class bullentin_board_writing extends Activity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
 
-                Intent intent = new Intent(getApplicationContext(), bullentin_board.class);
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                 startActivity(intent);
-
-//                add_sharing(edit1.getText().toString(), edit2.getText().toString());
 
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
 
@@ -66,13 +59,15 @@ public class bullentin_board_writing extends Activity {
                             String content = editTextTextPersonName6.getText().toString();
 
 
-                            DatabaseReference boardRef = databaseReference.child("bullentin Board").push();
+                            DatabaseReference boardRef = databaseReference.child("bulletin Board").push();
+                            String boardKey = boardRef.getKey();
                             boardRef.child("emailId").setValue(emailId);
                             boardRef.child("idToken").setValue(idToken);
                             boardRef.child("studentNumber").setValue(studentNumber);
                             boardRef.child("userName").setValue(userName);
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
+                            boardRef.child("key").setValue(boardKey);
 
 
                         }
@@ -90,7 +85,7 @@ public class bullentin_board_writing extends Activity {
 
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), main_home.class);
+                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                         startActivity(intent);
                     }
                 });

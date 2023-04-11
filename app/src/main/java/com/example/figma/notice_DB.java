@@ -9,15 +9,35 @@ public class notice_DB {
     private String content;
     private String uid;
     private String studentNumber;
+    private String key;
 
-    private String shar_key;
-
-    public String getShar_key() {
-        return shar_key;
+    public String getKey() {
+        return key;
     }
 
-    public void setShar_key(String shar_key) {
-        this.shar_key = shar_key;
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getIdToken() {
+        return IdToken;
+    }
+
+    public void setIdToken(String idToken) {
+        IdToken = idToken;
+    }
+
+    private String IdToken;
+
+
+    private String notice_key;
+
+    public String getNotice_key() {
+        return notice_key;
+    }
+
+    public void setNotice_key(String notice_key) {
+        this.notice_key = notice_key;
     }
 
     public String getStudentNumber() {

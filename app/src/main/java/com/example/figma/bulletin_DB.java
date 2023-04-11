@@ -1,6 +1,6 @@
 package com.example.figma;
 
-public class bullentin_DB {
+public class bulletin_DB {
     //테이블이라고 생각하고, 테이블에 들어갈 속성값을 넣기
 //파이어베이스는 RDBMS와 다르기 때문에 테이블이라는 개념이 없음. 원래는 키값이라고 부름
 
@@ -12,8 +12,36 @@ public class bullentin_DB {
     private String content;
     private String uid;
     private String studentNumber;
+    private String idToken;
+    private String key;
 
-    public bullentin_DB(){}
+    private String bulletin_key;
+
+    public bulletin_DB(){}
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getBulletin_key() {
+        return bulletin_key;
+    }
+
+    public void setBulletin_key(String bulletin_key) {
+        this.bulletin_key = bulletin_key;
+    }
 
     public String getStudentNumber() {
         return studentNumber;
