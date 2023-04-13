@@ -78,6 +78,7 @@ public class sharing_board extends Activity {
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
+        //검색 기능
         search_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
