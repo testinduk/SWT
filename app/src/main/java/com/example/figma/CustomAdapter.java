@@ -102,7 +102,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
-
             this.tv_detail = itemView.findViewById(R.id.tv_detail);
         }
 

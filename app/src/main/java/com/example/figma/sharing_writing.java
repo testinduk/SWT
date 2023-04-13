@@ -39,7 +39,7 @@ public class sharing_writing extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
     FirebaseStorage storage;
-    String sharing_image_UUID = UUID.randomUUID().toString();
+    String sharing_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
     ImageView photo_image;
 
     @SuppressLint("WrongViewCast")
@@ -117,10 +117,8 @@ public class sharing_writing extends Activity {
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
-
                             String title = edit1.getText().toString();
                             String content = edit2.getText().toString();
-
 
                             DatabaseReference boardRef = databaseReference.child("sharing Board").push();
                             String boardKey = boardRef.getKey(); //새로운 키 값 가져오기

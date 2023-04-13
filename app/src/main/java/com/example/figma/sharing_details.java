@@ -1,6 +1,8 @@
 package com.example.figma;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,9 +92,21 @@ public class sharing_details extends Activity {
                 @Override
                 public void onClick(View view) {
                     if(shar_idToken != null){
-                        Intent intent = new Intent(getApplicationContext(), sharing_board.class);
-                        startActivity(intent);
-                        ref.child("sharing Board").child(shar_key).removeValue();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(sharing_details.this);
+                        builder.setTitle("경고메시지");
+                        builder.setMessage("정말로 삭제하시겠습니까?");
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                                startActivity(intent);
+                                ref.child("sharing Board").child(shar_key).removeValue();
+                                Toast.makeText(sharing_details.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        builder.setNegativeButton("취소",null);
+                        builder.create().show();
                     }
                 }
             });

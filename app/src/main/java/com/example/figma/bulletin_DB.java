@@ -14,8 +14,16 @@ public class bulletin_DB {
     private String studentNumber;
     private String idToken;
     private String key;
-
+    private String bulletin_image;
     private String bulletin_key;
+
+    public String getBulletin_image() {
+        return bulletin_image;
+    }
+
+    public void setBulletin_image(String bulletin_image) {
+        this.bulletin_image = bulletin_image;
+    }
 
     public bulletin_DB(){}
 
