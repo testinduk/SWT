@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:background="@drawable/table_outside"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/time_rcy_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="디지털전송시스템"
+                android:textSize="28sp"
+                />
+
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -28,6 +28,8 @@ public class Timetable extends AppCompatActivity {
 
     private ArrayList<String> tabNames = new ArrayList<>();
 
+    private ArrayList<String> timetable_name = new ArrayList<>();
+
     private int num_page = 6;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
