@@ -37,7 +37,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
     @NonNull
     @Override
     public bulletin_board_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sharing_list_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_bullentin_board, parent, false);
         bulletin_board_adapter.ViewHolder holder = new bulletin_board_adapter.ViewHolder(view);
         return holder;
     }
@@ -46,7 +46,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
     public void onBindViewHolder(@NonNull bulletin_board_adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getProfile())
+                .load(arrayList.get(position).getBulletin_image())
                 .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
@@ -57,6 +57,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
         String content = arrayList.get(position).getContent();
         String idToken = arrayList.get(position).getIdToken();
         String bulletin_key = arrayList.get(position).getKey(); //키값 가져오기
+        String bulletin_image = arrayList.get(position).getBulletin_image(); // 이미지 가져오기
 
         database = FirebaseDatabase.getInstance();
 
@@ -71,7 +72,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
                 shar_intent.putExtra("content", content);
                 shar_intent.putExtra("idToken", idToken);
                 shar_intent.putExtra("key", bulletin_key);
-                Log.i("key", bulletin_key);
+                shar_intent.putExtra("image",bulletin_image);
 
                 context.startActivity(shar_intent);
             }
@@ -98,7 +99,6 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
             this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
-
             this.tv_detail = itemView.findViewById(R.id.tv_detail);
         }
 
