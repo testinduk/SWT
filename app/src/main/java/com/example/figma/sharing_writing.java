@@ -27,6 +27,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -106,6 +108,8 @@ public class sharing_writing extends Activity {
                 Intent intent = new Intent(getApplicationContext(), sharing_board.class);
                 startActivity(intent);
 
+                String current_time = getCurretTime();
+
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
@@ -129,6 +133,7 @@ public class sharing_writing extends Activity {
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
+                            boardRef.child("sharing_time").setValue(current_time);
 
 
                             storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -159,5 +164,11 @@ public class sharing_writing extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    private String getCurretTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
