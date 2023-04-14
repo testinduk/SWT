@@ -83,7 +83,10 @@ public class bulletin_board extends Activity {
 
                 ArrayList<bulletin_DB> filteredList = new ArrayList<>();
                 for(bulletin_DB item : arrayList){
-                    if(item.getTitle().toLowerCase().contains(searchText) || item.getContent().toLowerCase().contains(searchText)){
+                    if(item.getTitle().toLowerCase().contains(searchText)
+                            || (item.getContent().toLowerCase().contains(searchText))
+                            || (item.getStudentNumber().toLowerCase().contains(searchText))
+                            || (item.getUserName().toLowerCase().contains(searchText))){
                         filteredList.add(item);
                     }
                 }

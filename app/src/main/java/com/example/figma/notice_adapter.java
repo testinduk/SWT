@@ -104,14 +104,8 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
             e.printStackTrace();
         }
 
-
-
-
-
-
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
-
 
         holder.tv_detail.setOnClickListener(new View.OnClickListener() {
             @Override

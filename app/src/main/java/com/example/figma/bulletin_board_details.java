@@ -60,6 +60,7 @@ public class bulletin_board_details extends Activity {
         String bulletin_idToken = second_intent.getStringExtra("idToken");
         String bulletin_key = second_intent.getStringExtra("key");
         String bulletin_image = second_intent.getStringExtra("image");
+        String bulletin_time = second_intent.getStringExtra("time");
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
@@ -73,6 +74,7 @@ public class bulletin_board_details extends Activity {
         Glide.with(this)
                 .load(bulletin_image)
                 .into(view2);
+        textView3.setText(bulletin_time);
 
         if (uid.equals(bulletin_idToken)) {
             btn_bul_amend.setEnabled(true);

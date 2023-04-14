@@ -26,6 +26,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class bulletin_board_writing extends Activity {
@@ -101,6 +103,8 @@ public class bulletin_board_writing extends Activity {
                 Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
                 startActivity(intent);
 
+                String current_time = getCurrentTime();
+
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
@@ -124,6 +128,7 @@ public class bulletin_board_writing extends Activity {
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
+                            boardRef.child("bulletin_time").setValue(current_time);
 
                             storageRef.child("bulletin/"+bulletin_board_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
@@ -156,5 +161,11 @@ public class bulletin_board_writing extends Activity {
             }
         });
 
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
