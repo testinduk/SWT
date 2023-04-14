@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHolder> {
 
     private ArrayList<notice_DB> arrayList;
-
-    private ArrayList<notice_DB> searchList;
     private Context context;
-
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -55,7 +56,7 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
     public void onBindViewHolder(@NonNull notice_adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getProfile())
+                .load(arrayList.get(position).getNotice_image())
                 .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
@@ -64,15 +65,51 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         String userName = arrayList.get(position).getUserName();
         String title = arrayList.get(position).getTitle();
         String content = arrayList.get(position).getContent();
-
+        String time = arrayList.get(position).getNotice_time();
         String idToken = arrayList.get(position).getIdToken();
         String notice_key = arrayList.get(position).getKey();
+        String notice_image = arrayList.get(position).getNotice_image();
+
+
+        // -------------시간 차이 넣기--------------- //
+        String currentTime = getCurrentTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            Date savedDate = dateFormat.parse(time);
+            Date currentDate = dateFormat.parse(currentTime);
+
+            long difference = currentDate.getTime() - savedDate.getTime();
+            long seconds = difference / 1000;
+
+            if (seconds < 60 && seconds > 0) {
+                holder.tv_time.setText(seconds + "초전");
+            }
+            else if (seconds >= 60 && seconds < 3600) {
+                seconds /=  60;
+                holder.tv_time.setText(seconds + "분전");
+
+            }
+            else if (seconds >= 3600 && seconds < 86400) {
+                seconds /= 3600;
+                holder.tv_time.setText(seconds + "시간전");
+            }
+            else if (seconds >= 86400 && seconds < 604800) {
+                seconds /= 86400;
+                holder.tv_time.setText(seconds + "일전");
+            }
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
 
 
 
 
         database = FirebaseDatabase.getInstance();
-
         databaseReference = database.getReference("notice Board");
 
 
@@ -81,18 +118,28 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
             public void onClick(View view) {
 //                String shar_key = databaseReference.getKey();
 //                Log.i("log", arrayList.get(position).getShar_key());
-                Intent shar_intent = new Intent(context, notice_details.class);
-                shar_intent.putExtra("username", userName);
-                shar_intent.putExtra("title", title);
-                shar_intent.putExtra("content", content);
+                Intent notice_intent = new Intent(context, notice_details.class);
+                notice_intent.putExtra("username", userName);
+                notice_intent.putExtra("title", title);
+                notice_intent.putExtra("content", content);
+                notice_intent.putExtra("time", time);
+                notice_intent.putExtra("idToken",idToken);
+                notice_intent.putExtra("key", notice_key);
+                notice_intent.putExtra("image", notice_image);
 
-                shar_intent.putExtra("idToken",idToken);
-                shar_intent.putExtra("key", notice_key);
-
-                context.startActivity(shar_intent);
+                context.startActivity(notice_intent);
             }
         });
     }
+
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -107,7 +154,7 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         ImageButton iv_profile;
         Button tv_title;
         Button tv_studentNumber;
-        Button tv_userName;
+        Button tv_userName, tv_time;
 
         Button tv_detail;
 
@@ -115,6 +162,7 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_title = itemView.findViewById(R.id.tv_title);
+            this.tv_time = itemView.findViewById(R.id.tv_time);
 
             this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
             this.tv_userName = itemView.findViewById(R.id.tv_userName);

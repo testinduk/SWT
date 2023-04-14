@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class notice_list extends AppCompatActivity {
@@ -34,11 +35,10 @@ public class notice_list extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<notice_DB> arrayList;
-
-    private ArrayList<notice_DB> searchList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    EditText editText;
+    EditText searchView;
+    Button search_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,11 @@ public class notice_list extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        searchList = new ArrayList<>();
 
-        editText = findViewById(R.id.searchView);
+        search_button = findViewById(R.id.search_button);    // 검색 버튼
+        searchView = findViewById(R.id.searchView);          // 검색어 입력
+
+
 
         database = FirebaseDatabase.getInstance();
 
@@ -78,90 +80,31 @@ public class notice_list extends AppCompatActivity {
             }
         });
 
-        //editText.addTextChangedListener(new TextWatcher() {
-       //     @Override
-       //     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-       //     }
-
-      //      @Override
-        //    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-          //  }
-
-        //   @Override
-         //   public void afterTextChanged(Editable s) {
-         //       String searchText = editText.getText().toString();
-        //        arrayList.clear();
-        //        searchList.clear();
-         //       if (searchText.equals("")) {
-         //           databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-          //              @Override
-           //             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-           //                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-           //                     String uid = snapshot.getKey();
-            //                    notice_DB user = snapshot.getValue(notice_DB.class);
-             //                   arrayList.add(user);
-               //             }
-               //             adapter.notifyDataSetChanged();
-//
-  //                      }
-//
-  //                      @Override
-    //                    public void onCancelled(@NonNull DatabaseError databaseError) {
-      //                      Log.e("MainActivity", String.valueOf(databaseError.toException()));
-        //                }
-          //          });
-//
-//
-  //              } else {
-//
-  //                  databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//
-  //                      @Override
-    //                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-      //                      for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-        //                        String uid = snapshot.getKey();
-          //                      notice_DB user = snapshot.getValue(notice_DB.class);
-            //                    arrayList.add(user);
-//
-  //                              for (int a = 0; a < arrayList.size(); a++) {
-    //                                if (arrayList.get(a).getUserName().toLowerCase().contains(searchText.toLowerCase())) {
-      //                                  searchList.add(arrayList.get(a));
-        //                            }
-          //                          if (arrayList.get(a).getContent().toLowerCase().contains(searchText.toLowerCase())) {
-             //                           searchList.add(arrayList.get(a));
-               //                     }
-            //                        if (arrayList.get(a).getProfile().toLowerCase().contains(searchText.toLowerCase())) {
-              //                          searchList.add(arrayList.get(a));
-                //                    }
-                  //                  if (arrayList.get(a).getUserName().toLowerCase().contains(searchText.toLowerCase())) {
-                    //                    searchList.add(arrayList.get(a));
-                      //              }
-//
-  //                              }
-//
-//
-  //                          }
-    //                        adapter.notifyDataSetChanged();
-//
-  //                      }
-    //                    @Override
-      //                  public void onCancelled(@NonNull DatabaseError databaseError) {
-        //                    Log.e("MainActivity", String.valueOf(databaseError.toException()));
-          //              }
-            //        });
-//
-  //              }
-    //        }
-//
-//
-  //      });
-//
         adapter = new notice_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
+
+        // 검색
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String notice_search = searchView.getText().toString().toLowerCase();
+
+                ArrayList<notice_DB> filteredList = new ArrayList<>();
+                filteredList.clear();
+                for (notice_DB notice : arrayList) {
+                    if(notice.getTitle().toLowerCase().contains(notice_search)
+                            || (notice.getUserName().toLowerCase().contains(notice_search))
+                            || (notice.getStudentNumber().toLowerCase().contains(notice_search))
+                            || (notice.getContent().toLowerCase().contains((notice_search)))) {
+                        filteredList.add(notice);
+                    }
+                }
+                adapter = new notice_adapter(filteredList, notice_list.this);
+                recyclerView.setAdapter(adapter);
+
+            }
+        });
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);
@@ -185,13 +128,13 @@ public class notice_list extends AppCompatActivity {
         });
 
         // 나눔 버튼
-                ImageButton sharingButton = findViewById(R.id.sharingButton);
-                sharingButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton sharingButton = findViewById(R.id.sharingButton);
+        sharingButton.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), sharing_board.class);
-                        startActivity(intent);
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                startActivity(intent);
             }
         });
 
