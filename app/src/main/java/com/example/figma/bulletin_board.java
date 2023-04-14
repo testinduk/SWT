@@ -42,7 +42,7 @@ public class bulletin_board extends Activity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        search_Button = findViewById(R.id.writingButton);
+        search_Button = findViewById(R.id.search_Button);
         searchView = findViewById(R.id.editText);
 
 
