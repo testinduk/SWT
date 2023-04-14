@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -43,11 +44,10 @@ public class sign_up extends AppCompatActivity {
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private EditText editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
     private Button finishBT; //회원가입 버튼
-    ImageView imageView;
-    ImageButton imageButton;
 
 
     private FirebaseStorage storage;
+    ImageView imageView;
 
 
     @Override
@@ -79,8 +79,8 @@ public class sign_up extends AppCompatActivity {
         editTextNumberPassword = findViewById(R.id.editTextNumberPassword);
         ImageButton backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
 
-        imageView = findViewById(R.id.imageView10);
-        imageButton = findViewById(R.id.imageButton);
+        ImageView imageView = findViewById(R.id.imageView10);
+        ImageButton imageButton = findViewById(R.id.imageButton);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override

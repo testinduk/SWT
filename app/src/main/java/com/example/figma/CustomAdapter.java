@@ -72,15 +72,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.tv_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String shar_key = databaseReference.getKey();
-
-//                Log.i("log", arrayList.get(position).getShar_key());
 
                 Intent shar_intent = new Intent(context, sharing_details.class);
                 shar_intent.putExtra("username", userName);
                 shar_intent.putExtra("title", title);
                 shar_intent.putExtra("content", content);
-
                 shar_intent.putExtra("idToken", idToken);
                 shar_intent.putExtra("key",shar_key);
                 Log.i("key",shar_key);

@@ -16,4 +16,5 @@
     <item name="ch_password2" type="id" />
     <item name="grade2" type="id" />
     <item name="class3" type="id" />
+    <item name="chname" type="id" />
 </resources>

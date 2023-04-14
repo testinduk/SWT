@@ -7,13 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,19 +20,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class sharing_board extends Activity {
-
+public class bulletin_board extends Activity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Sharing_writing_DB> arrayList;
+    private ArrayList<bulletin_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_board);
+        setContentView(R.layout.bulletin_board);
 
         recyclerView = findViewById(R.id.recyclerView); //아이디 연결
         recyclerView.setHasFixedSize(true);
@@ -44,7 +41,7 @@ public class sharing_board extends Activity {
 
         database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("sharing Board");
+        databaseReference = database.getReference("bulletin Board");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -53,7 +50,7 @@ public class sharing_board extends Activity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
+                    bulletin_DB user = snapshot.getValue(bulletin_DB.class);
                     arrayList.add(user);
 
                 }
@@ -69,7 +66,7 @@ public class sharing_board extends Activity {
         });
 
 
-        adapter = new CustomAdapter(arrayList, this);
+        adapter = new bulletin_board_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
         // 글쓰기 버튼
@@ -77,7 +74,7 @@ public class sharing_board extends Activity {
         writingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), sharing_writing.class);
+                Intent intent = new Intent(getApplicationContext(), bulletin_board_writing.class);
                 startActivity(intent);
             }
         });
@@ -149,22 +146,3 @@ public class sharing_board extends Activity {
         });
     }
 }
-
-
-//    private void readUser() {
-//        mDatabase.child("Sharing Board").child("1").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                //Get Post object and use the values to update the UI
-//                if(snapshot.getValue(sharing_DB.class) !=null){
-//                    sharing_DB post = snapshot.getValue(sharing_DB.class);
-//                    Log.w("FireBaseData","getData" + post.toString());
-//                }else{
-//                    Toast.makeText(sharing_board.this, "데이터 없음...", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                //Getting Post failed, Log a message
-//                Log.w("FireBaseData", "loadPost:onCancelled");
