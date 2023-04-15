@@ -86,7 +86,10 @@ public class sharing_board extends Activity {
 
                 ArrayList<Sharing_writing_DB> filteredList = new ArrayList<>();
                 for(Sharing_writing_DB item : arrayList){
-                    if(item.getTitle().toLowerCase().contains(searchText) || item.getContent().toLowerCase().contains(searchText)){
+                    if(item.getTitle().toLowerCase().contains(searchText)
+                            || (item.getContent().toLowerCase().contains(searchText))
+                            || (item.getUserName().toLowerCase().contains(searchText))
+                            || (item.getStudentNumber().toLowerCase().contains(searchText))) {
                         filteredList.add(item);
                     }
                 }

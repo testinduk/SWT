@@ -22,6 +22,7 @@ public class sharing_details extends Activity {
     private TextView tv_username;
     private TextView tv_content;
     private TextView tv_title;
+    private TextView textView3;
     private ImageView photo_image;
 
     private Button edit_button;
@@ -39,6 +40,7 @@ public class sharing_details extends Activity {
         edit_button = findViewById(R.id.btn_sha_amend);
         delete_button = findViewById(R.id.Button3);
         photo_image = findViewById(R.id.photo_image);
+        textView3 = findViewById(R.id.textView3);
 
         Intent second_intent = getIntent();
 
@@ -48,6 +50,7 @@ public class sharing_details extends Activity {
         String shar_idToken = second_intent.getStringExtra("idToken");
         String shar_key = second_intent.getStringExtra("key");
         String sharing_image = second_intent.getStringExtra("image");
+        String sharing_time = second_intent.getStringExtra("time");
 //        Log.e("image",sharing_image);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
@@ -61,6 +64,7 @@ public class sharing_details extends Activity {
         Glide.with(this)
                 .load(sharing_image)
                 .into(photo_image);
+        textView3.setText(sharing_time);
 
         if (uid.equals(shar_idToken)) {
             edit_button.setEnabled(true);

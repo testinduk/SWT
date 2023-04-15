@@ -58,13 +58,14 @@
         android:id="@+id/btn_sha_amend"
         android:layout_width="37dp"
         android:layout_height="25dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/pen"
-        app:layout_constraintBottom_toTopOf="@id/textView2"
 
-        app:layout_constraintEnd_toStartOf="@+id/Button3"
-        app:layout_constraintHorizontal_bias="0.85"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/Button3"
 
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/textView3" />
 
     <ImageButton
@@ -72,11 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/trash"
-        app:layout_constraintBottom_toTopOf="@id/textView2"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@id/photo_image"
