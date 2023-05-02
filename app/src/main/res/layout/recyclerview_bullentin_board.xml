@@ -6,7 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clickable="true">
 
         <ImageButton
             android:id="@+id/iv_profile"
@@ -15,7 +16,8 @@
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:layout_marginRight="55dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/rectangle36"
+            android:adjustViewBounds="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
