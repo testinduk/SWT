@@ -65,6 +65,16 @@ public class bulletin_board_writing extends Activity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        // 뒤로가기 버튼
+        backButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -92,7 +102,6 @@ public class bulletin_board_writing extends Activity {
                 }
                 break;
         }
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,16 +155,6 @@ public class bulletin_board_writing extends Activity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-
-                // 뒤로가기 버튼
-                backButton.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                        startActivity(intent);
                     }
                 });
             }
