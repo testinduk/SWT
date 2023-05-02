@@ -71,6 +71,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
+    //Firestore
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-firestore'
+
     //storage
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
