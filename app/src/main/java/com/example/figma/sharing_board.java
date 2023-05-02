@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class sharing_board extends Activity {
 
@@ -30,6 +32,8 @@ public class sharing_board extends Activity {
     private ArrayList<Sharing_writing_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private Button search_Button; //검색 버튼
+    private EditText searchView; //검색어 입력
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class sharing_board extends Activity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
+        search_Button = findViewById(R.id.search_Button);
+        searchView = findViewById(R.id.searchView);
 
         database = FirebaseDatabase.getInstance();
 
@@ -71,6 +77,26 @@ public class sharing_board extends Activity {
 
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+
+        //검색 기능
+        search_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchText = searchView.getText().toString().toLowerCase();
+
+                ArrayList<Sharing_writing_DB> filteredList = new ArrayList<>();
+                for(Sharing_writing_DB item : arrayList){
+                    if(item.getTitle().toLowerCase().contains(searchText)
+                            || (item.getContent().toLowerCase().contains(searchText))
+                            || (item.getUserName().toLowerCase().contains(searchText))
+                            || (item.getStudentNumber().toLowerCase().contains(searchText))) {
+                        filteredList.add(item);
+                    }
+                }
+                adapter = new CustomAdapter(filteredList, sharing_board.this);
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);

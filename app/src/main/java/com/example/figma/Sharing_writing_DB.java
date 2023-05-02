@@ -11,8 +11,25 @@ public class Sharing_writing_DB {
     private String studentNumber;
     private String idToken;
     private String key;
-
+    private String sharing_image;
     private String shar_key;
+    private String sharing_time;
+
+    public String getSharing_time() {
+        return sharing_time;
+    }
+
+    public void setSharing_time(String sharing_time) {
+        this.sharing_time = sharing_time;
+    }
+
+    public String getSharing_image() {
+        return sharing_image;
+    }
+
+    public void setSharing_image(String sharing_image) {
+        this.sharing_image = sharing_image;
+    }
 
     public String getKey() {
         return key;
