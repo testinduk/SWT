@@ -68,6 +68,14 @@ public class sharing_writing extends Activity {
                 startActivityForResult(intent,1);
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -157,13 +165,7 @@ public class sharing_writing extends Activity {
 
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private String getCurretTime() {

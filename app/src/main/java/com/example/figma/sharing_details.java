@@ -23,9 +23,7 @@ public class sharing_details extends Activity {
     private TextView tv_content;
     private TextView tv_title;
     private TextView textView3;
-    private ImageView photo_image;
-
-    private Button edit_button;
+    private ImageView photo_image, edit_button;
     private ImageButton delete_button;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,6 @@ public class sharing_details extends Activity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Log.i("image", sharing_image);
 
         tv_username.setText(shar_username);
         tv_content.setText(shar_content);
@@ -80,6 +77,7 @@ public class sharing_details extends Activity {
                         intent.putExtra("content",shar_content);
                         intent.putExtra("key",shar_key);
                         intent.putExtra("image",sharing_image);
+                        intent.putExtra("username", shar_username);
                         Log.i("id", shar_idToken);
                         Log.i("title",shar_title);
                         Log.i("content",shar_content);
