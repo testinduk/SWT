@@ -53,13 +53,6 @@
         <activity android:name=".sign_up"/>
         <activity android:name="sharing_edit"/>
 
-
-
-
-        <activity android:name=".notice_details" />
-        <activity android:name=".sign_up_email" />
-        <activity android:name=".sign_up" />
-
     </application>
 
 </manifest>
