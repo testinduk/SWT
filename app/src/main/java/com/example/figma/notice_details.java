@@ -18,11 +18,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +33,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.ktx.Firebase;
 
 import java.lang.reflect.Array;
@@ -45,12 +54,12 @@ public class notice_details extends Activity {
     private ImageButton delete_button, edit_button, backButton, imageButton2;
     private TextView tv_content, tv_title, tv_username, tv_time;
     private ImageView photo_image;
-    private RecyclerView notice_RecyclerView;
+    private RecyclerView recyclerView;
     private EditText EditText2;
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-//    private ArrayList<notice_comment_DB> arrayList;
+    private ArrayList<notice_com_DB> arrayList;
 //    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 //    String uid = mAuth.getCurrentUser().getUid();
 //
@@ -61,6 +70,12 @@ public class notice_details extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_details);
+
+        recyclerView = findViewById(R.id.notice_recy); //리싸이클러 아이디 연결
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
 
         photo_image = findViewById(R.id.photo_image);    // 이미지뷰
         edit_button = findViewById(R.id.btn_notice_amend); //수정 버튼
@@ -90,6 +105,8 @@ public class notice_details extends Activity {
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         FirebaseFirestore fs_db = FirebaseFirestore.getInstance();
+        String notice_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
+
 
 
         imageButton2.setOnClickListener(new View.OnClickListener() {
@@ -106,8 +123,6 @@ public class notice_details extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
                             String current_time = getCurrentTime();
-                            String notice_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
-
 
 
                             Map<String, Object> notice_comment = new HashMap<>();
@@ -115,18 +130,20 @@ public class notice_details extends Activity {
                             notice_comment.put("studentNumber", studentNumber);
                             notice_comment.put("content", comment_content);
                             notice_comment.put("time", current_time);
-                            fs_db.collection(notice_key).document(notice_comment_UUID).set(notice_comment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            fs_db.collection(notice_key).document(notice_comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
-                                public void onSuccess(Void unused) {
-                                    Log.i("log", "성공입니다");
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.i("log", "실패");
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            fs_db.collection(notice_key).document(notice_comment_UUID).update(notice_comment);
+                                        } else {
+                                            fs_db.collection(notice_key).document(notice_comment_UUID).set(notice_comment);
+
+                                        }
+                                    }
                                 }
                             });
-
 
                         }
                     }
@@ -139,6 +156,73 @@ public class notice_details extends Activity {
 
             }
         });
+
+        //불러오기
+//        DocumentReference docRef = fs_db.collection(notice_key).document(notice_comment_UUID);
+//        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//                if (error != null) {
+//                    Log.w("log222", "실패");
+//                    return;
+//                }
+//                if (value != null && value.exists()) {
+//                    Log.d("log222", "성공인가");
+//
+//                }
+//            }
+//        })
+
+
+
+
+
+
+//        fs_db.collection(notice_key).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    arrayList.clear();
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        notice_com_DB user = document.toObject(notice_com_DB.class);
+//                        arrayList.add(user);
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                }else {
+//                    Log.i("log333", "실패");
+//                }
+//            }
+//        });
+
+
+
+
+        fs_db.collection(notice_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.i("log232323", "실패");
+                    return;
+                }
+
+                arrayList.clear();
+                for (QueryDocumentSnapshot document : snapshots) {
+                    notice_com_DB user = document.toObject(notice_com_DB.class);
+                    arrayList.add(user);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+        adapter = new notice_com_adapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
+
+
+
+
 
 
 

@@ -12,7 +12,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:background="@drawable/rectangle11"
+            >
 
 
 
@@ -32,7 +35,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 >
 
 
@@ -43,23 +46,21 @@
                     android:text="이름"
                     android:textSize="20sp"
                     android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/tv_studentNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="학번"
+                    android:textSize="20sp"
+                    android:layout_margin="5dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="내용"
-                        android:textSize="20sp"
-
-                        />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시간"
+                    android:textSize="15sp"
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
 
@@ -68,15 +69,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
-                    android:id="@+id/tv_studentNumber"
+                    android:id="@+id/tv_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="학번"
-                    android:textSize="20sp"
+                    android:layout_margin="5dp"
+                    android:text="내용"
+                    android:textSize="22sp" />
 
-                    android:layout_margin="5dp"/>
+
+
+
+
 
             </LinearLayout>
 
