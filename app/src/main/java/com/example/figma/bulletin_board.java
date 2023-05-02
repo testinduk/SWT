@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class bulletin_board extends Activity {
     private RecyclerView recyclerView;
@@ -27,6 +29,8 @@ public class bulletin_board extends Activity {
     private ArrayList<bulletin_DB> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private Button search_Button;
+    private EditText searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,9 @@ public class bulletin_board extends Activity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
+        search_Button = findViewById(R.id.search_Button);
+        searchView = findViewById(R.id.editText);
+
 
         database = FirebaseDatabase.getInstance();
 
@@ -68,6 +75,25 @@ public class bulletin_board extends Activity {
 
         adapter = new bulletin_board_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+        //검색 기능
+        search_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchText = searchView.getText().toString().toLowerCase();
+
+                ArrayList<bulletin_DB> filteredList = new ArrayList<>();
+                for(bulletin_DB item : arrayList){
+                    if(item.getTitle().toLowerCase().contains(searchText)
+                            || (item.getContent().toLowerCase().contains(searchText))
+                            || (item.getStudentNumber().toLowerCase().contains(searchText))
+                            || (item.getUserName().toLowerCase().contains(searchText))){
+                        filteredList.add(item);
+                    }
+                }
+                adapter = new bulletin_board_adapter(filteredList, bulletin_board.this);
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
         // 글쓰기 버튼
         Button writingButton = findViewById(R.id.writingButton);

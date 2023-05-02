@@ -153,16 +153,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <SearchView
+
+    <EditText
         android:id="@+id/searchView"
         android:layout_width="225dp"
         android:layout_height="30dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/searching"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="@+id/writingButton"
         app:layout_constraintTop_toBottomOf="@+id/writingButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/search_Button"
+        android:layout_width="63dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="#FFFFFF"
+        android:stateListAnimator="@null"
+        android:text="검색"
+        android:textColor="#000000"
+        android:textSize="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/writingButton"

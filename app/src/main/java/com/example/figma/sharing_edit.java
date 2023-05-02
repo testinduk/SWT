@@ -52,7 +52,6 @@ public class sharing_edit extends Activity {
                     String sharing_image1 = four_intent.getStringExtra("image");
 
                     StorageReference storageRef = storage.getReference();
-
                     StorageReference oldStorageRef = storage.getReferenceFromUrl(sharing_image1);
 
                     oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -65,7 +64,6 @@ public class sharing_edit extends Activity {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     //이미지 업로드 성공
-
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -127,7 +125,7 @@ public class sharing_edit extends Activity {
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
-                //수정하기 위해 sharing Board밑에 현재 선택된 shar_key와 같은 것을 찾아서 title과 content에 수정된 글 저장하기.
+                //수정하기 위해 sharing Board 밑에 현재 선택된 shar_key 와 같은 것을 찾아서 title 과 content 에 수정된 글 저장하기.
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("sharing Board").child(shar_key);
                 ref.child("title").setValue(textView1.getText().toString());
                 ref.child("content").setValue(textView4.getText().toString());
@@ -140,10 +138,8 @@ public class sharing_edit extends Activity {
                         }
                     }
                 });
-
                 Intent intent = new Intent(getApplicationContext(), sharing_board.class);
                 startActivity(intent);
-
             }
         });
     }

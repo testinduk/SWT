@@ -27,6 +27,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -40,7 +42,7 @@ public class sharing_writing extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(); // databaseReference에 저장하고 읽어옴
     StorageReference storageRef;
     FirebaseStorage storage;
-    String sharing_image_UUID = UUID.randomUUID().toString();
+    String sharing_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
     ImageView photo_image;
 
 
@@ -108,7 +110,13 @@ public class sharing_writing extends Activity {
                 Intent intent = new Intent(getApplicationContext(), sharing_board.class); //새로운 인텐트 객체 생성(getApplicationContext()현재 엑티비티 정보 담김, sharing_board.class 호출할 컴포넌트)
                 startActivity(intent);
 
+
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid); //쿼리 작성
+
+                String current_time = getCurretTime();
+
+
+
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
                     @Override
@@ -120,8 +128,10 @@ public class sharing_writing extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
 
+
                             String title = edit1.getText().toString(); //제목을 가져옴
                             String content = edit2.getText().toString(); //내용을 가져옴
+
 
 
                             DatabaseReference boardRef = databaseReference.child("sharing Board").push();
@@ -133,6 +143,7 @@ public class sharing_writing extends Activity {
                             boardRef.child("title").setValue(title);
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
+                            boardRef.child("sharing_time").setValue(current_time);
 
 
                             storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -163,5 +174,11 @@ public class sharing_writing extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    private String getCurretTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

@@ -10,6 +10,25 @@ public class notice_DB {
     private String uid;
     private String studentNumber;
     private String key;
+    private String notice_time;
+    private String notice_image;
+
+    public String getNotice_image() {
+        return notice_image;
+    }
+
+    public void setNotice_image(String notice_image) {
+        this.notice_image = notice_image;
+    }
+
+    public String getNotice_time() {
+        return notice_time;
+    }
+
+    public void setNotice_time(String notice_time) {
+        this.notice_time = notice_time;
+    }
+
 
     public String getKey() {
         return key;

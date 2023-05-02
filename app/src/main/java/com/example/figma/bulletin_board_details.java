@@ -1,28 +1,42 @@
 package com.example.figma;
 
 
-import android.content.DialogInterface;
-
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.appcompat.app.AlertDialog;
-
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class bulletin_board_details extends Activity {
     private TextView textView1; //제목
@@ -32,10 +46,19 @@ public class bulletin_board_details extends Activity {
     private ImageButton btn_bul_amend; //수정버튼
     private ImageButton btn_bul_del; //삭제버튼
     private ImageButton backButton; //뒤로가기
+    private ImageView view2;
+    private RecyclerView recyclerView;
+    private EditText EditText2; //댓글 쓰기
+    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
+
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView4 = findViewById(R.id.textView4);
@@ -43,6 +66,11 @@ public class bulletin_board_details extends Activity {
         btn_bul_amend = findViewById(R.id.btn_bul_amend);
         btn_bul_del = findViewById(R.id.btn_bul_del);
         backButton = findViewById(R.id.backButton);
+        view2 = findViewById(R.id.view2);
+
+        EditText2 = findViewById(R.id.EditText2);
+        ImageButton2 = findViewById(R.id.ImageButton2);
+        String comment_UUID = UUID.randomUUID().toString();
 
         Intent second_intent = getIntent();
 
@@ -51,6 +79,8 @@ public class bulletin_board_details extends Activity {
         String bulletin_content = second_intent.getStringExtra("content");
         String bulletin_idToken = second_intent.getStringExtra("idToken");
         String bulletin_key = second_intent.getStringExtra("key");
+        String bulletin_image = second_intent.getStringExtra("image");
+        String bulletin_time = second_intent.getStringExtra("time");
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
@@ -61,6 +91,10 @@ public class bulletin_board_details extends Activity {
         textView2.setText(bulletin_username);
         textView4.setText(bulletin_content);
         textView1.setText(bulletin_title);
+        Glide.with(this)
+                .load(bulletin_image)
+                .into(view2);
+        textView3.setText(bulletin_time);
 
         if (uid.equals(bulletin_idToken)) {
             btn_bul_amend.setEnabled(true);
@@ -75,13 +109,14 @@ public class bulletin_board_details extends Activity {
                         intent.putExtra("title",bulletin_title);
                         intent.putExtra("content",bulletin_content);
                         intent.putExtra("key",bulletin_key);
+                        intent.putExtra("image",bulletin_image);
                         Log.i("id", bulletin_idToken);
                         Log.i("title",bulletin_title);
                         Log.i("content",bulletin_content);
                         Log.i("key",bulletin_key);
                         startActivity(intent);
                     } else {
-                        Log.i("id", "shar_idToken is null");
+                        Log.i("id", "bulletin_idToken is null");
                     }
                 }
             });
@@ -90,9 +125,21 @@ public class bulletin_board_details extends Activity {
                 @Override
                 public void onClick(View view) {
                     if(bulletin_idToken != null){
-                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                        startActivity(intent);
-                        ref.child("bulletin Board").child(bulletin_key).removeValue();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(bulletin_board_details.this);
+                        builder.setTitle("경고메시지");
+                        builder.setMessage("정말로 삭제하시겠습니까?");
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                                startActivity(intent);
+                                ref.child("bulletin Board").child(bulletin_key).removeValue();
+                                Toast.makeText(bulletin_board_details.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        builder.setNegativeButton("취소",null);
+                        builder.create().show();
                     }
                 }
             });
@@ -102,34 +149,60 @@ public class bulletin_board_details extends Activity {
             btn_bul_del.setEnabled(false);
         }
 
-        // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        //댓글 추가하기
+        ImageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                startActivity(intent);
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String uid = mAuth.getCurrentUser().getUid();
+
+                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
+                            String userName = dataSnapshot.child("userName").getValue(String.class);
+
+                            String comment = EditText2.getText().toString();
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("name", userName);
+                            data.put("studentNumber", studentNumber);
+                            data.put("content", comment);
+
+                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        DocumentSnapshot document = task.getResult();
+                                        if(document.exists()){
+                                            db.collection(bulletin_key).document(comment_UUID).update(data);
+                                        }else {
+                                            db.collection(bulletin_key).document(comment_UUID).set(data);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+                // 뒤로가기 버튼
+                backButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
-
-
-        // 삭제 메시지
-//        ImageButton btn_dul_delete = findViewById(R.id.btn_bul_del);
-//       btn_dul_delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(bulletin_board_details.this);
-//                builder.setTitle("경고메시지");
-//                builder.setMessage("정말로 삭제하시겠습니까?");
-//                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(bulletin_board_details.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//                builder.setNegativeButton("취소", null);
-//                builder.create().show();
-//            }
-//        });
     }
 }
