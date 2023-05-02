@@ -2,30 +2,41 @@ package com.example.figma;
 
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-
-
 import android.app.Activity;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.appcompat.app.AlertDialog;
-
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class bulletin_board_details extends Activity {
     private TextView textView1; //제목
@@ -36,6 +47,11 @@ public class bulletin_board_details extends Activity {
     private ImageButton btn_bul_del; //삭제버튼
     private ImageButton backButton; //뒤로가기
     private ImageView view2;
+    private RecyclerView recyclerView;
+    private EditText EditText2; //댓글 쓰기
+    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -51,6 +67,10 @@ public class bulletin_board_details extends Activity {
         btn_bul_del = findViewById(R.id.btn_bul_del);
         backButton = findViewById(R.id.backButton);
         view2 = findViewById(R.id.view2);
+
+        EditText2 = findViewById(R.id.EditText2);
+        ImageButton2 = findViewById(R.id.ImageButton2);
+        String comment_UUID = UUID.randomUUID().toString();
 
         Intent second_intent = getIntent();
 
@@ -129,12 +149,59 @@ public class bulletin_board_details extends Activity {
             btn_bul_del.setEnabled(false);
         }
 
-        // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        //댓글 추가하기
+        ImageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                startActivity(intent);
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String uid = mAuth.getCurrentUser().getUid();
+
+                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
+                            String userName = dataSnapshot.child("userName").getValue(String.class);
+
+                            String comment = EditText2.getText().toString();
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("name", userName);
+                            data.put("studentNumber", studentNumber);
+                            data.put("content", comment);
+
+                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        DocumentSnapshot document = task.getResult();
+                                        if(document.exists()){
+                                            db.collection(bulletin_key).document(comment_UUID).update(data);
+                                        }else {
+                                            db.collection(bulletin_key).document(comment_UUID).set(data);
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+                // 뒤로가기 버튼
+                backButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
