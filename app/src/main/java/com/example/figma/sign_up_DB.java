@@ -8,6 +8,7 @@ public class sign_up_DB {
     private String idToken;
     private String userName;
     private String studentNumber;
+    private String chpassword1;
 
     private String sign_up_image;
 
@@ -61,5 +62,11 @@ public class sign_up_DB {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getChpassword1() {return  chpassword1; }
+
+    public void setChpassword1(String chpassword) {
+        this.chpassword1 = chpassword1;
     }
 }
