@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -29,8 +30,9 @@ import java.util.UUID;
 public class sharing_edit extends Activity {
     private EditText textView1; //제목
     private EditText textView4; //내용
+    private TextView textView2; // 글쓴이
     private Button button; //완료버튼
-    private ImageView photo_image; //이미지 보여줌
+    private ImageView photo_image, backButton; //이미지 보여줌, back
     private ImageButton imageButton, imageButton7; //첨부파일(사진). 파일
 
     StorageReference storageRef;
@@ -88,10 +90,12 @@ public class sharing_edit extends Activity {
 
         textView1 = findViewById(R.id.textView1);
         textView4 = findViewById(R.id.textView4);
+        textView2 = findViewById(R.id.textView2);
         button = findViewById(R.id.button);
         photo_image = findViewById(R.id.photo_image);
         imageButton = findViewById(R.id.imageButton);
         imageButton7 = findViewById(R.id.imageButton7);
+        backButton = findViewById(R.id.backButton);
 
         Intent third_intent = getIntent(); //sharing_detail intent.putExtra 정보 받아오기
 
@@ -100,6 +104,7 @@ public class sharing_edit extends Activity {
         String shar_key = third_intent.getStringExtra("key");
         String sharing_image = third_intent.getStringExtra("image");
         String shar_id = third_intent.getStringExtra("id");
+        String shar_name = third_intent.getStringExtra("username");
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
         String uid = mAuth.getCurrentUser().getUid();//uid 가져오기
@@ -108,6 +113,7 @@ public class sharing_edit extends Activity {
 
         textView1.setText(shar_edit_title);
         textView4.setText(shar_edit_content);
+        textView2.setText(shar_name);
         Glide.with(this)
                 .load(sharing_image)
                 .into(photo_image);
@@ -118,6 +124,14 @@ public class sharing_edit extends Activity {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
+                startActivity(intent);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
