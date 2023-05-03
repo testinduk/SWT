@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +38,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Random;
 //import com.google.android.auth.AuthResult;
 
@@ -42,10 +47,9 @@ public class sign_up extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
+    private EditText spinner_answer, editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
     private Button finishBT; //회원가입 버튼
-
-
+    private TextView spinner_question;
     private FirebaseStorage storage;
     ImageView imageView;
 
@@ -56,16 +60,6 @@ public class sign_up extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         storage = FirebaseStorage.getInstance();
-
-
-        // FirebaseStorage storage = FirebaseStorage.getInstance();
-        // StorageReference storageRef = storage.getReference();
-        // StorageReference imageRef = storageRef.child("sign up");
-
-        //      Uri file = Uri.fromFile(new File("sign up"))
-        //    UploadTask uploadTask = imageRef.putFile(file);
-
-
 
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
         mUser = mAuth.getCurrentUser();
@@ -78,9 +72,24 @@ public class sign_up extends AppCompatActivity {
         editTextTextPersonName2 = findViewById(R.id.editTextTextPersonName2);
         editTextNumberPassword = findViewById(R.id.editTextNumberPassword);
         ImageButton backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
+        spinner_question = findViewById(R.id.spinner_question);
+        spinner_answer = findViewById(R.id.spinner_answer);
 
         ImageView imageView = findViewById(R.id.imageView10);
         ImageButton imageButton = findViewById(R.id.imageButton);
+        Spinner spinner = findViewById(R.id.spinner);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                spinner_question.setText((CharSequence) adapterView.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +119,7 @@ public class sign_up extends AppCompatActivity {
                 String strUserName = editTextTextPersonName.getText().toString();
                 String strStudentNumber = editTextTextPersonName2.getText().toString();
                 String pwdCheck = editTextNumberPassword.getText().toString();
+                String answer = spinner_answer.getText().toString();
 
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
@@ -126,6 +136,7 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setIdToken(firebaseUser.getUid());
                                     sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
+                                    sign_up_db.setAnswer(answer);
 
 
                                     //setValue는 database에 insert 행휘
