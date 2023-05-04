@@ -53,47 +53,47 @@ public class warning_message extends Activity {
         });
 
         // 회원 탈퇴
-//        yesButton = findViewById(R.id.yesButton);
-//        yesButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                FirebaseAuth mAuth = FirebaseAuth.getInstance(); // Firebase 인증 객체 생성
-//                FirebaseUser user = mAuth.getCurrentUser(); // 현재 사용자 정보 가져오기
-//                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance(); // Realtime Database 객체 생성
-//                FirebaseStorage mStorage = FirebaseStorage.getInstance(); // Storage 객체 생성
-//
-//                // 게시글, 댓글 등 모든 정보를 가져오기 위한 참조 생성
-//                DatabaseReference userRef = mDatabase.getReference().child("users").child(user.getUid());
-//
-//                // 데이터 변경 감지
-//                ValueEventListener postListener = new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        // 현재 사용자가 작성한 게시글, 댓글 등 모든 정보 가져오기
-//                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-//                            String postKey = postSnapshot.getKey();
-//                            // 게시글, 댓글 등 모든 정보 삭제
-//                            mDatabase.getReference().child("posts").child(postKey).removeValue();
-//                        }
-//                        // Realtime Database 에서 사용자 정보 삭제
-//                        userRef.removeValue();
-//                        mStorage.getReference().child("users").child(user.getUid()).delete(); // 스토리지에서 사용자 정보 삭제
-//                        user.delete(); // 파이어베이스 Auth에서 사용자 계정 삭제
-//                        // 회원탈퇴 완료
-//                        Toast.makeText(getApplicationContext(), "회원탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        // 회원탈퇴 실패
-//                        Toast.makeText(getApplicationContext(), "회원탈 dbr퇴에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//                };
-//                // 모든 정보 변경 감지 리스너 추가
-//                userRef.addListenerForSingleValueEvent(postListener);
-//            }
-//        });
+        yesButton = findViewById(R.id.yesButton);
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth mAuth = FirebaseAuth.getInstance(); // Firebase 인증 객체 생성
+                FirebaseUser user = mAuth.getCurrentUser(); // 현재 사용자 정보 가져오기
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance(); // Realtime Database 객체 생성
+                FirebaseStorage mStorage = FirebaseStorage.getInstance(); // Storage 객체 생성
+
+                // 게시글, 댓글 등 모든 정보를 가져오기 위한 참조 생성
+                DatabaseReference userRef = mDatabase.getReference().child("users").child(user.getUid());
+
+                // 데이터 변경 감지
+                ValueEventListener postListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // 현재 사용자가 작성한 게시글, 댓글 등 모든 정보 가져오기
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                            String postKey = postSnapshot.getKey();
+                            // 게시글, 댓글 등 모든 정보 삭제
+                            mDatabase.getReference().child("posts").child(postKey).removeValue();
+                        }
+                        // Realtime Database 에서 사용자 정보 삭제
+                        userRef.removeValue();
+                        mStorage.getReference().child("sign_up/").child(user.getUid()).delete(); // 스토리지에서 사용자 정보 삭제
+                        user.delete(); // 파이어베이스 Auth에서 사용자 계정 삭제
+                        // 회원탈퇴 완료
+                        Toast.makeText(getApplicationContext(), "회원탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // 회원탈퇴 실패
+                        Toast.makeText(getApplicationContext(), "탈퇴에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                };
+                // 정보 변경 감지 리스너
+                userRef.addListenerForSingleValueEvent(postListener);
+            }
+        });
    }
 }
 
