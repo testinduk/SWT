@@ -23,7 +23,7 @@ public class login extends Activity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogIn;
-    private Button buttonSignUp;
+    private Button buttonSignUp, findButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,15 @@ public class login extends Activity {
 
         editTextEmail = (EditText) findViewById(R.id.editTextTextPersonName);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
+        findButton = findViewById(R.id.findButton);
+
+        findButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), find_id.class);
+                startActivity(intent);
+            }
+        });
 
         Button signup = findViewById(R.id.sign); //회원가입 버튼 클릭시 회원가입 페이지로 이동
         signup.setOnClickListener(new View.OnClickListener() {
