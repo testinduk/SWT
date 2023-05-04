@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +44,7 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
     @NonNull
     @Override
     public main_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notice_list_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_recycler, parent, false);
         main_adapter.ViewHolder holder = new main_adapter.ViewHolder(view);
         return holder;
     }
@@ -52,12 +53,13 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull main_adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Glide.with(holder.itemView)
-                .load(arrayList.get(position).getNotice_image())
-                .into(holder.iv_profile);
+//        Glide.with(holder.itemView)
+//                .load(arrayList.get(position).getNotice_image())
+//                .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+//        holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
+        holder.tv_time.setText(arrayList.get(position).getNotice_time());
 
         String userName = arrayList.get(position).getUserName();
         String title = arrayList.get(position).getTitle();
@@ -104,23 +106,23 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
 
-        holder.tv_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                String shar_key = databaseReference.getKey();
-//                Log.i("log", arrayList.get(position).getShar_key());
-                Intent notice_intent = new Intent(context, notice_details.class);
-                notice_intent.putExtra("username", userName);
-                notice_intent.putExtra("title", title);
-                notice_intent.putExtra("content", content);
-                notice_intent.putExtra("time", time);
-                notice_intent.putExtra("idToken",idToken);
-                notice_intent.putExtra("key", notice_key);
-                notice_intent.putExtra("image", notice_image);
-
-                context.startActivity(notice_intent);
-            }
-        });
+//        holder.tv_detail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                String shar_key = databaseReference.getKey();
+////                Log.i("log", arrayList.get(position).getShar_key());
+//                Intent notice_intent = new Intent(context, notice_details.class);
+//                notice_intent.putExtra("username", userName);
+//                notice_intent.putExtra("title", title);
+//                notice_intent.putExtra("content", content);
+//                notice_intent.putExtra("time", time);
+//                notice_intent.putExtra("idToken",idToken);
+//                notice_intent.putExtra("key", notice_key);
+//                notice_intent.putExtra("image", notice_image);
+//
+//                context.startActivity(notice_intent);
+//            }
+//        });
     }
 
     private String getCurrentTime() {
@@ -142,23 +144,20 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
 //    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
-        Button tv_title;
-        Button tv_studentNumber;
-        Button tv_userName, tv_time;
-
-        Button tv_detail;
+//        ImageButton iv_profile;
+        TextView tv_title, tv_studentNumber, tv_userName, tv_time;
+//        Button tv_detail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile);
+//            this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_time = itemView.findViewById(R.id.tv_time);
 
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
+//            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
 
-            this.tv_detail = itemView.findViewById(R.id.tv_detail);
+//            this.tv_detail = itemView.findViewById(R.id.tv_detail);
         }
 
     }

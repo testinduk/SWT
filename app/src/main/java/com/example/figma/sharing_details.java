@@ -8,15 +8,40 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class sharing_details extends Activity {
     private TextView tv_username;
@@ -25,6 +50,14 @@ public class sharing_details extends Activity {
     private TextView textView3;
     private ImageView photo_image, edit_button;
     private ImageButton delete_button;
+    private ImageButton imageButton2;
+    private RecyclerView recyclerView;
+    private EditText EditText2;
+
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<sharing_com_DB> arrayList;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +72,13 @@ public class sharing_details extends Activity {
         delete_button = findViewById(R.id.Button3);
         photo_image = findViewById(R.id.photo_image);
         textView3 = findViewById(R.id.textView3);
-
+        imageButton2 = findViewById(R.id.ImageButton2); //댓글 쓰기 버튼
+        EditText2 = findViewById(R.id.EditText2); // 댓글창
+        recyclerView = findViewById(R.id.recy); //리싸이클러 아이디 연결
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
         Intent second_intent = getIntent();
 
         String shar_username = second_intent.getStringExtra("username");
@@ -51,9 +90,89 @@ public class sharing_details extends Activity {
         String sharing_time = second_intent.getStringExtra("time");
 //        Log.e("image",sharing_image);
 
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        FirebaseFirestore fs_db = FirebaseFirestore.getInstance();
+        String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
+
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+                String comment_content = EditText2.getText().toString();
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
+                            String username = dataSnapshot.child("userName").getValue(String.class);
+                            String current_time = getCurrentTime();
+
+
+                            Map<String, Object> sharing_comment = new HashMap<>();
+                            sharing_comment.put("name", username);
+                            sharing_comment.put("studentNumber", studentNumber);
+                            sharing_comment.put("content", comment_content);
+                            sharing_comment.put("time", current_time);
+                            fs_db.collection(shar_key).document(sharing_comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            fs_db.collection(shar_key).document(sharing_comment_UUID).update(sharing_comment);
+                                        } else {
+                                            fs_db.collection(shar_key).document(sharing_comment_UUID).set(sharing_comment);
+
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+        });
+
+        fs_db.collection(shar_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.i("log232323", "실패");
+                    return;
+                }
+
+                arrayList.clear();
+                for (QueryDocumentSnapshot document : snapshots) {
+                    sharing_com_DB user = document.toObject(sharing_com_DB.class);
+                    arrayList.add(user);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+        adapter = new sharing_com_adapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
+
+
+
+
+
+
+
 
         tv_username.setText(shar_username);
         tv_content.setText(shar_content);
@@ -128,4 +247,10 @@ public class sharing_details extends Activity {
             }
         });
     }
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 }
