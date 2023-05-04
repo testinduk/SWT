@@ -91,7 +91,7 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="110dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="내용"
@@ -118,18 +118,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy"
+        android:layout_width="355dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/EditText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <EditText
+        android:id="@+id/EditText2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="16dp"
+        android:hint="댓글을 입력하세요"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ImageButton2"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
         android:id="@+id/ImageButton2"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="9dp"
-        android:text="채팅하기"
-        android:backgroundTint="#ffffff"
-        android:textColor="#000000"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:src="@drawable/send_btn" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/ImageButton2"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        android:layout_marginBottom="9dp"-->
+<!--        android:text="채팅하기"-->
+<!--        android:backgroundTint="#ffffff"-->
+<!--        android:textColor="#000000"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        />-->
 
 
 
