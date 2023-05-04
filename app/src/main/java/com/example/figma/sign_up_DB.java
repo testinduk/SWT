@@ -9,6 +9,15 @@ public class sign_up_DB {
     private String userName;
     private String studentNumber;
     private String chpassword1;
+    private String answer;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
     private String sign_up_image;
 
