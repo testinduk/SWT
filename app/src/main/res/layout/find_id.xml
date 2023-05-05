@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="139dp"
-        android:layout_height="46dp"
+        android:layout_width="154dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="140dp"
+        android:layout_marginEnd="126dp"
         android:text="아이디 찾기"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -22,43 +22,44 @@
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="27dp"
+        android:layout_marginTop="79dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="79dp"
         android:entries="@array/아이디찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView35"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintTop_toTopOf="@+id/textView34" />
 
-    <Button
+    <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="56dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="98dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="87dp"
-        android:layout_marginBottom="542dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintBottom_toTopOf="@+id/textView38"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintEnd_toStartOf="@+id/textView16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="131dp"
         android:text="이름"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView34"
+        app:layout_constraintBottom_toTopOf="@+id/textView35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView34"
@@ -87,34 +88,33 @@
         android:id="@+id/textView36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
         android:layout_marginEnd="5dp"
         android:text="선택된 질문지"
         android:textSize="18dp"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName5"
         app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="283dp"
         android:text="질문에 대한 답"
         android:textSize="18dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="123dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="39dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
@@ -127,10 +127,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="33dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView36"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView36"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -140,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginEnd="42dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
@@ -152,7 +153,7 @@
         android:id="@+id/editTextTextPersonName6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="23dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
@@ -166,28 +167,28 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="75dp"
+        android:layout_marginTop="95dp"
         android:layout_marginEnd="75dp"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="97dp"
         android:background="@drawable/rectangle12"
         android:text="찾기"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView38"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName6" />
 
     <TextView
         android:id="@+id/textView38"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="45dp"
         android:layout_marginStart="19dp"
         android:layout_marginEnd="19dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="67dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
