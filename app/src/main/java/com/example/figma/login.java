@@ -23,7 +23,7 @@ public class login extends Activity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogIn;
-    private Button buttonSignUp, findButton;
+    private Button buttonSignUp, findButton, findButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,15 @@ public class login extends Activity {
         editTextEmail = (EditText) findViewById(R.id.editTextTextPersonName);
         editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
         findButton = findViewById(R.id.findButton);
+        findButton2 = findViewById(R.id.findButton2);
+
+        findButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), find_pw.class);
+                startActivity(intent);
+            }
+        });
 
         findButton.setOnClickListener(new View.OnClickListener() {
             @Override
