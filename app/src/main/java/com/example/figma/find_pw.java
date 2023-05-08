@@ -63,10 +63,7 @@ public class find_pw extends Activity {
                                                 if (task.isSuccessful()){
                                                     Toast.makeText(getApplicationContext(),"비밀번호 재설정을 위해 이메일을 발송하였습니다.", Toast.LENGTH_SHORT).show();
 
-                                                    Intent intent = new Intent(getApplicationContext(), set_pw.class);
-                                                    intent.putExtra("id", id);
-                                                    intent.putExtra("name",name);
-                                                    intent.putExtra("number",number);
+                                                    Intent intent = new Intent(getApplicationContext(), login.class);
                                                     startActivity(intent);
                                                 }
                                             }
