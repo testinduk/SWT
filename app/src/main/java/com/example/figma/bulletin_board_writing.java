@@ -75,33 +75,6 @@ public class bulletin_board_writing extends Activity {
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case 1:
-                if(resultCode == RESULT_OK){
-                    Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
-
-                    StorageReference imageRef = storageRef.child("bulletin/" + bulletin_board_image_UUID);
-                    imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //이미지 업로드 성공
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //이미지 업로드 실패
-                        }
-                    });
-                }
-                break;
-        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +132,35 @@ public class bulletin_board_writing extends Activity {
                 });
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK){
+                    Uri uri = data.getData();
+                    photo_image.setImageURI(uri);
+
+                    StorageReference imageRef = storageRef.child("bulletin/" + bulletin_board_image_UUID);
+                    imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //이미지 업로드 성공
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //이미지 업로드 실패
+                        }
+                    });
+                }
+                break;
+        }
+
+
 
     }
 

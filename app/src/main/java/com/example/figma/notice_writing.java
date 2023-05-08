@@ -84,35 +84,6 @@ public class notice_writing extends Activity {
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    notice_image.setImageURI(uri);
-
-                    StorageReference imageRef = storageRef.child("notice/" + notice_image_UUID);
-                    Log.i("uuid", notice_image_UUID);
-                    imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // 이미지 업로드 성공
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // 이미지 업로드 실패
-                        }
-                    });
-                }
-                break;
-        }
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +144,37 @@ public class notice_writing extends Activity {
             }
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    notice_image.setImageURI(uri);
+
+                    StorageReference imageRef = storageRef.child("notice/" + notice_image_UUID);
+                    Log.i("uuid", notice_image_UUID);
+                    imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // 이미지 업로드 성공
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // 이미지 업로드 실패
+                        }
+                    });
+                }
+                break;
+        }
+
+
+
     }
 
     private String getCurrentTime() {

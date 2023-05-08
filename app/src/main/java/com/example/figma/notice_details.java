@@ -211,6 +211,7 @@ public class notice_details extends Activity {
                 for (QueryDocumentSnapshot document : snapshots) {
                     notice_com_DB user = document.toObject(notice_com_DB.class);
                     arrayList.add(user);
+                    Log.w("suc", "성공");
                 }
                 adapter.notifyDataSetChanged();
             }
