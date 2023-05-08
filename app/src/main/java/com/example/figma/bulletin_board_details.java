@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -61,7 +62,7 @@ public class bulletin_board_details extends Activity {
     private EditText EditText2; //댓글 쓰기
     private ImageButton ImageButton2;//댓글 추가하기 버튼
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -197,6 +198,7 @@ public class bulletin_board_details extends Activity {
                             bulletin_comment.put("studentNumber", studentNumber);
                             bulletin_comment.put("content", comment_content);
                             bulletin_comment.put("time", current_time);
+
                             db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -212,6 +214,8 @@ public class bulletin_board_details extends Activity {
                                 }
                             });
 
+
+
                         }
                     }
 
@@ -224,6 +228,9 @@ public class bulletin_board_details extends Activity {
             }
         });
 
+
+
+
         db.collection(bulletin_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
 
             @Override
@@ -233,6 +240,11 @@ public class bulletin_board_details extends Activity {
                 }
 
                 arrayList.clear();
+
+                //정렬
+                CollectionReference citiesRef = db.collection("bulletin_key");
+                citiesRef.orderBy("time");
+
                 for (QueryDocumentSnapshot document : snapshots) {
                     bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
                     arrayList.add(user);
