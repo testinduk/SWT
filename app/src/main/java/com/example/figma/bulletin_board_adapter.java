@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,7 +94,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
+        ImageView iv_profile;
         Button tv_title;
         Button tv_studentNumber;
         Button tv_userName;

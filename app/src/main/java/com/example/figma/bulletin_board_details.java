@@ -67,7 +67,7 @@ public class bulletin_board_details extends Activity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<bulletin_com_DB> arrayList;
 
-    @SuppressLint("WrongViewCast")
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
