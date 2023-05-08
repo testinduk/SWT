@@ -45,6 +45,7 @@ import com.google.firebase.ktx.Firebase;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -203,7 +204,6 @@ public class notice_details extends Activity {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
-                    Log.i("log232323", "실패");
                     return;
                 }
 
@@ -211,8 +211,10 @@ public class notice_details extends Activity {
                 for (QueryDocumentSnapshot document : snapshots) {
                     notice_com_DB user = document.toObject(notice_com_DB.class);
                     arrayList.add(user);
-                    Log.w("suc", "성공");
                 }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
                 adapter.notifyDataSetChanged();
             }
         });
