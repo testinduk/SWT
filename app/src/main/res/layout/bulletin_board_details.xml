@@ -119,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recy"
+        android:id="@+id/recyclerView8"
         android:layout_width="355dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@+id/EditText2"

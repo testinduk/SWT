@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -32,8 +33,17 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -53,12 +63,21 @@ public class bulletin_board_details extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    @SuppressLint("WrongViewCast")
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<bulletin_com_DB> arrayList;
+
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
 
+        recyclerView = findViewById(R.id.recyclerView8);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>();
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView4 = findViewById(R.id.textView4);
@@ -85,8 +104,6 @@ public class bulletin_board_details extends Activity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Log.e("uid", uid);
-        Log.i("bulletin_idToken", bulletin_idToken);
 
         textView2.setText(bulletin_username);
         textView4.setText(bulletin_content);
@@ -149,41 +166,52 @@ public class bulletin_board_details extends Activity {
             btn_bul_del.setEnabled(false);
         }
 
+        // 뒤로가기 버튼
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                startActivity(intent);
+            }
+        });
+
         //댓글 추가하기
         ImageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                String uid = mAuth.getCurrentUser().getUid();
-
+            public void onClick(View v) {
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+                String comment_content = EditText2.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String userName = dataSnapshot.child("userName").getValue(String.class);
+                            String username = dataSnapshot.child("userName").getValue(String.class);
 
-                            String comment = EditText2.getText().toString();
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("name", userName);
-                            data.put("studentNumber", studentNumber);
-                            data.put("content", comment);
+                            String current_time = getCurrentTime();
 
+
+                            Map<String, Object> bulletin_comment = new HashMap<>();
+                            bulletin_comment.put("name", username);
+                            bulletin_comment.put("studentNumber", studentNumber);
+                            bulletin_comment.put("content", comment_content);
+                            bulletin_comment.put("time", current_time);
                             db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
-                                        if(document.exists()){
-                                            db.collection(bulletin_key).document(comment_UUID).update(data);
-                                        }else {
-                                            db.collection(bulletin_key).document(comment_UUID).set(data);
+                                        if (document.exists()) {
+                                            db.collection(bulletin_key).document(comment_UUID).update(bulletin_comment);
+                                        } else {
+                                            db.collection(bulletin_key).document(comment_UUID).set(bulletin_comment);
+
                                         }
                                     }
                                 }
                             });
+
                         }
                     }
 
@@ -193,16 +221,39 @@ public class bulletin_board_details extends Activity {
                     }
                 });
 
-
-                // 뒤로가기 버튼
-                backButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                        startActivity(intent);
-                    }
-                });
             }
         });
+
+        db.collection(bulletin_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    return;
+                }
+
+                arrayList.clear();
+                for (QueryDocumentSnapshot document : snapshots) {
+                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
+                    arrayList.add(user);
+                }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+        adapter = new bulletin_com_adapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
+
+
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
