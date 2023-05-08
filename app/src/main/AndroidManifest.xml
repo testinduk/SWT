@@ -51,7 +51,6 @@
         <activity android:name="sharing_edit"/>
         <activity android:name=".find_id"/>
         <activity android:name=".find_pw"/>
-        <activity android:name=".set_pw"/>
 
     </application>
 
