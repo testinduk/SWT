@@ -54,6 +54,7 @@
         <activity android:name=".sign_up"/>
         <activity android:name="sharing_edit"/>
         <activity android:name=".find_id"/>
+        <activity android:name=".find_pw"/>
 
     </application>
 
