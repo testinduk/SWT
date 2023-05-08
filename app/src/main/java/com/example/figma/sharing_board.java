@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 public class sharing_board extends Activity {
@@ -64,6 +65,9 @@ public class sharing_board extends Activity {
 
                 }
 
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
                 adapter.notifyDataSetChanged();
 
             }
@@ -93,6 +97,10 @@ public class sharing_board extends Activity {
                         filteredList.add(item);
                     }
                 }
+
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(filteredList);
+
                 adapter = new CustomAdapter(filteredList, sharing_board.this);
                 recyclerView.setAdapter(adapter);
             }
