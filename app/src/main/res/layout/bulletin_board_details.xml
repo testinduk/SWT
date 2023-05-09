@@ -13,10 +13,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/vector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        android:src="@drawable/vector" />
 
     <TextView
         android:id="@+id/textView1"
@@ -59,14 +58,13 @@
         android:layout_width="37dp"
         android:layout_height="25dp"
         android:layout_marginBottom="60dp"
-        android:background="@android:color/transparent"
         android:src="@drawable/pen"
+        android:background="@android:color/transparent"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/btn_bul_del"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/textView3"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintStart_toEndOf="@id/textView3" />
 
     <ImageButton
         android:id="@+id/btn_bul_del"
@@ -74,11 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
-        android:background="@android:color/transparent"
         android:src="@drawable/trash"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@id/view2"
@@ -119,46 +116,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView8"
-        android:layout_width="355dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
-
-
-    <EditText
+    <Button
         android:id="@+id/EditText2"
-        android:layout_width="match_parent"
+        android:layout_width="160dp"
         android:layout_height="50dp"
-        android:hint="댓글을 입력하세요"
-
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#e6e6fa"
+        android:text="댓글창 이동"
+        android:drawableRight="@drawable/comment"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ImageButton2"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/ImageButton2"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="9dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/send_btn"
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#8878CD"
+        android:drawableRight="@drawable/chat"
+        android:text="채팅"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
