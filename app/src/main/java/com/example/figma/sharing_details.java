@@ -51,12 +51,10 @@ public class sharing_details extends Activity {
     private TextView textView3;
     private ImageView photo_image, edit_button;
     private ImageButton delete_button;
-    private ImageButton imageButton2;
-    private RecyclerView recyclerView;
-    private EditText EditText2;
 
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private Button EditText2;
+
+
     private ArrayList<sharing_com_DB> arrayList;
 
 
@@ -73,12 +71,11 @@ public class sharing_details extends Activity {
         delete_button = findViewById(R.id.Button3);
         photo_image = findViewById(R.id.photo_image);
         textView3 = findViewById(R.id.textView3);
-        imageButton2 = findViewById(R.id.ImageButton2); //댓글 쓰기 버튼
         EditText2 = findViewById(R.id.EditText2); // 댓글창
-        recyclerView = findViewById(R.id.recy); //리싸이클러 아이디 연결
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+
+
+
+
         arrayList = new ArrayList<>();
         Intent second_intent = getIntent();
 
@@ -99,76 +96,9 @@ public class sharing_details extends Activity {
         FirebaseFirestore fs_db = FirebaseFirestore.getInstance();
         String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String username = dataSnapshot.child("userName").getValue(String.class);
-                            String current_time = getCurrentTime();
 
 
-                            Map<String, Object> sharing_comment = new HashMap<>();
-                            sharing_comment.put("name", username);
-                            sharing_comment.put("studentNumber", studentNumber);
-                            sharing_comment.put("content", comment_content);
-                            sharing_comment.put("time", current_time);
-                            fs_db.collection(shar_key).document(sharing_comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            fs_db.collection(shar_key).document(sharing_comment_UUID).update(sharing_comment);
-                                        } else {
-                                            fs_db.collection(shar_key).document(sharing_comment_UUID).set(sharing_comment);
 
-                                        }
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-            }
-        });
-
-        fs_db.collection(shar_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-
-            @Override
-            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    return;
-                }
-
-                arrayList.clear();
-                for (QueryDocumentSnapshot document : snapshots) {
-                    sharing_com_DB user = document.toObject(sharing_com_DB.class);
-                    arrayList.add(user);
-                }
-                // -----시간 정렬 (역순)-----
-                Collections.reverse(arrayList);
-
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
-        adapter = new sharing_com_adapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
 
 
 

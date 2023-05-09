@@ -55,8 +55,7 @@ public class notice_details extends Activity {
     private ImageButton delete_button, edit_button, backButton, imageButton2;
     private TextView tv_content, tv_title, tv_username, tv_time;
     private ImageView photo_image;
-    private RecyclerView recyclerView;
-    private EditText EditText2;
+    private Button EditText2;
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -72,10 +71,8 @@ public class notice_details extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_details);
 
-        recyclerView = findViewById(R.id.notice_recy); //리싸이클러 아이디 연결
-        recyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         photo_image = findViewById(R.id.photo_image);    // 이미지뷰
@@ -86,8 +83,7 @@ public class notice_details extends Activity {
         backButton = findViewById(R.id.backButton); // back 버튼
         tv_username =findViewById(R.id.textView2);   // 글쓴이
         tv_time = findViewById(R.id.textView3); // 날짜
-        imageButton2 = findViewById(R.id.ImageButton2); //댓글 쓰기 버튼
-        EditText2 = findViewById(R.id.EditText2); // 댓글창
+        EditText2 = findViewById(R.id.EditText2);
 
 
         Intent second_intent = getIntent();
@@ -110,53 +106,53 @@ public class notice_details extends Activity {
 
 
 
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String username = dataSnapshot.child("userName").getValue(String.class);
-
-                            String current_time = getCurrentTime();
-
-
-                            Map<String, Object> notice_comment = new HashMap<>();
-                            notice_comment.put("name", username);
-                            notice_comment.put("studentNumber", studentNumber);
-                            notice_comment.put("content", comment_content);
-                            notice_comment.put("time", current_time);
-                            fs_db.collection(notice_key).document(notice_comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            fs_db.collection(notice_key).document(notice_comment_UUID).update(notice_comment);
-                                        } else {
-                                            fs_db.collection(notice_key).document(notice_comment_UUID).set(notice_comment);
-
-                                        }
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-            }
-        });
+//        imageButton2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
+//                String comment_content = EditText2.getText().toString();
+//
+//                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
+//                            String username = dataSnapshot.child("userName").getValue(String.class);
+//
+//                            String current_time = getCurrentTime();
+//
+//
+//                            Map<String, Object> notice_comment = new HashMap<>();
+//                            notice_comment.put("name", username);
+//                            notice_comment.put("studentNumber", studentNumber);
+//                            notice_comment.put("content", comment_content);
+//                            notice_comment.put("time", current_time);
+//                            fs_db.collection(notice_key).document(notice_comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                    if (task.isSuccessful()) {
+//                                        DocumentSnapshot document = task.getResult();
+//                                        if (document.exists()) {
+//                                            fs_db.collection(notice_key).document(notice_comment_UUID).update(notice_comment);
+//                                        } else {
+//                                            fs_db.collection(notice_key).document(notice_comment_UUID).set(notice_comment);
+//
+//                                        }
+//                                    }
+//                                }
+//                            });
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//
+//            }
+//        });
 
         //불러오기
 //        DocumentReference docRef = fs_db.collection(notice_key).document(notice_comment_UUID);
@@ -199,39 +195,39 @@ public class notice_details extends Activity {
 
 
 
-        fs_db.collection(notice_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-
-            @Override
-            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    return;
-                }
-
-                arrayList.clear();
-                for (QueryDocumentSnapshot document : snapshots) {
-                    notice_com_DB user = document.toObject(notice_com_DB.class);
-                    arrayList.add(user);
-                }
-                // -----시간 정렬 (역순)-----
-                Collections.reverse(arrayList);
-
-
-
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
-        adapter = new notice_com_adapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
-
-        tv_content.setText(notice_content);
-        tv_title.setText(notice_title);
-        tv_username.setText(notice_username);
-        Glide.with(this)
-                .load(notice_image)
-                .into(photo_image);
-        tv_time.setText(notice_time);
+//        fs_db.collection(notice_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
+//
+//            @Override
+//            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+//                if (error != null) {
+//                    return;
+//                }
+//
+//                arrayList.clear();
+//                for (QueryDocumentSnapshot document : snapshots) {
+//                    notice_com_DB user = document.toObject(notice_com_DB.class);
+//                    arrayList.add(user);
+//                }
+//                // -----시간 정렬 (역순)-----
+//                Collections.reverse(arrayList);
+//
+//
+//
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//
+//        adapter = new notice_com_adapter(arrayList, this);
+//        recyclerView.setAdapter(adapter);
+//
+//        tv_content.setText(notice_content);
+//        tv_title.setText(notice_title);
+//        tv_username.setText(notice_username);
+//        Glide.with(this)
+//                .load(notice_image)
+//                .into(photo_image);
+//        tv_time.setText(notice_time);
 
 
         if(uid.equals(notice_idToken)) {

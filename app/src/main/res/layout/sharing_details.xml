@@ -139,7 +139,7 @@
         android:layout_height="50dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="#8878CD"
+        android:backgroundTint="#C8C8FF"
         android:drawableRight="@drawable/chat"
         android:text="채팅"
         android:textColor="@color/black"
