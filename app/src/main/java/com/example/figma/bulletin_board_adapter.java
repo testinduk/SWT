@@ -72,7 +72,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
         holder.tv_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent shar_intent = new Intent(context, bulletin_board_details.class);
+                Intent shar_intent = new Intent(context, test.class);
                 shar_intent.putExtra("username", userName);
                 shar_intent.putExtra("title", title);
                 shar_intent.putExtra("content", content);
