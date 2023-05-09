@@ -1,10 +1,6 @@
 package com.example.figma;
 
 
-import static android.content.ContentValues.TAG;
-
-import static com.google.firebase.firestore.Query.Direction.DESCENDING;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -44,8 +40,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import com.google.firebase.firestore.Query.Direction;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,13 +48,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class bulletin_board_details extends Activity {
-    private TextView textView1; //제목
-    private TextView textView2; //글쓴이
-    private TextView textView4; //내용
-    private TextView textView3; //날짜
-    private ImageButton btn_bul_amend; //수정버튼
-    private ImageButton btn_bul_del; //삭제버튼
+public class test extends Activity {
+
     private ImageButton backButton; //뒤로가기
     private ImageView view2;
     private RecyclerView recyclerView;
@@ -77,25 +66,18 @@ public class bulletin_board_details extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board_details);
+        setContentView(R.layout.test);
 
         recyclerView = findViewById(R.id.recyclerView8);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        textView1 = findViewById(R.id.textView1);
-        textView2 = findViewById(R.id.textView2);
-        textView4 = findViewById(R.id.textView4);
-        textView3 = findViewById(R.id.textView3);
-        btn_bul_amend = findViewById(R.id.btn_bul_amend);
-        btn_bul_del = findViewById(R.id.btn_bul_del);
-        backButton = findViewById(R.id.backButton);
-        view2 = findViewById(R.id.view2);
 
+        backButton = findViewById(R.id.backButton);
         EditText2 = findViewById(R.id.EditText2);
         ImageButton2 = findViewById(R.id.ImageButton2);
-
+        String comment_UUID = UUID.randomUUID().toString();
 
         Intent second_intent = getIntent();
 
@@ -111,66 +93,7 @@ public class bulletin_board_details extends Activity {
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        textView2.setText(bulletin_username);
-        textView4.setText(bulletin_content);
-        textView1.setText(bulletin_title);
-        Glide.with(this)
-                .load(bulletin_image)
-                .into(view2);
-        textView3.setText(bulletin_time);
 
-        if (uid.equals(bulletin_idToken)) {
-            btn_bul_amend.setEnabled(true);
-            btn_bul_del.setEnabled(true);
-            //수정 버튼
-            btn_bul_amend.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (bulletin_idToken != null) {
-                        Intent intent = new Intent(getApplicationContext(), bulletin_board_edit.class);
-                        intent.putExtra("id", bulletin_idToken);
-                        intent.putExtra("title",bulletin_title);
-                        intent.putExtra("content",bulletin_content);
-                        intent.putExtra("key",bulletin_key);
-                        intent.putExtra("image",bulletin_image);
-                        Log.i("id", bulletin_idToken);
-                        Log.i("title",bulletin_title);
-                        Log.i("content",bulletin_content);
-                        Log.i("key",bulletin_key);
-                        startActivity(intent);
-                    } else {
-                        Log.i("id", "bulletin_idToken is null");
-                    }
-                }
-            });
-            //글 삭제하기.
-            btn_bul_del.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(bulletin_idToken != null){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(bulletin_board_details.this);
-                        builder.setTitle("경고메시지");
-                        builder.setMessage("정말로 삭제하시겠습니까?");
-                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                                startActivity(intent);
-                                ref.child("bulletin Board").child(bulletin_key).removeValue();
-                                Toast.makeText(bulletin_board_details.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        builder.setNegativeButton("취소",null);
-                        builder.create().show();
-                    }
-                }
-            });
-
-        } else {
-            btn_bul_amend.setEnabled(false);
-            btn_bul_del.setEnabled(false);
-        }
 
         // 뒤로가기 버튼
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -188,8 +111,6 @@ public class bulletin_board_details extends Activity {
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
                 String comment_content = EditText2.getText().toString();
 
-                String comment_UUID = UUID.randomUUID().toString();
-
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -198,6 +119,7 @@ public class bulletin_board_details extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
                             String current_time = getCurrentTime();
+
 
                             Map<String, Object> bulletin_comment = new HashMap<>();
                             bulletin_comment.put("name", username);
@@ -251,9 +173,9 @@ public class bulletin_board_details extends Activity {
             }
         });
 
+
         adapter = new bulletin_com_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
 
 
     }

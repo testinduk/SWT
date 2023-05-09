@@ -70,38 +70,7 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
         String notice_image = arrayList.get(position).getNotice_image();
 
 
-        // -------------시간 차이 넣기--------------- //
-        String currentTime = getCurrentTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        try {
-            Date savedDate = dateFormat.parse(time);
-            Date currentDate = dateFormat.parse(currentTime);
-
-            long difference = currentDate.getTime() - savedDate.getTime();
-            long seconds = difference / 1000;
-
-            if (seconds < 60 && seconds > 0) {
-                holder.tv_time.setText(seconds + "초전");
-            }
-            else if (seconds >= 60 && seconds < 3600) {
-                seconds /=  60;
-                holder.tv_time.setText(seconds + "분전");
-
-            }
-            else if (seconds >= 3600 && seconds < 86400) {
-                seconds /= 3600;
-                holder.tv_time.setText(seconds + "시간전");
-            }
-            else if (seconds >= 86400 && seconds < 604800) {
-                seconds /= 86400;
-                holder.tv_time.setText(seconds + "일전");
-            }
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
@@ -124,13 +93,6 @@ public class main_adapter extends RecyclerView.Adapter<main_adapter.ViewHolder> 
 //            }
 //        });
     }
-
-    private String getCurrentTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
 
 
 
