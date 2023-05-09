@@ -1,6 +1,10 @@
 package com.example.figma;
 
 
+import static android.content.ContentValues.TAG;
+
+import static com.google.firebase.firestore.Query.Direction.DESCENDING;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -39,6 +43,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import com.google.firebase.firestore.Query.Direction;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,7 +95,7 @@ public class bulletin_board_details extends Activity {
 
         EditText2 = findViewById(R.id.EditText2);
         ImageButton2 = findViewById(R.id.ImageButton2);
-        String comment_UUID = UUID.randomUUID().toString();
+
 
         Intent second_intent = getIntent();
 
@@ -182,6 +188,8 @@ public class bulletin_board_details extends Activity {
                 Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
                 String comment_content = EditText2.getText().toString();
 
+                String comment_UUID = UUID.randomUUID().toString();
+
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -190,7 +198,6 @@ public class bulletin_board_details extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
                             String current_time = getCurrentTime();
-
 
                             Map<String, Object> bulletin_comment = new HashMap<>();
                             bulletin_comment.put("name", username);
@@ -244,9 +251,9 @@ public class bulletin_board_details extends Activity {
             }
         });
 
-
         adapter = new bulletin_com_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+
 
 
     }
