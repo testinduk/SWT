@@ -15,9 +15,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
+        android:src="@drawable/vector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/vector" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView1"
@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:textColor="@color/black"
         android:text="글쓴이"
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,8 +60,8 @@
         android:layout_width="37dp"
         android:layout_height="25dp"
         android:layout_marginBottom="60dp"
-        android:src="@drawable/pen"
         android:background="@android:color/transparent"
+        android:src="@drawable/pen"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/Button3"
@@ -74,8 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
-        android:src="@drawable/trash"
         android:background="@android:color/transparent"
+        android:src="@drawable/trash"
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -86,9 +86,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangle22"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
@@ -120,37 +120,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notice_recy"
-        android:layout_width="355dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
-
-    <EditText
+    <Button
         android:id="@+id/EditText2"
-        android:layout_width="match_parent"
+        android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="16dp"
-        android:hint="댓글을 입력하세요"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#e6e6fa"
+        android:text="댓글창 이동"
+        android:drawableRight="@drawable/comment"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ImageButton2"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/ImageButton2"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="9dp"
-        android:background="@android:color/transparent"
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#8878CD"
+        android:drawableRight="@drawable/chat"
+        android:text="채팅"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/send_btn" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
