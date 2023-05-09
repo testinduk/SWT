@@ -215,6 +215,8 @@ public class notice_details extends Activity {
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(arrayList);
 
+
+
                 adapter.notifyDataSetChanged();
             }
         });
@@ -222,13 +224,6 @@ public class notice_details extends Activity {
 
         adapter = new notice_com_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
 
         tv_content.setText(notice_content);
         tv_title.setText(notice_title);
