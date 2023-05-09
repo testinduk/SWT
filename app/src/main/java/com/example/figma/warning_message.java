@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.net.InternetDomainName;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
@@ -27,14 +29,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
 
 public class warning_message extends Activity {
 
+    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth = null;
     Button yesButton; // 회원 탈퇴 버튼 선언
     String TAG = "warning_message";
-    FirebaseStorage firebaseStorage;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     // 다른 페이지에서 게시판 버튼 눌렀을 때
     @Override
@@ -54,46 +58,93 @@ public class warning_message extends Activity {
 
         // 회원 탈퇴
         yesButton = findViewById(R.id.yesButton);
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FirebaseAuth mAuth = FirebaseAuth.getInstance(); // Firebase 인증 객체 생성
-                FirebaseUser user = mAuth.getCurrentUser(); // 현재 사용자 정보 가져오기
-                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance(); // Realtime Database 객체 생성
-                FirebaseStorage mStorage = FirebaseStorage.getInstance(); // Storage 객체 생성
-
-                // 게시글, 댓글 등 모든 정보를 가져오기 위한 참조 생성
-                DatabaseReference userRef = mDatabase.getReference().child("users").child(user.getUid());
-
-                // 데이터 변경 감지
-                ValueEventListener postListener = new ValueEventListener() {
+                yesButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        // 현재 사용자가 작성한 게시글, 댓글 등 모든 정보 가져오기
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                            String postKey = postSnapshot.getKey();
-                            // 게시글, 댓글 등 모든 정보 삭제
-                            mDatabase.getReference().child("posts").child(postKey).removeValue();
-                        }
-                        // Realtime Database 에서 사용자 정보 삭제
-                        userRef.removeValue();
-                        mStorage.getReference().child("sign_up/").child(user.getUid()).delete(); // 스토리지에서 사용자 정보 삭제
-                        user.delete(); // 파이어베이스 Auth에서 사용자 계정 삭제
-                        // 회원탈퇴 완료
-                        Toast.makeText(getApplicationContext(), "회원탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onClick(View view) {
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        String uid = mAuth.getCurrentUser().getUid();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        // 회원탈퇴 실패
-                        Toast.makeText(getApplicationContext(), "탈퇴에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                };
-                // 정보 변경 감지 리스너
-                userRef.addListenerForSingleValueEvent(postListener);
+                        // realtime 데이터베이스에 있는 sign_up 삭제(완료)
+                        mDatabase.child("sign_up").child(user.getUid()).removeValue();
+
+                        // realtime 데이터베이스에서 shaing board에 있는 사용자가 쓴 글 삭제
+                        Query qsharing = mDatabase.child("sharing Board").orderByChild("idToken").equalTo(uid);
+
+                        qsharing.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                                    String sKey = dataSnapshot.child("key").getValue(String.class);
+                                    mDatabase.child("sharing Board").child(sKey).removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        Query qnotice = mDatabase.child("notice Board").orderByChild("idToken").equalTo(uid);
+
+                        qnotice.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                                    String nKey = dataSnapshot.child("key").getValue(String.class);
+                                    mDatabase.child("notice Board").child(nKey).removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        Query qbulletin = mDatabase.child("bulletin Board").orderByChild("idToken").equalTo(uid);
+
+
+                        qbulletin.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                                    String bKey = dataSnapshot.child("key").getValue(String.class);
+                                    mDatabase.child("bulletin Board").child(bKey).removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+                // Firebase Auth(인증)에서 계정 삭제 -> 이건 되는 아이
+                user.delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // 회원탈퇴 성공
+                                Log.d(TAG, "회원탈퇴 되었습니다.");
+                                finish(); // 액티비티 종료
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // 회원탈퇴 실패
+                                Log.e(TAG, "회원탈퇴에 실패하였습니다.", e);
+                            }
+                        });
             }
         });
-   }
+    }
 }
-
