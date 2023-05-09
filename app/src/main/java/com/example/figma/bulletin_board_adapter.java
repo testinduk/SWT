@@ -34,7 +34,6 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
     public bulletin_board_adapter(ArrayList<bulletin_DB> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
-        this.sortArrayListByTime(arrayList);
 
     }
 
@@ -78,7 +77,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
                 shar_intent.putExtra("content", content);
                 shar_intent.putExtra("idToken", idToken);
                 shar_intent.putExtra("key", bulletin_key);
-                shar_intent.putExtra("image",bulletin_image);
+                shar_intent.putExtra("image", bulletin_image);
                 shar_intent.putExtra("time", time);
 
                 context.startActivity(shar_intent);
@@ -112,28 +111,4 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
         }
 
     }
-
-    // 시간순 정렬
-    private void sortArrayListByTime(ArrayList<bulletin_DB> arrayList) {
-        Collections.sort(arrayList, new Comparator<bulletin_DB>() {
-            @Override
-            public int compare(bulletin_DB o1, bulletin_DB o2) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date1, date2;
-                try {
-                    date1 = dateFormat.parse(o1.getBulletin_time());
-                    date2 = dateFormat.parse(o2.getBulletin_time());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    return 0;
-                }
-                return date2.compareTo(date2);
-            }
-        });
-    }
-
-
-
-
-
 }

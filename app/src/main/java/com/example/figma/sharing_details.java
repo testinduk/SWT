@@ -146,7 +146,7 @@ public class sharing_details extends Activity {
             }
         });
 
-        fs_db.collection(shar_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        fs_db.collection(shar_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
 
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
