@@ -31,10 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class warning_message extends Activity {
 
     private DatabaseReference mDatabase;
+    private StorageReference mStroage;
     private FirebaseAuth mAuth = null;
     Button yesButton; // 회원 탈퇴 버튼 선언
     String TAG = "warning_message";
@@ -63,8 +65,8 @@ public class warning_message extends Activity {
                     public void onClick(View view) {
                         FirebaseAuth mAuth = FirebaseAuth.getInstance();
                         FirebaseUser user = mAuth.getCurrentUser();
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
                         mDatabase = FirebaseDatabase.getInstance().getReference();
+                        mStroage = FirebaseStorage.getInstance().getReference();
                         String uid = mAuth.getCurrentUser().getUid();
 
                         // realtime 데이터베이스에 있는 sign_up 삭제(완료)
@@ -80,6 +82,9 @@ public class warning_message extends Activity {
 
                                     String sKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("sharing Board").child(sKey).removeValue();
+
+                                    String simage = dataSnapshot.child("sharing_image_name").getValue(String.class);
+                                    mStroage.child("sharing/").child(simage).delete();
                                 }
                             }
 
@@ -98,6 +103,8 @@ public class warning_message extends Activity {
 
                                     String nKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("notice Board").child(nKey).removeValue();
+
+                                    String nimage = dataSnapshot.child("notice_image").getValue(String.class);
                                 }
                             }
 
@@ -117,6 +124,8 @@ public class warning_message extends Activity {
 
                                     String bKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("bulletin Board").child(bKey).removeValue();
+
+                                    String bimage = dataSnapshot.child("bulletin_image").getValue(String.class);
                                 }
                             }
 
@@ -125,6 +134,7 @@ public class warning_message extends Activity {
 
                             }
                         });
+
 
 
                 // Firebase Auth(인증)에서 계정 삭제 -> 이건 되는 아이

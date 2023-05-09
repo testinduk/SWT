@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class main_home extends AppCompatActivity {
@@ -70,6 +71,9 @@ public class main_home extends AppCompatActivity {
                     notice_DB user = snapshot.getValue(notice_DB.class);
                     arrayList.add(user);
                 }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
                 adapter.notifyDataSetChanged();
             }
 

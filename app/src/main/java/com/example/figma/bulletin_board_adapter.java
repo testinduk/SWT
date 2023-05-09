@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_adapter.ViewHolder> {
@@ -31,6 +34,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
     public bulletin_board_adapter(ArrayList<bulletin_DB> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
+
     }
 
     @NonNull
@@ -50,6 +54,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
+        holder.tv_time.setText(arrayList.get(position).getBulletin_time());
 
         String userName = arrayList.get(position).getUserName();
         String title = arrayList.get(position).getTitle();
@@ -58,41 +63,6 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
         String bulletin_key = arrayList.get(position).getKey(); //키값 가져오기
         String bulletin_image = arrayList.get(position).getBulletin_image(); // 이미지 가져오기
         String time = arrayList.get(position).getBulletin_time(); //시간 가져오기
-
-        //--시간 차이 넣기--//
-        String currentTime = getCurrentTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        if(time != null){
-            try {
-                Date savedDate = dateFormat.parse(time);
-                Date currentDate = dateFormat.parse(currentTime);
-
-                long difference = currentDate.getTime() - savedDate.getTime();
-                long seconds = difference / 1000;
-
-                if (seconds < 60 && seconds > 0) {
-                    holder.tv_time.setText(seconds + "초전");
-                }
-                else if (seconds >= 60 && seconds < 3600) {
-                    seconds /=  60;
-                    holder.tv_time.setText(seconds + "분전");
-
-                }
-                else if (seconds >= 3600 && seconds < 86400) {
-                    seconds /= 3600;
-                    holder.tv_time.setText(seconds + "시간전");
-                }
-                else if (seconds >= 86400 && seconds < 604800) {
-                    seconds /= 86400;
-                    holder.tv_time.setText(seconds + "일전");
-                }
-
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
 
 
         database = FirebaseDatabase.getInstance();
@@ -107,7 +77,7 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
                 shar_intent.putExtra("content", content);
                 shar_intent.putExtra("idToken", idToken);
                 shar_intent.putExtra("key", bulletin_key);
-                shar_intent.putExtra("image",bulletin_image);
+                shar_intent.putExtra("image", bulletin_image);
                 shar_intent.putExtra("time", time);
 
                 context.startActivity(shar_intent);
@@ -117,19 +87,13 @@ public class bulletin_board_adapter extends RecyclerView.Adapter<bulletin_board_
 
     }
 
-    private String getCurrentTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
     @Override
     public int getItemCount() {
         return (arrayList != null ? arrayList.size() : 0);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
+        ImageView iv_profile;
         Button tv_title;
         Button tv_studentNumber;
         Button tv_userName;

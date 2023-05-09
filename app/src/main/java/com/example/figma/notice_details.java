@@ -45,6 +45,7 @@ import com.google.firebase.ktx.Firebase;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -198,12 +199,11 @@ public class notice_details extends Activity {
 
 
 
-        fs_db.collection(notice_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        fs_db.collection(notice_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
 
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
-                    Log.i("log232323", "실패");
                     return;
                 }
 
@@ -212,6 +212,11 @@ public class notice_details extends Activity {
                     notice_com_DB user = document.toObject(notice_com_DB.class);
                     arrayList.add(user);
                 }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
+
+
                 adapter.notifyDataSetChanged();
             }
         });
@@ -219,13 +224,6 @@ public class notice_details extends Activity {
 
         adapter = new notice_com_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
 
         tv_content.setText(notice_content);
         tv_title.setText(notice_title);

@@ -38,6 +38,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -145,12 +146,11 @@ public class sharing_details extends Activity {
             }
         });
 
-        fs_db.collection(shar_key).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        fs_db.collection(shar_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
 
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
-                    Log.i("log232323", "실패");
                     return;
                 }
 
@@ -159,6 +159,9 @@ public class sharing_details extends Activity {
                     sharing_com_DB user = document.toObject(sharing_com_DB.class);
                     arrayList.add(user);
                 }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
                 adapter.notifyDataSetChanged();
             }
         });

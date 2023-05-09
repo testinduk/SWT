@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notice_list">
+    tools:context=".sharing_board">
 
 
     <ImageButton
@@ -14,11 +14,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:background="#00ff0000"
+        android:src="@drawable/mypage"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textboard"
-        app:layout_constraintTop_toTopOf="@+id/boardButton"
-        android:src="@drawable/mypage" />
+        app:layout_constraintStart_toEndOf="@+id/textboard" />
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -48,10 +47,10 @@
         android:layout_height="30dp"
         android:layout_marginBottom="10dp"
         android:background="#00ff0000"
+        android:src="@drawable/plus"
         app:layout_constraintBottom_toTopOf="@+id/textboard"
         app:layout_constraintEnd_toEndOf="@+id/textboard"
-        app:layout_constraintStart_toStartOf="@+id/textboard"
-        android:src="@drawable/plus" />
+        app:layout_constraintStart_toStartOf="@+id/textboard" />
 
     <ImageButton
         android:id="@+id/sharingButton"
@@ -97,49 +96,51 @@
         android:id="@+id/textchat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="20dp"
         android:text="채팅"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/chatButton" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/chatButton"
+        app:layout_constraintStart_toStartOf="@+id/chatButton"
+        app:layout_constraintTop_toBottomOf="@+id/chatButton" />
 
     <TextView
         android:id="@+id/textsharing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginBottom="20dp"
         android:text="나눔"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sharingButton" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/sharingButton"
+        app:layout_constraintStart_toStartOf="@+id/sharingButton"
+        app:layout_constraintTop_toBottomOf="@+id/sharingButton" />
 
     <TextView
         android:id="@+id/texthome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
         android:layout_marginBottom="20dp"
         android:text="홈"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/homeButton" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/homeButton"
+        app:layout_constraintStart_toStartOf="@+id/homeButton"
+        app:layout_constraintTop_toBottomOf="@+id/homeButton" />
 
     <TextView
         android:id="@+id/textboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
-        android:layout_marginBottom="20dp"
         android:text="게시판"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textmypage" />
+        android:layout_marginTop="700dp"
+        app:layout_constraintEnd_toStartOf="@+id/textmypage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textmypage"
@@ -150,8 +151,9 @@
         android:text="마이페이지"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypageButton" />
 
 
     <EditText
@@ -205,6 +207,7 @@
         android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

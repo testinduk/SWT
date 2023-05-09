@@ -26,6 +26,7 @@ import java.util.Locale;
 
 public class sharing_board extends Activity {
 
+    //선언
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -38,9 +39,15 @@ public class sharing_board extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_board);
+        setContentView(R.layout.sharing_board); //레이아웃의 sharing_board 부분 참조
 
         recyclerView = findViewById(R.id.recyclerView); //아이디 연결
+
+        recyclerView.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
+        layoutManager = new LinearLayoutManager(this); //아이템 배치 방향을 수평으로 설정
+        recyclerView.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
+        arrayList = new ArrayList<>(); //arraylist를 리턴(원소 추가 가능)
+
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -48,35 +55,36 @@ public class sharing_board extends Activity {
         search_Button = findViewById(R.id.search_Button);
         searchView = findViewById(R.id.searchView);
 
-        database = FirebaseDatabase.getInstance();
 
-        databaseReference = database.getReference("sharing Board");
+        database = FirebaseDatabase.getInstance(); //기본 FirebaseDatabase 인스턴스 가져오기(데이터베이스란 이름으로 객체 생성)
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference = database.getReference("sharing Board"); //sharing Board에서 데이터 레퍼런스 가져와 선언
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() { //firebase 데이터베이스 읽기(한 번만 호출되고 즉시 삭제되는 콜백이 필요한 경우에 사용)
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { // 이벤트 발생 시점에 특정 경로에 있던 콘텐츠의 정적 스냅샷을 읽음
+                arrayList.clear(); //초기화
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String uid = snapshot.getKey();
-                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class);
-                    arrayList.add(user);
+                    String uid = snapshot.getKey(); //스냅샷에서의 키를 uid에 저장
+                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class); //user에 sharing_writing_DB에서 얻은 값을 저장
+                    arrayList.add(user); //추가
 
                 }
 
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged(); //어뎁터와 연결된 원본데이터의 값이 변경됨을 알려 리스트뷰 목록 갱신
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity", String.valueOf(databaseError.toException()));
+                Log.e("MainActivity", String.valueOf(databaseError.toException())); //에러문 출력
             }
         });
 
 
         adapter = new CustomAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
 
         //검색 기능
         search_Button.setOnClickListener(new View.OnClickListener() {
