@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -63,9 +64,7 @@ public class bulletin_board_details extends Activity {
     private ImageButton btn_bul_del; //삭제버튼
     private ImageButton backButton; //뒤로가기
     private ImageView view2;
-    private RecyclerView recyclerView;
-    private EditText EditText2; //댓글 쓰기
-    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    private Button EditText2; //댓글 쓰기
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -79,10 +78,10 @@ public class bulletin_board_details extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
 
-        recyclerView = findViewById(R.id.recyclerView8);
-        recyclerView.setHasFixedSize(true);
+
+
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+
         arrayList = new ArrayList<>();
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
@@ -94,7 +93,7 @@ public class bulletin_board_details extends Activity {
         view2 = findViewById(R.id.view2);
 
         EditText2 = findViewById(R.id.EditText2);
-        ImageButton2 = findViewById(R.id.ImageButton2);
+
 
 
         Intent second_intent = getIntent();
@@ -182,78 +181,6 @@ public class bulletin_board_details extends Activity {
         });
 
         //댓글 추가하기
-        ImageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
-
-                String comment_UUID = UUID.randomUUID().toString();
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String username = dataSnapshot.child("userName").getValue(String.class);
-
-                            String current_time = getCurrentTime();
-
-                            Map<String, Object> bulletin_comment = new HashMap<>();
-                            bulletin_comment.put("name", username);
-                            bulletin_comment.put("studentNumber", studentNumber);
-                            bulletin_comment.put("content", comment_content);
-                            bulletin_comment.put("time", current_time);
-                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            db.collection(bulletin_key).document(comment_UUID).update(bulletin_comment);
-                                        } else {
-                                            db.collection(bulletin_key).document(comment_UUID).set(bulletin_comment);
-
-                                        }
-                                    }
-                                }
-                            });
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-            }
-        });
-
-        db.collection(bulletin_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-
-            @Override
-            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    return;
-                }
-
-                arrayList.clear();
-                for (QueryDocumentSnapshot document : snapshots) {
-                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
-                    arrayList.add(user);
-                }
-                // -----시간 정렬 (역순)-----
-                Collections.reverse(arrayList);
-
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        adapter = new bulletin_com_adapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
-
 
 
     }
