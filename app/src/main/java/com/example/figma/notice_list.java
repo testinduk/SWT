@@ -53,7 +53,7 @@ public class notice_list extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
-        search_button = findViewById(R.id.search_button);    // 검색 버튼
+        search_button = findViewById(R.id.search_Button);    // 검색 버튼
         searchView = findViewById(R.id.searchView);          // 검색어 입력
 
 
