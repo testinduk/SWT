@@ -179,6 +179,20 @@ public class sharing_details extends Activity {
                 startActivity(intent);
             }
         });
+
+
+        //채팅창 이동버튼 추가하기(김한용)
+
+
+        // 댓글창 이동 버튼
+        EditText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sharing_board_comment.class);
+                intent.putExtra("key", shar_key);
+                startActivity(intent);
+            }
+        });
     }
     private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

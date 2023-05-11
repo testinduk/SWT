@@ -123,6 +123,8 @@ public class notice_writing extends Activity {
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("notice_time").setValue(current_time);
+                            boardRef.child("iamge_UUID").setValue(notice_image_UUID);
+
                             storageRef.child("notice/" + notice_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {

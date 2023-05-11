@@ -221,13 +221,13 @@ public class notice_details extends Activity {
 //        adapter = new notice_com_adapter(arrayList, this);
 //        recyclerView.setAdapter(adapter);
 //
-//        tv_content.setText(notice_content);
-//        tv_title.setText(notice_title);
-//        tv_username.setText(notice_username);
-//        Glide.with(this)
-//                .load(notice_image)
-//                .into(photo_image);
-//        tv_time.setText(notice_time);
+        tv_content.setText(notice_content);
+        tv_title.setText(notice_title);
+        tv_username.setText(notice_username);
+        Glide.with(this)
+                .load(notice_image)
+                .into(photo_image);
+        tv_time.setText(notice_time);
 
 
         if(uid.equals(notice_idToken)) {
@@ -293,6 +293,21 @@ public class notice_details extends Activity {
                 startActivity(intent);
             }
         });
+
+        //채팅창 이동버튼 추가하기(김한용)
+
+
+        // 댓글창 이동 버튼
+        EditText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), notice_board_comment.class);
+                intent.putExtra("key", notice_key);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private String getCurrentTime() {
