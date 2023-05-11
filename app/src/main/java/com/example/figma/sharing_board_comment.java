@@ -48,10 +48,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class bulletin_board_comment extends Activity {
+public class sharing_board_comment extends Activity {
 
     private ImageButton backButton; //뒤로가기
-    private ImageView view2;
     private RecyclerView recyclerView;
     private EditText EditText2; //댓글 쓰기
     private ImageButton ImageButton2;//댓글 추가하기 버튼
@@ -60,13 +59,13 @@ public class bulletin_board_comment extends Activity {
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<bulletin_com_DB> arrayList;
+    private ArrayList<sharing_com_DB> arrayList;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board_comment);
+        setContentView(R.layout.sharing_board_comment);
 
         recyclerView = findViewById(R.id.recyclerView8);
         recyclerView.setHasFixedSize(true);
@@ -81,7 +80,10 @@ public class bulletin_board_comment extends Activity {
 
         Intent intent = getIntent();
 
-        String bulletin_key = intent.getStringExtra("key");
+
+
+        String sharing_key = intent.getStringExtra("key");
+
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
@@ -116,20 +118,20 @@ public class bulletin_board_comment extends Activity {
 
 
                             String comment_UUID = UUID.randomUUID().toString();
-                            Map<String, Object> bulletin_comment = new HashMap<>();
-                            bulletin_comment.put("name", username);
-                            bulletin_comment.put("studentNumber", studentNumber);
-                            bulletin_comment.put("content", comment_content);
-                            bulletin_comment.put("time", current_time);
-                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            Map<String, Object> sharing_comment = new HashMap<>();
+                            sharing_comment.put("name", username);
+                            sharing_comment.put("studentNumber", studentNumber);
+                            sharing_comment.put("content", comment_content);
+                            sharing_comment.put("time", current_time);
+                            db.collection(sharing_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
-                                            db.collection(bulletin_key).document(comment_UUID).update(bulletin_comment);
+                                            db.collection(sharing_key).document(comment_UUID).update(sharing_comment);
                                         } else {
-                                            db.collection(bulletin_key).document(comment_UUID).set(bulletin_comment);
+                                            db.collection(sharing_key).document(comment_UUID).set(sharing_comment);
 
                                         }
                                     }
@@ -148,7 +150,7 @@ public class bulletin_board_comment extends Activity {
             }
         });
 
-        db.collection(bulletin_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection(sharing_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
 
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
@@ -158,7 +160,7 @@ public class bulletin_board_comment extends Activity {
 
                 arrayList.clear();
                 for (QueryDocumentSnapshot document : snapshots) {
-                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
+                    sharing_com_DB user = document.toObject(sharing_com_DB.class);
                     arrayList.add(user);
                 }
                 // -----시간 정렬 (역순)-----
@@ -169,7 +171,7 @@ public class bulletin_board_comment extends Activity {
         });
 
 
-        adapter = new bulletin_com_adapter(arrayList, this);
+        adapter = new sharing_com_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
 
@@ -181,93 +183,3 @@ public class bulletin_board_comment extends Activity {
         return dateFormat.format(date);
     }
 }
-
-
-
-//        Intent second_intent = getIntent();
-//
-//        String bulletin_username = second_intent.getStringExtra("username");
-//        String bulletin_title = second_intent.getStringExtra("title");
-//        String bulletin_content = second_intent.getStringExtra("content");
-//        String bulletin_idToken = second_intent.getStringExtra("idToken");
-//        String bulletin_key = second_intent.getStringExtra("key");
-//        String bulletin_image = second_intent.getStringExtra("image");
-//        String bulletin_time = second_intent.getStringExtra("time");
-
-
-
-//        //댓글 추가하기
-//        ImageButton2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
-//                String comment_content = EditText2.getText().toString();
-//
-//                String comment_UUID = UUID.randomUUID().toString();
-//
-//                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-//                            String username = dataSnapshot.child("userName").getValue(String.class);
-//
-//                            String current_time = getCurrentTime();
-//
-//                            Map<String, Object> bulletin_comment = new HashMap<>();
-//                            bulletin_comment.put("name", username);
-//                            bulletin_comment.put("studentNumber", studentNumber);
-//                            bulletin_comment.put("content", comment_content);
-//                            bulletin_comment.put("time", current_time);
-//                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                    if (task.isSuccessful()) {
-//                                        DocumentSnapshot document = task.getResult();
-//                                        if (document.exists()) {
-//                                            db.collection(bulletin_key).document(comment_UUID).update(bulletin_comment);
-//                                        } else {
-//                                            db.collection(bulletin_key).document(comment_UUID).set(bulletin_comment);
-//
-//                                        }
-//                                    }
-//                                }
-//                            });
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//
-//            }
-//        });
-
-//        db.collection(bulletin_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-//                if (error != null) {
-//                    return;
-//                }
-//
-//                arrayList.clear();
-//                for (QueryDocumentSnapshot document : snapshots) {
-//                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
-//                    arrayList.add(user);
-//                }
-//                // -----시간 정렬 (역순)-----
-//                Collections.reverse(arrayList);
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//
-//        adapter = new bulletin_com_adapter(arrayList, this);
-
-
-
-
