@@ -180,6 +180,18 @@ public class bulletin_board_details extends Activity {
             }
         });
 
+        //채팅창 이동버튼 추가하기(김한용)
+
+        // 댓글창 이동 버튼
+        EditText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), bulletin_board_comment.class);
+                intent.putExtra("key", bulletin_key);
+                startActivity(intent);
+            }
+        });
+
         //댓글 추가하기
 
 
