@@ -72,5 +72,10 @@ public class sign_up_email extends Activity {
                 startActivity(intent);
             }
         });
+
+    }
+    @Override
+    public void onBackPressed(){
+
     }
 }
