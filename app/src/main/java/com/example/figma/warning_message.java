@@ -72,7 +72,7 @@ public class warning_message extends Activity {
                         // realtime 데이터베이스에 있는 sign_up 삭제(완료)
                         mDatabase.child("sign_up").child(user.getUid()).removeValue();
 
-                        // realtime 데이터베이스에서 shaing board에 있는 사용자가 쓴 글 삭제
+                        // realtime 데이터베이스에서 sharing board에 있는 사용자가 쓴 글 삭제
                         Query qsharing = mDatabase.child("sharing Board").orderByChild("idToken").equalTo(uid);
 
                         qsharing.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -83,7 +83,7 @@ public class warning_message extends Activity {
                                     String sKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("sharing Board").child(sKey).removeValue();
 
-                                    String simage = dataSnapshot.child("sharing_image_name").getValue(String.class);
+                                    String simage = dataSnapshot.child("image_UUID").getValue(String.class);
                                     mStroage.child("sharing/").child(simage).delete();
                                 }
                             }
@@ -104,7 +104,8 @@ public class warning_message extends Activity {
                                     String nKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("notice Board").child(nKey).removeValue();
 
-                                    String nimage = dataSnapshot.child("notice_image").getValue(String.class);
+                                    String nimage = dataSnapshot.child("image_UUID").getValue(String.class);
+                                    mStroage.child("notice/").child(nimage).delete();
                                 }
                             }
 
@@ -125,7 +126,8 @@ public class warning_message extends Activity {
                                     String bKey = dataSnapshot.child("key").getValue(String.class);
                                     mDatabase.child("bulletin Board").child(bKey).removeValue();
 
-                                    String bimage = dataSnapshot.child("bulletin_image").getValue(String.class);
+                                    String bimage = dataSnapshot.child("image_UUID").getValue(String.class);
+                                    mStroage.child("bulletin/").child(bimage).delete();
                                 }
                             }
 

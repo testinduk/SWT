@@ -122,7 +122,7 @@ public class sharing_writing extends Activity {
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("sharing_time").setValue(current_time);
-                            boardRef.child("iamge_UUID").setValue(sharing_image_UUID);
+                            boardRef.child("image_UUID").setValue(sharing_image_UUID);
 
 
 
