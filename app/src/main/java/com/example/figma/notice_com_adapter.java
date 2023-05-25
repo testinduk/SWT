@@ -52,6 +52,7 @@ public class notice_com_adapter extends RecyclerView.Adapter<notice_com_adapter.
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.tv_content = itemView.findViewById(R.id.tv_content);
             this.tv_time = itemView.findViewById(R.id.tv_time);
+
         }
     }
 }
