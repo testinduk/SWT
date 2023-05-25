@@ -262,6 +262,7 @@
 
     <ImageButton
         android:id="@+id/mypageButton"
+
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="#ffffff"
@@ -272,6 +273,7 @@
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/mypage" />
+
 
     <Button
         android:id="@+id/button3"
