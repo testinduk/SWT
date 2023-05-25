@@ -122,6 +122,8 @@ public class sharing_writing extends Activity {
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("sharing_time").setValue(current_time);
+                            boardRef.child("image_UUID").setValue(sharing_image_UUID);
+
 
 
                             storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

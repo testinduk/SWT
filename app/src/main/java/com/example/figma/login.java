@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -54,9 +55,9 @@ public class login extends Activity {
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         saveLogin = sharedPreferences.getBoolean("saveLogin", false);
-        if(saveLogin){
-            editTextEmail.setText(sharedPreferences.getString("username",""));
-            editTextPassword.setText(sharedPreferences.getString("password",""));
+        if (saveLogin) {
+            editTextEmail.setText(sharedPreferences.getString("username", ""));
+            editTextPassword.setText(sharedPreferences.getString("password", ""));
             checkBox.setChecked(true);
             loginUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
         }
@@ -125,6 +126,7 @@ public class login extends Activity {
             }
         };
     }
+
     public void loginUser(String email, String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -143,10 +145,10 @@ public class login extends Activity {
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                         String id = dataSnapshot.child("emailId").getValue(String.class);
 
-                                        if(id.equals(email)){
+                                        if (id.equals(email)) {
                                             DatabaseReference userRef = databaseReference.child("sign_up").child(dataSnapshot.getKey());
                                             userRef.child("password").setValue(password);
                                         }
@@ -160,20 +162,21 @@ public class login extends Activity {
                             });
 
 
-
                         } else {
                             // 로그인 실패
                             Toast.makeText(login.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), login.class);
-                            startActivityForResult(intent,1);
+                            startActivityForResult(intent, 1);
                         }
                     }
                 });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
     }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -183,5 +186,9 @@ public class login extends Activity {
     }
 
     private class override {
+    }
+    @Override
+    public void onBackPressed(){
+
     }
 }

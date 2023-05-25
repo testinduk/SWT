@@ -111,6 +111,7 @@ public class bulletin_board_writing extends Activity {
                             boardRef.child("content").setValue(content);
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("bulletin_time").setValue(current_time);
+                            boardRef.child("image_UUID").setValue(bulletin_board_image_UUID);
 
                             storageRef.child("bulletin/"+bulletin_board_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
