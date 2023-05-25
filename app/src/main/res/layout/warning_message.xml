@@ -10,23 +10,21 @@
         android:id="@+id/noButton"
         android:layout_width="67dp"
         android:layout_height="50dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="185dp"
+        android:layout_marginStart="241dp"
+        android:layout_marginTop="518dp"
+        android:layout_marginBottom="163dp"
         android:backgroundTint="#ffffff"
         android:text="취소"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/yesButton"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/yesButton"
         android:layout_width="67dp"
         android:layout_height="50dp"
-        android:layout_marginStart="308dp"
+        android:layout_marginTop="518dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="163dp"
         android:backgroundTint="#ffffff"
@@ -34,10 +32,7 @@
         android:textColor="#ff0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView39"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView39"
