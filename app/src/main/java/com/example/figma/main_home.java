@@ -111,7 +111,7 @@ public class main_home extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), chat_person.class);
+                Intent intent = new Intent(getApplicationContext(), chatting_main.class);
                 startActivity(intent);
             }
         });
