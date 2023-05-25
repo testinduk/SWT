@@ -48,7 +48,7 @@ public class bulletin_board extends Activity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
         search_Button = findViewById(R.id.search_Button);
-        searchView = findViewById(R.id.editText);
+        searchView = findViewById(R.id.searchView);
 
 
         database = FirebaseDatabase.getInstance();
