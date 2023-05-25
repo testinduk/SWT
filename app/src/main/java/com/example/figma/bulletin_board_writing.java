@@ -26,6 +26,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -60,8 +61,8 @@ public class bulletin_board_writing extends Activity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
                 startActivityForResult(intent, 1);
             }
         });
@@ -75,6 +76,7 @@ public class bulletin_board_writing extends Activity {
                 startActivity(intent);
             }
         });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
