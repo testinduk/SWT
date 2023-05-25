@@ -1,6 +1,5 @@
 package com.example.figma;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class notice_com_adapter extends RecyclerView.Adapter<notice_com_adapter.ViewHolder> {
+public class bulletin_com_adapter extends RecyclerView.Adapter<bulletin_com_adapter.ViewHolder> {
 
-    private ArrayList<notice_com_DB> arrayList;
+    private ArrayList<bulletin_com_DB> arrayList;
     private Context context;
 
-    public notice_com_adapter(ArrayList<notice_com_DB> arrayList, Context context) {
+    public bulletin_com_adapter(ArrayList<bulletin_com_DB> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -25,7 +24,7 @@ public class notice_com_adapter extends RecyclerView.Adapter<notice_com_adapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notice_com_recy, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bulletin_com_recy, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -52,7 +51,6 @@ public class notice_com_adapter extends RecyclerView.Adapter<notice_com_adapter.
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
             this.tv_content = itemView.findViewById(R.id.tv_content);
             this.tv_time = itemView.findViewById(R.id.tv_time);
-
         }
     }
 }

@@ -75,7 +75,7 @@ public class sign_up extends AppCompatActivity {
         spinner_question = findViewById(R.id.spinner_question);
         spinner_answer = findViewById(R.id.spinner_answer);
 
-        ImageView imageView = findViewById(R.id.imageView10);
+        imageView = findViewById(R.id.imageView10);
         ImageButton imageButton = findViewById(R.id.imageButton);
         Spinner spinner = findViewById(R.id.spinner);
 

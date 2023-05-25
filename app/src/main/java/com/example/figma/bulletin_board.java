@@ -19,7 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Locale;
 
 public class bulletin_board extends Activity {
@@ -43,7 +48,7 @@ public class bulletin_board extends Activity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
         search_Button = findViewById(R.id.search_Button);
-        searchView = findViewById(R.id.editText);
+        searchView = findViewById(R.id.searchView);
 
 
         database = FirebaseDatabase.getInstance();
@@ -61,6 +66,8 @@ public class bulletin_board extends Activity {
                     arrayList.add(user);
 
                 }
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
 
                 adapter.notifyDataSetChanged();
 
@@ -90,6 +97,10 @@ public class bulletin_board extends Activity {
                         filteredList.add(item);
                     }
                 }
+
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(filteredList);
+
                 adapter = new bulletin_board_adapter(filteredList, bulletin_board.this);
                 recyclerView.setAdapter(adapter);
             }
@@ -171,4 +182,6 @@ public class bulletin_board extends Activity {
             }
         });
     }
+
+
 }

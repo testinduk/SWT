@@ -1,6 +1,10 @@
 package com.example.figma;
 
 
+import static android.content.ContentValues.TAG;
+
+import static com.google.firebase.firestore.Query.Direction.DESCENDING;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -8,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -32,8 +38,19 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import com.google.firebase.firestore.Query.Direction;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -47,18 +64,25 @@ public class bulletin_board_details extends Activity {
     private ImageButton btn_bul_del; //삭제버튼
     private ImageButton backButton; //뒤로가기
     private ImageView view2;
-    private RecyclerView recyclerView;
-    private EditText EditText2; //댓글 쓰기
-    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    private Button EditText2; //댓글 쓰기
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    @SuppressLint("WrongViewCast")
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<bulletin_com_DB> arrayList;
+
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
 
+
+
+        layoutManager = new LinearLayoutManager(this);
+
+        arrayList = new ArrayList<>();
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView4 = findViewById(R.id.textView4);
@@ -69,8 +93,8 @@ public class bulletin_board_details extends Activity {
         view2 = findViewById(R.id.view2);
 
         EditText2 = findViewById(R.id.EditText2);
-        ImageButton2 = findViewById(R.id.ImageButton2);
-        String comment_UUID = UUID.randomUUID().toString();
+
+
 
         Intent second_intent = getIntent();
 
@@ -85,8 +109,6 @@ public class bulletin_board_details extends Activity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Log.e("uid", uid);
-        Log.i("bulletin_idToken", bulletin_idToken);
 
         textView2.setText(bulletin_username);
         textView4.setText(bulletin_content);
@@ -149,60 +171,35 @@ public class bulletin_board_details extends Activity {
             btn_bul_del.setEnabled(false);
         }
 
-        //댓글 추가하기
-        ImageButton2.setOnClickListener(new View.OnClickListener() {
+        // 뒤로가기 버튼
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                String uid = mAuth.getCurrentUser().getUid();
-
-                Query query = databaseReference.child("sign_up").orderByChild("idToken").equalTo(uid);
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() { //sign_up 노드 불러오기
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-                            String userName = dataSnapshot.child("userName").getValue(String.class);
-
-                            String comment = EditText2.getText().toString();
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("name", userName);
-                            data.put("studentNumber", studentNumber);
-                            data.put("content", comment);
-
-                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        DocumentSnapshot document = task.getResult();
-                                        if(document.exists()){
-                                            db.collection(bulletin_key).document(comment_UUID).update(data);
-                                        }else {
-                                            db.collection(bulletin_key).document(comment_UUID).set(data);
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-                // 뒤로가기 버튼
-                backButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
-                        startActivity(intent);
-                    }
-                });
+                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                startActivity(intent);
             }
         });
+
+        //채팅창 이동버튼 추가하기(김한용)
+
+        // 댓글창 이동 버튼
+        EditText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), bulletin_board_comment.class);
+                intent.putExtra("key", bulletin_key);
+                startActivity(intent);
+            }
+        });
+
+        //댓글 추가하기
+
+
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

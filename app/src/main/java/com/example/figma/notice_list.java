@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Locale;
 
 
@@ -51,7 +53,7 @@ public class notice_list extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
-        search_button = findViewById(R.id.search_button);    // 검색 버튼
+        search_button = findViewById(R.id.search_Button);    // 검색 버튼
         searchView = findViewById(R.id.searchView);          // 검색어 입력
 
 
@@ -70,7 +72,10 @@ public class notice_list extends AppCompatActivity {
                     notice_DB user = snapshot.getValue(notice_DB.class);
                     arrayList.add(user);
                 }
-                    adapter.notifyDataSetChanged();
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(arrayList);
+
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -100,6 +105,10 @@ public class notice_list extends AppCompatActivity {
                         filteredList.add(notice);
                     }
                 }
+
+                // -----시간 정렬 (역순)-----
+                Collections.reverse(filteredList);
+
                 adapter = new notice_adapter(filteredList, notice_list.this);
                 recyclerView.setAdapter(adapter);
 

@@ -61,6 +61,7 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
+        holder.tv_time.setText(arrayList.get(position).getNotice_time());
 
         String userName = arrayList.get(position).getUserName();
         String title = arrayList.get(position).getTitle();
@@ -71,38 +72,7 @@ public class notice_adapter extends RecyclerView.Adapter<notice_adapter.ViewHold
         String notice_image = arrayList.get(position).getNotice_image();
 
 
-        // -------------시간 차이 넣기--------------- //
-        String currentTime = getCurrentTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        try {
-            Date savedDate = dateFormat.parse(time);
-            Date currentDate = dateFormat.parse(currentTime);
-
-            long difference = currentDate.getTime() - savedDate.getTime();
-            long seconds = difference / 1000;
-
-            if (seconds < 60 && seconds > 0) {
-                holder.tv_time.setText(seconds + "초전");
-            }
-            else if (seconds >= 60 && seconds < 3600) {
-                seconds /=  60;
-                holder.tv_time.setText(seconds + "분전");
-
-            }
-            else if (seconds >= 3600 && seconds < 86400) {
-                seconds /= 3600;
-                holder.tv_time.setText(seconds + "시간전");
-            }
-            else if (seconds >= 86400 && seconds < 604800) {
-                seconds /= 86400;
-                holder.tv_time.setText(seconds + "일전");
-            }
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
