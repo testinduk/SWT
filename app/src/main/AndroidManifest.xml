@@ -48,18 +48,15 @@
         <activity android:name=".sharing_details" />
         <activity android:name=".sharing_writing" />
         <activity android:name=".bulletin_board"/>
-        <activity android:name=".bulletin_board_writing"/>
         <activity android:name=".bulletin_board_details"/>
+        <activity android:name=".bulletin_board_writing"/>
         <activity android:name=".bulletin_board_edit"/>
-        <activity android:name=".test"/>
-
 
         <activity android:name=".notice_details"/>
         <activity android:name=".sign_up_email"/>
         <activity android:name=".sign_up"/>
         <activity android:name="sharing_edit"/>
         <activity android:name=".find_id"/>
-        <activity android:name=".find_pw"/>
 
     </application>
 
