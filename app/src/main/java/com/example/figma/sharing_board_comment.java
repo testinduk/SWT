@@ -95,7 +95,7 @@ public class sharing_board_comment extends Activity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), bulletin_board.class);
+                Intent intent = new Intent(getApplicationContext(), sharing_board.class);
                 startActivity(intent);
             }
         });
