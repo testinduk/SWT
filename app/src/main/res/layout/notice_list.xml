@@ -33,13 +33,13 @@
         app:layout_constraintEnd_toStartOf="@+id/texthome"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
 
+
         app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-
         android:layout_marginTop="24dp"
         android:layout_marginBottom="29dp"
         android:background="#ffffff"
