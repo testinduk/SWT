@@ -17,14 +17,13 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/table_outside"
         app:columnCount="6"
-        app:useDefaultMargins="false"
         app:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/table_outside"
+            android:background="@drawable/b_outside"
             android:gravity="center"
             android:text="구   분"
             android:textSize="18sp"
@@ -100,7 +99,7 @@
             />
 
         <TextView
-            android:id="@+id/button1_1"
+            android:id="@+id/time1_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -108,7 +107,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button1_2"
+            android:id="@+id/time1_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -116,7 +115,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button1_3"
+            android:id="@+id/time1_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -124,7 +123,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button1_4"
+            android:id="@+id/time1_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -132,7 +131,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button1_5"
+            android:id="@+id/time1_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -152,7 +151,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button2_1"
+            android:id="@+id/time2_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -161,7 +160,7 @@
             />
 
         <TextView
-            android:id="@+id/button2_2"
+            android:id="@+id/time2_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -169,14 +168,14 @@
             android:background="@drawable/table_outside"/>
 
         <TextView
-            android:id="@+id/button2_3"
+            android:id="@+id/time2_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"/>
         <TextView
-            android:id="@+id/button2_4"
+            android:id="@+id/time2_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -185,7 +184,7 @@
             />
 
         <TextView
-            android:id="@+id/button2_5"
+            android:id="@+id/time2_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -204,7 +203,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button3_1"
+            android:id="@+id/time3_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -213,7 +212,7 @@
             />
 
         <TextView
-            android:id="@+id/button3_2"
+            android:id="@+id/time3_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -221,14 +220,14 @@
             android:background="@drawable/table_outside" />
 
         <TextView
-            android:id="@+id/button3_3"
+            android:id="@+id/time3_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"/>
         <TextView
-            android:id="@+id/button3_4"
+            android:id="@+id/time3_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -237,7 +236,7 @@
             />
 
         <TextView
-            android:id="@+id/button3_5"
+            android:id="@+id/time3_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -257,7 +256,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button4_1"
+            android:id="@+id/time4_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -266,7 +265,7 @@
             />
 
         <TextView
-            android:id="@+id/button4_2"
+            android:id="@+id/time4_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/table_outside"
@@ -276,18 +275,17 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button4_3"
+            android:id="@+id/time4_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/d_outside"
-            android:text="이보영\n304"
+            android:background="@drawable/table_outside"
             android:textColor="@color/black"
             android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button4_4"
+            android:id="@+id/time4_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -296,7 +294,7 @@
             />
 
         <TextView
-            android:id="@+id/button4_5"
+            android:id="@+id/time4_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -316,7 +314,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/button5_1"
+            android:id="@+id/time5_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -324,7 +322,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button5_2"
+            android:id="@+id/time5_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -332,7 +330,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button5_3"
+            android:id="@+id/time5_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -340,7 +338,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button5_4"
+            android:id="@+id/time5_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -349,7 +347,7 @@
             />
 
         <TextView
-            android:id="@+id/button5_5"
+            android:id="@+id/time5_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -369,7 +367,7 @@
             android:text="14:00~14:50" />
 
         <TextView
-            android:id="@+id/button6_1"
+            android:id="@+id/time6_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -377,7 +375,7 @@
             android:background="@drawable/table_outside" />
 
         <TextView
-            android:id="@+id/button6_2"
+            android:id="@+id/time6_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -385,14 +383,14 @@
             android:background="@drawable/table_outside"/>
 
         <TextView
-            android:id="@+id/button6_3"
+            android:id="@+id/time6_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"/>
         <TextView
-            android:id="@+id/button6_4"
+            android:id="@+id/time6_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -400,7 +398,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button6_5"
+            android:id="@+id/time6_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -421,7 +419,7 @@
 
 
         <TextView
-            android:id="@+id/button7_1"
+            android:id="@+id/time7_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -429,7 +427,7 @@
             android:background="@drawable/table_outside"/>
 
         <TextView
-            android:id="@+id/button7_2"
+            android:id="@+id/time7_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -437,7 +435,7 @@
             android:background="@drawable/table_outside"/>
 
         <TextView
-            android:id="@+id/button7_3"
+            android:id="@+id/time7_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -446,7 +444,7 @@
             />
 
         <TextView
-            android:id="@+id/button7_4"
+            android:id="@+id/time7_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -454,7 +452,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button7_5"
+            android:id="@+id/time7_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -475,7 +473,7 @@
 
 
         <TextView
-            android:id="@+id/button8_1"
+            android:id="@+id/time8_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -483,7 +481,7 @@
             android:background="@drawable/table_outside" />
 
         <TextView
-            android:id="@+id/button8_2"
+            android:id="@+id/time8_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -492,7 +490,7 @@
 
 
         <TextView
-            android:id="@+id/button8_3"
+            android:id="@+id/time8_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -500,7 +498,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button8_4"
+            android:id="@+id/time8_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -508,7 +506,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button8_5"
+            android:id="@+id/time8_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -527,7 +525,7 @@
             android:text="17:00~17:50" />
 
         <TextView
-            android:id="@+id/button9_1"
+            android:id="@+id/time9_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -535,7 +533,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button9_2"
+            android:id="@+id/time9_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -543,7 +541,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button9_3"
+            android:id="@+id/time9_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -551,7 +549,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button9_4"
+            android:id="@+id/time9_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -559,7 +557,7 @@
             android:background="@drawable/table_outside"
             />
         <TextView
-            android:id="@+id/button9_5"
+            android:id="@+id/time9_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
