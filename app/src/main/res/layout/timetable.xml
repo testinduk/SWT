@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/table_outside"
+        android:background="@drawable/table_inside"
         app:columnCount="6"
         app:orientation="horizontal">
 
@@ -23,7 +23,9 @@
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/b_outside"
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:gravity="center"
             android:text="구   분"
             android:textSize="18sp"
@@ -39,6 +41,8 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="월" />
 
         <TextView
@@ -50,6 +54,8 @@
             android:gravity="center"
             android:textSize="18sp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="화" />
 
         <TextView
@@ -61,6 +67,8 @@
             android:gravity="center"
             android:textSize="18sp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="수" />
 
         <TextView
@@ -72,6 +80,8 @@
             android:gravity="center"
             android:textSize="18sp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="목" />
 
         <TextView
@@ -83,6 +93,8 @@
             android:gravity="center"
             android:textSize="18sp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="금" />
 
 
@@ -96,6 +108,8 @@
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -105,6 +119,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time1_2"
@@ -113,6 +131,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time1_3"
@@ -121,6 +143,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time1_4"
@@ -129,6 +155,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time1_5"
@@ -137,6 +167,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -148,6 +182,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -157,6 +193,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -165,7 +205,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time2_3"
@@ -173,7 +217,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/time2_4"
             android:layout_width="0dp"
@@ -181,6 +229,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -189,7 +241,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/textView27"
@@ -200,6 +256,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -209,6 +267,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -217,7 +279,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time3_3"
@@ -225,7 +291,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/time3_4"
             android:layout_width="0dp"
@@ -233,6 +303,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -241,7 +315,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
 
         <TextView
@@ -253,6 +331,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -262,6 +342,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -269,18 +353,22 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
             android:textColor="@color/black"
-            android:textSize="10sp"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time4_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
             android:textColor="@color/black"
             android:textSize="10sp"
+            android:gravity="center"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
@@ -291,6 +379,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -299,7 +391,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
 
         <TextView
@@ -311,6 +407,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -320,6 +418,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time5_2"
@@ -328,6 +430,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time5_3"
@@ -336,6 +442,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time5_4"
@@ -344,6 +454,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -353,6 +467,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -363,6 +481,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1"
             android:text="14:00~14:50" />
 
@@ -372,7 +492,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time6_2"
@@ -380,7 +504,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time6_3"
@@ -388,7 +516,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/time6_4"
             android:layout_width="0dp"
@@ -396,6 +528,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time6_5"
@@ -404,6 +540,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -415,6 +555,8 @@
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="15:00~15:50" />
 
 
@@ -424,7 +566,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time7_2"
@@ -432,7 +578,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time7_3"
@@ -441,6 +591,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -450,6 +604,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time7_5"
@@ -458,6 +616,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
         <TextView
@@ -469,6 +631,8 @@
             app:layout_columnWeight="1.2"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             android:text="16:00~16:50" />
 
 
@@ -478,7 +642,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/time8_2"
@@ -486,7 +654,11 @@
             android:layout_height="0dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"/>
+            android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
 
 
         <TextView
@@ -496,6 +668,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time8_4"
@@ -504,6 +680,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time8_5"
@@ -512,6 +692,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/textView33"
@@ -521,6 +705,8 @@
             android:textSize="10sp"
             app:layout_columnWeight="1.2"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
             app:layout_rowWeight="1"
             android:text="17:00~17:50" />
 
@@ -531,6 +717,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time9_2"
@@ -539,6 +729,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time9_3"
@@ -547,6 +741,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time9_4"
@@ -555,6 +753,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/time9_5"
@@ -563,6 +765,10 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:background="@drawable/table_outside"
+            android:fontFamily="@font/linebold"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:gravity="center"
             />
 
 
