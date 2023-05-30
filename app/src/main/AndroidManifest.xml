@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA2" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -31,10 +37,6 @@
             </intent-filter>
         </activity>
 
-        <!--        //새로 만든것을 인식시켜주기 위해 메니패스트에 엑티비티 추가-->
-        <activity android:name=".sharing_board_comment"/>
-        <activity android:name=".bulletin_board_comment"/>
-        <activity android:name=".notice_board_comment"/>
         <activity android:name=".notice_list" />
         <activity android:name=".notice_writing" />
         <activity android:name=".Timetable" />
@@ -47,6 +49,7 @@
         <activity android:name=".main_home" />
         <activity android:name=".sharing_details" />
         <activity android:name=".sharing_writing" />
+
         <activity android:name=".bulletin_board"/>
         <activity android:name=".bulletin_board_details"/>
         <activity android:name=".bulletin_board_writing"/>
