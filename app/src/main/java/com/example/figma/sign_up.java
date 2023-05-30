@@ -52,6 +52,7 @@ public class sign_up extends AppCompatActivity {
     private TextView spinner_question;
     private FirebaseStorage storage;
     ImageView imageView;
+    private String question;
 
 
     @Override
@@ -83,6 +84,8 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 spinner_question.setText((CharSequence) adapterView.getItemAtPosition(position));
+                question = (String) adapterView.getItemAtPosition(position);
+
             }
 
             @Override
@@ -137,6 +140,7 @@ public class sign_up extends AppCompatActivity {
                                     sign_up_db.setUserName(strUserName);
                                     sign_up_db.setStudentNumber(strStudentNumber);
                                     sign_up_db.setAnswer(answer);
+                                    sign_up_db.setQuestion(question);
 
 
                                     //setValue는 database에 insert 행휘

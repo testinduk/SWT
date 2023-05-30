@@ -11,6 +11,16 @@ public class sign_up_DB {
     private String chpassword1;
     private String answer;
 
+    private String question;
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getAnswer() {
         return answer;
     }
