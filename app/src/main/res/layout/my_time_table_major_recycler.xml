@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginBottom="7dp" >
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="182dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="과목명"
+            tools:ignore="MissingConstraints"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="121dp"
+            android:layout_height="45dp"
+            android:text="시간"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="51dp"
+            android:layout_height="46dp"
+            android:text="요일"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="301dp"
+            tools:layout_editor_absoluteY="-1dp"
+            android:gravity="center"/>
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="53dp"
+            android:layout_height="45dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="354dp"
+            android:gravity="center"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -98,16 +98,6 @@ public class sharing_details extends Activity {
         String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
 
-
-
-
-
-
-
-
-
-
-
         tv_username.setText(shar_username);
         tv_content.setText(shar_content);
         tv_title.setText(shar_title);

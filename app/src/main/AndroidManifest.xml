@@ -52,6 +52,16 @@
         <activity android:name=".My_time_table" />
 
 
+        <activity android:name=".bulletin_board"/>
+        <activity android:name=".bulletin_board_details"/>
+        <activity android:name=".bulletin_board_writing"/>
+        <activity android:name=".bulletin_board_edit"/>
+        <activity android:name=".notice_details"/>
+        <activity android:name=".sign_up_email"/>
+        <activity android:name=".sign_up"/>
+        <activity android:name="sharing_edit"/>
+        <activity android:name=".find_id"/>
+
     </application>
 
 </manifest>
