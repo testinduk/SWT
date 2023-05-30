@@ -2,6 +2,7 @@ package com.example.figma;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -31,7 +32,6 @@ public class main_home extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private TabLayout tabLayout;
 
     private ArrayList<String> tabNames = new ArrayList<>();
 
@@ -50,6 +50,14 @@ public class main_home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_home);
+
+        //Fragment 연결
+        Timetable timetable = new Timetable();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.time_frame, timetable);
+        ft.commit();
+
+
 
         recyclerView = findViewById(R.id.recyclerView); //아이디 연결
         recyclerView.setHasFixedSize(true);
@@ -86,6 +94,17 @@ public class main_home extends AppCompatActivity {
 
         adapter = new main_adapter(arrayList, this);
         recyclerView.setAdapter(adapter);
+
+
+        // 내 시간표 설정
+        Button btn_my_time = findViewById(R.id.btn_my_time);
+        btn_my_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), My_time_table.class);
+                startActivity(intent);
+            }
+        });
 
 
         // (공지)더보기 버튼
@@ -174,6 +193,16 @@ public class main_home extends AppCompatActivity {
             }
         });
 
+
+
+
+
+
+
+
+
+
+
 //        btn_timetable.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -182,63 +211,63 @@ public class main_home extends AppCompatActivity {
 //            }
 //        });
 
-        // Fragment 부분
-        // ViewPager2
-        mPager = findViewById(R.id.viewpager);
-        // tabLayout 선언
-        tabLayout = findViewById(R.id.time_tab);
-
-
-        // Adapter
-        pagerAdapter = new ViewAdapter(this, num_page);
-        mPager.setAdapter(pagerAdapter);
-        //ViewPager Setting
-        mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-
-        /**
-         * 이 부분 조정하여 처음 시작하는 이미지 설정.
-         * 2000장 생성하였으니 현재위치 1002로 설정하여
-         * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
-         */
-
-        mPager.setCurrentItem(0); //시작 지점
-        mPager.setOffscreenPageLimit(6); //최대 이미지 수
-
-        mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                if (positionOffsetPixels == 0) {
-                    mPager.setCurrentItem(position);
-                }
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-//                mIndicator.animatePageSelected(position%num_page);
-            }
-        });
+//        // Fragment 부분
+//        // ViewPager2
+//        mPager = findViewById(R.id.viewpager);
+//        // Adapter
+//        pagerAdapter = new ViewAdapter(this, num_page);
+//        mPager.setAdapter(pagerAdapter);
+//        //ViewPager Setting
+//        mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+//
+//        /**
+//         * 이 부분 조정하여 처음 시작하는 이미지 설정.
+//         * 2000장 생성하였으니 현재위치 1002로 설정하여
+//         * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
+//         */
+//
+//        mPager.setCurrentItem(0); //시작 지점
+//        mPager.setOffscreenPageLimit(6); //최대 이미지 수
+//
+//        mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//                if (positionOffsetPixels == 0) {
+//                    mPager.setCurrentItem(position);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                super.onPageSelected(position);
+//            }
+//        });
+//
 
 
 
-        //tabLyout와 viewPager 연결
-        new TabLayoutMediator(tabLayout, mPager, (tab, position) -> {
 
-            int index = position + 1;
 
-            String title;
-
-            if (index %2 == 0) {
-                //짝수 인덱스는 B로 끝남
-                title = (index / 2) + "B";
-            } else {
-                //홀수 인덱스는 A로 끝남
-                title = (index / 2 + 1) + "A";
-            }
-
-            tab.setText(title);
-        }).attach();
+//        tabLayout 선언
+//        tabLayout = findViewById(R.id.time_tab);
+//        tabLyout와 viewPager 연결
+//        new TabLayoutMediator(tabLayout, mPager, (tab, position) -> {
+//
+//            int index = position + 1;
+//
+//            String title;
+//
+//            if (index %2 == 0) {
+//                //짝수 인덱스는 B로 끝남
+//                title = (index / 2) + "B";
+//            } else {
+//                //홀수 인덱스는 A로 끝남
+//                title = (index / 2 + 1) + "A";
+//            }
+//
+//            tab.setText(title);
+//        }).attach();
 
 
 
