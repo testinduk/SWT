@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="학과">
+        <item>정보통신공학과</item>
+        <item>산업경영공학과</item>
+    </string-array>
+</resources>
