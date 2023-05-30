@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 public class find_id extends AppCompatActivity {
     private EditText editTextTextPersonName, editTextTextPersonName1, editTextTextPersonName6;
     private TextView editTextTextPersonName5, textView38;
-    private Button backButton, finishBT;
+    private Button finishBT;
+    private ImageButton backButton;
+    private String question;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -45,6 +48,7 @@ public class find_id extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 editTextTextPersonName5.setText((CharSequence) adapterView.getItemAtPosition(position));
+                question = (String) adapterView.getItemAtPosition(position);
             }
 
             @Override
@@ -78,8 +82,9 @@ public class find_id extends AppCompatActivity {
                             String userName = dataSnapshot.child("userName").getValue(String.class);
                             String answer = dataSnapshot.child("answer").getValue(String.class);
                             String emailId = dataSnapshot.child("emailId").getValue(String.class);
+                            String question1 = dataSnapshot.child("question").getValue(String.class);
 
-                            if(studentNumber1.equals(studentNumber) && userName1.equals(userName) && answer1.equals(answer)){
+                            if(studentNumber1.equals(studentNumber) && userName1.equals(userName) && answer1.equals(answer) && question.equals(question1)){
                                 textView38.setText(emailId);
                                 return;
                             }

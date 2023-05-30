@@ -55,6 +55,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
                 @Override
                 public void onClick(View v) {
 
+
                 }
             });
         }
