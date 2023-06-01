@@ -5,16 +5,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@drawable/table_outside">
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="340dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/time_rcy_detail"
+                android:id="@+id/select_item_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="디지털전송시스템"
@@ -27,11 +26,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkbox"
+                android:background="@drawable/table_outside"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
