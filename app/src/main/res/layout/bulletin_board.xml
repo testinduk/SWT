@@ -4,203 +4,210 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bulletin_board">
+    tools:context=".controller.sharing.sharing_board">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="380dp"
-        android:layout_height="450dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="85dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chatButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/writingButton" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="225dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="88dp"
-        android:background="@drawable/searching"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/writingButton"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="31dp"
-        android:backgroundTint="@color/white"
-        android:text="글쓰기"
-        android:stateListAnimator="@null"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textboard"
-        app:layout_constraintTop_toTopOf="@+id/boardtitle" />
-
-    <Button
-        android:id="@+id/search_Button"
-        android:layout_width="51dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="84dp"
-        android:backgroundTint="@color/white"
-        android:stateListAnimator="@null"
-        android:text="검색"
-        android:textColor="@color/black"
-        android:textSize="9dp"
-        app:layout_constraintStart_toEndOf="@+id/textboard"
-        app:layout_constraintTop_toTopOf="@+id/boardtitle" />
-
-    <ImageButton
-        android:id="@+id/boardButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:backgroundTint="#ffffff"
-        android:src="@drawable/plus"
-        app:layout_constraintBottom_toBottomOf="@+id/mypageButton"
-        app:layout_constraintEnd_toEndOf="@+id/textboard"
-        app:layout_constraintStart_toStartOf="@+id/textboard"
-        app:layout_constraintTop_toTopOf="@+id/mypageButton" />
-
-    <TextView
-        android:id="@+id/textshare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="1dp"
-        android:text="나눔"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/sharingButton"
-        app:layout_constraintTop_toBottomOf="@+id/sharingButton" />
-
-    <TextView
-        android:id="@+id/texthome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:text="홈"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/homeButton"
-        app:layout_constraintTop_toBottomOf="@+id/homeButton" />
-
-    <TextView
-        android:id="@+id/textboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="27dp"
-        android:text="게시판"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textmypage"
-        app:layout_constraintTop_toBottomOf="@+id/boardButton" />
 
     <ImageButton
         android:id="@+id/chatButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="4dp"
-        android:backgroundTint="#ffffff"
+        android:layout_marginStart="20dp"
+        android:background="#ffffff"
+        android:onClick="chatButton"
         android:src="@drawable/chat"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
-        app:layout_constraintEnd_toEndOf="@+id/textchat"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toTopOf="@+id/sharingButton" />
-
-    <TextView
-        android:id="@+id/textchat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="5dp"
-        android:text="채팅"
-        android:textColor="#000000"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chatButton" />
+        app:layout_constraintTop_toTopOf="@+id/sharingButton" />
 
     <ImageButton
         android:id="@+id/sharingButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginEnd="73dp"
-        android:backgroundTint="#ffffff"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="54dp"
+        android:background="#ffffff"
+        android:onClick="sharingButton"
         android:src="@drawable/heart"
-        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
-        app:layout_constraintEnd_toEndOf="@+id/homeButton"
-        app:layout_constraintStart_toStartOf="@+id/textchat"
-        app:layout_constraintTop_toTopOf="@+id/homeButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/boardButton"
+        app:layout_constraintEnd_toStartOf="@+id/texthome"
+        app:layout_constraintStart_toEndOf="@+id/chatButton"
+        app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:backgroundTint="#ffffff"
-        android:contentDescription="TODO"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="11dp"
+        android:background="#ffffff"
         android:src="@drawable/hut"
-        app:layout_constraintBottom_toBottomOf="@+id/boardButton"
+        app:layout_constraintBottom_toTopOf="@+id/texthome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/boardButton" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <ImageButton
+        android:id="@+id/boardButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="12dp"
+        android:background="#ffffff"
+        android:src="@drawable/plus"
+        app:layout_constraintBottom_toTopOf="@+id/textboard"
+        app:layout_constraintEnd_toEndOf="@+id/textmypage"
+        app:layout_constraintStart_toStartOf="@+id/textView46" />
 
     <ImageButton
         android:id="@+id/mypageButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="#ffffff"
+        android:background="#ffffff"
         android:src="@drawable/mypage"
-        app:layout_constraintBottom_toTopOf="@+id/textmypage"
+        app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toEndOf="@+id/textmypage"
-        app:layout_constraintStart_toStartOf="@+id/textmypage" />
+        app:layout_constraintStart_toStartOf="@+id/textmypage"
+        app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
-    <TextView
-        android:id="@+id/textmypage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="27dp"
-        android:text="마이페이지"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="373dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/chatButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="3dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chatButton"
+        app:layout_constraintStart_toStartOf="@+id/textchat"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/boardtitle"
+        android:id="@+id/textchat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="33dp"
-        android:text="자유게시판"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="17dp"
+        android:text="채팅"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textsharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="17dp"
+        android:text="나눔"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/sharingButton" />
+
+    <TextView
+        android:id="@+id/texthome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="17dp"
+        android:text="홈"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/homeButton" />
+
+
+    <TextView
+        android:id="@+id/textboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:text="게시판"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/boardButton" />
+
+    <TextView
+        android:id="@+id/textmypage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="17dp"
+        android:text="마이페이지"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/searchView"
+        android:layout_width="225dp"
+        android:layout_height="30dp"
+        android:background="@drawable/searching"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/writingButton" />
+
+    <Button
+        android:id="@+id/search_Button"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:backgroundTint="#FFFFFF"
+        android:stateListAnimator="@null"
+        android:text="검색"
+        android:textColor="#000000"
+        android:textSize="9dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="@+id/writingButton"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/writingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="#FFFFFF"
+        android:stateListAnimator="@null"
+        android:text="글쓰기"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="32dp"
+        android:text="자유 게시판"
         android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/writingButton"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

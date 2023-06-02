@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sharing_details">
+    tools:context=".controller.sharing.sharing_details">
 
     <ImageButton
         android:id="@+id/backButton"
@@ -13,9 +13,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
+        android:src="@drawable/vector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/vector" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView1"
@@ -31,11 +31,11 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:textColor="@color/black"
         android:text="글쓴이"
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -46,25 +46,23 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="15dp"
         android:text="날짜"
         android:textColor="@color/black"
-
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@id/textView1" />
+        app:layout_constraintBottom_toTopOf="@+id/photo_image"
+        app:layout_constraintStart_toEndOf="@id/textView2" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/btn_sha_amend"
         android:layout_width="37dp"
         android:layout_height="25dp"
         android:layout_marginBottom="60dp"
-        android:background="@drawable/pen"
-
+        android:background="@android:color/transparent"
+        android:src="@drawable/pen"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/Button3"
-
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/textView3" />
 
@@ -74,8 +72,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
-        android:background="@drawable/trash"
-
+        android:background="@android:color/transparent"
+        android:src="@drawable/trash"
         app:layout_constraintBottom_toTopOf="@id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -86,14 +84,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangle22"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="110dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="내용"
@@ -120,19 +118,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
-        android:id="@+id/ImageButton2"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="9dp"
-        android:text="채팅하기"
-        android:backgroundTint="#ffffff"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
+    <Button
+        android:id="@+id/EditText2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#e6e6fa"
+        android:text="댓글창 이동"
+        android:drawableRight="@drawable/comment"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C8C8FF"
+        android:drawableRight="@drawable/chat"
+        android:text="채팅"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/ImageButton2"-->
+    <!--        android:layout_width="120dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_marginEnd="15dp"-->
+    <!--        android:layout_marginBottom="9dp"-->
+    <!--        android:text="채팅하기"-->
+    <!--        android:backgroundTint="#ffffff"-->
+    <!--        android:textColor="#000000"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
