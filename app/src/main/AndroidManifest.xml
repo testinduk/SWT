@@ -24,43 +24,60 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".login"
+            android:name=".controller.login"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
-
+                android:value=""/>
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".notice_list" />
-        <activity android:name=".notice_writing" />
-        <activity android:name=".Timetable" />
-        <activity android:name=".chat_person" />
-        <activity android:name=".chatting_main" />
-        <activity android:name=".sharing_board" />
-        <activity android:name=".warning_message" />
-        <activity android:name=".my_inf_details" />
-        <activity android:name=".mypage" />
-        <activity android:name=".main_home" />
-        <activity android:name=".sharing_details" />
-        <activity android:name=".sharing_writing" />
-        <activity android:name=".My_time_table" />
+        <activity android:name=".controller.bulletin.bulletin_board"/>
+        <activity android:name=".controller.bulletin.bulletin_board_details"/>
+        <activity android:name=".controller.bulletin.bulletin_board_writing"/>
+        <activity android:name=".controller.bulletin.bulletin_board_edit"/>
+        <activity android:name=".controller.bulletin.bulletin_board_comment"/>
+        <!--bulletin-->
+        <activity android:name=".controller.chat.chat_person"/>
+        <activity android:name=".controller.chat.chatting_main"/>
+        <!--chat-->
+        <activity android:name=".controller.comment.test"/>
+        <!--comment-->
+        <activity android:name=".controller.find.find_id"/>
+        <activity android:name=".controller.find.find_pw"/>
+        <!--find-->
+        <activity android:name=".controller.myinformation.my_inf_details"/>
+        <activity android:name=".controller.myinformation.warning_message"/>
+        <!--myinformation-->
+        <activity android:name=".controller.mypage.mypage"/>
+        <!--mypage-->
+        <activity android:name=".controller.notice.notice_board_comment"/>
+        <activity android:name=".controller.notice.notice_details"/>
+        <activity android:name=".controller.notice.notice_edit"/>
+        <activity android:name=".controller.notice.notice_list"/>
+        <activity android:name=".controller.notice.notice_writing"/>
+        <!--notice-->
+        <activity android:name=".controller.sharing.sharing_board"/>
+        <activity android:name=".controller.sharing.sharing_board_comment"/>
+        <activity android:name=".controller.sharing.sharing_details"/>
+        <activity android:name=".controller.sharing.sharing_edit"/>
+        <activity android:name=".controller.sharing.sharing_writing"/>
+        <!--sharing-->
+        <activity android:name=".controller.signup.sign_up"/>
+        <activity android:name=".controller.signup.sign_up_email"/>
+        <!--signup-->
+        <activity android:name=".controller.timetable.My_time_table"/>
+        <activity android:name=".controller.timetable.Timetable" />
+        <!--timetable-->
+        <activity android:name=".controller.main_home"/>
+        <activity android:name=".controller.MainActivity"/>
 
 
-        <activity android:name=".bulletin_board"/>
-        <activity android:name=".bulletin_board_details"/>
-        <activity android:name=".bulletin_board_writing"/>
-        <activity android:name=".bulletin_board_edit"/>
-        <activity android:name=".notice_details"/>
-        <activity android:name=".sign_up_email"/>
-        <activity android:name=".sign_up"/>
-        <activity android:name="sharing_edit"/>
-        <activity android:name=".find_id"/>
+
 
     </application>
 
