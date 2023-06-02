@@ -9,35 +9,40 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.figma.controller.main_home;
 import com.example.figma.databinding.MyTimeTableBinding;
-import com.example.figma.model.DataField;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.example.figma.model.DataField;
+import com.example.figma.controller.main_home;
+
 
 public class My_time_table extends AppCompatActivity {
 
     private MyTimeTableBinding mBinding;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    // 스피너
     private ArrayList<String> dp_sp;
     private ArrayList<String> grade_sp;
     private ArrayList<String> class_sp;
-
-    private LinearLayoutManager layoutManager;
     private String dp_time;
     private String grade_time;
     private String class_time;
+    private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
 
 
 
@@ -49,12 +54,46 @@ public class My_time_table extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
-        layoutManager = new LinearLayoutManager(this);
-        mBinding.recyclerView1.setLayoutManager(layoutManager);
+
+        layoutManager_mj = new LinearLayoutManager(this);
+        layoutManager2_ge = new LinearLayoutManager(this);
+        layoutManager_pic = new LinearLayoutManager(this);
+
+        mBinding.recyclerView1.setLayoutManager(layoutManager_mj);
+        mBinding.recyclerView2.setLayoutManager(layoutManager2_ge);
+        mBinding.picRecyclerView.setLayoutManager(layoutManager_pic);
 
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
-        db  = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    return;
+                }
+                if (snapshots != null && snapshots.exists()) {
+                    Map<String, Object> data = snapshots.getData();
+
+                    for (Map.Entry<String, Object> entry : data.entrySet()) {
+                        List<DataField> item_list = new ArrayList<>();
+                        item_list.clear();
+                        String fieldName = entry.getKey();
+                        Object fieldValue = entry.getValue();
+
+                        DataField itemfield = new DataField(fieldName, fieldValue);
+                        item_list.add(itemfield);
+                        Select_item_adapter adapter = new Select_item_adapter(item_list);
+                        mBinding.picRecyclerView.setAdapter(adapter);
+                    }
+
+                }
+            }
+        });
+//
+
 
         // 스피너
         dp_sp = new ArrayList<>();
@@ -159,8 +198,6 @@ public class My_time_table extends AppCompatActivity {
         });
 
 
-
-
         // 뒤로가기
         mBinding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,8 +206,8 @@ public class My_time_table extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
 
     private void handleData(Map<String, Object> data) {
         List<DataField> fieldList = new ArrayList<>();
@@ -182,13 +219,18 @@ public class My_time_table extends AppCompatActivity {
             // Create a Field object and add it to the list
             DataField field = new DataField(fieldName, fieldValue);
             fieldList.add(field);
+            Major_adapter adapter = new Major_adapter(fieldList);
+            mBinding.recyclerView1.setAdapter(adapter);
+
+
+//            adapter = new bulletin_board_adapter(filteredList, bulletin_board.this);
+//            recyclerView.setAdapter(adapter);
+//            Major_adapter adapter = new Major_adapter(new ArrayList<>());
+//            mBinding.recyclerView1.setAdapter(adapter);
         }
 
-        // Set up the RecyclerView adapter
-        Major_adapter adapter = new Major_adapter(fieldList);
-        mBinding.recyclerView1.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
     }
+
 
 }

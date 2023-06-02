@@ -69,7 +69,6 @@ public class sign_up extends AppCompatActivity {
         imageView = findViewById(R.id.imageView10);
         ImageButton imageButton = findViewById(R.id.imageButton);
         Spinner spinner = findViewById(R.id.spinner);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {

@@ -1,23 +1,42 @@
 package com.example.figma.controller.timetable;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 import com.example.figma.R;
 import com.example.figma.model.DataField;
 
 import java.util.List;
+import java.util.Map;
 
 public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder> {
     private List<DataField> fieldList;
 
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private int buttonClickCount = 1;
+    private List<String> fieldValues = new ArrayList<>();
+
+
+
+
     public Major_adapter(List<DataField> fieldList) {
         this.fieldList = fieldList;
+
     }
 
     @NonNull
@@ -39,25 +58,78 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
         return fieldList.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView fieldNameTextView;
-        private TextView fieldValueTextView;
+        private Button fieldName;
+        private Button fieldValue;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            fieldNameTextView = itemView.findViewById(R.id.time_rcy_detail);
-            fieldValueTextView = itemView.findViewById(R.id.time_rcy_detail2);
+            fieldName = itemView.findViewById(R.id.time_rcy_detail);
+            fieldValue = itemView.findViewById(R.id.time_rcy_detail2);
         }
 
         public void bind(DataField field) {
-            fieldNameTextView.setText(field.getFieldName());
-            fieldValueTextView.setText(String.valueOf(field.getFieldValue()));
-
-
-            fieldValueTextView.setOnClickListener(new View.OnClickListener() {
+            String sub_name = field.getFieldName();
+            String sub_value = String.valueOf(field.getFieldValue());
+            fieldName.setText(sub_name);
+            fieldValue.setText(sub_value);
+            fieldName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    db = FirebaseFirestore.getInstance();
+                    mAuth = FirebaseAuth.getInstance();
+                    String uid = mAuth.getCurrentUser().getUid();
+                    String fieldName = "sub" + buttonClickCount;
+                    List<String> update_list = new ArrayList<>();
 
 
+                    DocumentReference documentRef = db.collection("Time_table").document(uid);
+
+                    documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                // 이미 데이터가 있는 경우
+                                if (document.exists()) {
+                                    Map<String, Object> update = document.getData();
+                                    for (Map.Entry<String, Object> entry : update.entrySet()) {
+
+
+                                        String check_list = entry.getKey();
+                                        update_list.add(check_list);
+
+                                    }
+                                    buttonClickCount = update_list.size();
+                                    String fieldName = String.valueOf(buttonClickCount +1);
+
+                                    Map<String, Object> update_data = document.getData();
+                                    update_data.put(fieldName, sub_name);
+                                    documentRef.update(update_data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Log.e("log", "데이터 입력 성공");
+                                        }
+                                    });
+
+                                } else {
+                                    // 데이터가 없는 경우(새로 작성)
+                                    String fieldName = String.valueOf(buttonClickCount);
+
+                                    Map<String, Object> create_data = document.getData();
+                                    create_data.put(fieldName, sub_name);
+                                    documentRef.set(create_data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            buttonClickCount++;
+                                            Log.i("데이터 새로 생성 후 +1", String.valueOf(buttonClickCount));
+
+                                        }
+                                    });
+                                }
+
+                            }
+                        }
+                    });
                 }
             });
         }
