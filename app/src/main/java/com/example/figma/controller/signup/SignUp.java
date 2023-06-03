@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.figma.R;
 import com.example.figma.controller.Login;
-import com.example.figma.model.sign_up_DB;
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -122,7 +122,7 @@ public class SignUp extends AppCompatActivity {
                                 if (task.isSuccessful()) {
 
                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                                    sign_up_DB sign_up_db = new sign_up_DB();
+                                    Board sign_up_db = new Board();
                                     sign_up_db.setEmailId(firebaseUser.getEmail());
                                     sign_up_db.setPassword(strPwd);
                                     sign_up_db.setIdToken(firebaseUser.getUid());

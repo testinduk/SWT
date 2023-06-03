@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
-import com.example.figma.model.notice_com_DB;
+import com.example.figma.model.Board;
 
 import java.util.ArrayList;
 
 public class NoticeComAdapter extends RecyclerView.Adapter<NoticeComAdapter.ViewHolder> {
 
-    private ArrayList<notice_com_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
 
-    public NoticeComAdapter(ArrayList<notice_com_DB> arrayList, Context context) {
+    public NoticeComAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

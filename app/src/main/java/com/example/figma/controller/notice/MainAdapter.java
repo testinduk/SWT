@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
-import com.example.figma.model.notice_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,14 +19,14 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private ArrayList<notice_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
 
 
-    public MainAdapter(ArrayList<notice_DB> arrayList, Context context) {
+    public MainAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

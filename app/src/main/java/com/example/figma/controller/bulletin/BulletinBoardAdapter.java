@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.bulletin_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,12 +22,12 @@ import java.util.ArrayList;
 
 public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdapter.ViewHolder> {
 
-    private ArrayList<bulletin_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    public BulletinBoardAdapter(ArrayList<bulletin_DB> arrayList, Context context) {
+    public BulletinBoardAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
 

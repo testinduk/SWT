@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
-import com.example.figma.model.notice_com_DB;
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,7 +51,7 @@ public class NoticeBoardComment extends Activity {
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<notice_com_DB> arrayList;
+    private ArrayList<Board> arrayList;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -151,7 +151,7 @@ public class NoticeBoardComment extends Activity {
 
                 arrayList.clear();
                 for (QueryDocumentSnapshot document : snapshots) {
-                    notice_com_DB user = document.toObject(notice_com_DB.class);
+                    Board user = document.toObject(Board.class);
                     arrayList.add(user);
                 }
                 // -----시간 정렬 (역순)-----

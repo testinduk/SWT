@@ -26,7 +26,7 @@ import com.example.figma.controller.notice.NoticeWriting;
 import com.example.figma.controller.sharing.SharingBoard;
 import com.example.figma.controller.timetable.My_time_table;
 import com.example.figma.controller.timetable.Timetable;
-import com.example.figma.model.notice_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +49,7 @@ public class MainHome extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<notice_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private int num_page = 6;
@@ -85,7 +85,7 @@ public class MainHome extends AppCompatActivity {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    notice_DB user = snapshot.getValue(notice_DB.class);
+                    Board user = snapshot.getValue(Board.class);
                     arrayList.add(user);
                 }
                 // -----시간 정렬 (역순)-----

@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.bulletin_com_DB;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,9 +43,7 @@ public class BulletinBoardDetails extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<bulletin_com_DB> arrayList;
+
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -54,11 +51,6 @@ public class BulletinBoardDetails extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
 
-
-
-        layoutManager = new LinearLayoutManager(this);
-
-        arrayList = new ArrayList<>();
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView4 = findViewById(R.id.textView4);
