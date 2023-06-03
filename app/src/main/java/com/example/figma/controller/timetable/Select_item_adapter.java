@@ -9,15 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
-import com.example.figma.model.DataField;
+import com.example.figma.model.Board;
+import com.example.figma.model.Board;
 
 
 import java.util.List;
 
 public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapter.ViewHolder> {
-    private List<DataField> item_list;
+    private List<Board> item_list;
 
-    public Select_item_adapter(List<DataField> item_list) {
+    public Select_item_adapter(List<Board> item_list) {
         this.item_list = item_list;
 
     }
@@ -31,7 +32,7 @@ public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapte
 
     @Override
     public void onBindViewHolder(@NonNull Select_item_adapter.ViewHolder holder, int position) {
-        DataField item = item_list.get(position);
+        Board item = item_list.get(position);
         // Bind the data to the ViewHolder
         holder.bind(item);
     }
@@ -48,7 +49,7 @@ public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapte
             select_item_text = itemView.findViewById(R.id.select_item_text);
         }
 
-        public void bind(DataField data) {
+        public void bind(Board data) {
             select_item_text.setText(String.valueOf(data.getFieldValue()));
 
         }
