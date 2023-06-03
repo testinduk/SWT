@@ -10,16 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
+import com.example.figma.model.Board;
 import com.example.figma.model.sharing_com_DB;
 
 import java.util.ArrayList;
 
 public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.ViewHolder> {
 
-    private ArrayList<sharing_com_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
 
-    public SharingComAdapter(ArrayList<sharing_com_DB> arrayList, Context context) {
+    public SharingComAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

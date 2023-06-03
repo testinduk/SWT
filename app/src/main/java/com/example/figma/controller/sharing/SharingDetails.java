@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.sharing_com_DB;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,10 +35,6 @@ public class SharingDetails extends Activity {
 
     private Button EditText2;
 
-
-    private ArrayList<sharing_com_DB> arrayList;
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_details);
@@ -55,10 +50,6 @@ public class SharingDetails extends Activity {
         textView3 = findViewById(R.id.textView3);
         EditText2 = findViewById(R.id.EditText2); // 댓글창
 
-
-
-
-        arrayList = new ArrayList<>();
         Intent second_intent = getIntent();
 
         String shar_username = second_intent.getStringExtra("username");
@@ -68,7 +59,6 @@ public class SharingDetails extends Activity {
         String shar_key = second_intent.getStringExtra("key");
         String sharing_image = second_intent.getStringExtra("image");
         String sharing_time = second_intent.getStringExtra("time");
-//        Log.e("image",sharing_image);
 
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기

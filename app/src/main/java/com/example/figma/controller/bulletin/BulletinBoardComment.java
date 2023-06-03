@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
-import com.example.figma.model.bulletin_com_DB;
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,7 +53,7 @@ public class BulletinBoardComment extends Activity {
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<bulletin_com_DB> arrayList;
+    private ArrayList<Board> arrayList;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -151,7 +151,7 @@ public class BulletinBoardComment extends Activity {
 
                 arrayList.clear();
                 for (QueryDocumentSnapshot document : snapshots) {
-                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
+                    Board user = document.toObject(Board.class);
                     arrayList.add(user);
                 }
                 // -----시간 정렬 (역순)-----
@@ -174,93 +174,6 @@ public class BulletinBoardComment extends Activity {
         return dateFormat.format(date);
     }
 }
-
-
-
-//        Intent second_intent = getIntent();
-//
-//        String bulletin_username = second_intent.getStringExtra("username");
-//        String bulletin_title = second_intent.getStringExtra("title");
-//        String bulletin_content = second_intent.getStringExtra("content");
-//        String bulletin_idToken = second_intent.getStringExtra("idToken");
-//        String bulletin_key = second_intent.getStringExtra("key");
-//        String bulletin_image = second_intent.getStringExtra("image");
-//        String bulletin_time = second_intent.getStringExtra("time");
-
-
-
-//        //댓글 추가하기
-//        ImageButton2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-//                String comment_content = EditText2.getText().toString();
-//
-//                String comment_UUID = UUID.randomUUID().toString();
-//
-//                query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                            String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
-//                            String username = dataSnapshot.child("userName").getValue(String.class);
-//
-//                            String current_time = getCurrentTime();
-//
-//                            Map<String, Object> bulletin_comment = new HashMap<>();
-//                            bulletin_comment.put("name", username);
-//                            bulletin_comment.put("studentNumber", studentNumber);
-//                            bulletin_comment.put("content", comment_content);
-//                            bulletin_comment.put("time", current_time);
-//                            db.collection(bulletin_key).document(comment_UUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                    if (task.isSuccessful()) {
-//                                        DocumentSnapshot document = task.getResult();
-//                                        if (document.exists()) {
-//                                            db.collection(bulletin_key).document(comment_UUID).update(bulletin_comment);
-//                                        } else {
-//                                            db.collection(bulletin_key).document(comment_UUID).set(bulletin_comment);
-//
-//                                        }
-//                                    }
-//                                }
-//                            });
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//
-//            }
-//        });
-
-//        db.collection(bulletin_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
-//                if (error != null) {
-//                    return;
-//                }
-//
-//                arrayList.clear();
-//                for (QueryDocumentSnapshot document : snapshots) {
-//                    bulletin_com_DB user = document.toObject(bulletin_com_DB.class);
-//                    arrayList.add(user);
-//                }
-//                // -----시간 정렬 (역순)-----
-//                Collections.reverse(arrayList);
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//
-//        adapter = new BulletinComAdapter(arrayList, this);
-
 
 
 

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.notice_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,14 +24,14 @@ import java.util.Date;
 
 public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder> {
 
-    private ArrayList<notice_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
 
 
-    public NoticeAdapter(ArrayList<notice_DB> arrayList, Context context) {
+    public NoticeAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

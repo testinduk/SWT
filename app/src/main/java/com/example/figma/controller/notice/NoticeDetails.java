@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.notice_com_DB;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,10 +36,6 @@ public class NoticeDetails extends Activity {
     private ImageView photo_image;
     private Button EditText2;
 
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<notice_com_DB> arrayList;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,9 +43,6 @@ public class NoticeDetails extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_details);
 
-
-        layoutManager = new LinearLayoutManager(this);
-        arrayList = new ArrayList<>();
 
         photo_image = findViewById(R.id.photo_image);    // 이미지뷰
         edit_button = findViewById(R.id.btn_notice_amend); //수정 버튼

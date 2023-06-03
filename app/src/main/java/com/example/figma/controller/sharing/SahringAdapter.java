@@ -14,14 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
-import com.example.figma.model.Sharing_writing_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class SahringAdapter extends RecyclerView.Adapter<SahringAdapter.CustomViewHolder> {
-    private ArrayList<Sharing_writing_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private Context context;
 
     private FirebaseDatabase database;
@@ -29,7 +29,7 @@ public class SahringAdapter extends RecyclerView.Adapter<SahringAdapter.CustomVi
 
 
 
-    public SahringAdapter(ArrayList<Sharing_writing_DB> arrayList, Context context) {
+    public SahringAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

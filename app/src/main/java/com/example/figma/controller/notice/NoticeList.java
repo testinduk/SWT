@@ -21,7 +21,7 @@ import com.example.figma.controller.chat.ChatPerson;
 import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
-import com.example.figma.model.notice_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +37,7 @@ public class NoticeList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<notice_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     EditText searchView;
@@ -65,7 +65,7 @@ public class NoticeList extends AppCompatActivity {
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    notice_DB user = snapshot.getValue(notice_DB.class);
+                    Board user = snapshot.getValue(Board.class);
                     arrayList.add(user);
                 }
                 // -----시간 정렬 (역순)-----
@@ -91,9 +91,9 @@ public class NoticeList extends AppCompatActivity {
             public void onClick(View v) {
                 String notice_search = searchView.getText().toString().toLowerCase();
 
-                ArrayList<notice_DB> filteredList = new ArrayList<>();
+                ArrayList<Board> filteredList = new ArrayList<>();
                 filteredList.clear();
-                for (notice_DB notice : arrayList) {
+                for (Board notice : arrayList) {
                     if(notice.getTitle().toLowerCase().contains(notice_search)
                             || (notice.getUserName().toLowerCase().contains(notice_search))
                             || (notice.getStudentNumber().toLowerCase().contains(notice_search))

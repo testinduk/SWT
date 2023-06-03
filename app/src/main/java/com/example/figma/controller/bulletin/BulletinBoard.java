@@ -18,7 +18,7 @@ import com.example.figma.controller.chat.ChatPerson;
 import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
-import com.example.figma.model.bulletin_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +32,7 @@ public class BulletinBoard extends Activity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<bulletin_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private Button search_Button;
@@ -63,7 +63,7 @@ public class BulletinBoard extends Activity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
-                    bulletin_DB user = snapshot.getValue(bulletin_DB.class);
+                    Board user = snapshot.getValue(Board.class);
                     arrayList.add(user);
 
                 }
@@ -89,8 +89,8 @@ public class BulletinBoard extends Activity {
             public void onClick(View view) {
                 String searchText = searchView.getText().toString().toLowerCase();
 
-                ArrayList<bulletin_DB> filteredList = new ArrayList<>();
-                for(bulletin_DB item : arrayList){
+                ArrayList<Board> filteredList = new ArrayList<>();
+                for(Board item : arrayList){
                     if(item.getTitle().toLowerCase().contains(searchText)
                             || (item.getContent().toLowerCase().contains(searchText))
                             || (item.getStudentNumber().toLowerCase().contains(searchText))
