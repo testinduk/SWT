@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="아이디찾기">
+        <item>고향</item>
+        <item>색깔</item>
+        <item>초등학교</item>
+    </string-array>
+</resources>

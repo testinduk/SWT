@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/table_outside">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time_rcy_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="디지털전송시스템"
+                android:textSize="20sp"
+                android:fontFamily="@font/linebold"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/time_rcy_detail2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="월 10:00~13:50"
+                android:textSize="15sp"
+                android:fontFamily="@font/linemiddl"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

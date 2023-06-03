@@ -1,80 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".notice_details">
+    tools:context=".controller.notice.NoticeDetails">
 
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/vector"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/vector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:text="제목"
-        android:textColor="#000000"
-        android:layout_marginLeft="-5dp"
-        android:layout_marginTop="-45dp"
-        android:textSize="30dp" />
-
-    <ImageButton
-        android:id="@+id/pencilButton"
-        android:layout_width="50dp"
-        android:layout_height="53dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="80dp"
-        android:background="#00ff0000"
-        app:srcCompat="@drawable/modify"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/trashButton"
-        android:layout_width="47dp"
-        android:layout_height="59dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:background="#00ff0000"
-        app:srcCompat="@drawable/delete"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginLeft="-315dp"
-        android:layout_marginTop="-21dp"
-        android:text="업로드 날짜" />
-
-
-    <EditText
-        android:id="@+id/editTextTextPersonName1"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:layout_marginLeft="-70dp"
-        android:layout_marginTop="160dp"
-        android:background="@drawable/round_corner"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_marginStart="20dp"
+        android:text="글쓴이"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="168dp"
-        android:layout_marginTop="103dp"
-        android:text="업로드한 사람" />
+        android:layout_marginStart="15dp"
+        android:text="날짜"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/photo_image"
+        app:layout_constraintStart_toEndOf="@id/textView2" />
 
+    <ImageButton
+        android:id="@+id/btn_notice_amend"
+        android:layout_width="37dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/pen"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/Button3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/textView3" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/Button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/trash"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@id/photo_image"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangle22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="내용"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_image" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#ffffff"
+        android:gravity="left"
+        android:text="첨부파일"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/EditText2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#e6e6fa"
+        android:text="댓글창 이동"
+        android:drawableRight="@drawable/comment"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C8C8FF"
+        android:drawableRight="@drawable/chat"
+        android:text="채팅"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

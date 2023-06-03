@@ -1,0 +1,60 @@
+package com.example.figma.controller.notice;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.figma.R;
+import com.example.figma.model.notice_com_DB;
+
+import java.util.ArrayList;
+
+public class NoticeComAdapter extends RecyclerView.Adapter<NoticeComAdapter.ViewHolder> {
+
+    private ArrayList<notice_com_DB> arrayList;
+    private Context context;
+
+    public NoticeComAdapter(ArrayList<notice_com_DB> arrayList, Context context) {
+        this.arrayList = arrayList;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notice_com_recy, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.tv_userName.setText(arrayList.get(position).getName());
+        holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+        holder.tv_content.setText(arrayList.get(position).getContent());
+        holder.tv_time.setText(arrayList.get(position).getTime());
+    }
+
+    @Override
+    public int getItemCount() {
+        return (arrayList != null ? arrayList.size() : 0);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_userName, tv_studentNumber, tv_content, tv_time;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
+            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+            this.tv_content = itemView.findViewById(R.id.tv_content);
+            this.tv_time = itemView.findViewById(R.id.tv_time);
+
+        }
+    }
+}

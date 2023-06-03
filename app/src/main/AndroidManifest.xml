@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA2" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -18,39 +24,56 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-
-            android:exported="true"
-            android:name=".login">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:name=".controller.Login"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value=""/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
-        <activity android:name=".notice_list" />
-        <activity android:name=".notice_writing" />
-        <activity android:name=".Timetable" />
-        <activity android:name=".chat_person" />
-        <activity android:name=".chatting_main" />
-        <activity android:name=".sharing_board" />
-        <activity android:name=".bullentin_board" />
-        <activity android:name=".warning_message"/>
-        <activity android:name=".my_inf_details"/>
-        <activity android:name=".bullentin_board_writing" />
-        <activity android:name=".mypage" />
-        <activity android:name=".bullentin_board_details" />
-        <activity android:name=".main_home" />
-        <activity android:name=".sharing_details" />
-        <activity android:name=".sharing_writing" />
-        <activity android:name=".notice_details"/>
-        <activity android:name=".sign_up_email"/>
-        <activity android:name=".sign_up"/>
+        <activity android:name=".controller.bulletin.BulletinBoard"/>
+        <activity android:name=".controller.bulletin.BulletinBoardDetails"/>
+        <activity android:name=".controller.bulletin.BulletinBoardWriting"/>
+        <activity android:name=".controller.bulletin.BulletinBoardEdit"/>
+        <activity android:name=".controller.bulletin.BulletinBoardComment"/>
+        <!--bulletin-->
+        <activity android:name=".controller.chat.ChatPerson"/>
+        <activity android:name=".controller.chat.ChattingMain"/>
+        <!--chat-->
+        <!--comment-->
+        <activity android:name=".controller.find.FindId"/>
+        <activity android:name=".controller.find.FindPw"/>
+        <!--find-->
+        <activity android:name=".controller.myinformation.MyInfDetails"/>
+        <activity android:name=".controller.myinformation.WarningMessage"/>
+        <!--myinformation-->
+        <activity android:name=".controller.mypage.Mypage"/>
+        <!--Mypage-->
+        <activity android:name=".controller.notice.NoticeBoardComment"/>
+        <activity android:name=".controller.notice.NoticeDetails"/>
+        <activity android:name=".controller.notice.NoticeEdit"/>
+        <activity android:name=".controller.notice.NoticeList"/>
+        <activity android:name=".controller.notice.NoticeWriting"/>
+        <!--notice-->
+        <activity android:name=".controller.sharing.SharingBoard"/>
+        <activity android:name=".controller.sharing.SharingBoardComment"/>
+        <activity android:name=".controller.sharing.SharingDetails"/>
+        <activity android:name=".controller.sharing.SharingEdit"/>
+        <activity android:name=".controller.sharing.SharingWriting"/>
+        <!--sharing-->
+        <activity android:name=".controller.signup.SignUp"/>
+        <activity android:name=".controller.signup.SignUpEmail"/>
+        <!--signup-->
+        <activity android:name=".controller.timetable.My_time_table"/>
+        <activity android:name=".controller.timetable.Timetable" />
+        <!--timetable-->
+        <activity android:name=".controller.MainHome"/>
+
 
 
 

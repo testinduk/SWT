@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".controller.Login">
 
     <!-- 로그인 화면 -->
 
@@ -37,8 +36,8 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/rectangle11"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="비밀번호"
+        android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
@@ -55,8 +54,8 @@
         android:layout_marginEnd="75dp"
         android:background="@drawable/rectangle11"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="학번 또는 아이디"
+        android:inputType="textPersonName"
         android:textColor="#000000"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,16 +64,18 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="22dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
         android:background="@drawable/rectangle12"
         android:gravity="center"
         android:text="학생은 학번 교직원은 아이디로 로그인해주세요"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/sign"
-        app:layout_constraintStart_toStartOf="@+id/btn_login" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -86,33 +87,47 @@
         android:layout_marginBottom="193dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/findButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#FFFFFF"
+        android:stateListAnimator="@null"
+        android:text="아이디 찾기"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/findButton2"
+        app:layout_constraintEnd_toEndOf="@+id/findButton2"
+        app:layout_constraintStart_toStartOf="@+id/findButton2"
+        app:layout_constraintTop_toBottomOf="@+id/sign" /> <!-- 버튼 그림자없애기 -->
+
+    <Button
+        android:id="@+id/findButton2"
         android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="46dp"
         android:backgroundTint="#FFFFFF"
-        android:text="아이디/비밀번호 찾기"
+        android:stateListAnimator="@null"
+        android:text="비밀번호 재설정"
         android:textColor="#000000"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign"
-        android:stateListAnimator="@null" /> <!-- 버튼 그림자없애기 -->
+        app:layout_constraintTop_toBottomOf="@+id/sign" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
         android:text="자동로그인"
         android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <Button
@@ -120,14 +135,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="53dp"
-        android:layout_marginBottom="249dp"
+        android:layout_marginTop="56dp"
         android:backgroundTint="#FFFFFF"
+        android:stateListAnimator="@null"
         android:text="회원가입"
         android:textColor="#000000"
         android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:stateListAnimator="@null"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
