@@ -18,7 +18,7 @@ import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.chat.ChatPerson;
 import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
-import com.example.figma.model.Sharing_writing_DB;
+import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +33,7 @@ public class SharingBoard extends Activity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Sharing_writing_DB> arrayList;
+    private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private Button search_Button; //검색 버튼
@@ -70,7 +70,7 @@ public class SharingBoard extends Activity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey(); //스냅샷에서의 키를 uid에 저장
-                    Sharing_writing_DB user = snapshot.getValue(Sharing_writing_DB.class); //user에 sharing_writing_DB에서 얻은 값을 저장
+                    Board user = snapshot.getValue(Board.class); //user에 sharing_writing_DB에서 얻은 값을 저장
                     arrayList.add(user); //추가
 
                 }
@@ -95,8 +95,8 @@ public class SharingBoard extends Activity {
             public void onClick(View view) {
                 String searchText = searchView.getText().toString().toLowerCase();
 
-                ArrayList<Sharing_writing_DB> filteredList = new ArrayList<>();
-                for(Sharing_writing_DB item : arrayList){
+                ArrayList<Board> filteredList = new ArrayList<>();
+                for(Board item : arrayList){
                     if(item.getTitle().toLowerCase().contains(searchText)
                             || (item.getContent().toLowerCase().contains(searchText))
                             || (item.getUserName().toLowerCase().contains(searchText))

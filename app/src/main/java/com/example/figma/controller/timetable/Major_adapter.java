@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,13 +19,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import com.example.figma.R;
-import com.example.figma.model.DataField;
+import com.example.figma.model.Board;
 
 import java.util.List;
 import java.util.Map;
 
 public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder> {
-    private List<DataField> fieldList;
+    private List<Board> fieldList;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -34,7 +35,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
 
 
 
-    public Major_adapter(List<DataField> fieldList) {
+    public Major_adapter(List<Board> fieldList) {
         this.fieldList = fieldList;
 
     }
@@ -48,7 +49,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DataField field = fieldList.get(position);
+        Board field = fieldList.get(position);
         // Bind the data to the ViewHolder
         holder.bind(field);
     }
@@ -67,7 +68,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
             fieldValue = itemView.findViewById(R.id.time_rcy_detail2);
         }
 
-        public void bind(DataField field) {
+        public void bind(Board field) {
             String sub_name = field.getFieldName();
             String sub_value = String.valueOf(field.getFieldValue());
             fieldName.setText(sub_name);
