@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
 import com.example.figma.model.Board;
-import com.example.figma.model.sharing_com_DB;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sharing_com_recy, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sharing_com, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
