@@ -20,7 +20,7 @@ public class TeacherRecyclerAdapter extends RecyclerView.Adapter<TeacherRecycler
     @NonNull
     @Override
     public TeacherRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_recyclerview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
         return new ViewHolder(view);
     }
 
