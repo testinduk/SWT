@@ -19,7 +19,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import com.example.figma.R;
-import com.example.figma.model.Board;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +42,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.timetable_rcy, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timetable, parent, false);
         return new ViewHolder(view);
     }
 

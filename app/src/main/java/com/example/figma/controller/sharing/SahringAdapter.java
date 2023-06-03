@@ -37,7 +37,7 @@ public class SahringAdapter extends RecyclerView.Adapter<SahringAdapter.CustomVi
     @NonNull
     @Override
     public SahringAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sharing_list_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sharing_list, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }

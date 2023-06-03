@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
 import com.example.figma.model.Board;
-import com.example.figma.model.Board;
 
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.select_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_select, parent, false);
         return new ViewHolder(view);
     }
 
