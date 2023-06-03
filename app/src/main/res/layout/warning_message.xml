@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.myinformation.warning_message">
+    tools:context=".controller.myinformation.WarningMessage">
 
     <Button
         android:id="@+id/noButton"
