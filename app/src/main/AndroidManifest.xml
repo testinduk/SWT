@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".controller.login"
+            android:name=".controller.Login"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -36,45 +36,43 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.bulletin.bulletin_board"/>
-        <activity android:name=".controller.bulletin.bulletin_board_details"/>
-        <activity android:name=".controller.bulletin.bulletin_board_writing"/>
-        <activity android:name=".controller.bulletin.bulletin_board_edit"/>
-        <activity android:name=".controller.bulletin.bulletin_board_comment"/>
+        <activity android:name=".controller.bulletin.BulletinBoard"/>
+        <activity android:name=".controller.bulletin.BulletinBoardDetails"/>
+        <activity android:name=".controller.bulletin.BulletinBoardWriting"/>
+        <activity android:name=".controller.bulletin.BulletinBoardEdit"/>
+        <activity android:name=".controller.bulletin.BulletinBoardComment"/>
         <!--bulletin-->
-        <activity android:name=".controller.chat.chat_person"/>
-        <activity android:name=".controller.chat.chatting_main"/>
+        <activity android:name=".controller.chat.ChatPerson"/>
+        <activity android:name=".controller.chat.ChattingMain"/>
         <!--chat-->
-        <activity android:name=".controller.comment.test"/>
         <!--comment-->
-        <activity android:name=".controller.find.find_id"/>
-        <activity android:name=".controller.find.find_pw"/>
+        <activity android:name=".controller.find.FindId"/>
+        <activity android:name=".controller.find.FindPw"/>
         <!--find-->
-        <activity android:name=".controller.myinformation.my_inf_details"/>
-        <activity android:name=".controller.myinformation.warning_message"/>
+        <activity android:name=".controller.myinformation.MyInfDetails"/>
+        <activity android:name=".controller.myinformation.WarningMessage"/>
         <!--myinformation-->
-        <activity android:name=".controller.mypage.mypage"/>
-        <!--mypage-->
-        <activity android:name=".controller.notice.notice_board_comment"/>
-        <activity android:name=".controller.notice.notice_details"/>
-        <activity android:name=".controller.notice.notice_edit"/>
-        <activity android:name=".controller.notice.notice_list"/>
-        <activity android:name=".controller.notice.notice_writing"/>
+        <activity android:name=".controller.mypage.Mypage"/>
+        <!--Mypage-->
+        <activity android:name=".controller.notice.NoticeBoardComment"/>
+        <activity android:name=".controller.notice.NoticeDetails"/>
+        <activity android:name=".controller.notice.NoticeEdit"/>
+        <activity android:name=".controller.notice.NoticeList"/>
+        <activity android:name=".controller.notice.NoticeWriting"/>
         <!--notice-->
-        <activity android:name=".controller.sharing.sharing_board"/>
-        <activity android:name=".controller.sharing.sharing_board_comment"/>
-        <activity android:name=".controller.sharing.sharing_details"/>
-        <activity android:name=".controller.sharing.sharing_edit"/>
-        <activity android:name=".controller.sharing.sharing_writing"/>
+        <activity android:name=".controller.sharing.SharingBoard"/>
+        <activity android:name=".controller.sharing.SharingBoardComment"/>
+        <activity android:name=".controller.sharing.SharingDetails"/>
+        <activity android:name=".controller.sharing.SharingEdit"/>
+        <activity android:name=".controller.sharing.SharingWriting"/>
         <!--sharing-->
-        <activity android:name=".controller.signup.sign_up"/>
-        <activity android:name=".controller.signup.sign_up_email"/>
+        <activity android:name=".controller.signup.SignUp"/>
+        <activity android:name=".controller.signup.SignUpEmail"/>
         <!--signup-->
         <activity android:name=".controller.timetable.My_time_table"/>
         <activity android:name=".controller.timetable.Timetable" />
         <!--timetable-->
-        <activity android:name=".controller.main_home"/>
-        <activity android:name=".controller.MainActivity"/>
+        <activity android:name=".controller.MainHome"/>
 
 
 

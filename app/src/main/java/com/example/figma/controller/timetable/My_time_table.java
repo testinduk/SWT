@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.figma.model.DataField;
-import com.example.figma.controller.main_home;
+import com.example.figma.controller.MainHome;
 
 
 public class My_time_table extends AppCompatActivity {
@@ -202,7 +202,7 @@ public class My_time_table extends AppCompatActivity {
         mBinding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), main_home.class);
+                Intent intent = new Intent(getApplicationContext(), MainHome.class);
                 startActivity(intent);
             }
         });
@@ -223,7 +223,7 @@ public class My_time_table extends AppCompatActivity {
             mBinding.recyclerView1.setAdapter(adapter);
 
 
-//            adapter = new bulletin_board_adapter(filteredList, bulletin_board.this);
+//            adapter = new BulletinBoardAdapter(filteredList, BulletinBoard.this);
 //            recyclerView.setAdapter(adapter);
 //            Major_adapter adapter = new Major_adapter(new ArrayList<>());
 //            mBinding.recyclerView1.setAdapter(adapter);
