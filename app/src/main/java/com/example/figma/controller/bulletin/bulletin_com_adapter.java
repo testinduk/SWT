@@ -27,7 +27,7 @@ public class bulletin_com_adapter extends RecyclerView.Adapter<bulletin_com_adap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bulletin_com_recy, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bulletin_com, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
