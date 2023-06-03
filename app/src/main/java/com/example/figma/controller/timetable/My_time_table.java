@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.figma.databinding.MyTimeTableBinding;
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.example.figma.model.DataField;
-import com.example.figma.controller.main_home;
+import com.example.figma.model.Board;
+import com.example.figma.controller.MainHome;
 
 
 public class My_time_table extends AppCompatActivity {
@@ -78,12 +79,12 @@ public class My_time_table extends AppCompatActivity {
                     Map<String, Object> data = snapshots.getData();
 
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
-                        List<DataField> item_list = new ArrayList<>();
+                        List<Board> item_list = new ArrayList<>();
                         item_list.clear();
                         String fieldName = entry.getKey();
                         Object fieldValue = entry.getValue();
 
-                        DataField itemfield = new DataField(fieldName, fieldValue);
+                        Board itemfield = new Board(fieldName, fieldValue);
                         item_list.add(itemfield);
                         Select_item_adapter adapter = new Select_item_adapter(item_list);
                         mBinding.picRecyclerView.setAdapter(adapter);
@@ -202,7 +203,7 @@ public class My_time_table extends AppCompatActivity {
         mBinding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), main_home.class);
+                Intent intent = new Intent(getApplicationContext(), MainHome.class);
                 startActivity(intent);
             }
         });
@@ -210,23 +211,18 @@ public class My_time_table extends AppCompatActivity {
 
 
     private void handleData(Map<String, Object> data) {
-        List<DataField> fieldList = new ArrayList<>();
+        List<Board> fieldList = new ArrayList<>();
 
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             String fieldName = entry.getKey();
             Object fieldValue = entry.getValue();
 
             // Create a Field object and add it to the list
-            DataField field = new DataField(fieldName, fieldValue);
+            Board field = new Board(fieldName, fieldValue);
             fieldList.add(field);
             Major_adapter adapter = new Major_adapter(fieldList);
             mBinding.recyclerView1.setAdapter(adapter);
 
-
-//            adapter = new bulletin_board_adapter(filteredList, bulletin_board.this);
-//            recyclerView.setAdapter(adapter);
-//            Major_adapter adapter = new Major_adapter(new ArrayList<>());
-//            mBinding.recyclerView1.setAdapter(adapter);
         }
 
 
