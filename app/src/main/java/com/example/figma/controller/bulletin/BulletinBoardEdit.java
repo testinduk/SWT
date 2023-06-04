@@ -87,12 +87,12 @@ public class BulletinBoardEdit extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        textView1 = findViewById(R.id.textView1);
-        textView4 = findViewById(R.id.textView4);
-        button = findViewById(R.id.button);
-        photo_image = findViewById(R.id.photo_image);
-        imageButton = findViewById(R.id.imageButton);
-        imageButton7 = findViewById(R.id.imageButton7);
+        textView1 = findViewById(R.id.titleEdit);
+        textView4 = findViewById(R.id.contentEdit);
+        button = findViewById(R.id.completeButton);
+        photo_image = findViewById(R.id.imageView);
+        imageButton = findViewById(R.id.attachImageFileButton);
+        imageButton7 = findViewById(R.id.attachFileButton);
 
         Intent third_intent = getIntent(); //sharing_detail intent.putExtra 정보 받아오기
 
