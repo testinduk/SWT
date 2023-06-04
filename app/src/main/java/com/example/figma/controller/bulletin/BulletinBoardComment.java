@@ -44,7 +44,6 @@ import java.util.UUID;
 public class BulletinBoardComment extends Activity {
 
     private ImageButton backButton; //뒤로가기
-    private ImageView view2;
     private RecyclerView recyclerView;
     private EditText EditText2; //댓글 쓰기
     private ImageButton ImageButton2;//댓글 추가하기 버튼
@@ -61,15 +60,15 @@ public class BulletinBoardComment extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_comment);
 
-        recyclerView = findViewById(R.id.recyclerView8);
+        recyclerView = findViewById(R.id.bulletinBoardCommentRecyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         backButton = findViewById(R.id.backButton);
-        EditText2 = findViewById(R.id.EditText2);
-        ImageButton2 = findViewById(R.id.ImageButton2);
+        EditText2 = findViewById(R.id.comment);
+        ImageButton2 = findViewById(R.id.commentSend);
 
 
         Intent intent = getIntent();

@@ -43,13 +43,13 @@ public class BulletinBoard extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board);
 
-        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
+        recyclerView = findViewById(R.id.bulletinBoardRecyclerView); //아이디 연결
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        search_Button = findViewById(R.id.search_Button);
-        searchView = findViewById(R.id.searchView);
+        search_Button = findViewById(R.id.searchButton);
+        searchView = findViewById(R.id.searchBox);
 
 
         database = FirebaseDatabase.getInstance();
