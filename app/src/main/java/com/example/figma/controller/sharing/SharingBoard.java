@@ -86,7 +86,7 @@ public class SharingBoard extends Activity {
         });
 
 
-        adapter = new SahringAdapter(arrayList, this);
+        adapter = new SharingAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
 
         //검색 기능
@@ -104,7 +104,7 @@ public class SharingBoard extends Activity {
                         filteredList.add(item);
                     }
                 }
-                adapter = new SahringAdapter(filteredList, SharingBoard.this);
+                adapter = new SharingAdapter(filteredList, SharingBoard.this);
                 recyclerView.setAdapter(adapter);
             }
         });
