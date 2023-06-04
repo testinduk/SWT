@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class SahringAdapter extends RecyclerView.Adapter<SahringAdapter.CustomViewHolder> {
+public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomViewHolder> {
     private ArrayList<Board> arrayList;
     private Context context;
 
@@ -29,21 +29,21 @@ public class SahringAdapter extends RecyclerView.Adapter<SahringAdapter.CustomVi
 
 
 
-    public SahringAdapter(ArrayList<Board> arrayList, Context context) {
+    public SharingAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public SahringAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sharing_list_recycler, parent, false);
+    public SharingAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sharing_list, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SahringAdapter.CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull SharingAdapter.CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getSharing_image())

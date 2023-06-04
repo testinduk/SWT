@@ -27,7 +27,7 @@ public class NoticeComAdapter extends RecyclerView.Adapter<NoticeComAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notice_com_recy, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notice_com, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

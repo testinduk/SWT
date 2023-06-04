@@ -45,6 +45,10 @@ public class My_time_table extends AppCompatActivity {
     private String class_time;
     private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
 
+    private List<Board> mjfieldList = new ArrayList<>();
+    private List<Board> gefieldList = new ArrayList<>();
+
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,12 @@ public class My_time_table extends AppCompatActivity {
         String uid = mAuth.getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
+
+        // ----선택한 과목 리사이클러뷰에 표시 ---- //
+        List<Board> item_list = new ArrayList<>();
+        Select_item_adapter adapter = new Select_item_adapter(item_list);
+        mBinding.picRecyclerView.setAdapter(adapter);
+
         db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
             @Override
@@ -75,25 +85,23 @@ public class My_time_table extends AppCompatActivity {
                 if (error != null) {
                     return;
                 }
+
                 if (snapshots != null && snapshots.exists()) {
                     Map<String, Object> data = snapshots.getData();
 
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
-                        List<Board> item_list = new ArrayList<>();
-                        item_list.clear();
                         String fieldName = entry.getKey();
                         Object fieldValue = entry.getValue();
-
                         Board itemfield = new Board(fieldName, fieldValue);
                         item_list.add(itemfield);
-                        Select_item_adapter adapter = new Select_item_adapter(item_list);
-                        mBinding.picRecyclerView.setAdapter(adapter);
                     }
+
+                    adapter.notifyDataSetChanged();
 
                 }
             }
         });
-//
+
 
 
         // 스피너
@@ -164,12 +172,7 @@ public class My_time_table extends AppCompatActivity {
             }
         });
 
-//        if((dp_time != null) && (dp_grade != null) && (dp_) ) {
-
-
-        // 확인 버튼 클릭시 스피너 내용 들어와야함
-
-
+        // 전공 리사이클러뷰
         mBinding.timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,7 +186,7 @@ public class My_time_table extends AppCompatActivity {
                                         DocumentSnapshot document = task.getResult();
                                         if (document != null && document.exists()) {
                                             Map<String, Object> data = document.getData();
-                                            handleData(data);
+                                            mjHandleData(data);
                                         }
                                     } else {
                                         Log.i("log", "실패");
@@ -199,6 +202,30 @@ public class My_time_table extends AppCompatActivity {
         });
 
 
+        // ---- 교양 리사이클러뷰에 표시 ---- //
+        db.collection("GE class").document("필수").collection("온라인").document("비대면수업")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> GeData = document.getData();
+                                geHandleData(GeData);
+                            }
+                        } else {
+                            Log.i("log", "실패");
+                        }
+
+                    }
+                });
+
+
+
+
+
+
+
         // 뒤로가기
         mBinding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,8 +237,7 @@ public class My_time_table extends AppCompatActivity {
     }
 
 
-    private void handleData(Map<String, Object> data) {
-        List<Board> fieldList = new ArrayList<>();
+    private void mjHandleData(Map<String, Object> data) {
 
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             String fieldName = entry.getKey();
@@ -219,9 +245,26 @@ public class My_time_table extends AppCompatActivity {
 
             // Create a Field object and add it to the list
             Board field = new Board(fieldName, fieldValue);
-            fieldList.add(field);
-            Major_adapter adapter = new Major_adapter(fieldList);
+            mjfieldList.add(field);
+            Major_adapter adapter = new Major_adapter(mjfieldList);
             mBinding.recyclerView1.setAdapter(adapter);
+
+        }
+
+
+    }
+
+    private void geHandleData(Map<String, Object> data) {
+
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            String fieldName = entry.getKey();
+            Object fieldValue = entry.getValue();
+
+            // Create a Field object and add it to the list
+            Board field = new Board(fieldName, fieldValue);
+            gefieldList.add(field);
+            Major_adapter adapter = new Major_adapter(gefieldList);
+            mBinding.recyclerView2.setAdapter(adapter);
 
         }
 
