@@ -104,7 +104,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
 
                                     Map<String, Object> update_data = document.getData();
                                     update_data.put(fieldName, sub_name);
-                                    documentRef.update(update_data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    documentRef.set(update_data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Log.e("log", "데이터 입력 성공");
