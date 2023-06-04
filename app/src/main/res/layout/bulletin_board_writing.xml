@@ -18,7 +18,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/bulletinBoardWritingTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-30dp"
@@ -29,7 +29,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/title"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
@@ -39,7 +39,7 @@
         android:textColor="#000000"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/writingTitle"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-35dp"
@@ -51,7 +51,7 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/writing"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -61,7 +61,7 @@
         android:textColor="#000000"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName1"
+        android:id="@+id/writingContent"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginLeft="-54dp"
@@ -73,7 +73,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
-        android:id="@id/photo_image"
+        android:id="@id/imageView"
         android:layout_width="340dp"
         android:layout_height="150dp"
         android:layout_marginLeft="-345dp"
@@ -81,7 +81,7 @@
         android:background="@drawable/rectangle22" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/attachImageFileButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="-350dp"
@@ -91,7 +91,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/attachFileButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
@@ -101,7 +101,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/completeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="완료"

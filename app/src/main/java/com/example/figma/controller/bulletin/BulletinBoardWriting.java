@@ -50,12 +50,12 @@ public class BulletinBoardWriting extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        button = findViewById(R.id.button); //완료 버튼
-        editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName); // 제목 적는 곳
-        editTextTextPersonName6 = findViewById(R.id.editTextTextPersonName1); // 내용 적는 곳
-        photo_image = findViewById(R.id.photo_image); //사진 띄우기
-        imageButton = findViewById(R.id.imageButton); //앨범 버튼
-        imageButton7 = findViewById(R.id.imageButton7); //파일 버튼
+        button = findViewById(R.id.completeButton); //완료 버튼
+        editTextTextPersonName5 = findViewById(R.id.writingTitle); // 제목 적는 곳
+        editTextTextPersonName6 = findViewById(R.id.writingContent); // 내용 적는 곳
+        photo_image = findViewById(R.id.imageView); //사진 띄우기
+        imageButton = findViewById(R.id.attachImageFileButton); //앨범 버튼
+        imageButton7 = findViewById(R.id.attachFileButton); //파일 버튼
         backButton = findViewById(R.id.backButton);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
