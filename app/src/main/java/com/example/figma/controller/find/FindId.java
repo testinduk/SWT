@@ -36,15 +36,15 @@ public class FindId extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_id);
 
-        editTextTextPersonName = findViewById(R.id.editTextTextPersonName); //이름 입력
-        editTextTextPersonName1 = findViewById(R.id.editTextTextPersonName1); //학번 입력
-        editTextTextPersonName6 = findViewById(R.id.editTextTextPersonName6); //질문에 대한 답
+        editTextTextPersonName = findViewById(R.id.enterName); //이름 입력
+        editTextTextPersonName1 = findViewById(R.id.enterStudentNumber); //학번 입력
+        editTextTextPersonName6 = findViewById(R.id.enterAnswer); //질문에 대한 답
         editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName5); //선택지 질문지
         backButton = findViewById(R.id.backButton);
-        finishBT = findViewById(R.id.finishBT);
-        textView38 = findViewById(R.id.textView38);
+        finishBT = findViewById(R.id.findButton);
+        textView38 = findViewById(R.id.result);
 
-        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.findQuestionIdSpinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
