@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/findPwTitle"
         android:layout_width="0dp"
         android:layout_height="34dp"
         android:layout_marginTop="38dp"
@@ -27,13 +27,13 @@
         android:layout_marginEnd="82dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/findPwTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/studentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -53,22 +53,22 @@
         android:text="학번"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView45"
+        app:layout_constraintBottom_toTopOf="@+id/Id"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/Id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="아이디"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/studentId"
+        app:layout_constraintBaseline_toBaselineOf="@+id/enterId"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/userName"
+        android:id="@+id/enterName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="122dp"
@@ -81,7 +81,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/studentId"
+        android:id="@+id/enterId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
@@ -90,11 +90,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentNumber"
+        app:layout_constraintTop_toBottomOf="@+id/enterStudentNumber"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/studentNumber"
+        android:id="@+id/enterStudentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -103,11 +103,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/enterName"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <android.widget.Button
-        android:id="@+id/finishBT"
+        android:id="@+id/sendButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="75dp"
