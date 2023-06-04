@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/homeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/bulletinBoardRecyclerView" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/boardText"
         app:layout_constraintEnd_toEndOf="@+id/mypageText"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView46" />
+        app:layout_constraintStart_toStartOf="@+id/bulletinBoardTitle" />
 
     <ImageButton
         android:id="@+id/mypageButton"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/bulletinBoardRecyclerView"
         android:layout_width="373dp"
         android:layout_height="0dp"
         android:layout_marginTop="36dp"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/chatButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchBox"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -163,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/searchView"
+        android:id="@+id/searchBox"
         android:layout_width="225dp"
         android:layout_height="30dp"
         android:background="@drawable/searching"
@@ -172,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@+id/writingButton" />
 
     <Button
-        android:id="@+id/search_Button"
+        android:id="@+id/searchButton"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:backgroundTint="#FFFFFF"
@@ -180,9 +180,9 @@
         android:text="검색"
         android:textColor="#000000"
         android:textSize="9dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/searchView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/searchBox"
         app:layout_constraintEnd_toEndOf="@+id/writingButton"
-        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintStart_toEndOf="@+id/searchBox"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -201,7 +201,7 @@
 
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/bulletinBoardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
