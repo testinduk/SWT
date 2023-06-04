@@ -51,16 +51,15 @@ public class BulletinBoardDetails extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_details);
 
-        textView1 = findViewById(R.id.textView1);
-        textView2 = findViewById(R.id.textView2);
-        textView4 = findViewById(R.id.textView4);
-        textView3 = findViewById(R.id.textView3);
-        btn_bul_amend = findViewById(R.id.btn_bul_amend);
-        btn_bul_del = findViewById(R.id.btn_bul_del);
+        textView1 = findViewById(R.id.BulletinBoardDetailsTitle);
+        textView2 = findViewById(R.id.writer);
+        textView4 = findViewById(R.id.content);
+        textView3 = findViewById(R.id.time);
+        btn_bul_amend = findViewById(R.id.writingButton);
+        btn_bul_del = findViewById(R.id.deleteButton);
         backButton = findViewById(R.id.backButton);
-        view2 = findViewById(R.id.view2);
-
-        EditText2 = findViewById(R.id.EditText2);
+        view2 = findViewById(R.id.imageView);
+        EditText2 = findViewById(R.id.commentMove);
 
 
 
