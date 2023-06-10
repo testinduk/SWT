@@ -50,10 +50,10 @@ public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
-            this.tv_content = itemView.findViewById(R.id.tv_content);
-            this.tv_time = itemView.findViewById(R.id.tv_time);
+            this.tv_studentNumber = itemView.findViewById(R.id.sharingStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.sharingUserName);
+            this.tv_content = itemView.findViewById(R.id.sharingContent);
+            this.tv_time = itemView.findViewById(R.id.sharingTime);
         }
     }
 }
