@@ -13,7 +13,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/select_item_text"
+                android:id="@+id/selectMajorName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="디지털전송시스템"
@@ -33,7 +33,7 @@
             android:layout_marginTop="10dp">
 
             <CheckBox
-                android:id="@+id/checkbox"
+                android:id="@+id/selectMajorCheckbox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white" />
