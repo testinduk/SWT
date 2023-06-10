@@ -45,7 +45,7 @@ public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            select_item_text = itemView.findViewById(R.id.select_item_text);
+            select_item_text = itemView.findViewById(R.id.selectMajorName);
         }
 
         public void bind(Board data) {
