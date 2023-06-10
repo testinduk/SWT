@@ -14,14 +14,14 @@
 
         <!--프로필 사진-->
         <ImageView
-            android:id="@+id/profile"
+            android:id="@+id/chatProfile"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/profile" />
 
         <!--이름-->
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/chatName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -32,7 +32,7 @@
 
         <!--전화번호-->
         <TextView
-        android:id="@+id/number"
+        android:id="@+id/chatNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-30dp"

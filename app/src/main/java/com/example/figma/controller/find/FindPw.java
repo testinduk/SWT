@@ -1,5 +1,6 @@
 package com.example.figma.controller.find;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,15 +28,16 @@ public class FindPw extends Activity {
     private EditText userName, studentNumber, studentId;
     private Button finishBT;
     private ImageButton backButton;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_pw);
 
-        userName = findViewById(R.id.userName);// 이름 입력
-        studentNumber = findViewById(R.id.studentNumber); // 학번 입력
-        studentId = findViewById(R.id.studentId); // 아이디 입력
-        finishBT = findViewById(R.id.finishBT); // 재설정 메일 보내기 버튼
+        userName = findViewById(R.id.enterName);// 이름 입력
+        studentNumber = findViewById(R.id.enterStudentNumber); // 학번 입력
+        studentId = findViewById(R.id.enterId); // 아이디 입력
+        finishBT = findViewById(R.id.sendButton); // 재설정 메일 보내기 버튼
         backButton = findViewById(R.id.backButton);
 
 
