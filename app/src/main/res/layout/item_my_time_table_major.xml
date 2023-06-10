@@ -11,7 +11,7 @@
         android:layout_marginBottom="7dp" >
 
         <TextView
-            android:id="@+id/textView50"
+            android:id="@+id/timeTableMajorName"
             android:layout_width="182dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -20,7 +20,7 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/textView51"
+            android:id="@+id/timeTableMajorTime"
             android:layout_width="121dp"
             android:layout_height="45dp"
             android:text="시간"
@@ -30,7 +30,7 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/textView52"
+            android:id="@+id/timeTableMajorDay"
             android:layout_width="51dp"
             android:layout_height="46dp"
             android:text="요일"
@@ -40,7 +40,7 @@
             android:gravity="center"/>
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/timeTableMajorSelect"
             android:layout_width="53dp"
             android:layout_height="45dp"
             tools:ignore="MissingConstraints"

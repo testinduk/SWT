@@ -36,7 +36,7 @@ public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdap
     @NonNull
     @Override
     public BulletinBoardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bullentin_board, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bulletin_board, parent, false);
         BulletinBoardAdapter.ViewHolder holder = new BulletinBoardAdapter.ViewHolder(view);
         return holder;
     }
