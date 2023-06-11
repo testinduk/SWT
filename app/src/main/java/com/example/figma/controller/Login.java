@@ -1,5 +1,6 @@
 package com.example.figma.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,12 +36,13 @@ public class Login extends Activity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogIn;
-    private Button buttonSignUp, findButton, findButton2;
-    private CheckBox checkBox;
+    private Button signup, loginFindID, loginFindPW;
+    private CheckBox loginAuto;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Boolean saveLogin;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,11 @@ public class Login extends Activity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        editTextEmail = (EditText) findViewById(R.id.editTextTextPersonName);
-        editTextPassword = (EditText) findViewById(R.id.editTextTextPassword);
-        findButton = findViewById(R.id.findButton);
-        findButton2 = findViewById(R.id.findButton2);
-        checkBox = findViewById(R.id.checkBox);
+        editTextEmail = (EditText) findViewById(R.id.loginID);
+        editTextPassword = (EditText) findViewById(R.id.loginPassword);
+        loginFindID = findViewById(R.id.loginFindID);
+        loginFindPW = findViewById(R.id.loginFindPW);
+        loginAuto = findViewById(R.id.loginAuto);
 
         //이전에 로그인 정보 저장되어 있는 경우 자동 로그인
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -61,11 +63,11 @@ public class Login extends Activity {
         if (saveLogin) {
             editTextEmail.setText(sharedPreferences.getString("username", ""));
             editTextPassword.setText(sharedPreferences.getString("password", ""));
-            checkBox.setChecked(true);
+            loginAuto.setChecked(true);
             loginUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
         }
 
-        findButton2.setOnClickListener(new View.OnClickListener() {
+        loginFindPW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindPw.class);
@@ -73,7 +75,7 @@ public class Login extends Activity {
             }
         });
 
-        findButton.setOnClickListener(new View.OnClickListener() {
+        loginFindID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindId.class);
@@ -81,7 +83,7 @@ public class Login extends Activity {
             }
         });
 
-        Button signup = findViewById(R.id.sign); //회원가입 버튼 클릭시 회원가입 페이지로 이동
+        signup = findViewById(R.id.loginSignUpButton); //회원가입 버튼 클릭시 회원가입 페이지로 이동
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,18 +92,7 @@ public class Login extends Activity {
             }
         });
 
-        buttonSignUp = (Button) findViewById(R.id.sign);// 회원가입 버튼 클릭시
-        buttonSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // SignUpActivity 연결
-                Intent intent = new Intent(getApplicationContext(), SignUp.class); //회원가입 화면으로 전환
-                startActivity(intent);
-            }
-        });
-
-
-        buttonLogIn = (Button) findViewById(R.id.btn_login); //로그인 버튼 클릭시
+        buttonLogIn = (Button) findViewById(R.id.loginButton); //로그인 버튼 클릭시
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
