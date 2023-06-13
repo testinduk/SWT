@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/my_inf_title" />
 
     <ImageButton
-        android:id="@+id/cameraButton"
+        android:id="@+id/SelectImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="123dp"
@@ -61,7 +61,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/password_mod"
+        android:id="@+id/passwordMod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cameraButton" />
+        app:layout_constraintTop_toBottomOf="@id/SelectImageButton" />
 
     <TextView
         android:id="@id/new_password"
@@ -84,7 +84,7 @@
         android:textColor="#000000"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_mod"
+        app:layout_constraintTop_toBottomOf="@id/passwordMod"
         tools:ignore="TextSizeCheck" />
 
     <EditText
@@ -199,11 +199,11 @@
         android:textColor="#ff0000"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/changeButton" />
+        app:layout_constraintEnd_toStartOf="@+id/CompleteChangeButton" />
 
     <Button
 
-        android:id="@+id/changeButton"
+        android:id="@+id/CompleteChangeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"

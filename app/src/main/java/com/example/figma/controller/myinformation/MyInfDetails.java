@@ -1,6 +1,7 @@
 package com.example.figma.controller.myinformation;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -27,13 +28,14 @@ import com.google.firebase.database.annotations.Nullable;
 
 public class MyInfDetails extends Activity {
     static final int REQUEST_CODE=0;
-    private ImageView imageView;
-    private ImageButton imageButton;
-    private Button changeButton;
+    private ImageView changeImage;
+    private ImageButton SelectImageButton;
+    private Button CompleteChangeButton;
     private EditText password1;
     private  FirebaseAuth mAuth;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +44,14 @@ public class MyInfDetails extends Activity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentUser.getUid();
 
-        imageView = findViewById(R.id.changeImage);
-        imageButton = findViewById(R.id.cameraButton);
-        changeButton = findViewById(R.id.changeButton);
+        changeImage = findViewById(R.id.changeImage);
+        SelectImageButton = findViewById(R.id.SelectImageButton);
+        CompleteChangeButton = findViewById(R.id.CompleteChangeButton);
         password1 = findViewById(R.id.password1);
         mAuth = FirebaseAuth.getInstance();
 
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        SelectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -79,7 +81,7 @@ public class MyInfDetails extends Activity {
             }
         });
 
-        changeButton.setOnClickListener(new View.OnClickListener() {
+        CompleteChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String newPassword = password1.getText().toString();
@@ -125,7 +127,7 @@ public class MyInfDetails extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    imageView.setImageURI(uri);
+                    changeImage.setImageURI(uri);
                 }
                 break;
         }

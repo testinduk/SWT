@@ -46,7 +46,7 @@ public class MainHome extends AppCompatActivity {
 
     private ArrayList<String> timetable_name = new ArrayList<>();
 
-    private RecyclerView recyclerView;
+    private RecyclerView noticeBoardRecyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
@@ -68,10 +68,10 @@ public class MainHome extends AppCompatActivity {
 
 
 
-        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
-        recyclerView.setHasFixedSize(true);
+        noticeBoardRecyclerView = findViewById(R.id.noticeBoardRecyclerView); //아이디 연결
+        noticeBoardRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        noticeBoardRecyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
@@ -102,7 +102,7 @@ public class MainHome extends AppCompatActivity {
         });
 
         adapter = new MainAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        noticeBoardRecyclerView.setAdapter(adapter);
 
 
         // 내 시간표 설정
