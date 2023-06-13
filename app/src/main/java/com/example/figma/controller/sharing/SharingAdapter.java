@@ -102,12 +102,12 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-            this.tv_title = itemView.findViewById(R.id.tv_title);
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
-            this.tv_detail = itemView.findViewById(R.id.tv_detail);
-            this.tv_time = itemView.findViewById(R.id.tv_time);
+            this.iv_profile = itemView.findViewById(R.id.sharingProfile);
+            this.tv_title = itemView.findViewById(R.id.sharingTitle);
+            this.tv_studentNumber = itemView.findViewById(R.id.sharingStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.sharingUserName);
+            this.tv_detail = itemView.findViewById(R.id.sharingDetail);
+            this.tv_time = itemView.findViewById(R.id.sharingTime);
         }
 
     }
