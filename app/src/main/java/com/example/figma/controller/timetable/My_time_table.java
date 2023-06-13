@@ -64,9 +64,9 @@ public class My_time_table extends AppCompatActivity {
         layoutManager2_ge = new LinearLayoutManager(this);
         layoutManager_pic = new LinearLayoutManager(this);
 
-        mBinding.recyclerView1.setLayoutManager(layoutManager_mj);
-        mBinding.recyclerView2.setLayoutManager(layoutManager2_ge);
-        mBinding.picRecyclerView.setLayoutManager(layoutManager_pic);
+        mBinding.MajorRecycler.setLayoutManager(layoutManager_mj);
+        mBinding.GeRecycler.setLayoutManager(layoutManager2_ge);
+        mBinding.PicRecycler.setLayoutManager(layoutManager_pic);
 
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
@@ -76,7 +76,7 @@ public class My_time_table extends AppCompatActivity {
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         List<Board> item_list = new ArrayList<>();
         Select_item_adapter adapter = new Select_item_adapter(item_list);
-        mBinding.picRecyclerView.setAdapter(adapter);
+        mBinding.PicRecycler.setAdapter(adapter);
 
         db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
@@ -227,7 +227,7 @@ public class My_time_table extends AppCompatActivity {
 
 
         // 뒤로가기
-        mBinding.imageView.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
@@ -247,7 +247,7 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             mjfieldList.add(field);
             Major_adapter adapter = new Major_adapter(mjfieldList);
-            mBinding.recyclerView1.setAdapter(adapter);
+            mBinding.MajorRecycler.setAdapter(adapter);
 
         }
 
@@ -264,7 +264,7 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             gefieldList.add(field);
             Major_adapter adapter = new Major_adapter(gefieldList);
-            mBinding.recyclerView2.setAdapter(adapter);
+            mBinding.GeRecycler.setAdapter(adapter);
 
         }
 
