@@ -58,7 +58,7 @@ public class NoticeWriting extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_writing);
+        setContentView(R.layout.notice_board_writing);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
