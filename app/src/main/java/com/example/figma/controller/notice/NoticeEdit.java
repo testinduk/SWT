@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public class NoticeEdit extends Activity {
     private EditText noticeBoardContentNameMod, noticeBoardContentMod;
-    private Button noticBoardModComplete;
+    private Button noticeBoardModComplete;
     private ImageView photo_image;
     private ImageButton cameraButton, fileButton;
 
@@ -51,7 +51,7 @@ public class NoticeEdit extends Activity {
 
         noticeBoardContentNameMod = findViewById(R.id.noticeBoardContentNameMod);// 제목
         noticeBoardContentMod = findViewById(R.id.noticeBoardContentMod);// 내용
-        noticBoardModComplete = findViewById(R.id.noticBoardModComplete); //수정 완료 버튼
+        noticeBoardModComplete = findViewById(R.id.noticeBoardModComplete); //수정 완료 버튼
         photo_image = findViewById(R.id.photo_imageView);  // 이미지
         cameraButton = findViewById(R.id.cameraButton);  // 이미지 추가 버튼
         fileButton = findViewById(R.id.fileButton);  // 파일 추가 버튼
@@ -83,7 +83,7 @@ public class NoticeEdit extends Activity {
             }
         });
 
-        noticBoardModComplete.setOnClickListener(new View.OnClickListener() {
+        noticeBoardModComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();

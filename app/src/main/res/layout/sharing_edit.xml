@@ -17,7 +17,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/sharingEditTitle"
         android:layout_width="120dp"
         android:layout_height="59dp"
         android:text="수정페이지"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textView1"
+        android:id="@+id/sharingBoardContentNameMod"
         android:layout_width="204dp"
         android:layout_height="59dp"
         android:text="제목"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sharingBoardContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="글쓴이"
@@ -46,7 +46,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContentNameMod" />
 
 
     <ImageView
@@ -56,10 +56,10 @@
         android:background="@drawable/rectangle22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContentMod" />
 
     <EditText
-        android:id="@+id/textView4"
+        android:id="@+id/sharingBoardContentMod"
         android:layout_width="match_parent"
         android:layout_height="198dp"
         android:text="내용"
@@ -67,10 +67,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContent" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/sharingBoardContentFile"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:backgroundTint="#ffffff"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/photo_image" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sharingBoardModComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -91,11 +91,11 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContentFile"
         app:layout_constraintVertical_bias="0.69" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/cameraButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="32dp"
@@ -103,21 +103,21 @@
         android:src="@drawable/camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContentFile"
         app:layout_constraintVertical_bias="0.252"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/fileButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="#00ff0000"
         android:src="@drawable/attach"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/sharingBoardModComplete"
         app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintStart_toEndOf="@+id/cameraButton"
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardContentFile"
         app:layout_constraintVertical_bias="0.252"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
