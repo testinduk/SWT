@@ -44,7 +44,7 @@ public class NoticeEdit extends Activity {
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_edit);
+        setContentView(R.layout.notice_board_edit);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();

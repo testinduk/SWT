@@ -63,8 +63,8 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            fieldName = itemView.findViewById(R.id.timeTableMajorNameDetail);
-            fieldValue = itemView.findViewById(R.id.timeTableMajorTimeDetail);
+            fieldName = itemView.findViewById(R.id.timeTableNameDetail);
+            fieldValue = itemView.findViewById(R.id.timeTableTimeDetail);
         }
 
         public void bind(Board field) {

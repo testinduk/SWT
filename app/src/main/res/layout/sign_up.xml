@@ -7,7 +7,7 @@
     tools:context=".controller.signup.SignUp">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/profileImage"
         android:layout_width="80dp"
         android:layout_height="81dp"
         android:layout_marginStart="103dp"
@@ -15,13 +15,13 @@
         android:layout_marginEnd="103dp"
         android:layout_marginBottom="65dp"
         android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="@+id/finishBT"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_answer"
-        app:layout_constraintStart_toEndOf="@+id/passwd"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnFinish"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerAnswer"
+        app:layout_constraintStart_toEndOf="@+id/textViewPasswd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
 
     <android.widget.Button
-        android:id="@+id/finishBT"
+        android:id="@+id/btnFinish"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="75dp"
@@ -34,21 +34,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/selectImage" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/selectImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="128dp"
         android:background="#00ff0000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
         app:srcCompat="@drawable/camera"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/emaill"
+        android:id="@+id/textViewSelectProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -56,25 +56,25 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/selectImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintTop_toTopOf="@+id/selectImage" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textView40"
-        app:layout_constraintStart_toEndOf="@+id/textView40"
-        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        app:layout_constraintEnd_toEndOf="@+id/signUpTitle"
+        app:layout_constraintStart_toEndOf="@+id/signUpTitle"
+        app:layout_constraintTop_toBottomOf="@+id/signUpTitle"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/textViewStudentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -84,22 +84,22 @@
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textViewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="17dp"
         android:text="아이디 찾기 질문"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinner"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerQuestion"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/textViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -107,13 +107,13 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName4"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextEmail"
+        app:layout_constraintEnd_toStartOf="@+id/editTextEmail"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumberPassword"
+        android:id="@+id/editTextPasswordCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -122,12 +122,12 @@
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/passwdCK"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toEndOf="@+id/textViewPasswdCheck"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/spinner_question"
+        android:id="@+id/spinnerSelctQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -135,24 +135,24 @@
         android:background="@drawable/rectangle30"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintStart_toEndOf="@+id/textViewSelectQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/spinner_answer"
+        android:id="@+id/spinnerAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="17dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toTopOf="@+id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/textViewAnswer"
+        app:layout_constraintTop_toTopOf="@+id/textViewAnswer"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -162,12 +162,12 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/id"
+        app:layout_constraintBottom_toTopOf="@+id/textViewId"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextStudentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -175,24 +175,24 @@
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextUserName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserName"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/rectangle29"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordCheck"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/passwd"
+        android:id="@+id/textViewPasswd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -201,11 +201,11 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/passwdCK"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPasswdCheck"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/passwdCK"
+        android:id="@+id/textViewPasswdCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -214,12 +214,12 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberPassword"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPasswordCheck"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberPassword" />
+        app:layout_constraintTop_toTopOf="@+id/editTextPasswordCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -229,8 +229,8 @@
         android:hint="이메일을 입력하세요."
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/id"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintStart_toEndOf="@+id/textViewId"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStudentNumber"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
@@ -243,14 +243,14 @@
         android:layout_marginBottom="21dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toStartOf="@+id/textView40"
+        app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
+        app:layout_constraintEnd_toStartOf="@+id/signUpTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/signUpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -263,29 +263,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerQuestion"
         android:layout_width="235dp"
         android:layout_height="27dp"
         android:layout_marginStart="3dp"
         android:entries="@array/아이디찾기"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/textViewQuestion"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/textViewSelectQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="선택한 질문지"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinner_question"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_question"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerSelctQuestion"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerSelctQuestion"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textViewAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -294,9 +294,9 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/spinner_answer"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_question" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelctQuestion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,8 +62,8 @@ public class Ge_adapter extends RecyclerView.Adapter<Ge_adapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            fieldName = itemView.findViewById(R.id.time_rcy_detail);
-            fieldValue = itemView.findViewById(R.id.time_rcy_detail2);
+            fieldName = itemView.findViewById(R.id.timeTableNameDetail);
+            fieldValue = itemView.findViewById(R.id.timeTableTimeDetail);
         }
 
         public void bind(Board field) {
