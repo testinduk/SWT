@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/mypageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/mypageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -28,22 +28,22 @@
         android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/logout"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintStart_toEndOf="@+id/mypageProfilePicture"
+        app:layout_constraintTop_toBottomOf="@+id/mypageTitle" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/mypageClassGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="학번/학년반"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/my_inf"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintStart_toStartOf="@+id/my_infButton"
+        app:layout_constraintTop_toBottomOf="@+id/mypageName" />
 
     <Button
-        android:id="@+id/my_inf"
+        android:id="@+id/my_infButton"
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:layout_marginStart="98dp"
@@ -54,10 +54,10 @@
         android:stateListAnimator="@null"
         android:text="정보수정"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView41"
+        app:layout_constraintBottom_toBottomOf="@+id/mypageWrote"
         app:layout_constraintEnd_toEndOf="@+id/logout"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+        app:layout_constraintStart_toStartOf="@+id/mypageProfilePicture"
+        app:layout_constraintTop_toTopOf="@+id/mypageProfilePicture" />
 
     <Button
         android:id="@+id/logout"
@@ -71,12 +71,12 @@
         android:background="#00ff0000"
         android:text="로그아웃"
         android:textColor="#000000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/my_inf"
+        app:layout_constraintBaseline_toBaselineOf="@+id/my_infButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView23" />
+        app:layout_constraintStart_toEndOf="@+id/mypageName" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/mypageWrote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -85,10 +85,10 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintTop_toBottomOf="@+id/mypageProfilePicture" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/mypageSchoolPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="45dp"
@@ -96,18 +96,18 @@
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/schoolpage"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView5" />
+        app:layout_constraintStart_toStartOf="@+id/mypagewroteRecycler" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView5"
+        android:id="@+id/mypagewroteRecycler"
         android:layout_width="329dp"
         android:layout_height="180dp"
         android:layout_marginTop="31dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/mypage_rectangle"
-        app:layout_constraintBottom_toBottomOf="@+id/textView42"
-        app:layout_constraintStart_toStartOf="@+id/textView41"
-        app:layout_constraintTop_toTopOf="@+id/textView41"
+        app:layout_constraintBottom_toBottomOf="@+id/mypageSchoolPage"
+        app:layout_constraintStart_toStartOf="@+id/mypageWrote"
+        app:layout_constraintTop_toTopOf="@+id/mypageWrote"
         app:layout_constraintVertical_bias="0.21" />
 
     <ImageButton
@@ -118,11 +118,11 @@
         android:layout_marginBottom="12dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/laptop"
-        app:layout_constraintBottom_toTopOf="@+id/textView44"
-        app:layout_constraintEnd_toEndOf="@+id/textView44" />
+        app:layout_constraintBottom_toTopOf="@+id/smartclasspageView"
+        app:layout_constraintEnd_toEndOf="@+id/smartclasspageView" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/schoolpageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -133,17 +133,17 @@
         app:layout_constraintEnd_toStartOf="@+id/smartclass" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/smartclasspageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:text="스마트클래스"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView5"
+        app:layout_constraintEnd_toEndOf="@+id/mypagewroteRecycler"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView25"
-        app:layout_constraintTop_toTopOf="@+id/textView43" />
+        app:layout_constraintStart_toEndOf="@+id/mypageClassGrade"
+        app:layout_constraintTop_toTopOf="@+id/schoolpageView" />
 
     <ImageButton
         android:id="@+id/schoolpage"
@@ -154,22 +154,22 @@
         android:backgroundTint="#ffffff"
         android:src="@drawable/school"
         app:layout_constraintBottom_toBottomOf="@+id/smartclass"
-        app:layout_constraintEnd_toEndOf="@+id/textView43"
+        app:layout_constraintEnd_toEndOf="@+id/schoolpageView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
+        app:layout_constraintStart_toStartOf="@+id/schoolpageView"
         app:layout_constraintTop_toTopOf="@+id/smartclass"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/mypageProfilePicture"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="11dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView25"
-        app:layout_constraintEnd_toStartOf="@+id/textView23"
+        app:layout_constraintBottom_toBottomOf="@+id/mypageClassGrade"
+        app:layout_constraintEnd_toStartOf="@+id/mypageName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/mypageClassGrade"
         android:src="@drawable/profile" />
 
     <ImageButton

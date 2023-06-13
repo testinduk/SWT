@@ -1,5 +1,6 @@
 package com.example.figma.controller.mypage;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,7 +64,8 @@ public class Mypage extends AppCompatActivity {
         });
 
         // 정보수정 버튼
-        Button show_notice_more = findViewById(R.id.my_inf);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        Button show_notice_more = findViewById(R.id.my_infButton);
         show_notice_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

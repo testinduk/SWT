@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/time_rcy_detail"
+                android:id="@+id/timeTableMajorNameDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="디지털전송시스템"
@@ -30,7 +30,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/time_rcy_detail2"
+                android:id="@+id/timeTableMajorTimeDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="월 10:00~13:50"

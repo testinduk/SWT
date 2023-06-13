@@ -18,7 +18,7 @@
         android:src="@drawable/vector" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/BulletinBoardDetailsTitle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/writer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -40,56 +40,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/BulletinBoardDetailsTitle" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="날짜"
         android:textColor="@color/black"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintStart_toEndOf="@id/textView2" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@id/writer" />
 
     <ImageButton
-        android:id="@+id/btn_bul_amend"
+        android:id="@+id/writingButton"
         android:layout_width="37dp"
         android:layout_height="25dp"
         android:layout_marginBottom="60dp"
         android:src="@drawable/pen"
         android:background="@android:color/transparent"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/btn_bul_del"
+        app:layout_constraintBottom_toTopOf="@id/writer"
+        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/textView3" />
+        app:layout_constraintStart_toEndOf="@id/time" />
 
     <ImageButton
-        android:id="@+id/btn_bul_del"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
         android:src="@drawable/trash"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintBottom_toTopOf="@id/writer"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@id/view2"
+        android:id="@id/imageView"
         android:layout_width="match_parent"
         android:layout_height="270dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangle22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/writer"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="20dp"
@@ -100,10 +100,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/attachFileButton"
         android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
@@ -116,10 +116,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/content" />
 
     <Button
-        android:id="@+id/EditText2"
+        android:id="@+id/commentMove"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -133,10 +133,10 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/chatButton"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#C8C8FF"
         android:drawableRight="@drawable/chat"

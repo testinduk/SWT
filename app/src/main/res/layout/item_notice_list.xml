@@ -11,7 +11,7 @@
         >
 
         <ImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/noticeProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -32,7 +32,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/tv_title"
+                    android:id="@+id/noticeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_gravity="center"
@@ -53,7 +53,7 @@
                 android:layout_height="40dp">
 
                 <Button
-                    android:id="@+id/tv_studentNumber"
+                    android:id="@+id/noticeStudentNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -69,7 +69,7 @@
 
 
                 <Button
-                    android:id="@+id/tv_userName"
+                    android:id="@+id/noticeUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -88,7 +88,7 @@
                 android:layout_height="40dp">
 
                 <Button
-                    android:id="@+id/tv_time"
+                    android:id="@+id/noticeTime"
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
                     android:layout_margin="5dp"
@@ -112,7 +112,7 @@
             android:layout_height="120dp">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tv_detail"
+                android:id="@+id/noticeDetail"
                 android:layout_width="35dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
