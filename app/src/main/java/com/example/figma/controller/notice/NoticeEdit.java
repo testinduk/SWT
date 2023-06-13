@@ -30,8 +30,8 @@ import java.util.Date;
 import java.util.UUID;
 
 public class NoticeEdit extends Activity {
-    private EditText tv_title, tv_content;
-    private Button btn;
+    private EditText noticeBoardContentNameMod, noticeBoardContentMod;
+    private Button noticBoardModComplete;
     private ImageView photo_image;
     private ImageButton cameraButton, fileButton;
 
@@ -49,9 +49,9 @@ public class NoticeEdit extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        tv_title = findViewById(R.id.editTextTextPersonName2);// 제목
-        tv_content = findViewById(R.id.editTextTextPersonName3);// 내용
-        btn = findViewById(R.id.button17); //수정 완료 버튼
+        noticeBoardContentNameMod = findViewById(R.id.noticeBoardContentNameMod);// 제목
+        noticeBoardContentMod = findViewById(R.id.noticeBoardContentMod);// 내용
+        noticBoardModComplete = findViewById(R.id.noticBoardModComplete); //수정 완료 버튼
         photo_image = findViewById(R.id.photo_imageView);  // 이미지
         cameraButton = findViewById(R.id.cameraButton);  // 이미지 추가 버튼
         fileButton = findViewById(R.id.fileButton);  // 파일 추가 버튼
@@ -68,8 +68,8 @@ public class NoticeEdit extends Activity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
         String uid = mAuth.getCurrentUser().getUid(); //uid 가져오기
 
-        tv_title.setText(notice_edit_title);
-        tv_content.setText(notice_edit_content);
+        noticeBoardContentNameMod.setText(notice_edit_title);
+        noticeBoardContentMod.setText(notice_edit_content);
         Glide.with(this)
                 .load(notice_image)
                 .into(photo_image);
@@ -83,7 +83,7 @@ public class NoticeEdit extends Activity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        noticBoardModComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -93,8 +93,8 @@ public class NoticeEdit extends Activity {
 
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notice Board").child(notice_key);
-                ref.child("title").setValue(tv_title.getText().toString());
-                ref.child("content").setValue(tv_content.getText().toString());
+                ref.child("title").setValue(noticeBoardContentNameMod.getText().toString());
+                ref.child("content").setValue(noticeBoardContentMod.getText().toString());
                 ref.child("notice_time").setValue(current_time);
 
                 storageRef.child("notice/" + notice_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
