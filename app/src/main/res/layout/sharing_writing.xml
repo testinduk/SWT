@@ -18,7 +18,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/sharingWritingTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-100dp"
@@ -28,7 +28,7 @@
         android:textSize="20dp"
         android:textColor="#000000"/>
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/sharingBoardContentName"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
@@ -38,7 +38,7 @@
         android:textColor="#000000"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/sharingBoardContentNameWrite"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-35dp"
@@ -50,17 +50,17 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/sharingBoardContent"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="-347dp"
         android:layout_marginTop="10dp"
         android:text="글쓰기"
-        android:layout_marginLeft="-347dp"
-        android:textSize="15dp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName1"
+        android:id="@+id/sharingBoardContentWrite"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginLeft="-54dp"
@@ -80,7 +80,7 @@
         android:background="@drawable/rectangle22" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/cameraButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="-350dp"
@@ -90,7 +90,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/fileButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
@@ -100,7 +100,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sharingBoardContentComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="완료"

@@ -1,5 +1,6 @@
 package com.example.figma.controller.sharing;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,29 +27,29 @@ import java.util.Date;
 import java.util.UUID;
 
 public class SharingDetails extends Activity {
-    private TextView tv_username;
-    private TextView tv_content;
-    private TextView tv_title;
-    private TextView textView3;
-    private ImageView photo_image, edit_button;
-    private ImageButton delete_button;
+    private TextView sharingBoardContentWriter;
+    private TextView sharingBoardContent;
+    private TextView sharingBoardContentName;
+    private TextView sharingBoardContentDay;
+    private ImageView photo_image, sharingBoardContentMod;
+    private ImageButton sharingBoardContentDelete;
+    private Button sharingBoardContentComment;
 
-    private Button EditText2;
-
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_details);
 
-       
+
         // 수정 버튼
-        tv_username = findViewById(R.id.textView2);
-        tv_title = findViewById(R.id.textView1);
-        tv_content = findViewById(R.id.textView4);
-        edit_button = findViewById(R.id.btn_sha_amend);
-        delete_button = findViewById(R.id.Button3);
+        sharingBoardContentWriter = findViewById(R.id.sharingBoardContentWriter);
+        sharingBoardContentName = findViewById(R.id.sharingBoardContentName);
+        sharingBoardContent = findViewById(R.id.sharingBoardContent);
+        sharingBoardContentMod = findViewById(R.id.sharingBoardContentMod);
+        sharingBoardContentDelete = findViewById(R.id.sharingBoardContentDelete);
         photo_image = findViewById(R.id.photo_image);
-        textView3 = findViewById(R.id.textView3);
-        EditText2 = findViewById(R.id.EditText2); // 댓글창
+        sharingBoardContentDay = findViewById(R.id.sharingBoardContentDay);
+        sharingBoardContentComment = findViewById(R.id.sharingBoardContentComment); // 댓글창
 
         Intent second_intent = getIntent();
 
@@ -69,19 +70,19 @@ public class SharingDetails extends Activity {
         String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
 
-        tv_username.setText(shar_username);
-        tv_content.setText(shar_content);
-        tv_title.setText(shar_title);
+        sharingBoardContentWriter.setText(shar_username);
+        sharingBoardContent.setText(shar_content);
+        sharingBoardContentName.setText(shar_title);
         Glide.with(this)
                 .load(sharing_image)
                 .into(photo_image);
-        textView3.setText(sharing_time);
+        sharingBoardContentDay.setText(sharing_time);
 
         if (uid.equals(shar_idToken)) {
-            edit_button.setEnabled(true);
-            delete_button.setEnabled(true);
+            sharingBoardContentMod.setEnabled(true);
+            sharingBoardContentDelete.setEnabled(true);
             //수정 버튼
-            edit_button.setOnClickListener(new View.OnClickListener() {
+            sharingBoardContentMod.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (shar_idToken != null) {
@@ -104,7 +105,7 @@ public class SharingDetails extends Activity {
                 }
             });
             //글 삭제하기.
-            delete_button.setOnClickListener(new View.OnClickListener() {
+            sharingBoardContentDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(shar_idToken != null){
@@ -128,8 +129,8 @@ public class SharingDetails extends Activity {
             });
 
         } else {
-            edit_button.setEnabled(false);
-            delete_button.setEnabled(false);
+            sharingBoardContentMod.setEnabled(false);
+            sharingBoardContentDelete.setEnabled(false);
         }
 
         // 뒤로가기 버튼
@@ -147,7 +148,7 @@ public class SharingDetails extends Activity {
 
 
         // 댓글창 이동 버튼
-        EditText2.setOnClickListener(new View.OnClickListener() {
+        sharingBoardContentComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoardComment.class);
