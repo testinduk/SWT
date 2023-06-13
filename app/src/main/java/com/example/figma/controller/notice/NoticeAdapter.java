@@ -112,14 +112,14 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-            this.tv_title = itemView.findViewById(R.id.tv_title);
-            this.tv_time = itemView.findViewById(R.id.tv_time);
+            this.iv_profile = itemView.findViewById(R.id.noticeProfile);
+            this.tv_title = itemView.findViewById(R.id.noticeTitle);
+            this.tv_time = itemView.findViewById(R.id.noticeTime);
 
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+            this.tv_studentNumber = itemView.findViewById(R.id.noticeStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.noticeUserName);
 
-            this.tv_detail = itemView.findViewById(R.id.tv_detail);
+            this.tv_detail = itemView.findViewById(R.id.noticeDetail);
         }
 
     }

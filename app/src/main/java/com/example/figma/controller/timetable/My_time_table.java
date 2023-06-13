@@ -18,17 +18,21 @@ import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.example.figma.model.Board;
 import com.example.figma.controller.MainHome;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class My_time_table extends AppCompatActivity {
@@ -64,9 +68,9 @@ public class My_time_table extends AppCompatActivity {
         layoutManager2_ge = new LinearLayoutManager(this);
         layoutManager_pic = new LinearLayoutManager(this);
 
-        mBinding.recyclerView1.setLayoutManager(layoutManager_mj);
-        mBinding.recyclerView2.setLayoutManager(layoutManager2_ge);
-        mBinding.picRecyclerView.setLayoutManager(layoutManager_pic);
+        mBinding.MajorRecycler.setLayoutManager(layoutManager_mj);
+        mBinding.GeRecycler.setLayoutManager(layoutManager2_ge);
+        mBinding.PicRecycler.setLayoutManager(layoutManager_pic);
 
         mAuth = FirebaseAuth.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
@@ -76,7 +80,7 @@ public class My_time_table extends AppCompatActivity {
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         List<Board> item_list = new ArrayList<>();
         Select_item_adapter adapter = new Select_item_adapter(item_list);
-        mBinding.picRecyclerView.setAdapter(adapter);
+        mBinding.PicRecycler.setAdapter(adapter);
 
         db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
@@ -203,22 +207,60 @@ public class My_time_table extends AppCompatActivity {
 
 
         // ---- 교양 리사이클러뷰에 표시 ---- //
-        db.collection("GE class").document("필수").collection("온라인").document("비대면수업")
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document != null && document.exists()) {
-                                Map<String, Object> GeData = document.getData();
-                                geHandleData(GeData);
-                            }
-                        } else {
-                            Log.i("log", "실패");
-                        }
+        CollectionReference geClassRef = db.collection("Ge class");
 
+//        Map<String, Object> gedata = new HashMap<>();
+
+        geClassRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Log.i("log", "if문 통과");
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        String documentId = document.getId();
+                        Map<String, Object> gedata = document.getData();
+                        Log.e("log1", "Map에 저장");
+
+
+                        for (Map.Entry<String, Object> entry : gedata.entrySet()) {
+                            String fieldName = entry.getKey();
+                            Object fieldValue = entry.getValue();
+                            Log.d("log2", "필드값 정렬 후 저장");
+
+
+                            // Create a Field object and add it to the list
+                            Board ge_field = new Board(fieldName, fieldValue);
+                            gefieldList.add(ge_field);
+                            Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
+                            mBinding.GeRecycler.setAdapter(ge_adapter);
+//                            Log.i("log", "geHandle실행");
+
+//                        geHandleData(gedata);
+
+                        }
                     }
-                });
+                }
+            }
+        });
+
+//
+//            }
+//        }new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> GeData = document.getData();
+//                                geHandleData(GeData);
+//                            }
+//                        } else {
+//                            Log.i("log", "실패");
+//                        }
+//
+//                    }
+//                });
 
 
 
@@ -227,7 +269,7 @@ public class My_time_table extends AppCompatActivity {
 
 
         // 뒤로가기
-        mBinding.imageView.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
@@ -247,7 +289,7 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             mjfieldList.add(field);
             Major_adapter adapter = new Major_adapter(mjfieldList);
-            mBinding.recyclerView1.setAdapter(adapter);
+            mBinding.MajorRecycler.setAdapter(adapter);
 
         }
 
@@ -263,8 +305,12 @@ public class My_time_table extends AppCompatActivity {
             // Create a Field object and add it to the list
             Board field = new Board(fieldName, fieldValue);
             gefieldList.add(field);
+            Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
+            mBinding.GeRecycler.setAdapter(ge_adapter);
+            Log.i("log", "geHandle실행");
+
             Major_adapter adapter = new Major_adapter(gefieldList);
-            mBinding.recyclerView2.setAdapter(adapter);
+            mBinding.GeRecycler.setAdapter(adapter);
 
         }
 

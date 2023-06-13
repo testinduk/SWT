@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/time_crl"
+        android:id="@+id/time_GE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -15,10 +15,10 @@
         android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView1" />
+        app:layout_constraintTop_toBottomOf="@+id/MajorRecycler" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/GeRecycler"
         android:layout_width="365dp"
         android:layout_height="140dp"
         android:layout_marginStart="14dp"
@@ -27,22 +27,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_crl" />
+        app:layout_constraintTop_toBottomOf="@+id/time_GE" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pic_recyclerView"
+        android:id="@+id/PicRecycler"
         android:layout_width="365dp"
         android:layout_height="140dp"
         android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView53" />
+        app:layout_constraintTop_toBottomOf="@+id/selectSubject" />
 
     <TextView
-        android:id="@+id/time_title"
+        android:id="@+id/timeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView1"
+        android:id="@+id/MajorRecycler"
         android:layout_width="365dp"
         android:layout_height="140dp"
         android:layout_marginStart="14dp"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/time_major" />
 
     <TextView
-        android:id="@+id/textView53"
+        android:id="@+id/selectSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -135,7 +135,7 @@
         android:textSize="20dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/GeRecycler" />
 
     <Button
         android:id="@+id/time_button"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageView"
+        android:id="@+id/backButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="25dp"
@@ -167,8 +167,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pic_recyclerView"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/time_del_btn"

@@ -98,12 +98,12 @@ public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-            this.tv_title = itemView.findViewById(R.id.tv_title);
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
-            this.tv_detail = itemView.findViewById(R.id.tv_detail);
-            this.tv_time = itemView.findViewById(R.id.tv_time);
+            this.iv_profile = itemView.findViewById(R.id.bulletinProfile);
+            this.tv_title = itemView.findViewById(R.id.bulletinTitle);
+            this.tv_studentNumber = itemView.findViewById(R.id.bulletinStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.bulletinUserName);
+            this.tv_detail = itemView.findViewById(R.id.bulletinDetail);
+            this.tv_time = itemView.findViewById(R.id.bulletinTime);
 //            iv_profile.setScaleType(ImageView.ScaleType.FIT_CENTER);
 //            iv_profile.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
