@@ -50,10 +50,10 @@ public class NoticeComAdapter extends RecyclerView.Adapter<NoticeComAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_studentNumber = itemView.findViewById(R.id.tv_studentNumber);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
-            this.tv_content = itemView.findViewById(R.id.tv_content);
-            this.tv_time = itemView.findViewById(R.id.tv_time);
+            this.tv_studentNumber = itemView.findViewById(R.id.noticeStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.noticeUserName);
+            this.tv_content = itemView.findViewById(R.id.noticeContent);
+            this.tv_time = itemView.findViewById(R.id.noticeTime);
 
         }
     }
