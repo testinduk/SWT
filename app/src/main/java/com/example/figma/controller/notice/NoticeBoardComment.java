@@ -43,9 +43,9 @@ import java.util.UUID;
 public class NoticeBoardComment extends Activity {
 
     private ImageButton backButton; //뒤로가기
-    private RecyclerView recyclerView;
-    private EditText EditText2; //댓글 쓰기
-    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    private RecyclerView noticeBoardCommentRecycler;
+    private EditText noticeBoardCommentEdit; //댓글 쓰기
+    private ImageButton sendCommentButton;//댓글 추가하기 버튼
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -59,15 +59,15 @@ public class NoticeBoardComment extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_board_comment);
 
-        recyclerView = findViewById(R.id.recyclerView8);
-        recyclerView.setHasFixedSize(true);
+        noticeBoardCommentRecycler = findViewById(R.id.noticeBoardCommentRecycler);
+        noticeBoardCommentRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        noticeBoardCommentRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         backButton = findViewById(R.id.backButton);
-        EditText2 = findViewById(R.id.EditText2);
-        ImageButton2 = findViewById(R.id.ImageButton2);
+        noticeBoardCommentEdit = findViewById(R.id.noticeBoardCommentEdit);
+        sendCommentButton = findViewById(R.id.sendCommentButton);
 
 
         Intent intent = getIntent();
@@ -92,11 +92,11 @@ public class NoticeBoardComment extends Activity {
         });
 
         //댓글 추가하기
-        ImageButton2.setOnClickListener(new View.OnClickListener() {
+        sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
+                String comment_content = noticeBoardCommentEdit.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -163,7 +163,7 @@ public class NoticeBoardComment extends Activity {
 
 
         adapter = new NoticeComAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        noticeBoardCommentRecycler.setAdapter(adapter);
 
 
     }
