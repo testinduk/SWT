@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
@@ -26,33 +24,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
 public class NoticeDetails extends Activity {
-    private ImageButton delete_button, edit_button, backButton, imageButton2;
-    private TextView tv_content, tv_title, tv_username, tv_time;
+    private ImageButton noticeBoardContentDelete, noticeBoardContentMod, backButton, imageButton2;
+    private TextView noticeBoardContent, noticeBoardContentName, noticeBoardUserName, noticeBoardDay;
     private ImageView photo_image;
-    private Button EditText2;
+    private Button noticeBoardContentComment;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_details);
+        setContentView(R.layout.notice_board_details);
 
 
         photo_image = findViewById(R.id.photo_image);    // 이미지뷰
-        edit_button = findViewById(R.id.btn_notice_amend); //수정 버튼
-        tv_content = findViewById(R.id.textView4); //내용
-        tv_title = findViewById(R.id.textView1); //제목
-        delete_button = findViewById(R.id.Button3);   // 삭제 버튼
+        noticeBoardContentMod = findViewById(R.id.noticeBoardContentMod); //수정 버튼
+        noticeBoardContent = findViewById(R.id.noticeBoardContent); //내용
+        noticeBoardContentName = findViewById(R.id.noticeBoardContentName); //제목
+        noticeBoardContentDelete = findViewById(R.id.noticeBoardContentDelete);   // 삭제 버튼
         backButton = findViewById(R.id.backButton); // back 버튼
-        tv_username =findViewById(R.id.textView2);   // 글쓴이
-        tv_time = findViewById(R.id.textView3); // 날짜
-        EditText2 = findViewById(R.id.EditText2);
+        noticeBoardUserName =findViewById(R.id.noticeBoardUserName);   // 글쓴이
+        noticeBoardDay = findViewById(R.id.noticeBoardDay); // 날짜
+        noticeBoardContentComment = findViewById(R.id.noticeBoardContentComment);
 
 
         Intent second_intent = getIntent();
@@ -74,20 +71,20 @@ public class NoticeDetails extends Activity {
         String notice_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
 
-        tv_content.setText(notice_content);
-        tv_title.setText(notice_title);
-        tv_username.setText(notice_username);
+        noticeBoardContent.setText(notice_content);
+        noticeBoardContentName.setText(notice_title);
+        noticeBoardUserName.setText(notice_username);
         Glide.with(this)
                 .load(notice_image)
                 .into(photo_image);
-        tv_time.setText(notice_time);
+        noticeBoardDay.setText(notice_time);
 
 
         if(uid.equals(notice_idToken)) {
-            delete_button.setEnabled(true);
-            edit_button.setEnabled(true);
+            noticeBoardContentDelete.setEnabled(true);
+            noticeBoardContentMod.setEnabled(true);
 
-            edit_button.setOnClickListener(new View.OnClickListener() {
+            noticeBoardContentMod.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (notice_idToken != null) {
@@ -109,7 +106,7 @@ public class NoticeDetails extends Activity {
                 }
             });
             // trash button
-            delete_button.setOnClickListener(new View.OnClickListener() {
+            noticeBoardContentDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (notice_idToken != null) {
@@ -134,8 +131,8 @@ public class NoticeDetails extends Activity {
                 }
             });
         }else{
-            edit_button.setEnabled(false);
-            delete_button.setEnabled(false);
+            noticeBoardContentMod.setEnabled(false);
+            noticeBoardContentDelete.setEnabled(false);
         }
                 // 뒤로가기 버튼
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +148,7 @@ public class NoticeDetails extends Activity {
 
 
         // 댓글창 이동 버튼
-        EditText2.setOnClickListener(new View.OnClickListener() {
+        noticeBoardContentComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeBoardComment.class);

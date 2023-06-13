@@ -1,5 +1,6 @@
 package com.example.figma.controller.sharing;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,33 +31,34 @@ import java.util.ArrayList;
 public class SharingBoard extends Activity {
 
     //선언
-    private RecyclerView recyclerView;
+    private RecyclerView sharingBoardRecycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private Button search_Button; //검색 버튼
-    private EditText searchView; //검색어 입력
+    private Button sharingBoardSearchButton; //검색 버튼
+    private EditText sharingBoardSearch; //검색어 입력
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_board); //레이아웃의 SharingBoard 부분 참조
 
-        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
+        sharingBoardRecycler = findViewById(R.id.sharingBoardRecycler);
 
-        recyclerView.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
+        sharingBoardRecycler.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
         layoutManager = new LinearLayoutManager(this); //아이템 배치 방향을 수평으로 설정
-        recyclerView.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
+        sharingBoardRecycler.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
         arrayList = new ArrayList<>(); //arraylist를 리턴(원소 추가 가능)
 
-        recyclerView.setHasFixedSize(true);
+        sharingBoardRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        sharingBoardRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        search_Button = findViewById(R.id.search_Button);
-        searchView = findViewById(R.id.searchView);
+        sharingBoardSearchButton = findViewById(R.id.sharingBoardSearchButton);
+        sharingBoardSearch = findViewById(R.id.sharingBoardSearch);
 
 
         database = FirebaseDatabase.getInstance(); //기본 FirebaseDatabase 인스턴스 가져오기(데이터베이스란 이름으로 객체 생성)
@@ -87,13 +89,13 @@ public class SharingBoard extends Activity {
 
 
         adapter = new SharingAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+        sharingBoardRecycler.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
 
         //검색 기능
-        search_Button.setOnClickListener(new View.OnClickListener() {
+        sharingBoardSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String searchText = searchView.getText().toString().toLowerCase();
+                String searchText = sharingBoardSearch.getText().toString().toLowerCase();
 
                 ArrayList<Board> filteredList = new ArrayList<>();
                 for(Board item : arrayList){
@@ -105,7 +107,7 @@ public class SharingBoard extends Activity {
                     }
                 }
                 adapter = new SharingAdapter(filteredList, SharingBoard.this);
-                recyclerView.setAdapter(adapter);
+                sharingBoardRecycler.setAdapter(adapter);
             }
         });
 

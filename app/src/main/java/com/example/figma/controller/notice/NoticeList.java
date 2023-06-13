@@ -4,6 +4,7 @@ package com.example.figma.controller.notice;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,27 +35,28 @@ import java.util.Collections;
 
 public class NoticeList extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private RecyclerView noticeBoardRecyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    EditText searchView;
-    Button search_button;
+    EditText noticeBoardSearch;
+    Button noticeBoardSearchButton;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_list);
+        setContentView(R.layout.notice_board);
 
-        recyclerView = findViewById(R.id.recyclerView); //아이디 연결
-        recyclerView.setHasFixedSize(true);
+        noticeBoardRecyclerView = findViewById(R.id.noticeBoardRecyclerView); //아이디 연결
+        noticeBoardRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        noticeBoardRecyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        search_button = findViewById(R.id.search_Button);    // 검색 버튼
-        searchView = findViewById(R.id.searchView);          // 검색어 입력
+        noticeBoardSearchButton = findViewById(R.id.noticeBoardSearchButton);    // 검색 버튼
+        noticeBoardSearch = findViewById(R.id.noticeBoardSearch);          // 검색어 입력
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
 
@@ -82,14 +84,14 @@ public class NoticeList extends AppCompatActivity {
         });
 
         adapter = new NoticeAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        noticeBoardRecyclerView.setAdapter(adapter);
 
 
         // 검색
-        search_button.setOnClickListener(new View.OnClickListener() {
+        noticeBoardSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String notice_search = searchView.getText().toString().toLowerCase();
+                String notice_search = noticeBoardSearch.getText().toString().toLowerCase();
 
                 ArrayList<Board> filteredList = new ArrayList<>();
                 filteredList.clear();
@@ -106,7 +108,7 @@ public class NoticeList extends AppCompatActivity {
                 Collections.reverse(filteredList);
 
                 adapter = new NoticeAdapter(filteredList, NoticeList.this);
-                recyclerView.setAdapter(adapter);
+                noticeBoardRecyclerView.setAdapter(adapter);
 
             }
         });

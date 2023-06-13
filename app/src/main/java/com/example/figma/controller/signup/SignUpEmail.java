@@ -24,7 +24,6 @@ public class SignUpEmail extends Activity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText editTextTextPersonName4; //회원가입 입력필드
     private Button button; //회원가입 버튼
     private Button log_button; //로그인 화면 이동
 
@@ -33,15 +32,14 @@ public class SignUpEmail extends Activity {
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_email);
+        setContentView(R.layout.sign_up_send_email);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
-        button = findViewById(R.id.button);
-        log_button = findViewById(R.id.log_button);
-        editTextTextPersonName4 = findViewById(R.id.editTextTextPersonName4);
+        button = findViewById(R.id.btnSendEmail);
+        log_button = findViewById(R.id.btnMoveLogin);
 
         log_button.setEnabled(false);
         button.setOnClickListener(new View.OnClickListener() {

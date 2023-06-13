@@ -43,9 +43,9 @@ import java.util.UUID;
 public class SharingBoardComment extends Activity {
 
     private ImageButton backButton; //뒤로가기
-    private RecyclerView recyclerView;
-    private EditText EditText2; //댓글 쓰기
-    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    private RecyclerView sharingBoardCommentRecycler;
+    private EditText sharingBoardCommentEdit; //댓글 쓰기
+    private ImageButton sharingBoardCommentSend;//댓글 추가하기 버튼
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -59,15 +59,15 @@ public class SharingBoardComment extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sharing_board_comment);
 
-        recyclerView = findViewById(R.id.recyclerView8);
-        recyclerView.setHasFixedSize(true);
+        sharingBoardCommentRecycler = findViewById(R.id.sharingBoardCommentRecycler);
+        sharingBoardCommentRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        sharingBoardCommentRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         backButton = findViewById(R.id.backButton);
-        EditText2 = findViewById(R.id.EditText2);
-        ImageButton2 = findViewById(R.id.ImageButton2);
+        sharingBoardCommentEdit = findViewById(R.id.sharingBoardCommentEdit);
+        sharingBoardCommentSend = findViewById(R.id.sharingBoardCommentSend);
 
 
         Intent intent = getIntent();
@@ -93,11 +93,11 @@ public class SharingBoardComment extends Activity {
         });
 
         //댓글 추가하기
-        ImageButton2.setOnClickListener(new View.OnClickListener() {
+        sharingBoardCommentSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
+                String comment_content = sharingBoardCommentEdit.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -164,7 +164,7 @@ public class SharingBoardComment extends Activity {
 
 
         adapter = new SharingComAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        sharingBoardCommentRecycler.setAdapter(adapter);
 
 
     }

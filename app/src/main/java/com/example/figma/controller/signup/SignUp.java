@@ -1,5 +1,6 @@
 package com.example.figma.controller.signup;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,10 +42,12 @@ public class SignUp extends AppCompatActivity {
     private Button finishBT; //회원가입 버튼
     private TextView spinner_question;
     private FirebaseStorage storage;
-    ImageView imageView;
+    private ImageButton backButton, selectImageBtn;
+    private ImageView imageView;
     private String question;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +59,18 @@ public class SignUp extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("SignUp");
 
-        editTextTextPersonName4 = findViewById(R.id.editTextTextPersonName4);
-        editTextTextPassword = findViewById(R.id.editTextTextPassword);
-        finishBT = findViewById(R.id.finishBT);
-        editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
-        editTextTextPersonName2 = findViewById(R.id.editTextTextPersonName2);
-        editTextNumberPassword = findViewById(R.id.editTextNumberPassword);
-        ImageButton backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
-        spinner_question = findViewById(R.id.spinner_question);
-        spinner_answer = findViewById(R.id.spinner_answer);
-
-        imageView = findViewById(R.id.imageView10);
-        ImageButton imageButton = findViewById(R.id.imageButton);
-        Spinner spinner = findViewById(R.id.spinner);
+        editTextTextPersonName4 = findViewById(R.id.editTextEmail);
+        editTextTextPassword = findViewById(R.id.editTextPassword);
+        finishBT = findViewById(R.id.btnFinish);
+        editTextTextPersonName = findViewById(R.id.editTextUserName);
+        editTextTextPersonName2 = findViewById(R.id.editTextStudentNumber);
+        editTextNumberPassword = findViewById(R.id.editTextPasswordCheck);
+        backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
+        spinner_question = findViewById(R.id.spinnerSelctQuestion);
+        spinner_answer = findViewById(R.id.spinnerAnswer);
+        imageView = findViewById(R.id.profileImage);
+        selectImageBtn = findViewById(R.id.selectImage);
+        Spinner spinner = findViewById(R.id.spinnerQuestion);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -83,7 +85,7 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        selectImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);

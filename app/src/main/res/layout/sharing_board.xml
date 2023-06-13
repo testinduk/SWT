@@ -31,7 +31,7 @@
         android:onClick="sharingButton"
         android:src="@drawable/heart"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constraintEnd_toStartOf="@+id/texthome"
+        app:layout_constraintEnd_toStartOf="@+id/homeText"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
         app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
@@ -44,10 +44,10 @@
         android:background="#ffffff"
         android:contentDescription="@null"
         android:src="@drawable/hut"
-        app:layout_constraintBottom_toTopOf="@+id/texthome"
+        app:layout_constraintBottom_toTopOf="@+id/homeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardRecycler" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -60,10 +60,10 @@
         android:background="#ffffff"
         android:contentDescription="@null"
         android:src="@drawable/plus"
-        app:layout_constraintBottom_toTopOf="@+id/textboard"
-        app:layout_constraintEnd_toEndOf="@+id/textmypage"
-        app:layout_constraintStart_toStartOf="@+id/textView46"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintBottom_toTopOf="@+id/boardText"
+        app:layout_constraintEnd_toEndOf="@+id/mypageText"
+        app:layout_constraintStart_toStartOf="@+id/sharingBoardTitle"
+        app:layout_constraintTop_toBottomOf="@+id/sharingBoardRecycler" />
 
     <ImageButton
         android:id="@+id/mypageButton"
@@ -73,20 +73,20 @@
         android:contentDescription="@null"
         android:src="@drawable/mypage"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constraintEnd_toEndOf="@+id/textmypage"
-        app:layout_constraintStart_toStartOf="@+id/textmypage"
+        app:layout_constraintEnd_toEndOf="@+id/mypageText"
+        app:layout_constraintStart_toStartOf="@+id/mypageText"
         app:layout_constraintTop_toTopOf="@+id/boardButton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/sharingBoardRecycler"
         android:layout_width="373dp"
         android:layout_height="0dp"
         android:layout_marginTop="62dp"
         android:layout_marginBottom="59dp"
-        app:layout_constraintBottom_toTopOf="@+id/textmypage"
+        app:layout_constraintBottom_toTopOf="@+id/mypageText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_Button"
+        app:layout_constraintTop_toTopOf="@+id/sharingBoardSearchButton"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -100,11 +100,11 @@
         android:contentDescription="@null"
         android:src="@drawable/back"
         app:layout_constraintEnd_toEndOf="@+id/chatButton"
-        app:layout_constraintStart_toStartOf="@+id/textchat"
+        app:layout_constraintStart_toStartOf="@+id/chatText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textchat"
+        android:id="@+id/chatText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -117,7 +117,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textsharing"
+        android:id="@+id/sharingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -130,7 +130,7 @@
         app:layout_constraintStart_toStartOf="@+id/sharingButton" />
 
     <TextView
-        android:id="@+id/texthome"
+        android:id="@+id/homeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
@@ -144,7 +144,7 @@
 
 
     <TextView
-        android:id="@+id/textboard"
+        android:id="@+id/boardText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
@@ -156,7 +156,7 @@
         app:layout_constraintStart_toStartOf="@+id/boardButton" />
 
     <TextView
-        android:id="@+id/textmypage"
+        android:id="@+id/mypageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="14dp"
@@ -169,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/searchView"
+        android:id="@+id/sharingBoardSearch"
         android:layout_width="225dp"
         android:layout_height="30dp"
         android:background="@drawable/searching"
@@ -178,7 +178,7 @@
         app:layout_constraintTop_toBottomOf="@+id/writingButton" />
 
     <Button
-        android:id="@+id/search_Button"
+        android:id="@+id/sharingBoardSearchButton"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:backgroundTint="#FFFFFF"
@@ -186,9 +186,9 @@
         android:text="검색"
         android:textColor="#000000"
         android:textSize="9dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/searchView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sharingBoardSearch"
         app:layout_constraintEnd_toEndOf="@+id/writingButton"
-        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintStart_toEndOf="@+id/sharingBoardSearch"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -207,7 +207,7 @@
 
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/sharingBoardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"

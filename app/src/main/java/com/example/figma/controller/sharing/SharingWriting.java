@@ -35,9 +35,9 @@ import java.util.UUID;
 
 public class SharingWriting extends Activity {
 
-    Button btn;
-    ImageButton imageButton,backButton;
-    EditText edit1, edit2;
+    Button sharingBoardContentComplete;
+    ImageButton cameraButton,backButton;
+    EditText sharingBoardContentNameWrite, sharingBoardContentWrite;
     String title, content;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(); // databaseReference에 저장하고 읽어옴
@@ -47,7 +47,7 @@ public class SharingWriting extends Activity {
     ImageView photo_image;
 
 
-    @SuppressLint("WrongViewCast")
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +56,14 @@ public class SharingWriting extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        btn = findViewById(R.id.button); //버튼 아이디 연결
-        edit1 = findViewById(R.id.editTextTextPersonName); // 제목 적는 곳
-        edit2 = findViewById(R.id.editTextTextPersonName1); // 내용 적는 곳
-        imageButton = findViewById(R.id.imageButton); //이미지 사진 넣기
+        sharingBoardContentComplete = findViewById(R.id.sharingBoardContentComplete); //버튼 아이디 연결
+        sharingBoardContentNameWrite = findViewById(R.id.sharingBoardContentNameWrite); // 제목 적는 곳
+        sharingBoardContentWrite = findViewById(R.id.sharingBoardContentWrite); // 내용 적는 곳
+        cameraButton = findViewById(R.id.cameraButton); //이미지 사진 넣기
         backButton = findViewById(R.id.backButton);
         photo_image = findViewById(R.id.photo_image);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -80,7 +80,7 @@ public class SharingWriting extends Activity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        sharingBoardContentComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth를 선언
@@ -108,8 +108,8 @@ public class SharingWriting extends Activity {
 
 
 
-                            String title = edit1.getText().toString(); //제목을 가져옴
-                            String content = edit2.getText().toString(); //내용을 가져옴
+                            String title = sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
+                            String content = sharingBoardContentWrite.getText().toString(); //내용을 가져옴
 
 
 

@@ -1,5 +1,6 @@
 package com.example.figma.controller.notice;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.net.Uri;
@@ -43,8 +44,8 @@ import java.util.UUID;
 
 public class NoticeWriting extends Activity {
 
-    Button btn;
-    EditText edit1, edit2;
+    Button noticeBoardContentComplete;
+    EditText noticeBoardContentNameWrite, noticeBoardContentWrite;
     String title, content;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
@@ -53,18 +54,19 @@ public class NoticeWriting extends Activity {
     ImageButton cameraButton, backButton;
     String notice_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_writing);
+        setContentView(R.layout.notice_board_writing);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
         notice_image = findViewById(R.id.photo_image);  // 이미지뷰
-        btn = findViewById(R.id.button17); // 작성 완료 버튼
-        edit1 = findViewById(R.id.editTextTextPersonName2); // 제목 적는 곳
-        edit2 = findViewById(R.id.editTextTextPersonName3); // 내용 적는 곳
+        noticeBoardContentComplete = findViewById(R.id.noticeBoardContentComplete); // 작성 완료 버튼
+        noticeBoardContentNameWrite = findViewById(R.id.noticeBoardContentNameWrite); // 제목 적는 곳
+        noticeBoardContentWrite = findViewById(R.id.noticeBoardContentWrite); // 내용 적는 곳
         cameraButton = findViewById(R.id.cameraButton);  // 사진 넣기
         backButton = findViewById(R.id.backButton);  // 뒤로가기
 
@@ -85,7 +87,7 @@ public class NoticeWriting extends Activity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        noticeBoardContentComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -109,8 +111,8 @@ public class NoticeWriting extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
 
-                            String title = edit1.getText().toString();
-                            String content = edit2.getText().toString();
+                            String title = noticeBoardContentNameWrite.getText().toString();
+                            String content = noticeBoardContentWrite.getText().toString();
 
 
                             DatabaseReference boardRef = databaseReference.child("notice Board").push();
