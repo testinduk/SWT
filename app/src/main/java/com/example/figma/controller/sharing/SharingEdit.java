@@ -29,12 +29,12 @@ import com.google.firebase.storage.UploadTask;
 import java.util.UUID;
 
 public class SharingEdit extends Activity {
-    private EditText textView1; //제목
-    private EditText textView4; //내용
+    private EditText sharingBoardContentNameMod; //제목
+    private EditText sharingBoardContentMod; //내용
     private TextView textView2; // 글쓴이
-    private Button button; //완료버튼
+    private Button sharingBoardModComplete; //완료버튼
     private ImageView photo_image, backButton; //이미지 보여줌, back
-    private ImageButton imageButton, imageButton7; //첨부파일(사진). 파일
+    private ImageButton cameraButton, fileButton; //첨부파일(사진). 파일
 
     StorageReference storageRef;
     FirebaseStorage storage;
@@ -89,13 +89,13 @@ public class SharingEdit extends Activity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        textView1 = findViewById(R.id.textView1);
-        textView4 = findViewById(R.id.textView4);
+        sharingBoardContentNameMod = findViewById(R.id.sharingBoardContentNameMod);
+        sharingBoardContentMod = findViewById(R.id.sharingBoardContentMod);
         textView2 = findViewById(R.id.textView2);
-        button = findViewById(R.id.button);
+        sharingBoardModComplete = findViewById(R.id.sharingBoardModComplete);
         photo_image = findViewById(R.id.photo_image);
-        imageButton = findViewById(R.id.imageButton);
-        imageButton7 = findViewById(R.id.imageButton7);
+        cameraButton = findViewById(R.id.cameraButton);
+        fileButton = findViewById(R.id.fileButton);
         backButton = findViewById(R.id.backButton);
 
         Intent third_intent = getIntent(); //sharing_detail intent.putExtra 정보 받아오기
@@ -112,14 +112,14 @@ public class SharingEdit extends Activity {
         Log.d("Uid", uid);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        textView1.setText(shar_edit_title);
-        textView4.setText(shar_edit_content);
+        sharingBoardContentNameMod.setText(shar_edit_title);
+        sharingBoardContentMod.setText(shar_edit_content);
         textView2.setText(shar_name);
         Glide.with(this)
                 .load(sharing_image)
                 .into(photo_image);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -135,15 +135,15 @@ public class SharingEdit extends Activity {
                 startActivity(intent);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        sharingBoardModComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
                 //수정하기 위해 sharing Board 밑에 현재 선택된 shar_key 와 같은 것을 찾아서 title 과 content 에 수정된 글 저장하기.
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("sharing Board").child(shar_key);
-                ref.child("title").setValue(textView1.getText().toString());
-                ref.child("content").setValue(textView4.getText().toString());
+                ref.child("title").setValue(sharingBoardContentNameMod.getText().toString());
+                ref.child("content").setValue(sharingBoardContentMod.getText().toString());
 
                 storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
