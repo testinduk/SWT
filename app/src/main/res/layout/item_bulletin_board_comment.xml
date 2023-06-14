@@ -36,5 +36,14 @@
         android:text="학번"
         app:layout_constraintStart_toStartOf="@+id/bulletinCommentContent"
         app:layout_constraintTop_toBottomOf="@+id/bulletinCommentContent" />
+    <TextView
+        android:id="@+id/bulletinBoardDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="4dp"
+        android:text="학번"
+        app:layout_constraintStart_toStartOf="@+id/bulletinCommentContent"
+        app:layout_constraintTop_toBottomOf="@+id/bulletinCommentContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

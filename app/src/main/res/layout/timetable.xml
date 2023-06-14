@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
         app:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/timeTableDivision"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/table_outside"
@@ -33,7 +34,7 @@
             app:layout_rowWeight="1" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/timeTableMon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -46,7 +47,7 @@
             android:text="월" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/timeTableTue"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -59,7 +60,7 @@
             android:text="화" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/timeTableWen"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -72,7 +73,7 @@
             android:text="수" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/timeTableThu"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -85,7 +86,7 @@
             android:text="목" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/timeTableFri"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_columnWeight="1"
@@ -99,7 +100,7 @@
 
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/timeTable09"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -174,7 +175,7 @@
             />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/timeTable10"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -248,7 +249,7 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/timeTable11"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -323,7 +324,7 @@
 
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/timeTable12"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -399,7 +400,7 @@
 
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/timeTable13"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -474,7 +475,7 @@
             />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/timeTable14"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -547,7 +548,7 @@
             />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/timeTable15"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -623,7 +624,7 @@
             />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/timeTable16"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -698,7 +699,7 @@
             android:gravity="center"
             />
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/timeTable17"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"

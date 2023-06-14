@@ -48,7 +48,7 @@ public class NoticeList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_list);
+        setContentView(R.layout.notice_board);
 
         noticeBoardRecyclerView = findViewById(R.id.noticeBoardRecyclerView); //아이디 연결
         noticeBoardRecyclerView.setHasFixedSize(true);
