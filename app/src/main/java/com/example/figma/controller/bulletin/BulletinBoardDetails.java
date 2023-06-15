@@ -30,16 +30,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.example.figma.databinding.BulletinBoardDetailsBinding;
+
 public class BulletinBoardDetails extends Activity {
-    private TextView textView1; //제목
-    private TextView textView2; //글쓴이
-    private TextView textView4; //내용
-    private TextView textView3; //날짜
-    private ImageButton btn_bul_amend; //수정버튼
-    private ImageButton btn_bul_del; //삭제버튼
-    private ImageButton backButton; //뒤로가기
-    private ImageView view2;
-    private Button EditText2; //댓글 쓰기
+    private BulletinBoardDetailsBinding mBinding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -49,19 +43,10 @@ public class BulletinBoardDetails extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board_details);
 
-        textView1 = findViewById(R.id.BulletinBoardDetailsTitle);
-        textView2 = findViewById(R.id.writer);
-        textView4 = findViewById(R.id.content);
-        textView3 = findViewById(R.id.time);
-        btn_bul_amend = findViewById(R.id.writingButton);
-        btn_bul_del = findViewById(R.id.deleteButton);
-        backButton = findViewById(R.id.backButton);
-        view2 = findViewById(R.id.imageView);
-        EditText2 = findViewById(R.id.commentMove);
-
-
+        mBinding = BulletinBoardDetailsBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         Intent second_intent = getIntent();
 
@@ -77,19 +62,19 @@ public class BulletinBoardDetails extends Activity {
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        textView2.setText(bulletin_username);
-        textView4.setText(bulletin_content);
-        textView1.setText(bulletin_title);
+        mBinding.writer.setText(bulletin_username);
+        mBinding.content.setText(bulletin_content);
+        mBinding.BulletinBoardDetailsTitle.setText(bulletin_title);
         Glide.with(this)
                 .load(bulletin_image)
-                .into(view2);
-        textView3.setText(bulletin_time);
+                .into(mBinding.imageView);
+        mBinding.time.setText(bulletin_time);
 
         if (uid.equals(bulletin_idToken)) {
-            btn_bul_amend.setEnabled(true);
-            btn_bul_del.setEnabled(true);
+            mBinding.writingButton.setEnabled(true);
+            mBinding.deleteButton.setEnabled(true);
             //수정 버튼
-            btn_bul_amend.setOnClickListener(new View.OnClickListener() {
+            mBinding.writingButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (bulletin_idToken != null) {
@@ -110,7 +95,7 @@ public class BulletinBoardDetails extends Activity {
                 }
             });
             //글 삭제하기.
-            btn_bul_del.setOnClickListener(new View.OnClickListener() {
+            mBinding.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(bulletin_idToken != null){
@@ -126,31 +111,26 @@ public class BulletinBoardDetails extends Activity {
                                 Toast.makeText(BulletinBoardDetails.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         });
-
                         builder.setNegativeButton("취소",null);
                         builder.create().show();
                     }
                 }
             });
-
         } else {
-            btn_bul_amend.setEnabled(false);
-            btn_bul_del.setEnabled(false);
+            mBinding.writingButton.setEnabled(false);
+            mBinding.deleteButton.setEnabled(false);
         }
-
         // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
                 startActivity(intent);
             }
         });
-
         //채팅창 이동버튼 추가하기(김한용)
-
         // 댓글창 이동 버튼
-        EditText2.setOnClickListener(new View.OnClickListener() {
+        mBinding.commentMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoardComment.class);
@@ -158,12 +138,8 @@ public class BulletinBoardDetails extends Activity {
                 startActivity(intent);
             }
         });
-
         //댓글 추가하기
-
-
     }
-
     private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
