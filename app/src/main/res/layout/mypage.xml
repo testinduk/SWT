@@ -39,11 +39,11 @@
         android:text="학번/학년반"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/my_infButton"
+        app:layout_constraintStart_toStartOf="@+id/myInfButton"
         app:layout_constraintTop_toBottomOf="@+id/mypageName" />
 
     <Button
-        android:id="@+id/my_infButton"
+        android:id="@+id/myInfButton"
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:layout_marginStart="98dp"
@@ -71,7 +71,7 @@
         android:background="#00ff0000"
         android:text="로그아웃"
         android:textColor="#000000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/my_infButton"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myInfButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mypageName" />
 

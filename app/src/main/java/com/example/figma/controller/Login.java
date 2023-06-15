@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,45 +26,39 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.figma.databinding.LoginBinding;
 
 public class Login extends Activity {
+    private LoginBinding mBinding;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private Button buttonLogIn;
-    private Button signup, loginFindID, loginFindPW;
-    private CheckBox loginAuto;
+
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Boolean saveLogin;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+
+        mBinding = LoginBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        editTextEmail = (EditText) findViewById(R.id.loginID);
-        editTextPassword = (EditText) findViewById(R.id.loginPassword);
-        loginFindID = findViewById(R.id.loginFindID);
-        loginFindPW = findViewById(R.id.loginFindPW);
-        loginAuto = findViewById(R.id.loginAuto);
 
         //이전에 로그인 정보 저장되어 있는 경우 자동 로그인
         sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         saveLogin = sharedPreferences.getBoolean("saveLogin", false);
         if (saveLogin) {
-            editTextEmail.setText(sharedPreferences.getString("username", ""));
-            editTextPassword.setText(sharedPreferences.getString("password", ""));
-            loginAuto.setChecked(true);
-            loginUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+            mBinding.loginID.setText(sharedPreferences.getString("username", ""));
+            mBinding.loginPassword.setText(sharedPreferences.getString("password", ""));
+            mBinding.loginAuto.setChecked(true);
+            loginUser(mBinding.loginID.getText().toString(), mBinding.loginPassword.getText().toString());
         }
 
-        loginFindPW.setOnClickListener(new View.OnClickListener() {
+        mBinding.loginFindPW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindPw.class);
@@ -75,16 +66,14 @@ public class Login extends Activity {
             }
         });
 
-        loginFindID.setOnClickListener(new View.OnClickListener() {
+        mBinding.loginFindID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FindId.class);
                 startActivity(intent);
             }
         });
-
-        signup = findViewById(R.id.loginSignUpButton); //회원가입 버튼 클릭시 회원가입 페이지로 이동
-        signup.setOnClickListener(new View.OnClickListener() {
+        mBinding.loginSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
@@ -92,12 +81,11 @@ public class Login extends Activity {
             }
         });
 
-        buttonLogIn = (Button) findViewById(R.id.loginButton); //로그인 버튼 클릭시
-        buttonLogIn.setOnClickListener(new View.OnClickListener() {
+        mBinding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editTextEmail.getText().toString().equals("") && !editTextPassword.getText().toString().equals("")) {
-                    loginUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+                if (!mBinding.loginID.getText().toString().equals("") && !mBinding.loginPassword.getText().toString().equals("")) {
+                    loginUser(mBinding.loginID.getText().toString(), mBinding.loginPassword.getText().toString());
                     Intent intent = new Intent(getApplicationContext(), MainHome.class);
                     startActivityForResult(intent, 1); //메인 홈으로 이동.
 
@@ -148,14 +136,11 @@ public class Login extends Activity {
                                         }
                                     }
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     // 에러 처리
                                 }
                             });
-
-
                         } else {
                             // 로그인 실패
                             Toast.makeText(Login.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -165,7 +150,6 @@ public class Login extends Activity {
                     }
                 });
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -178,11 +162,9 @@ public class Login extends Activity {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }
     }
-
     private class override {
     }
     @Override
     public void onBackPressed(){
-
     }
 }

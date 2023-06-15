@@ -127,7 +127,7 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/spinnerSelctQuestion"
+        android:id="@+id/spinnerSelectQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -280,8 +280,8 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerSelctQuestion"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerSelctQuestion"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerSelectQuestion"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerSelectQuestion"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -296,7 +296,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerSelctQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectQuestion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

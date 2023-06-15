@@ -6,8 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,21 +16,23 @@ import com.example.figma.controller.MainHome;
 import com.example.figma.controller.myinformation.MyInfDetails;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.example.figma.databinding.MypageBinding;
+
 public class Mypage extends AppCompatActivity {
-    // 다른 페이지에서 마이페이지 버튼 눌렀을 때
+    private MypageBinding mBinding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        ImageButton mschoolpage; // 종합정보시스템 버튼 선언
-        ImageButton msmartclass; // 스마트클래스 버튼 선언
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
 
-        // 종합정보시스템 버튼 하이퍼 링크
-        mschoolpage = findViewById(R.id.schoolpage);
+        mBinding = MypageBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
-        mschoolpage.setOnClickListener(new View.OnClickListener() {
+        // 종합정보시스템 버튼 하이퍼 링크
+        mBinding.schoolpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://student.induk.ac.kr/KR/login.do"));
@@ -41,9 +41,7 @@ public class Mypage extends AppCompatActivity {
         });
 
         // 스마트클래스 버튼 하이퍼링크
-        msmartclass = findViewById(R.id.smartclass);
-
-        msmartclass.setOnClickListener(new View.OnClickListener() {
+        mBinding.smartclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://lms.induk.ac.kr/login.php"));
@@ -53,8 +51,7 @@ public class Mypage extends AppCompatActivity {
 
 
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -64,9 +61,7 @@ public class Mypage extends AppCompatActivity {
         });
 
         // 정보수정 버튼
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        Button show_notice_more = findViewById(R.id.my_infButton);
-        show_notice_more.setOnClickListener(new View.OnClickListener() {
+        mBinding.myInfButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyInfDetails.class);
@@ -75,8 +70,7 @@ public class Mypage extends AppCompatActivity {
         });
 
         // 로그아웃
-        Button logout = findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
+        mBinding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("로그아웃버튼",": 클릭");

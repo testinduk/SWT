@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,30 +24,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.example.figma.databinding.NoticeBoardDetailsBinding;
+
 public class NoticeDetails extends Activity {
-    private ImageButton noticeBoardContentDelete, noticeBoardContentMod, backButton, imageButton2;
-    private TextView noticeBoardContent, noticeBoardContentName, noticeBoardUserName, noticeBoardDay;
-    private ImageView photo_image;
-    private Button noticeBoardContentComment;
+    private NoticeBoardDetailsBinding mBinding;
 
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_board_details);
 
-
-        photo_image = findViewById(R.id.photo_image);    // 이미지뷰
-        noticeBoardContentMod = findViewById(R.id.noticeBoardContentMod); //수정 버튼
-        noticeBoardContent = findViewById(R.id.noticeBoardContent); //내용
-        noticeBoardContentName = findViewById(R.id.noticeBoardContentName); //제목
-        noticeBoardContentDelete = findViewById(R.id.noticeBoardContentDelete);   // 삭제 버튼
-        backButton = findViewById(R.id.backButton); // back 버튼
-        noticeBoardUserName =findViewById(R.id.noticeBoardUserName);   // 글쓴이
-        noticeBoardDay = findViewById(R.id.noticeBoardDay); // 날짜
-        noticeBoardContentComment = findViewById(R.id.noticeBoardContentComment);
-
+        mBinding = NoticeBoardDetailsBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         Intent second_intent = getIntent();
 
@@ -71,20 +56,20 @@ public class NoticeDetails extends Activity {
         String notice_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
 
-        noticeBoardContent.setText(notice_content);
-        noticeBoardContentName.setText(notice_title);
-        noticeBoardUserName.setText(notice_username);
+        mBinding.noticeBoardContent.setText(notice_content);
+        mBinding.noticeBoardContentName.setText(notice_title);
+        mBinding.noticeBoardUserName.setText(notice_username);
         Glide.with(this)
                 .load(notice_image)
-                .into(photo_image);
-        noticeBoardDay.setText(notice_time);
+                .into(mBinding.photoImage);
+        mBinding.noticeBoardDay.setText(notice_time);
 
 
         if(uid.equals(notice_idToken)) {
-            noticeBoardContentDelete.setEnabled(true);
-            noticeBoardContentMod.setEnabled(true);
+            mBinding.noticeBoardContentDelete.setEnabled(true);
+            mBinding.noticeBoardContentMod.setEnabled(true);
 
-            noticeBoardContentMod.setOnClickListener(new View.OnClickListener() {
+            mBinding.noticeBoardContentMod.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (notice_idToken != null) {
@@ -106,7 +91,7 @@ public class NoticeDetails extends Activity {
                 }
             });
             // trash button
-            noticeBoardContentDelete.setOnClickListener(new View.OnClickListener() {
+            mBinding.noticeBoardContentDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (notice_idToken != null) {
@@ -131,11 +116,11 @@ public class NoticeDetails extends Activity {
                 }
             });
         }else{
-            noticeBoardContentMod.setEnabled(false);
-            noticeBoardContentDelete.setEnabled(false);
+            mBinding.noticeBoardContentMod.setEnabled(false);
+            mBinding.noticeBoardContentDelete.setEnabled(false);
         }
                 // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -148,7 +133,7 @@ public class NoticeDetails extends Activity {
 
 
         // 댓글창 이동 버튼
-        noticeBoardContentComment.setOnClickListener(new View.OnClickListener() {
+        mBinding.noticeBoardContentComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeBoardComment.class);

@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -27,12 +23,11 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
+import com.example.figma.databinding.BulletinBoardEditBinding;
+
 public class BulletinBoardEdit extends Activity {
-    private EditText textView1; //제목
-    private EditText textView4; //내용
-    private Button button; //완료버튼
-    private ImageView photo_image; //이미지 보여줌
-    private ImageButton imageButton, imageButton7; //첨부파일(사진). 파일
+
+    private BulletinBoardEditBinding mBinding;
 
     StorageReference storageRef;
     FirebaseStorage storage;
@@ -47,7 +42,7 @@ public class BulletinBoardEdit extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
+                    mBinding.imageView.setImageURI(uri);
 
                     Intent four_intent = getIntent();
                     String bulletin_image1 = four_intent.getStringExtra("image");
@@ -82,17 +77,13 @@ public class BulletinBoardEdit extends Activity {
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board_edit);
+
+        mBinding = BulletinBoardEditBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-
-        textView1 = findViewById(R.id.titleEdit);
-        textView4 = findViewById(R.id.contentEdit);
-        button = findViewById(R.id.completeButton);
-        photo_image = findViewById(R.id.imageView);
-        imageButton = findViewById(R.id.attachImageFileButton);
-        imageButton7 = findViewById(R.id.attachFileButton);
 
         Intent third_intent = getIntent(); //sharing_detail intent.putExtra 정보 받아오기
 
@@ -107,13 +98,13 @@ public class BulletinBoardEdit extends Activity {
         Log.d("Uid", uid);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        textView1.setText(bulletin_edit_title);
-        textView4.setText(bulletin_edit_content);
+        mBinding.titleEdit.setText(bulletin_edit_title);
+        mBinding.contentEdit.setText(bulletin_edit_content);
         Glide.with(this)
                 .load(bulletin_image)
-                .into(photo_image);
+                .into(mBinding.imageView);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.attachImageFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -121,15 +112,15 @@ public class BulletinBoardEdit extends Activity {
                 startActivityForResult(intent, 1);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
+        mBinding.completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
                 //수정하기 위해 bulletin Board 밑에 현재 선택된 bulletin_key 와 같은 것을 찾아서 title 과 content 에 수정된 글 저장하기.
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bulletin Board").child(bulletin_key);
-                ref.child("title").setValue(textView1.getText().toString());
-                ref.child("content").setValue(textView4.getText().toString());
+                ref.child("title").setValue(mBinding.titleEdit.getText().toString());
+                ref.child("content").setValue(mBinding.contentEdit.getText().toString());
 
                 storageRef.child("bulletin/" + bulletin_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
