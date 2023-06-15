@@ -36,7 +36,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.bulletin.BulletinBoard"/>
+        <activity android:name=".controller.bulletin.BulletinBoard"
+            android:windowSoftInputMode="adjustPan"/> <!--키보드 위로 UI가 올라오는 거 방지-->
         <activity android:name=".controller.bulletin.BulletinBoardDetails"/>
         <activity android:name=".controller.bulletin.BulletinBoardWriting"/>
         <activity android:name=".controller.bulletin.BulletinBoardEdit"/>
@@ -57,10 +58,12 @@
         <activity android:name=".controller.notice.NoticeBoardComment"/>
         <activity android:name=".controller.notice.NoticeDetails"/>
         <activity android:name=".controller.notice.NoticeEdit"/>
-        <activity android:name=".controller.notice.NoticeList"/>
+        <activity android:name=".controller.notice.NoticeList"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".controller.notice.NoticeWriting"/>
         <!--notice-->
-        <activity android:name=".controller.sharing.SharingBoard"/>
+        <activity android:name=".controller.sharing.SharingBoard"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".controller.sharing.SharingBoardComment"/>
         <activity android:name=".controller.sharing.SharingDetails"/>
         <activity android:name=".controller.sharing.SharingEdit"/>

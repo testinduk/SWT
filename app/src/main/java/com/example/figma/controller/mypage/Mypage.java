@@ -32,20 +32,20 @@ public class Mypage extends AppCompatActivity {
         setContentView(view);
 
         // 종합정보시스템 버튼 하이퍼 링크
-        mBinding.schoolpage.setOnClickListener(new View.OnClickListener() {
+        mBinding.schoolPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://student.induk.ac.kr/KR/login.do"));
-                startActivity(urlintent);
+                Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://student.induk.ac.kr/KR/login.do"));
+                startActivity(urlIntent);
             }
         });
 
         // 스마트클래스 버튼 하이퍼링크
-        mBinding.smartclass.setOnClickListener(new View.OnClickListener() {
+        mBinding.smartClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://lms.induk.ac.kr/login.php"));
-                startActivity(urlintent);
+                Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://lms.induk.ac.kr/login.php"));
+                startActivity(urlIntent);
             }
         });
 

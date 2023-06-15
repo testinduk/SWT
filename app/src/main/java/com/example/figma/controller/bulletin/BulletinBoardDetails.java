@@ -70,18 +70,15 @@ public class BulletinBoardDetails extends Activity {
                 public void onClick(View view) {
                     if (bulletin_idToken != null) {
                         Intent intent = new Intent(getApplicationContext(), BulletinBoardEdit.class);
-                        intent.putExtra("id", bulletin_idToken);
+                        intent.putExtra("idToken", bulletin_idToken);
                         intent.putExtra("title",bulletin_title);
                         intent.putExtra("content",bulletin_content);
                         intent.putExtra("key",bulletin_key);
                         intent.putExtra("image",bulletin_image);
-                        Log.i("id", bulletin_idToken);
-                        Log.i("title",bulletin_title);
-                        Log.i("content",bulletin_content);
-                        Log.i("key",bulletin_key);
+                        intent.putExtra("time",bulletin_time);
+                        intent.putExtra("username", bulletin_username);
                         startActivity(intent);
                     } else {
-                        Log.i("id", "bulletin_idToken is null");
                     }
                 }
             });
