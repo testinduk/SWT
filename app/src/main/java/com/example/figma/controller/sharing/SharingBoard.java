@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,38 +25,37 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SharingBoard extends Activity {
+import com.example.figma.databinding.SharingBoardBinding;
 
-    //선언
-    private RecyclerView sharingBoardRecycler;
+
+public class SharingBoard extends Activity {
+    private SharingBoardBinding mBinding;
+
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private Button sharingBoardSearchButton; //검색 버튼
-    private EditText sharingBoardSearch; //검색어 입력
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_board); //레이아웃의 SharingBoard 부분 참조
 
-        sharingBoardRecycler = findViewById(R.id.sharingBoardRecycler);
+        mBinding = SharingBoardBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
-        sharingBoardRecycler.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
+
+        mBinding.sharingBoardRecycler.setHasFixedSize(true); //리사이클러뷰의 크기 변경이 일정하다는 것을 사용자의 입력으로 확인
         layoutManager = new LinearLayoutManager(this); //아이템 배치 방향을 수평으로 설정
-        sharingBoardRecycler.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
+        mBinding.sharingBoardRecycler.setLayoutManager(layoutManager);  //리사이클러뷰 레이아웃 매니저를 레이아웃 매니저로 지정
         arrayList = new ArrayList<>(); //arraylist를 리턴(원소 추가 가능)
 
-        sharingBoardRecycler.setHasFixedSize(true);
+        mBinding.sharingBoardRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        sharingBoardRecycler.setLayoutManager(layoutManager);
+        mBinding.sharingBoardRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        sharingBoardSearchButton = findViewById(R.id.sharingBoardSearchButton);
-        sharingBoardSearch = findViewById(R.id.sharingBoardSearch);
-
 
         database = FirebaseDatabase.getInstance(); //기본 FirebaseDatabase 인스턴스 가져오기(데이터베이스란 이름으로 객체 생성)
 
@@ -89,14 +85,12 @@ public class SharingBoard extends Activity {
 
 
         adapter = new SharingAdapter(arrayList, this);
-        sharingBoardRecycler.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
-
+        mBinding.sharingBoardRecycler.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
         //검색 기능
-        sharingBoardSearchButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingBoardSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String searchText = sharingBoardSearch.getText().toString().toLowerCase();
-
+                String searchText = mBinding.sharingBoardSearch.getText().toString().toLowerCase();
                 ArrayList<Board> filteredList = new ArrayList<>();
                 for(Board item : arrayList){
                     if(item.getTitle().toLowerCase().contains(searchText)
@@ -107,23 +101,19 @@ public class SharingBoard extends Activity {
                     }
                 }
                 adapter = new SharingAdapter(filteredList, SharingBoard.this);
-                sharingBoardRecycler.setAdapter(adapter);
+                mBinding.sharingBoardRecycler.setAdapter(adapter);
             }
         });
-
         // 글쓰기 버튼
-        Button writingButton = findViewById(R.id.writingButton);
-        writingButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.writingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingWriting.class);
                 startActivity(intent);
             }
         });
-
         //채팅 버튼
-        ImageButton chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -131,10 +121,8 @@ public class SharingBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 나눔 버튼
-        ImageButton sharingButton = findViewById(R.id.sharingButton);
-        sharingButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -142,10 +130,8 @@ public class SharingBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 홈 버튼
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -153,10 +139,8 @@ public class SharingBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 게시판 버튼
-        ImageButton boardButton = findViewById(R.id.boardButton);
-        boardButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -164,10 +148,8 @@ public class SharingBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 마이페이지 버튼
-        ImageButton mypageButton = findViewById(R.id.mypageButton);
-        mypageButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -175,10 +157,8 @@ public class SharingBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

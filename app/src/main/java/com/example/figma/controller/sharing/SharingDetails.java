@@ -8,10 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -26,30 +22,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class SharingDetails extends Activity {
-    private TextView sharingBoardContentWriter;
-    private TextView sharingBoardContent;
-    private TextView sharingBoardContentName;
-    private TextView sharingBoardContentDay;
-    private ImageView photo_image, sharingBoardContentMod;
-    private ImageButton sharingBoardContentDelete;
-    private Button sharingBoardContentComment;
+import com.example.figma.databinding.SharingDetailsBinding;
 
-    @SuppressLint("MissingInflatedId")
+public class SharingDetails extends Activity {
+    private SharingDetailsBinding mBinding;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_details);
 
-
-        // 수정 버튼
-        sharingBoardContentWriter = findViewById(R.id.sharingBoardContentWriter);
-        sharingBoardContentName = findViewById(R.id.sharingBoardContentName);
-        sharingBoardContent = findViewById(R.id.sharingBoardContent);
-        sharingBoardContentMod = findViewById(R.id.sharingBoardContentMod);
-        sharingBoardContentDelete = findViewById(R.id.sharingBoardContentDelete);
-        photo_image = findViewById(R.id.photo_image);
-        sharingBoardContentDay = findViewById(R.id.sharingBoardContentDay);
-        sharingBoardContentComment = findViewById(R.id.sharingBoardContentComment); // 댓글창
+        mBinding = SharingDetailsBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         Intent second_intent = getIntent();
 
@@ -70,19 +54,19 @@ public class SharingDetails extends Activity {
         String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
 
-        sharingBoardContentWriter.setText(shar_username);
-        sharingBoardContent.setText(shar_content);
-        sharingBoardContentName.setText(shar_title);
+        mBinding.sharingBoardContentWriter.setText(shar_username);
+        mBinding.sharingBoardContent.setText(shar_content);
+        mBinding.sharingBoardContentName.setText(shar_title);
         Glide.with(this)
                 .load(sharing_image)
-                .into(photo_image);
-        sharingBoardContentDay.setText(sharing_time);
+                .into(mBinding.photoImage);
+        mBinding.sharingBoardContentDay.setText(sharing_time);
 
         if (uid.equals(shar_idToken)) {
-            sharingBoardContentMod.setEnabled(true);
-            sharingBoardContentDelete.setEnabled(true);
+            mBinding.sharingBoardContentMod.setEnabled(true);
+            mBinding.sharingBoardContentDelete.setEnabled(true);
             //수정 버튼
-            sharingBoardContentMod.setOnClickListener(new View.OnClickListener() {
+            mBinding.sharingBoardContentMod.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (shar_idToken != null) {
@@ -105,7 +89,7 @@ public class SharingDetails extends Activity {
                 }
             });
             //글 삭제하기.
-            sharingBoardContentDelete.setOnClickListener(new View.OnClickListener() {
+            mBinding.sharingBoardContentDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(shar_idToken != null){
@@ -129,26 +113,20 @@ public class SharingDetails extends Activity {
             });
 
         } else {
-            sharingBoardContentMod.setEnabled(false);
-            sharingBoardContentDelete.setEnabled(false);
+            mBinding.sharingBoardContentMod.setEnabled(false);
+            mBinding.sharingBoardContentDelete.setEnabled(false);
         }
 
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
                 startActivity(intent);
             }
         });
-
-
-        //채팅창 이동버튼 추가하기(김한용)
-
-
         // 댓글창 이동 버튼
-        sharingBoardContentComment.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingBoardContentComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoardComment.class);

@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -32,38 +28,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.example.figma.databinding.SharingWritingBinding;
 
 public class SharingWriting extends Activity {
-
-    Button sharingBoardContentComplete;
-    ImageButton cameraButton,backButton;
-    EditText sharingBoardContentNameWrite, sharingBoardContentWrite;
-    String title, content;
+    private SharingWritingBinding mBinding;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(); // databaseReference에 저장하고 읽어옴
     StorageReference storageRef;
     FirebaseStorage storage;
     String sharing_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
-    ImageView photo_image;
 
-
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_writing);
+
+        mBinding = SharingWritingBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        sharingBoardContentComplete = findViewById(R.id.sharingBoardContentComplete); //버튼 아이디 연결
-        sharingBoardContentNameWrite = findViewById(R.id.sharingBoardContentNameWrite); // 제목 적는 곳
-        sharingBoardContentWrite = findViewById(R.id.sharingBoardContentWrite); // 내용 적는 곳
-        cameraButton = findViewById(R.id.cameraButton); //이미지 사진 넣기
-        backButton = findViewById(R.id.backButton);
-        photo_image = findViewById(R.id.photo_image);
-
-        cameraButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -72,7 +58,7 @@ public class SharingWriting extends Activity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
@@ -80,7 +66,7 @@ public class SharingWriting extends Activity {
             }
         });
 
-        sharingBoardContentComplete.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingBoardContentComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth를 선언
@@ -92,7 +78,7 @@ public class SharingWriting extends Activity {
 
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid); //쿼리 작성
 
-                String current_time = getCurretTime();
+                String current_time = getCurrentTime();
 
 
 
@@ -108,8 +94,8 @@ public class SharingWriting extends Activity {
 
 
 
-                            String title = sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
-                            String content = sharingBoardContentWrite.getText().toString(); //내용을 가져옴
+                            String title = mBinding.sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
+                            String content = mBinding.sharingBoardContentWrite.getText().toString(); //내용을 가져옴
 
 
 
@@ -157,7 +143,7 @@ public class SharingWriting extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
+                    mBinding.photoImage.setImageURI(uri);
 
                     StorageReference imageRef = storageRef.child("sharing/" + sharing_image_UUID);
                     Log.i("uuid",sharing_image_UUID);
@@ -176,14 +162,9 @@ public class SharingWriting extends Activity {
                 }
                 break;
         }
-
-
-
-
-
     }
 
-    private String getCurretTime() {
+    private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
