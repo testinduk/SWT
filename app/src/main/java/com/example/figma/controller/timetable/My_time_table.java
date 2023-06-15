@@ -47,10 +47,13 @@ public class My_time_table extends AppCompatActivity {
     private String dp_time;
     private String grade_time;
     private String class_time;
-    private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
 
     private List<Board> mjfieldList = new ArrayList<>();
     private List<Board> gefieldList = new ArrayList<>();
+    private Map<String, Object> geMap = new HashMap<>();
+
+    private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
+
 
 
 
@@ -205,67 +208,105 @@ public class My_time_table extends AppCompatActivity {
 
         });
 
-
         // ---- 교양 리사이클러뷰에 표시 ---- //
         CollectionReference geClassRef = db.collection("Ge class");
-
-//        Map<String, Object> gedata = new HashMap<>();
-
-        geClassRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    Log.i("log", "if문 통과");
-
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        String documentId = document.getId();
-                        Map<String, Object> gedata = document.getData();
-                        Log.e("log1", "Map에 저장");
-
-
-                        for (Map.Entry<String, Object> entry : gedata.entrySet()) {
-                            String fieldName = entry.getKey();
-                            Object fieldValue = entry.getValue();
-                            Log.d("log2", "필드값 정렬 후 저장");
-
-
-                            // Create a Field object and add it to the list
-                            Board ge_field = new Board(fieldName, fieldValue);
-                            gefieldList.add(ge_field);
-                            Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
-                            mBinding.GeRecycler.setAdapter(ge_adapter);
-//                            Log.i("log", "geHandle실행");
-
-//                        geHandleData(gedata);
-
+        geClassRef.document("선택").collection("금").document("5-6")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data1 = document.getData();
+                                geHandleData(data1);
+                            }
                         }
                     }
-                }
-            }
-        });
-
-//
-//            }
-//        }new OnCompleteListener<DocumentSnapshot>() {
+                });
+//        geClassRef.document("선택").collection("금").document("7-8")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //                    @Override
 //                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 //                        if (task.isSuccessful()) {
 //                            DocumentSnapshot document = task.getResult();
 //                            if (document != null && document.exists()) {
-//                                Map<String, Object> GeData = document.getData();
-//                                geHandleData(GeData);
+//                                Map<String, Object> data2 = document.getData();
+//                                geMap.putAll(data2);
 //                            }
-//                        } else {
-//                            Log.i("log", "실패");
 //                        }
-//
 //                    }
 //                });
-
-
-
-
-
+//
+//        geClassRef.document("선택").collection("목").document("2-3")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> data3 = document.getData();
+//                                geMap.putAll(data3);
+//                            }
+//                        }
+//                    }
+//                });
+//
+//        geClassRef.document("선택").collection("온라인").document("비대면수업")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> data4 = document.getData();
+//                                geMap.putAll(data4);
+//                            }
+//                        }
+//                    }
+//                });
+//
+//        geClassRef.document("선택").collection("월").document("1-2")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> data5 = document.getData();
+//                                geMap.putAll(data5);
+//                            }
+//                        }
+//                    }
+//                });
+//
+//        geClassRef.document("선택").collection("월").document("3-4")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> data6 = document.getData();
+//                                geMap.putAll(data6);
+//                            }
+//                        }
+//                    }
+//                });
+//
+//        geClassRef.document("필수").collection("온라인").document("비대면수업")
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document != null && document.exists()) {
+//                                Map<String, Object> data7 = document.getData();
+//                                geMap.putAll(data7);
+//                            }
+//                        }
+//                    }
+//                });
+//        geHandleData(geMap);
 
 
         // 뒤로가기
@@ -288,15 +329,13 @@ public class My_time_table extends AppCompatActivity {
             // Create a Field object and add it to the list
             Board field = new Board(fieldName, fieldValue);
             mjfieldList.add(field);
-            Major_adapter adapter = new Major_adapter(mjfieldList);
-            mBinding.MajorRecycler.setAdapter(adapter);
-
         }
-
-
+        Major_adapter adapter = new Major_adapter(mjfieldList);
+        mBinding.MajorRecycler.setAdapter(adapter);
     }
 
     private void geHandleData(Map<String, Object> data) {
+        gefieldList.clear();
 
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             String fieldName = entry.getKey();
@@ -305,17 +344,10 @@ public class My_time_table extends AppCompatActivity {
             // Create a Field object and add it to the list
             Board field = new Board(fieldName, fieldValue);
             gefieldList.add(field);
-            Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
-            mBinding.GeRecycler.setAdapter(ge_adapter);
-            Log.i("log", "geHandle실행");
-
-            Major_adapter adapter = new Major_adapter(gefieldList);
-            mBinding.GeRecycler.setAdapter(adapter);
-
         }
-
+        Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
+        mBinding.GeRecycler.setAdapter(ge_adapter);
+        Log.i("log", "geHandle실행");
 
     }
-
-
 }
