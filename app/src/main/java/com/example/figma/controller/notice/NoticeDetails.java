@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import android.widget.Toast;
@@ -74,19 +73,15 @@ public class NoticeDetails extends Activity {
                 public void onClick(View view) {
                     if (notice_idToken != null) {
                         Intent intent = new Intent(getApplicationContext(), NoticeEdit.class);
-                        intent.putExtra("id", notice_idToken);
+                        intent.putExtra("idToken", notice_idToken);
                         intent.putExtra("title", notice_title);
                         intent.putExtra("content", notice_content);
                         intent.putExtra("key", notice_key);
                         intent.putExtra("image", notice_image);
-                        Log.i("id", notice_idToken);
-                        Log.i("title", notice_title);
-                        Log.i("content", notice_content);
-                        Log.i("key", notice_key);
-                        Log.i("image", notice_image);
+                        intent.putExtra("time", notice_time);
+                        intent.putExtra("username", notice_username);
                         startActivity(intent);
                     } else {
-                        Log.i("id", "shar_idToken is null");
                     }
                 }
             });
