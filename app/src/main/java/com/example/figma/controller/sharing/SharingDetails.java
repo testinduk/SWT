@@ -71,20 +71,15 @@ public class SharingDetails extends Activity {
                 public void onClick(View view) {
                     if (shar_idToken != null) {
                         Intent intent = new Intent(getApplicationContext(), SharingEdit.class);
-                        intent.putExtra("id", shar_idToken);
+                        intent.putExtra("idToken", shar_idToken);
                         intent.putExtra("title",shar_title);
                         intent.putExtra("content",shar_content);
                         intent.putExtra("key",shar_key);
                         intent.putExtra("image",sharing_image);
                         intent.putExtra("username", shar_username);
-                        Log.i("id", shar_idToken);
-                        Log.i("title",shar_title);
-                        Log.i("content",shar_content);
-                        Log.i("key",shar_key);
-                        Log.i("image",sharing_image);
+                        intent.putExtra("time", sharing_time);
                         startActivity(intent);
                     } else {
-                        Log.i("id", "shar_idToken is null");
                     }
                 }
             });
