@@ -9,7 +9,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,14 +19,16 @@ import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
+import com.example.figma.databinding.BulletinBoardEditBinding;
 import com.example.figma.model.Teacheritem;
 
 import java.util.ArrayList;
 
+import com.example.figma.databinding.ChatPersonBinding;
 
 public class ChatPerson extends AppCompatActivity {
+    private ChatPersonBinding mBinding;
 
-    private RecyclerView mRecyclerView; // 아래에 있는 mRecyclerView와 연결
     private TeacherRecyclerAdapter mRecyclerAdapter; // 아래에 있는 mRecyclerAdapter과 연결
     private ArrayList<Teacheritem> mTeacherItem;
 
@@ -35,11 +36,13 @@ public class ChatPerson extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chat_person);
+
+        mBinding = ChatPersonBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         //채팅 버튼
-        ImageButton chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -49,9 +52,7 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         // 나눔 버튼
-        ImageButton sharingButton = findViewById(R.id.sharingButton);
-        sharingButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
@@ -60,9 +61,7 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         // 홈 버튼
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
@@ -71,9 +70,7 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         // 게시판 버튼
-        ImageButton boardButton = findViewById(R.id.boardButton);
-        boardButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
@@ -82,9 +79,7 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         // 마이페이지 버튼
-        ImageButton mypageButton = findViewById(R.id.mypageButton);
-        mypageButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Mypage.class);
@@ -93,8 +88,7 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -104,15 +98,13 @@ public class ChatPerson extends AppCompatActivity {
         });
 
         //Adapter와 LayoutManager 연결
-        mRecyclerView = (RecyclerView) findViewById(R.id.TeacherList);
-
         /* initiate adapter */
         mRecyclerAdapter = new TeacherRecyclerAdapter();
 
         /* initiate recyclerview */
-        mRecyclerView.setAdapter(mRecyclerAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.TeacherList.setAdapter(mRecyclerAdapter);
+        mBinding.TeacherList.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.TeacherList.setLayoutManager(new LinearLayoutManager(this));
 
         /* adapt data 프로필 정보 ㅅ*/
         mTeacherItem = new ArrayList<>();
