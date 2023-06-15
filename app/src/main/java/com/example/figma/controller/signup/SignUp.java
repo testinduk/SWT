@@ -42,7 +42,6 @@ public class SignUp extends AppCompatActivity {
     private FirebaseStorage storage;
     private String question;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
