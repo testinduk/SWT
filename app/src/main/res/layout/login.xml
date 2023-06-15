@@ -55,7 +55,7 @@
         android:background="@drawable/rectangle11"
         android:ems="10"
         android:hint="학번 또는 아이디"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
