@@ -5,15 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.figma.R;
 import com.example.figma.controller.Login;
+import com.example.figma.databinding.BulletinBoardEditBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,30 +22,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.figma.databinding.FindPwBinding;
+
 public class FindPw extends Activity {
-    private EditText userName, studentNumber, studentId;
-    private Button finishBT;
-    private ImageButton backButton;
-    @SuppressLint("MissingInflatedId")
+    private FindPwBinding mBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.find_pw);
 
-        userName = findViewById(R.id.enterName);// 이름 입력
-        studentNumber = findViewById(R.id.enterStudentNumber); // 학번 입력
-        studentId = findViewById(R.id.enterId); // 아이디 입력
-        finishBT = findViewById(R.id.sendButton); // 재설정 메일 보내기 버튼
-        backButton = findViewById(R.id.backButton);
+        mBinding = FindPwBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
-
-        finishBT.setOnClickListener(new View.OnClickListener() {
+        mBinding.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("SignUp");
-                String name = userName.getText().toString().trim();
-                String number = studentNumber.getText().toString().trim();
-                String id = studentId.getText().toString().trim();
+                String name = mBinding.enterName.getText().toString().trim();
+                String number = mBinding.enterStudentNumber.getText().toString().trim();
+                String id = mBinding.enterId.getText().toString().trim();
 
                 Query query = databaseReference.orderByChild("studentNumber").equalTo(number); // studentNumber와 number가 일치할 때
 
@@ -90,7 +84,7 @@ public class FindPw extends Activity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);

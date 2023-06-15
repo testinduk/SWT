@@ -8,10 +8,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,32 +22,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
 
+import com.example.figma.databinding.MyInfDetailsBinding;
+
 public class MyInfDetails extends Activity {
+    private MyInfDetailsBinding mBinding;
     static final int REQUEST_CODE=0;
-    private ImageView changeImage;
-    private ImageButton SelectImageButton;
-    private Button CompleteChangeButton;
-    private EditText password1;
     private  FirebaseAuth mAuth;
 
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_inf_details);
+
+        mBinding = MyInfDetailsBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentUser.getUid();
 
-        changeImage = findViewById(R.id.changeImage);
-        SelectImageButton = findViewById(R.id.SelectImageButton);
-        CompleteChangeButton = findViewById(R.id.CompleteChangeButton);
-        password1 = findViewById(R.id.password1);
         mAuth = FirebaseAuth.getInstance();
 
-
-        SelectImageButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.SelectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -61,8 +53,7 @@ public class MyInfDetails extends Activity {
         });
 
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -72,8 +63,7 @@ public class MyInfDetails extends Activity {
         });
 
         // warningButton
-        Button warningButton = findViewById(R.id.remove);
-        warningButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WarningMessage.class);
@@ -81,10 +71,10 @@ public class MyInfDetails extends Activity {
             }
         });
 
-        CompleteChangeButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.CompleteChangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newPassword = password1.getText().toString();
+                String newPassword = mBinding.password1.getText().toString();
                 currentUser.updatePassword(newPassword)
                         .addOnCompleteListener(MyInfDetails.this,new OnCompleteListener<Void>() {
                             @Override
@@ -113,21 +103,16 @@ public class MyInfDetails extends Activity {
                         });
             }
         });
-
-
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    changeImage.setImageURI(uri);
+                    mBinding.changeImage.setImageURI(uri);
                 }
                 break;
         }

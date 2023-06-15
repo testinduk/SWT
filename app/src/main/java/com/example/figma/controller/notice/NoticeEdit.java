@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -29,33 +25,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.example.figma.databinding.NoticeBoardEditBinding;
+
+
 public class NoticeEdit extends Activity {
-    private EditText noticeBoardContentNameMod, noticeBoardContentMod;
-    private Button noticeBoardModComplete;
-    private ImageView photo_image;
-    private ImageButton cameraButton, fileButton;
+    private NoticeBoardEditBinding mBinding;
 
     StorageReference storageRef;
     FirebaseStorage storage;
     String notice_image_UUID = UUID.randomUUID().toString();     // 랜덤 UUID 생성
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-
-    @SuppressLint("MissingInflatedId")
+    @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_board_edit);
+
+        mBinding = NoticeBoardEditBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-
-        noticeBoardContentNameMod = findViewById(R.id.noticeBoardContentNameMod);// 제목
-        noticeBoardContentMod = findViewById(R.id.noticeBoardContentMod);// 내용
-        noticeBoardModComplete = findViewById(R.id.noticeBoardModComplete); //수정 완료 버튼
-        photo_image = findViewById(R.id.photo_imageView);  // 이미지
-        cameraButton = findViewById(R.id.cameraButton);  // 이미지 추가 버튼
-        fileButton = findViewById(R.id.fileButton);  // 파일 추가 버튼
-
 
         Intent third_intent = getIntent(); // notice_detail intent.putExtra 정보 받아오기
 
@@ -68,13 +58,13 @@ public class NoticeEdit extends Activity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
         String uid = mAuth.getCurrentUser().getUid(); //uid 가져오기
 
-        noticeBoardContentNameMod.setText(notice_edit_title);
-        noticeBoardContentMod.setText(notice_edit_content);
+        mBinding.noticeBoardContentNameMod.setText(notice_edit_title);
+        mBinding.noticeBoardContentMod.setText(notice_edit_content);
         Glide.with(this)
                 .load(notice_image)
-                .into(photo_image);
+                .into(mBinding.photoImageView);
 
-        cameraButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -83,7 +73,7 @@ public class NoticeEdit extends Activity {
             }
         });
 
-        noticeBoardModComplete.setOnClickListener(new View.OnClickListener() {
+        mBinding.noticeBoardModComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -93,8 +83,8 @@ public class NoticeEdit extends Activity {
 
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notice Board").child(notice_key);
-                ref.child("title").setValue(noticeBoardContentNameMod.getText().toString());
-                ref.child("content").setValue(noticeBoardContentMod.getText().toString());
+                ref.child("title").setValue(mBinding.noticeBoardContentNameMod.getText().toString());
+                ref.child("content").setValue(mBinding.noticeBoardContentMod.getText().toString());
                 ref.child("notice_time").setValue(current_time);
 
                 storageRef.child("notice/" + notice_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -120,7 +110,7 @@ public class NoticeEdit extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
+                    mBinding.photoImageView.setImageURI(uri);
 
                     Intent third_intent = getIntent();
                     String notice_image1 = third_intent.getStringExtra("image");

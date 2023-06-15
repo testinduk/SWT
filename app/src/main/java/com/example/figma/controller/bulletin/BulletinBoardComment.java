@@ -6,9 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import com.example.figma.databinding.BulletinBoardCommentBinding;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,10 +42,7 @@ import java.util.UUID;
 
 public class BulletinBoardComment extends Activity {
 
-    private ImageButton backButton; //뒤로가기
-    private RecyclerView recyclerView;
-    private EditText EditText2; //댓글 쓰기
-    private ImageButton ImageButton2;//댓글 추가하기 버튼
+    private BulletinBoardCommentBinding mBinding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -54,22 +50,18 @@ public class BulletinBoardComment extends Activity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board_comment);
 
-        recyclerView = findViewById(R.id.bulletinBoardCommentRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mBinding = BulletinBoardCommentBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
         arrayList = new ArrayList<>();
-
-        backButton = findViewById(R.id.backButton);
-        EditText2 = findViewById(R.id.comment);
-        ImageButton2 = findViewById(R.id.commentSend);
-
+        layoutManager = new LinearLayoutManager(this);
+        mBinding.bulletinBoardCommentRecyclerView.setHasFixedSize(true);
+        mBinding.bulletinBoardCommentRecyclerView.setLayoutManager(layoutManager);
 
         Intent intent = getIntent();
 
@@ -82,7 +74,7 @@ public class BulletinBoardComment extends Activity {
 
 
         // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
@@ -91,11 +83,11 @@ public class BulletinBoardComment extends Activity {
         });
 
         //댓글 추가하기
-        ImageButton2.setOnClickListener(new View.OnClickListener() {
+        mBinding.commentSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-                String comment_content = EditText2.getText().toString();
+                String comment_content = mBinding.comment.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -162,7 +154,7 @@ public class BulletinBoardComment extends Activity {
 
 
         adapter = new BulletinComAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        mBinding.bulletinBoardCommentRecyclerView.setAdapter(adapter);
 
 
     }

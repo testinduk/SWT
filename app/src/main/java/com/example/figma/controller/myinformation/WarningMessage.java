@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -28,12 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class WarningMessage extends Activity {
+import com.example.figma.databinding.WarningMessageBinding;
 
+public class WarningMessage extends Activity {
+    private WarningMessageBinding mBinding;
     private DatabaseReference mDatabase;
     private StorageReference mStroage;
     private FirebaseAuth mAuth = null;
-    Button yesButton; // 회원 탈퇴 버튼 선언
+
     String TAG = "WarningMessage";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -41,11 +42,13 @@ public class WarningMessage extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.figma.R.layout.warning_message);
+
+        mBinding = WarningMessageBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         // 취소버튼(뒤로가기 처럼 생성)
-        Button noButton = findViewById(com.example.figma.R.id.noButton);
-        noButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Mypage.class);
@@ -54,86 +57,78 @@ public class WarningMessage extends Activity {
         });
 
         // 회원 탈퇴
-        yesButton = findViewById(R.id.yesButton);
-                yesButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mStroage = FirebaseStorage.getInstance().getReference();
+                String uid = mAuth.getCurrentUser().getUid();
+
+                // realtime 데이터베이스에 있는 SignUp 삭제(완료)
+                mDatabase.child("SignUp").child(user.getUid()).removeValue();
+
+                // realtime 데이터베이스에서 sharing board에 있는 사용자가 쓴 글 삭제
+                Query qsharing = mDatabase.child("sharing Board").orderByChild("idToken").equalTo(uid);
+
+                qsharing.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(View view) {
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        mDatabase = FirebaseDatabase.getInstance().getReference();
-                        mStroage = FirebaseStorage.getInstance().getReference();
-                        String uid = mAuth.getCurrentUser().getUid();
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String sKey = dataSnapshot.child("key").getValue(String.class);
+                            mDatabase.child("sharing Board").child(sKey).removeValue();
 
-                        // realtime 데이터베이스에 있는 SignUp 삭제(완료)
-                        mDatabase.child("SignUp").child(user.getUid()).removeValue();
+                            String simage = dataSnapshot.child("image_UUID").getValue(String.class);
+                            mStroage.child("sharing/").child(simage).delete();
+                        }
+                    }
 
-                        // realtime 데이터베이스에서 sharing board에 있는 사용자가 쓴 글 삭제
-                        Query qsharing = mDatabase.child("sharing Board").orderByChild("idToken").equalTo(uid);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
 
-                        qsharing.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                Query notice = mDatabase.child("notice Board").orderByChild("idToken").equalTo(uid);
 
-                                    String sKey = dataSnapshot.child("key").getValue(String.class);
-                                    mDatabase.child("sharing Board").child(sKey).removeValue();
+                notice.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String nKey = dataSnapshot.child("key").getValue(String.class);
+                            mDatabase.child("notice Board").child(nKey).removeValue();
 
-                                    String simage = dataSnapshot.child("image_UUID").getValue(String.class);
-                                    mStroage.child("sharing/").child(simage).delete();
-                                }
-                            }
+                            String nimage = dataSnapshot.child("image_UUID").getValue(String.class);
+                            mStroage.child("notice/").child(nimage).delete();
+                        }
+                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                    }
+                });
 
-                        Query qnotice = mDatabase.child("notice Board").orderByChild("idToken").equalTo(uid);
+                Query bulletin = mDatabase.child("bulletin Board").orderByChild("idToken").equalTo(uid);
 
-                        qnotice.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                bulletin.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                                    String nKey = dataSnapshot.child("key").getValue(String.class);
-                                    mDatabase.child("notice Board").child(nKey).removeValue();
+                            String bKey = dataSnapshot.child("key").getValue(String.class);
+                            mDatabase.child("bulletin Board").child(bKey).removeValue();
 
-                                    String nimage = dataSnapshot.child("image_UUID").getValue(String.class);
-                                    mStroage.child("notice/").child(nimage).delete();
-                                }
-                            }
+                            String bimage = dataSnapshot.child("image_UUID").getValue(String.class);
+                            mStroage.child("bulletin/").child(bimage).delete();
+                        }
+                    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
-
-                        Query qbulletin = mDatabase.child("bulletin Board").orderByChild("idToken").equalTo(uid);
-
-
-                        qbulletin.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                                    String bKey = dataSnapshot.child("key").getValue(String.class);
-                                    mDatabase.child("bulletin Board").child(bKey).removeValue();
-
-                                    String bimage = dataSnapshot.child("image_UUID").getValue(String.class);
-                                    mStroage.child("bulletin/").child(bimage).delete();
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-
-
+                    }
+                });
                 // Firebase Auth(인증)에서 계정 삭제 -> 이건 되는 아이
                 user.delete()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

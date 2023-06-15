@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
 import com.example.figma.R;
+import com.example.figma.databinding.BulletinBoardEditBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,34 +28,29 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.example.figma.databinding.BulletinBoardWritingBinding;
+
+
 public class BulletinBoardWriting extends Activity {
-    Button button;
-    EditText editTextTextPersonName5, editTextTextPersonName6;
-    String title, content;
+    private BulletinBoardWritingBinding mBinding;
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
     FirebaseStorage storage;
     String bulletin_board_image_UUID = UUID.randomUUID().toString(); //랜덤함수로 이미지 이름 지정
-    ImageView photo_image;
-    ImageButton imageButton, imageButton7, backButton;
 
-    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_writing);
 
+        mBinding = BulletinBoardWritingBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        button = findViewById(R.id.completeButton); //완료 버튼
-        editTextTextPersonName5 = findViewById(R.id.writingTitle); // 제목 적는 곳
-        editTextTextPersonName6 = findViewById(R.id.writingContent); // 내용 적는 곳
-        photo_image = findViewById(R.id.imageView); //사진 띄우기
-        imageButton = findViewById(R.id.attachImageFileButton); //앨범 버튼
-        imageButton7 = findViewById(R.id.attachFileButton); //파일 버튼
-        backButton = findViewById(R.id.backButton);
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.attachImageFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -68,8 +60,7 @@ public class BulletinBoardWriting extends Activity {
         });
 
         // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
@@ -77,8 +68,7 @@ public class BulletinBoardWriting extends Activity {
             }
         });
 
-
-        button.setOnClickListener(new View.OnClickListener() {
+        mBinding.completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -100,8 +90,8 @@ public class BulletinBoardWriting extends Activity {
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String userName = dataSnapshot.child("userName").getValue(String.class);
 
-                            String title = editTextTextPersonName5.getText().toString();
-                            String content = editTextTextPersonName6.getText().toString();
+                            String title = mBinding.writingTitle.getText().toString();
+                            String content = mBinding.writingContent.getText().toString();
 
                             DatabaseReference boardRef = databaseReference.child("bulletin Board").push();
                             String boardKey = boardRef.getKey();
@@ -145,7 +135,7 @@ public class BulletinBoardWriting extends Activity {
             case 1:
                 if(resultCode == RESULT_OK){
                     Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
+                    mBinding.imageView.setImageURI(uri);
 
                     StorageReference imageRef = storageRef.child("bulletin/" + bulletin_board_image_UUID);
                     imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,12 +38,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class SharingBoardComment extends Activity {
+import com.example.figma.databinding.SharingBoardCommentBinding;
 
-    private ImageButton backButton; //뒤로가기
-    private RecyclerView sharingBoardCommentRecycler;
-    private EditText sharingBoardCommentEdit; //댓글 쓰기
-    private ImageButton sharingBoardCommentSend;//댓글 추가하기 버튼
+
+public class SharingBoardComment extends Activity {
+    private SharingBoardCommentBinding mBinding;
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -53,38 +51,29 @@ public class SharingBoardComment extends Activity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sharing_board_comment);
 
-        sharingBoardCommentRecycler = findViewById(R.id.sharingBoardCommentRecycler);
-        sharingBoardCommentRecycler.setHasFixedSize(true);
+        mBinding = SharingBoardCommentBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+        mBinding.sharingBoardCommentRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        sharingBoardCommentRecycler.setLayoutManager(layoutManager);
+        mBinding.sharingBoardCommentRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-
-        backButton = findViewById(R.id.backButton);
-        sharingBoardCommentEdit = findViewById(R.id.sharingBoardCommentEdit);
-        sharingBoardCommentSend = findViewById(R.id.sharingBoardCommentSend);
-
 
         Intent intent = getIntent();
 
-
-
         String sharing_key = intent.getStringExtra("key");
-
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-
-
         // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
@@ -93,11 +82,11 @@ public class SharingBoardComment extends Activity {
         });
 
         //댓글 추가하기
-        sharingBoardCommentSend.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingBoardCommentSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-                String comment_content = sharingBoardCommentEdit.getText().toString();
+                String comment_content = mBinding.sharingBoardCommentEdit.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -107,7 +96,6 @@ public class SharingBoardComment extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
                             String current_time = getCurrentTime();
-
 
                             String comment_UUID = UUID.randomUUID().toString();
                             Map<String, Object> sharing_comment = new HashMap<>();
@@ -143,7 +131,6 @@ public class SharingBoardComment extends Activity {
         });
 
         db.collection(sharing_key).orderBy("time").addSnapshotListener(new EventListener<QuerySnapshot>() {
-
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -164,7 +151,7 @@ public class SharingBoardComment extends Activity {
 
 
         adapter = new SharingComAdapter(arrayList, this);
-        sharingBoardCommentRecycler.setAdapter(adapter);
+        mBinding.sharingBoardCommentRecycler.setAdapter(adapter);
 
 
     }

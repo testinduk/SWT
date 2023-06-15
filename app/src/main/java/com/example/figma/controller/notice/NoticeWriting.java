@@ -6,20 +6,9 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 
-//public class SharingWriting extends Activity {
-//
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.SharingWriting);
-//    }
-
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -41,36 +30,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import com.example.figma.databinding.NoticeBoardWritingBinding;
 
 public class NoticeWriting extends Activity {
-
-    Button noticeBoardContentComplete;
-    EditText noticeBoardContentNameWrite, noticeBoardContentWrite;
-    String title, content;
+    private NoticeBoardWritingBinding mBinding;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
     FirebaseStorage storage;
-    ImageView notice_image;
-    ImageButton cameraButton, backButton;
     String notice_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_board_writing);
+
+        mBinding = NoticeBoardWritingBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        notice_image = findViewById(R.id.photo_image);  // 이미지뷰
-        noticeBoardContentComplete = findViewById(R.id.noticeBoardContentComplete); // 작성 완료 버튼
-        noticeBoardContentNameWrite = findViewById(R.id.noticeBoardContentNameWrite); // 제목 적는 곳
-        noticeBoardContentWrite = findViewById(R.id.noticeBoardContentWrite); // 내용 적는 곳
-        cameraButton = findViewById(R.id.cameraButton);  // 사진 넣기
-        backButton = findViewById(R.id.backButton);  // 뒤로가기
-
-        cameraButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -79,7 +59,7 @@ public class NoticeWriting extends Activity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeList.class);
@@ -87,7 +67,7 @@ public class NoticeWriting extends Activity {
             }
         });
 
-        noticeBoardContentComplete.setOnClickListener(new View.OnClickListener() {
+        mBinding.noticeBoardContentComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -111,8 +91,8 @@ public class NoticeWriting extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
 
-                            String title = noticeBoardContentNameWrite.getText().toString();
-                            String content = noticeBoardContentWrite.getText().toString();
+                            String title = mBinding.noticeBoardContentNameWrite.getText().toString();
+                            String content = mBinding.noticeBoardContentWrite.getText().toString();
 
 
                             DatabaseReference boardRef = databaseReference.child("notice Board").push();
@@ -157,7 +137,7 @@ public class NoticeWriting extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    notice_image.setImageURI(uri);
+                    mBinding.photoImage.setImageURI(uri);
 
                     StorageReference imageRef = storageRef.child("notice/" + notice_image_UUID);
                     Log.i("uuid", notice_image_UUID);
@@ -175,9 +155,6 @@ public class NoticeWriting extends Activity {
                 }
                 break;
         }
-
-
-
     }
 
     private String getCurrentTime() {
