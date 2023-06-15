@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
+import com.example.figma.databinding.BulletinBoardEditBinding;
 import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,12 +39,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class NoticeBoardComment extends Activity {
+import com.example.figma.databinding.NoticeBoardCommentBinding;
 
-    private ImageButton backButton; //뒤로가기
-    private RecyclerView noticeBoardCommentRecycler;
-    private EditText noticeBoardCommentEdit; //댓글 쓰기
-    private ImageButton sendCommentButton;//댓글 추가하기 버튼
+public class NoticeBoardComment extends Activity {
+    private NoticeBoardCommentBinding mBinding;
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -53,50 +51,41 @@ public class NoticeBoardComment extends Activity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_board_comment);
 
-        noticeBoardCommentRecycler = findViewById(R.id.noticeBoardCommentRecycler);
-        noticeBoardCommentRecycler.setHasFixedSize(true);
+        mBinding = NoticeBoardCommentBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+        mBinding.noticeBoardCommentRecycler.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        noticeBoardCommentRecycler.setLayoutManager(layoutManager);
+        mBinding.noticeBoardCommentRecycler.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-
-        backButton = findViewById(R.id.backButton);
-        noticeBoardCommentEdit = findViewById(R.id.noticeBoardCommentEdit);
-        sendCommentButton = findViewById(R.id.sendCommentButton);
-
 
         Intent intent = getIntent();
 
-
         String notice_key = intent.getStringExtra("key");
-
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-
-
         // 뒤로가기 버튼
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeDetails.class);
                 startActivity(intent);
             }
         });
-
         //댓글 추가하기
-        sendCommentButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
-                String comment_content = noticeBoardCommentEdit.getText().toString();
+                String comment_content = mBinding.noticeBoardCommentEdit.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -106,8 +95,6 @@ public class NoticeBoardComment extends Activity {
                             String username = dataSnapshot.child("userName").getValue(String.class);
 
                             String current_time = getCurrentTime(); //아래의 현재 타임 불러오는 함수 정의
-
-
                             String comment_UUID = UUID.randomUUID().toString();
                             Map<String, Object> notice_comment = new HashMap<>();
                             notice_comment.put("name", username);
@@ -160,12 +147,8 @@ public class NoticeBoardComment extends Activity {
                 adapter.notifyDataSetChanged();
             }
         });
-
-
         adapter = new NoticeComAdapter(arrayList, this);
-        noticeBoardCommentRecycler.setAdapter(adapter);
-
-
+        mBinding.noticeBoardCommentRecycler.setAdapter(adapter);
     }
 
     private String getCurrentTime() {
