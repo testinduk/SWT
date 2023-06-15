@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,29 +25,28 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.example.figma.databinding.BulletinBoardBinding;
+
 public class BulletinBoard extends Activity {
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private Button search_Button;
-    private EditText searchView;
+    private BulletinBoardBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bulletin_board);
 
-        recyclerView = findViewById(R.id.bulletinBoardRecyclerView); //아이디 연결
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mBinding = BulletinBoardBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
         arrayList = new ArrayList<>();
-        search_Button = findViewById(R.id.searchButton);
-        searchView = findViewById(R.id.searchBox);
-
+        layoutManager = new LinearLayoutManager(this);
+        mBinding.bulletinBoardRecyclerView.setLayoutManager(layoutManager);
+        mBinding.bulletinBoardRecyclerView.setHasFixedSize(true);
 
         database = FirebaseDatabase.getInstance();
 
@@ -60,34 +56,27 @@ public class BulletinBoard extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
                     Board user = snapshot.getValue(Board.class);
                     arrayList.add(user);
-
                 }
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(arrayList);
-
                 adapter.notifyDataSetChanged();
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("MainActivity", String.valueOf(databaseError.toException()));
             }
         });
-
-
         adapter = new BulletinBoardAdapter(arrayList, this);
-        recyclerView.setAdapter(adapter);
+        mBinding.bulletinBoardRecyclerView.setAdapter(adapter);
         //검색 기능
-        search_Button.setOnClickListener(new View.OnClickListener() {
+        mBinding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String searchText = searchView.getText().toString().toLowerCase();
+                String searchText = mBinding.searchBox.getText().toString().toLowerCase();
 
                 ArrayList<Board> filteredList = new ArrayList<>();
                 for(Board item : arrayList){
@@ -98,28 +87,22 @@ public class BulletinBoard extends Activity {
                         filteredList.add(item);
                     }
                 }
-
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(filteredList);
-
                 adapter = new BulletinBoardAdapter(filteredList, BulletinBoard.this);
-                recyclerView.setAdapter(adapter);
+                mBinding.bulletinBoardRecyclerView.setAdapter(adapter);
             }
         });
-
         // 글쓰기 버튼
-        Button writingButton = findViewById(R.id.writingButton);
-        writingButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.writingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoardWriting.class);
                 startActivity(intent);
             }
         });
-
         //채팅 버튼
-        ImageButton chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -127,55 +110,40 @@ public class BulletinBoard extends Activity {
                 startActivity(intent);
             }
         });
-
         // 나눔 버튼
-        ImageButton sharingButton = findViewById(R.id.sharingButton);
-        sharingButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
                 startActivity(intent);
             }
         });
-
         // 홈 버튼
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
                 startActivity(intent);
             }
         });
-
         // 게시판 버튼
-        ImageButton boardButton = findViewById(R.id.boardButton);
-        boardButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
                 startActivity(intent);
             }
         });
-
         // 마이페이지 버튼
-        ImageButton mypageButton = findViewById(R.id.mypageButton);
-        mypageButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Mypage.class);
                 startActivity(intent);
             }
         });
-
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
@@ -183,6 +151,4 @@ public class BulletinBoard extends Activity {
             }
         });
     }
-
-
 }

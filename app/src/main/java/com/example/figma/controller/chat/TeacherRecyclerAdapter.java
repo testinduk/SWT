@@ -47,9 +47,9 @@ public class TeacherRecyclerAdapter extends RecyclerView.Adapter<TeacherRecycler
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            profile = (ImageView) itemView.findViewById(R.id.profile);
-            name = (TextView) itemView.findViewById(R.id.name);
-            number = (TextView) itemView.findViewById(R.id.number);
+            profile = (ImageView) itemView.findViewById(R.id.chatProfile);
+            name = (TextView) itemView.findViewById(R.id.chatName);
+            number = (TextView) itemView.findViewById(R.id.chatNumber);
         }
 
         public void onBind(Teacheritem item) {

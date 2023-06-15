@@ -9,9 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
+
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,31 +30,30 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.example.figma.databinding.NoticeBoardBinding;
 
 public class NoticeList extends AppCompatActivity {
 
-    private RecyclerView noticeBoardRecyclerView;
+    private NoticeBoardBinding mBinding;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    EditText noticeBoardSearch;
-    Button noticeBoardSearchButton;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice_board);
 
-        noticeBoardRecyclerView = findViewById(R.id.noticeBoardRecyclerView); //아이디 연결
-        noticeBoardRecyclerView.setHasFixedSize(true);
+        mBinding = NoticeBoardBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+        mBinding.noticeBoardRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        noticeBoardRecyclerView.setLayoutManager(layoutManager);
+        mBinding.noticeBoardRecyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
-        noticeBoardSearchButton = findViewById(R.id.noticeBoardSearchButton);    // 검색 버튼
-        noticeBoardSearch = findViewById(R.id.noticeBoardSearch);          // 검색어 입력
+
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
 
@@ -84,14 +81,14 @@ public class NoticeList extends AppCompatActivity {
         });
 
         adapter = new NoticeAdapter(arrayList, this);
-        noticeBoardRecyclerView.setAdapter(adapter);
+        mBinding.noticeBoardRecyclerView.setAdapter(adapter);
 
 
         // 검색
-        noticeBoardSearchButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.noticeBoardSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String notice_search = noticeBoardSearch.getText().toString().toLowerCase();
+                String notice_search = mBinding.noticeBoardSearch.getText().toString().toLowerCase();
 
                 ArrayList<Board> filteredList = new ArrayList<>();
                 filteredList.clear();
@@ -108,14 +105,13 @@ public class NoticeList extends AppCompatActivity {
                 Collections.reverse(filteredList);
 
                 adapter = new NoticeAdapter(filteredList, NoticeList.this);
-                noticeBoardRecyclerView.setAdapter(adapter);
+                mBinding.noticeBoardRecyclerView.setAdapter(adapter);
 
             }
         });
 
         // 글쓰기 버튼
-        Button writingButton = findViewById(R.id.writingButton);
-        writingButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.writingButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeWriting.class);
@@ -124,8 +120,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         //채팅 버튼
-        ImageButton chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -135,8 +130,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         // 나눔 버튼
-        ImageButton sharingButton = findViewById(R.id.sharingButton);
-        sharingButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -146,8 +140,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         // 홈 버튼
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -157,8 +150,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         // 게시판 버튼
-        ImageButton boardButton = findViewById(R.id.boardButton);
-        boardButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -168,8 +160,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         // 마이페이지 버튼
-        ImageButton mypageButton = findViewById(R.id.mypageButton);
-        mypageButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -179,8 +170,7 @@ public class NoticeList extends AppCompatActivity {
         });
 
         // 뒤로가기 버튼
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

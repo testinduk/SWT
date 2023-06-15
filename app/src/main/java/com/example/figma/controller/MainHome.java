@@ -13,8 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.figma.R;
 import com.example.figma.controller.bulletin.BulletinBoard;
@@ -36,17 +34,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.example.figma.databinding.MainHomeBinding;
 
 public class MainHome extends AppCompatActivity {
-
-    private ViewPager2 mPager;
-    private FragmentStateAdapter pagerAdapter;
-
+    private MainHomeBinding mBinding;
     private ArrayList<String> tabNames = new ArrayList<>();
-
     private ArrayList<String> timetable_name = new ArrayList<>();
-
-    private RecyclerView noticeBoardRecyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
@@ -54,11 +47,13 @@ public class MainHome extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private int num_page = 6;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_home);
+
+        mBinding = MainHomeBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
 
         //Fragment 연결
         Timetable timetable = new Timetable();
@@ -67,11 +62,9 @@ public class MainHome extends AppCompatActivity {
         ft.commit();
 
 
-
-        noticeBoardRecyclerView = findViewById(R.id.noticeBoardRecyclerView); //아이디 연결
-        noticeBoardRecyclerView.setHasFixedSize(true);
+        mBinding.noticeBoardRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        noticeBoardRecyclerView.setLayoutManager(layoutManager);
+        mBinding.noticeBoardRecyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance();
@@ -93,7 +86,6 @@ public class MainHome extends AppCompatActivity {
 
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("MainActivity", String.valueOf(databaseError.toException()));
@@ -102,23 +94,17 @@ public class MainHome extends AppCompatActivity {
         });
 
         adapter = new MainAdapter(arrayList, this);
-        noticeBoardRecyclerView.setAdapter(adapter);
-
-
+        mBinding.noticeBoardRecyclerView.setAdapter(adapter);
         // 내 시간표 설정
-        Button btn_my_time = findViewById(R.id.btn_my_time);
-        btn_my_time.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnMyTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), My_time_table.class);
                 startActivity(intent);
             }
         });
-
-
         // (공지)더보기 버튼
-        Button show_notice_more = findViewById(R.id.show_notice_more);
-        show_notice_more.setOnClickListener(new View.OnClickListener() {
+        mBinding.showNoticeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeList.class);
@@ -127,8 +113,7 @@ public class MainHome extends AppCompatActivity {
         });
 
         // (공지)등록하기 버튼
-        Button show_notice_writing = findViewById(R.id.show_notice_writing);
-        show_notice_writing.setOnClickListener(new View.OnClickListener() {
+        mBinding.showNoticeWriting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeWriting.class);
@@ -138,9 +123,7 @@ public class MainHome extends AppCompatActivity {
 
 
         //채팅 버튼
-        ImageButton chatButton = findViewById(R.id.chatButton);
-        chatButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ChattingMain.class);
@@ -149,9 +132,7 @@ public class MainHome extends AppCompatActivity {
         });
 
         // 나눔 버튼
-        ImageButton sharingButton = findViewById(R.id.sharingButton);
-        sharingButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class);
@@ -160,9 +141,7 @@ public class MainHome extends AppCompatActivity {
         });
 
         // 홈 버튼
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
@@ -171,20 +150,15 @@ public class MainHome extends AppCompatActivity {
         });
 
         // 게시판 버튼
-        ImageButton boardButton = findViewById(R.id.boardButton);
-        boardButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
                 startActivity(intent);
             }
         });
-
         // 마이페이지 버튼
-        ImageButton mypageButton = findViewById(R.id.mypageButton);
-        mypageButton.setOnClickListener(new View.OnClickListener() {
-
+        mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Mypage.class);
