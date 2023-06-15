@@ -76,6 +76,7 @@ public class BulletinBoardDetails extends Activity {
                         intent.putExtra("key",bulletin_key);
                         intent.putExtra("image",bulletin_image);
                         intent.putExtra("time",bulletin_time);
+                        intent.putExtra("username", bulletin_username);
                         startActivity(intent);
                     } else {
                     }

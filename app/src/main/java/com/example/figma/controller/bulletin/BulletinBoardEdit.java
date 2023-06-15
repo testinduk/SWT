@@ -91,12 +91,14 @@ public class BulletinBoardEdit extends Activity {
         String bulletin_image = third_intent.getStringExtra("image");
         String bulletin_idToken = third_intent.getStringExtra("idToken");
         String bulletin_time = third_intent.getStringExtra("time");
+        String bulletin_username = third_intent.getStringExtra("username");
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
         String uid = mAuth.getCurrentUser().getUid();//uid 가져오기
         Log.d("Uid", uid);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
+        mBinding.writer.setText(bulletin_username);
         mBinding.date.setText(bulletin_time);
         mBinding.titleEdit.setText(bulletin_title);
         mBinding.contentEdit.setText(bulletin_content);
