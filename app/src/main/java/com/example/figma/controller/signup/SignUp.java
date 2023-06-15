@@ -31,50 +31,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.example.figma.databinding.SignUpBinding;
 //import com.google.android.auth.AuthResult;
 
 public class SignUp extends AppCompatActivity {
+    private SignUpBinding mBinding;
     private static final int PICK_IMAGE_REQUEST = 200;
     private FirebaseAuth mAuth;
-    private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
-    private EditText spinner_answer, editTextTextPersonName4, editTextTextPassword, editTextTextPersonName, editTextTextPersonName2, editTextNumberPassword, editTextTextPersonName3; //회원가입 입력필드
-    private Button finishBT; //회원가입 버튼
-    private TextView spinner_question;
     private FirebaseStorage storage;
-    private ImageButton backButton, selectImageBtn;
-    private ImageView imageView;
     private String question;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up);
 
         storage = FirebaseStorage.getInstance();
 
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
-        mUser = mAuth.getCurrentUser();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("SignUp");
 
-        editTextTextPersonName4 = findViewById(R.id.editTextEmail);
-        editTextTextPassword = findViewById(R.id.editTextPassword);
-        finishBT = findViewById(R.id.btnFinish);
-        editTextTextPersonName = findViewById(R.id.editTextUserName);
-        editTextTextPersonName2 = findViewById(R.id.editTextStudentNumber);
-        editTextNumberPassword = findViewById(R.id.editTextPasswordCheck);
-        backButton = findViewById(R.id.backButton);// 뒤로가기 버튼
-        spinner_question = findViewById(R.id.spinnerSelctQuestion);
-        spinner_answer = findViewById(R.id.spinnerAnswer);
-        imageView = findViewById(R.id.profileImage);
-        selectImageBtn = findViewById(R.id.selectImage);
-        Spinner spinner = findViewById(R.id.spinnerQuestion);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mBinding = SignUpBinding.inflate(getLayoutInflater());
+        View view =mBinding.getRoot();
+        setContentView(view);
+
+        mBinding.spinnerQuestion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                spinner_question.setText((CharSequence) adapterView.getItemAtPosition(position));
+                mBinding.spinnerSelectQuestion.setText((CharSequence) adapterView.getItemAtPosition(position));
                 question = (String) adapterView.getItemAtPosition(position);
 
             }
@@ -85,7 +70,7 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-        selectImageBtn.setOnClickListener(new View.OnClickListener() {
+        mBinding.selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -94,7 +79,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -104,16 +89,16 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-        finishBT.setOnClickListener(new View.OnClickListener() {
+        mBinding.btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //회원가입 처리 시작
-                String strEmail = editTextTextPersonName4.getText().toString();
-                String strPwd = editTextTextPassword.getText().toString();
-                String strUserName = editTextTextPersonName.getText().toString();
-                String strStudentNumber = editTextTextPersonName2.getText().toString();
-                String pwdCheck = editTextNumberPassword.getText().toString();
-                String answer = spinner_answer.getText().toString();
+                String strEmail = mBinding.editTextEmail.getText().toString();
+                String strPwd = mBinding.editTextPassword.getText().toString();
+                String strUserName = mBinding.editTextUserName.getText().toString();
+                String strStudentNumber = mBinding.editTextStudentNumber.getText().toString();
+                String pwdCheck = mBinding.editTextPasswordCheck.getText().toString();
+                String answer = mBinding.spinnerAnswer.getText().toString();
 
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
                     if (strPwd.equals(pwdCheck)) {
@@ -165,8 +150,8 @@ public class SignUp extends AppCompatActivity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    imageView.setImageURI(uri);
-                    String strEmail1 = editTextTextPersonName4.getText().toString();
+                    mBinding.profileImage.setImageURI(uri);
+                    String strEmail1 = mBinding.editTextEmail.getText().toString();
 
                     StorageReference storageRef = storage.getReference();
                     StorageReference riversRef = storageRef.child("SignUp/" + strEmail1);
