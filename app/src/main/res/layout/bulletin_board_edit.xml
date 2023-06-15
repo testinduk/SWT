@@ -6,31 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".controller.sharing.SharingDetails">
 
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="53dp"
         android:layout_height="59dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:src="@drawable/vector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/vector" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/bulletinBoardEditTitle"
-        android:layout_width="120dp"
-        android:layout_height="59dp"
+        android:layout_width="131dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="36dp"
         android:text="수정페이지"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/titleEdit"
-        android:layout_width="204dp"
-        android:layout_height="59dp"
+        android:layout_width="205dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_corner"
         android:text="제목"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -41,22 +46,25 @@
         android:id="@+id/writer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="글쓴이"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEdit" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
-        android:layout_height="59dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="날짜"
         android:textColor="@color/black"
-
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toEndOf="@+id/titleEdit"
         app:layout_constraintTop_toBottomOf="@+id/bulletinBoardEditTitle" />
 
@@ -64,18 +72,21 @@
         android:id="@id/imageView"
         android:layout_width="411dp"
         android:layout_height="200dp"
-        android:background="@drawable/rectangle22"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contentEdit" />
 
     <EditText
         android:id="@+id/contentEdit"
-        android:layout_width="442dp"
-        android:layout_height="198dp"
+        android:layout_width="410dp"
+        android:layout_height="194dp"
+        android:layout_marginTop="4dp"
         android:text="내용"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:background="@drawable/round_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,11 +96,13 @@
         android:id="@+id/attachFile"
         android:layout_width="380dp"
         android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#ffffff"
         android:gravity="left"
         android:text="첨부파일"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

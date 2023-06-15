@@ -73,8 +73,6 @@ public class BulletinBoardEdit extends Activity {
                 }
         }
     }
-
-    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -87,19 +85,23 @@ public class BulletinBoardEdit extends Activity {
 
         Intent third_intent = getIntent(); //sharing_detail intent.putExtra 정보 받아오기
 
-        String bulletin_edit_title = third_intent.getStringExtra("title");
-        String bulletin_edit_content = third_intent.getStringExtra("content");
+        String bulletin_title = third_intent.getStringExtra("title");
+        String bulletin_content = third_intent.getStringExtra("content");
         String bulletin_key = third_intent.getStringExtra("key");
         String bulletin_image = third_intent.getStringExtra("image");
-        String bulletin_id = third_intent.getStringExtra("id");
+        String bulletin_idToken = third_intent.getStringExtra("idToken");
+        String bulletin_time = third_intent.getStringExtra("time");
+        String bulletin_username = third_intent.getStringExtra("username");
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
         String uid = mAuth.getCurrentUser().getUid();//uid 가져오기
         Log.d("Uid", uid);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        mBinding.titleEdit.setText(bulletin_edit_title);
-        mBinding.contentEdit.setText(bulletin_edit_content);
+        mBinding.writer.setText(bulletin_username);
+        mBinding.date.setText(bulletin_time);
+        mBinding.titleEdit.setText(bulletin_title);
+        mBinding.contentEdit.setText(bulletin_content);
         Glide.with(this)
                 .load(bulletin_image)
                 .into(mBinding.imageView);
@@ -132,6 +134,21 @@ public class BulletinBoardEdit extends Activity {
                 });
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
                 startActivity(intent);
+            }
+        });
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bulletin_idToken != null) {
+                    Intent intent = new Intent(getApplicationContext(), BulletinBoardDetails.class);
+                    intent.putExtra("idToken", bulletin_idToken);
+                    intent.putExtra("title", bulletin_title);
+                    intent.putExtra("content", bulletin_content);
+                    intent.putExtra("key", bulletin_key);
+                    intent.putExtra("image", bulletin_image);
+                    intent.putExtra("time", bulletin_time);
+                    startActivity(intent);
+                }
             }
         });
     }
