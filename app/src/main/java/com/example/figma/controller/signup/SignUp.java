@@ -112,11 +112,7 @@ public class SignUp extends AppCompatActivity {
 
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() >= 6 && pwdCheck.length() >= 6) {
                     if (strPwd.equals(pwdCheck)) {
-
-
-                        // 이미 회원가입되어 있는 email인지 확인
-
-                                        //가입 진행
+                        //가입 진행
                         mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -132,10 +128,15 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("answer", answer);
 
                                     // Firestor에 저장
-                                    storageDB.collection("signUp").document(uid).set(signUp);
-                                    Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
-                                    startActivity(intent);
+                                    storageDB.collection("signUp").document(uid).set(signUp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+
                                 } else {
                                     Toast.makeText(SignUp.this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show();
 
