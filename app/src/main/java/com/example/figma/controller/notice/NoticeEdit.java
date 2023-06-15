@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -36,6 +35,8 @@ public class NoticeEdit extends Activity {
     String notice_image_UUID = UUID.randomUUID().toString();     // 랜덤 UUID 생성
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -53,6 +54,9 @@ public class NoticeEdit extends Activity {
         String notice_edit_content = third_intent.getStringExtra("content");
         String notice_key = third_intent.getStringExtra("key");
         String notice_image = third_intent.getStringExtra("image");
+        String notice_time = third_intent.getStringExtra("time");
+        String notice_username = third_intent.getStringExtra("username");
+        String notice_idToken = third_intent.getStringExtra("idToken");
 
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 가져오기
@@ -100,6 +104,22 @@ public class NoticeEdit extends Activity {
                 startActivity(intent);
             }
         });
+
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent notice_intent = new Intent(getApplicationContext(), NoticeDetails.class);
+                notice_intent.putExtra("username", notice_username);
+                notice_intent.putExtra("title", notice_edit_title);
+                notice_intent.putExtra("content", notice_edit_content);
+                notice_intent.putExtra("time", notice_time);
+                notice_intent.putExtra("idToken",notice_idToken);
+                notice_intent.putExtra("key", notice_key);
+                notice_intent.putExtra("image", notice_image);
+                startActivity(notice_intent);
+            }
+        });
+
     }
 
     @Override
@@ -117,7 +137,6 @@ public class NoticeEdit extends Activity {
 
                     StorageReference storageRef = storage.getReference();
                     StorageReference oldStorageRef = storage.getReferenceFromUrl(notice_image1);
-                    Log.i("edit_image", String.valueOf(oldStorageRef));
 
 
                     oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -125,7 +144,6 @@ public class NoticeEdit extends Activity {
                         public void onSuccess(Void unused) {
 
                             StorageReference newImageRef = storageRef.child("notice/" + notice_image_UUID);
-                            Log.i("uuid", notice_image_UUID);
                             newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

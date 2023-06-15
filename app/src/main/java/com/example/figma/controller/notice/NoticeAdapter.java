@@ -3,6 +3,7 @@ package com.example.figma.controller.notice;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
 
 
 
-
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
 
@@ -82,7 +82,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
                 notice_intent.putExtra("idToken",idToken);
                 notice_intent.putExtra("key", notice_key);
                 notice_intent.putExtra("image", notice_image);
-
                 context.startActivity(notice_intent);
             }
         });
