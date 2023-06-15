@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import android.widget.Toast;
 
@@ -29,7 +28,6 @@ import com.example.figma.databinding.NoticeBoardDetailsBinding;
 
 public class NoticeDetails extends Activity {
     private NoticeBoardDetailsBinding mBinding;
-    private ImageView photo_image;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +61,7 @@ public class NoticeDetails extends Activity {
         mBinding.noticeBoardUserName.setText(notice_username);
         Glide.with(this)
                 .load(notice_image)
-                .into(photo_image);
+                .into(mBinding.photoImage);
         mBinding.noticeBoardDay.setText(notice_time);
 
 

@@ -31,9 +31,6 @@ public class BulletinBoardDetails extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

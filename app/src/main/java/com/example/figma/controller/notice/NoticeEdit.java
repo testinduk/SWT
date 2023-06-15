@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -31,8 +30,6 @@ import com.example.figma.databinding.NoticeBoardEditBinding;
 
 public class NoticeEdit extends Activity {
     private NoticeBoardEditBinding mBinding;
-    private ImageView photo_image;
-
 
     StorageReference storageRef;
     FirebaseStorage storage;
@@ -65,7 +62,7 @@ public class NoticeEdit extends Activity {
         mBinding.noticeBoardContentMod.setText(notice_edit_content);
         Glide.with(this)
                 .load(notice_image)
-                .into(photo_image);
+                .into(mBinding.photoImageView);
 
         mBinding.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +110,7 @@ public class NoticeEdit extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    photo_image.setImageURI(uri);
+                    mBinding.photoImageView.setImageURI(uri);
 
                     Intent third_intent = getIntent();
                     String notice_image1 = third_intent.getStringExtra("image");

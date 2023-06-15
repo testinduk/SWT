@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -38,7 +37,6 @@ public class NoticeWriting extends Activity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
     FirebaseStorage storage;
-    ImageView notice_image;
     String notice_image_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
     @Override
@@ -139,7 +137,7 @@ public class NoticeWriting extends Activity {
             case 1:
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
-                    notice_image.setImageURI(uri);
+                    mBinding.photoImage.setImageURI(uri);
 
                     StorageReference imageRef = storageRef.child("notice/" + notice_image_UUID);
                     Log.i("uuid", notice_image_UUID);

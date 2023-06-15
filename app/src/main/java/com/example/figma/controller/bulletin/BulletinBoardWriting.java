@@ -34,13 +34,11 @@ import com.example.figma.databinding.BulletinBoardWritingBinding;
 public class BulletinBoardWriting extends Activity {
     private BulletinBoardWritingBinding mBinding;
 
-    String title, content;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     StorageReference storageRef;
     FirebaseStorage storage;
     String bulletin_board_image_UUID = UUID.randomUUID().toString(); //랜덤함수로 이미지 이름 지정
 
-    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_board_writing);
@@ -63,14 +61,12 @@ public class BulletinBoardWriting extends Activity {
 
         // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
                 startActivity(intent);
             }
         });
-
 
         mBinding.completeButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -50,7 +50,6 @@ public class BulletinBoardComment extends Activity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

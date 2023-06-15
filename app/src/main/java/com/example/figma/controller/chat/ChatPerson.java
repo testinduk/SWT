@@ -1,15 +1,10 @@
 package com.example.figma.controller.chat;
 
-
-
 import android.content.Intent;
 import android.view.View;
 
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
