@@ -28,10 +28,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.example.figma.databinding.SignUpBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 //import com.google.android.auth.AuthResult;
 
 public class SignUp extends AppCompatActivity {
@@ -40,6 +46,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseRef; //실시간 데이터베이스
     private FirebaseStorage storage;
+    private FirebaseFirestore storageDB;
     private String question;
 
     @Override
@@ -47,9 +54,11 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         storage = FirebaseStorage.getInstance();
-
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("SignUp");
+
+        // Firestorage 초기화
+        storageDB = FirebaseFirestore.getInstance();
 
         mBinding = SignUpBinding.inflate(getLayoutInflater());
         View view =mBinding.getRoot();
@@ -92,44 +101,90 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //회원가입 처리 시작
+
                 String strEmail = mBinding.editTextEmail.getText().toString();
                 String strPwd = mBinding.editTextPassword.getText().toString();
                 String strUserName = mBinding.editTextUserName.getText().toString();
                 String strStudentNumber = mBinding.editTextStudentNumber.getText().toString();
                 String pwdCheck = mBinding.editTextPasswordCheck.getText().toString();
                 String answer = mBinding.spinnerAnswer.getText().toString();
+                String question = mBinding.spinnerSelectQuestion.getText().toString();
 
-                if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() > 0 && pwdCheck.length() > 0) {
+                if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() >= 6 && pwdCheck.length() >= 6) {
                     if (strPwd.equals(pwdCheck)) {
-                        //FirebaseAuth 진행
+
+
+                        // 이미 회원가입되어 있는 email인지 확인
+
+                                        //가입 진행
                         mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    String uid = mAuth.getUid();
 
-                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                                    Board sign_up_db = new Board();
-                                    sign_up_db.setEmailId(firebaseUser.getEmail());
-                                    sign_up_db.setPassword(strPwd);
-                                    sign_up_db.setIdToken(firebaseUser.getUid());
-                                    sign_up_db.setUserName(strUserName);
-                                    sign_up_db.setStudentNumber(strStudentNumber);
-                                    sign_up_db.setAnswer(answer);
-                                    sign_up_db.setQuestion(question);
+                                    Map<String, Object> signUp = new HashMap<>();
+                                    signUp.put("userName", strUserName);
+                                    signUp.put("password", strPwd);
+                                    signUp.put("stduentNumber", strStudentNumber);
+                                    signUp.put("email", strEmail);
+                                    signUp.put("question", question);
+                                    signUp.put("answer", answer);
 
-
-                                    //setValue는 database에 insert 행휘
-                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
-
+                                    // Firestor에 저장
+                                    storageDB.collection("signUp").document(uid).set(signUp);
                                     Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
                                     startActivity(intent);
-
                                 } else {
-                                    Toast.makeText(SignUp.this, "회원가입에 실패하셨습니다", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUp.this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
+
+                                /*mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            }
+                        });*/
+
+
+                                //FirebaseAuth 진행
+
+                                //---------FirebaseRealTime-Database 이용 방법--------
+//                        mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//
+//                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+//                                    Board sign_up_db = new Board();
+//                                    sign_up_db.setEmailId(firebaseUser.getEmail());
+//                                    sign_up_db.setPassword(strPwd);
+//                                    sign_up_db.setIdToken(firebaseUser.getUid());
+//                                    sign_up_db.setUserName(strUserName);
+//                                    sign_up_db.setStudentNumber(strStudentNumber);
+//                                    sign_up_db.setAnswer(answer);
+//                                    sign_up_db.setQuestion(question);
+//
+//
+//                                    //setValue는 database에 insert 행휘
+//                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
+//
+//                                    Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
+//                                    Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
+//                                    startActivity(intent);
+//
+//                                } else {
+//                                    Toast.makeText(SignUp.this, "회원가입에 실패하셨습니다", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+
+                                //-------------------------------------------
+
                     } else {
                         Toast.makeText(SignUp.this, "비밀번호가 일치 하지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
@@ -159,7 +214,6 @@ public class SignUp extends AppCompatActivity {
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(SignUp.this, "성공", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
