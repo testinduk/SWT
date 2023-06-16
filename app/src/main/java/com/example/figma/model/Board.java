@@ -49,7 +49,6 @@ public class Board {
 
     private String profile;
     private String id;
-    private int pw;
     private String userName;
     private String title;
     private String uid;
@@ -129,14 +128,6 @@ public class Board {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public int getPw() {
-        return pw;
-    }
-
-    public void setPw(int pw) {
-        this.pw = pw;
     }
 
     public String getUserName() {
