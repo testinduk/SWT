@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,19 +18,54 @@ import com.example.figma.controller.myinformation.MyInfDetails;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.figma.databinding.MypageBinding;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Mypage extends AppCompatActivity {
     private MypageBinding mBinding;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mypage);
 
         mBinding = MypageBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
+
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        Query query = databaseRef.child("SignUp").orderByChild("idToken").equalTo(uid);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        String userName = snapshot.child("userName").getValue(String.class);
+                        String studentNumber = snapshot.child("studentNumber").getValue(String.class);
+
+                        mBinding.mypageName.setText(userName);
+                        mBinding.mypageClassGrade.setText(studentNumber);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         // 종합정보시스템 버튼 하이퍼 링크
         mBinding.schoolPage.setOnClickListener(new View.OnClickListener() {
