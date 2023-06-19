@@ -62,8 +62,6 @@ public class MyTimeTable extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
-        backList.addAll(itemList);
-
         layoutManager_mj = new LinearLayoutManager(this);
         layoutManager2_ge = new LinearLayoutManager(this);
         layoutManager_pic = new LinearLayoutManager(this);
@@ -76,12 +74,33 @@ public class MyTimeTable extends AppCompatActivity {
         String uid = mAuth.getCurrentUser().getUid();
         db = FirebaseFirestore.getInstance();
 
+        // 백업을 위한 초기 데이터 저장
+        db.collection("timeTable").document(uid)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data = document.getData();
+
+                                backList.clear();
+
+                                for (Map.Entry<String, Object> entry : data.entrySet()) {
+                                    String fieldName = entry.getKey();
+                                    Object fieldValue = entry.getValue();
+                                    Board itemField = new Board(fieldName, fieldValue);
+                                    backList.add(itemField);
+                                }
+                            }
+                        }
+                    }
+                });
+
 
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         SelectItemAdapter select_adapter = new SelectItemAdapter(itemList);
         mBinding.PicRecycler.setAdapter(select_adapter);
-
-
         db.collection("timeTable").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
@@ -339,10 +358,11 @@ public class MyTimeTable extends AppCompatActivity {
                 for (Board board : backList) {
                     timeTableData.put(board.getFieldName(), board.getFieldValue());
                 }
+
                 db.collection("timeTable").document(uid).set(timeTableData).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Log.i("새로운 데이터 입력김세미", "성공");
+                        Log.i("새로운 데이터 입력", "성공");
                     }
                 });
 
