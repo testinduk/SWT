@@ -1,5 +1,10 @@
 package com.example.figma.controller;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,7 +18,8 @@ import android.view.View;
 
 import com.example.figma.R;
 import com.example.figma.controller.bulletin.BulletinBoard;
-import com.example.figma.controller.chat.ChattingMain;
+import com.example.figma.controller.chat.ChatPerson;
+import com.example.figma.controller.chat.ChattingMain1;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.notice.MainAdapter;
 import com.example.figma.controller.notice.NoticeList;
@@ -123,7 +129,7 @@ public class MainHome extends AppCompatActivity {
         mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ChattingMain.class);
+                Intent intent = new Intent(getApplicationContext(), ChatPerson.class);
                 startActivity(intent);
             }
         });

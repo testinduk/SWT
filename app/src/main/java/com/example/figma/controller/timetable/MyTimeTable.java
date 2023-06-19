@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
@@ -49,6 +50,7 @@ public class MyTimeTable extends AppCompatActivity {
     private List<Board> gefieldList = new ArrayList<>();
     private List<Board> itemList = new ArrayList<>();
     private List<Board> updateList = new ArrayList<>();
+    private List<Board> backList = new ArrayList<>();
     private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
 
 
@@ -60,6 +62,7 @@ public class MyTimeTable extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
+        backList.addAll(itemList);
 
         layoutManager_mj = new LinearLayoutManager(this);
         layoutManager2_ge = new LinearLayoutManager(this);
@@ -78,6 +81,7 @@ public class MyTimeTable extends AppCompatActivity {
         SelectItemAdapter select_adapter = new SelectItemAdapter(itemList);
         mBinding.PicRecycler.setAdapter(select_adapter);
 
+
         db.collection("timeTable").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
@@ -87,16 +91,19 @@ public class MyTimeTable extends AppCompatActivity {
 
                 if (snapshots != null && snapshots.exists()) {
                     Map<String, Object> data = snapshots.getData();
+
                     updateList.clear();
 
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
                         String fieldName = entry.getKey();
                         Object fieldValue = entry.getValue();
-                        Board itemfield = new Board(fieldName, fieldValue);
-                        updateList.add(itemfield);
+                        Board itemField = new Board(fieldName, fieldValue);
+                        updateList.add(itemField);
                     }
+
                     itemList.clear();
                     itemList.addAll(updateList);
+
                     select_adapter.notifyDataSetChanged();
 
                 }
@@ -190,7 +197,6 @@ public class MyTimeTable extends AppCompatActivity {
                                             mjHandleData(data);
                                         }
                                     } else {
-                                        Log.i("log", "실패");
                                     }
 
                                 }
@@ -304,13 +310,42 @@ public class MyTimeTable extends AppCompatActivity {
                         }
                     }
                 });
-//        geHandleData(geMap);
 
+        // 완료 버튼
+        mBinding.timeFinishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainHome.class);
+                startActivity(intent);
+            }
+        });
 
         // 뒤로가기
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("timeTable").document(uid).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Log.i("뒤로가기 클릭 시 데이터 삭제 ", "성공");
+                        } else {
+                            Log.i("뒤로가기 클릭 시 데이터 삭제 ", "성공");
+                        }
+                    }
+                });
+
+                Map<String, Object> timeTableData = new HashMap<>();
+                for (Board board : backList) {
+                    timeTableData.put(board.getFieldName(), board.getFieldValue());
+                }
+                db.collection("timeTable").document(uid).set(timeTableData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.i("새로운 데이터 입력김세미", "성공");
+                    }
+                });
+
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
                 startActivity(intent);
             }
@@ -344,7 +379,6 @@ public class MyTimeTable extends AppCompatActivity {
         }
         GeAdapter ge_adapter = new GeAdapter(gefieldList);
         mBinding.GeRecycler.setAdapter(ge_adapter);
-        Log.i("log", "geHandle실행");
 
     }
 }
