@@ -3,22 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".controller.signup.SignUp">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="80dp"
         android:layout_height="81dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="63dp"
         android:layout_marginEnd="103dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="63dp"
         android:src="@drawable/profile"
         app:layout_constraintBottom_toBottomOf="@+id/btnFinish"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerAnswer"
+        app:layout_constraintEnd_toEndOf="@+id/editTextStudentNumber"
         app:layout_constraintStart_toEndOf="@+id/textViewPasswd"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPosition" />
 
     <android.widget.Button
         android:id="@+id/btnFinish"
@@ -40,10 +39,13 @@
         android:id="@+id/selectImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="75dp"
         android:background="#00ff0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerPositionAnswer"
+        app:layout_constraintStart_toStartOf="@+id/profileImage"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPositionAnswer"
         app:srcCompat="@drawable/camera"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -52,13 +54,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="131dp"
         android:text="프로필 사진 선택"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/selectImage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/selectImage" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswer2" />
 
     <EditText
         android:id="@+id/editTextUserName"
@@ -78,51 +82,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginBottom="23dp"
         android:text="학번"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewId"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
+        android:layout_marginEnd="6dp"
         android:text="아이디 찾기 질문"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/spinnerQuestion"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/spinnerQuestion" />
 
     <TextView
         android:id="@+id/textViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="6dp"
         android:text="아이디(이메일)"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextEmail"
         app:layout_constraintEnd_toStartOf="@+id/editTextEmail"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextEmail" />
 
     <EditText
         android:id="@+id/editTextPasswordCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPasswdCheck"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -130,25 +131,37 @@
         android:id="@+id/spinnerSelectQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="13dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSelectQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion"
+        app:layout_constraintTop_toTopOf="@+id/textViewSelectQuestion"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/spinnerAnswer"
+        android:id="@+id/spinnerPositionAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/rectangle30"
+        android:ems="10"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSelectProfile"
+        app:layout_constraintStart_toEndOf="@+id/selectedPosition"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/spinnerAnswer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewAnswer"
-        app:layout_constraintTop_toTopOf="@+id/textViewAnswer"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectQuestion"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -156,15 +169,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="83dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="27dp"
         android:text="성명"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewId"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewStudentNumber"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextStudentNumber"
@@ -183,12 +194,12 @@
         android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/rectangle29"
         android:ems="10"
         android:hint=" 6자리 이상 입력하세요."
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextPasswordCheck"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -197,7 +208,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="27dp"
         android:text="비밀번호"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -209,13 +220,11 @@
         android:id="@+id/textViewPasswdCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="25dp"
         android:text="비밀번호 확인"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextPasswordCheck"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextPasswordCheck" />
 
@@ -223,7 +232,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="19dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
@@ -255,7 +264,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="153dp"
+        android:layout_marginEnd="152dp"
         android:text="회원가입"
         android:textColor="#000000"
         android:textSize="20dp"
@@ -265,39 +274,86 @@
 
     <Spinner
         android:id="@+id/spinnerQuestion"
-        android:layout_width="235dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="3dp"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginBottom="131dp"
         android:entries="@array/아이디찾기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewQuestion"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerPosition"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerSelectQuestion"
+        app:layout_constraintStart_toStartOf="@+id/spinnerSelectQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewId" />
 
     <TextView
         android:id="@+id/textViewSelectQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="2dp"
         android:text="선택한 질문지"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerSelectQuestion"
         app:layout_constraintEnd_toStartOf="@+id/spinnerSelectQuestion"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordCheck" />
 
     <TextView
         android:id="@+id/textViewAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="2dp"
         android:text="질문에 대한 답"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswer"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswer2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectQuestion" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerAnswer2" />
+
+    <TextView
+        android:id="@+id/selectedPosition"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
+        android:text="선택한 직책"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/selectImage"
+        app:layout_constraintEnd_toEndOf="@+id/textViewId"
+        app:layout_constraintStart_toStartOf="@+id/textViewQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswer2" />
+
+    <TextView
+        android:id="@+id/selectPosition"
+        android:layout_width="59dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="13dp"
+        android:text="직책"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/selectedPosition"
+        app:layout_constraintEnd_toEndOf="@+id/selectedPosition"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswer2" />
+
+    <Spinner
+        android:id="@+id/spinnerPosition"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginBottom="46dp"
+        android:entries="@array/직책"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerPositionAnswer"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerAnswer2"
+        app:layout_constraintStart_toStartOf="@+id/spinnerPositionAnswer"
+        app:layout_constraintTop_toTopOf="@+id/spinnerAnswer2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

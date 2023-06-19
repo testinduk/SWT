@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.figma.R;
 import com.example.figma.controller.Login;
+import com.example.figma.controller.Login;
 import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -64,14 +65,23 @@ public class SignUp extends AppCompatActivity {
         View view =mBinding.getRoot();
         setContentView(view);
 
+        mBinding.spinnerPosition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mBinding.spinnerPositionAnswer.setText((CharSequence) adapterView.getItemAtPosition(i));
+                question = (String) adapterView.getItemAtPosition(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         mBinding.spinnerQuestion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 mBinding.spinnerSelectQuestion.setText((CharSequence) adapterView.getItemAtPosition(position));
                 question = (String) adapterView.getItemAtPosition(position);
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -107,8 +117,10 @@ public class SignUp extends AppCompatActivity {
                 String strUserName = mBinding.editTextUserName.getText().toString();
                 String strStudentNumber = mBinding.editTextStudentNumber.getText().toString();
                 String pwdCheck = mBinding.editTextPasswordCheck.getText().toString();
-                String answer = mBinding.spinnerAnswer.getText().toString();
+                String answer = mBinding.spinnerAnswer2.getText().toString();
                 String question = mBinding.spinnerSelectQuestion.getText().toString();
+                String Position = mBinding.spinnerPositionAnswer.getText().toString();
+
 
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() >= 6 && pwdCheck.length() >= 6) {
                     if (strPwd.equals(pwdCheck)) {
@@ -122,10 +134,11 @@ public class SignUp extends AppCompatActivity {
                                     Map<String, Object> signUp = new HashMap<>();
                                     signUp.put("userName", strUserName);
                                     signUp.put("password", strPwd);
-                                    signUp.put("stduentNumber", strStudentNumber);
+                                    signUp.put("studentNumber", strStudentNumber);
                                     signUp.put("email", strEmail);
                                     signUp.put("question", question);
                                     signUp.put("answer", answer);
+                                    signUp.put("position",Position);
 
                                     // Firestor에 저장
                                     storageDB.collection("signUp").document(uid).set(signUp).addOnSuccessListener(new OnSuccessListener<Void>() {
