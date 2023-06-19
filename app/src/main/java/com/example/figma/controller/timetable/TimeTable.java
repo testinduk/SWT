@@ -36,7 +36,7 @@ public class TimeTable extends Fragment {
         String uid = mAuth.getCurrentUser().getUid();
         db  = FirebaseFirestore.getInstance();
 
-        db.collection("Time_table").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("timeTable").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {

@@ -32,9 +32,6 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
     private int buttonClickCount = 1;
     private List<String> fieldValues = new ArrayList<>();
 
-
-
-
     public MajorAdapter(List<Board> fieldList) {
         this.fieldList = fieldList;
 
@@ -83,7 +80,7 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
                     List<String> update_list = new ArrayList<>();
 
 
-                    DocumentReference documentRef = db.collection("Time_table").document(uid);
+                    DocumentReference documentRef = db.collection("timeTable").document(uid);
 
                     documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -94,8 +91,6 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
                                 if (document.exists()) {
                                     Map<String, Object> update = document.getData();
                                     for (Map.Entry<String, Object> entry : update.entrySet()) {
-
-
                                         String check_list = entry.getKey();
                                         update_list.add(check_list);
 
@@ -115,9 +110,6 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
                                 } else {
                                     // 데이터가 없는 경우(새로 작성)
                                     String fieldName = String.valueOf(buttonClickCount);
-
-                                    Log.i("새로 작성 시 fieldName", fieldName);
-                                    Log.i("새로 작성 시 sub_name", sub_name);
                                     Map<String, Object> create_data = new HashMap<>();
                                     create_data.put(fieldName, sub_name);
                                     documentRef.set(create_data).addOnCompleteListener(new OnCompleteListener<Void>() {

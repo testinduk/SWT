@@ -19,6 +19,7 @@ public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.Vi
 
     public SelectItemAdapter(List<Board> item_list) {
         this.item_list = item_list;
+        notifyDataSetChanged();
 
     }
 
