@@ -44,7 +44,7 @@
         <activity android:name=".controller.bulletin.BulletinBoardComment"/>
         <!--bulletin-->
         <activity android:name=".controller.chat.ChatPerson"/>
-        <activity android:name=".controller.chat.ChattingMain"/>
+        <activity android:name=".controller.chat.ChattingMain1"/>
         <!--chat-->
         <!--comment-->
         <activity android:name=".controller.find.FindId"/>
@@ -72,8 +72,8 @@
         <activity android:name=".controller.signup.SignUp"/>
         <activity android:name=".controller.signup.SignUpEmail"/>
         <!--signup-->
-        <activity android:name=".controller.timetable.My_time_table"/>
-        <activity android:name=".controller.timetable.Timetable" />
+        <activity android:name=".controller.timetable.MyTimeTable"/>
+        <activity android:name=".controller.timetable.TimeTable" />
         <!--timetable-->
         <activity android:name=".controller.MainHome"/>
 

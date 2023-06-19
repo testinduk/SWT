@@ -39,13 +39,14 @@
         android:textColor="#000000"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="@+id/mypageName"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toEndOf="@+id/mypageName"
         app:layout_constraintTop_toBottomOf="@+id/mypageName" />
 
     <Button
         android:id="@+id/myInfButton"
-        android:layout_width="0dp"
-        android:layout_height="37dp"
+        android:layout_width="90dp"
+        android:layout_height="44dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="47dp"
         android:backgroundTint="#ffffff"
@@ -59,8 +60,8 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
+        android:layout_width="129dp"
+        android:layout_height="46dp"
         android:layout_marginStart="33dp"
         android:background="#00ff0000"
         android:backgroundTint="#ffffff"
@@ -119,6 +120,7 @@
         android:src="@drawable/laptop"
         app:layout_constraintBottom_toTopOf="@+id/smartClassPageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/mypageSchoolPage"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -126,7 +128,7 @@
         android:id="@+id/schoolPageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="31dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="104dp"
         android:text="종합정보시스템"
         android:textColor="#000000"
@@ -137,7 +139,7 @@
         android:id="@+id/smartClassPageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:text="스마트클래스"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/smartClass"

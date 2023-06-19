@@ -1,6 +1,5 @@
 package com.example.figma.controller.sharing;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.figma.R;
+import com.example.figma.controller.MainHome;
 import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.chat.ChatPerson;
-import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
+import com.example.figma.databinding.SharingBoardBinding;
 import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import com.example.figma.databinding.SharingBoardBinding;
 
 
 public class SharingBoard extends Activity {
