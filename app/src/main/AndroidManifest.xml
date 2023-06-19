@@ -44,7 +44,6 @@
         <activity android:name=".controller.bulletin.BulletinBoardComment"/>
         <!--bulletin-->
         <activity android:name=".controller.chat.ChatPerson"/>
-        <activity android:name=".controller.chat.ChattingMain1"/>
         <!--chat-->
         <!--comment-->
         <activity android:name=".controller.find.FindId"/>

@@ -59,7 +59,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent chat_intent = new Intent(context, ChattingMain1.class);
+                Intent chat_intent = new Intent(context, ChatMain.class);
                 chat_intent.putExtra("userName", userName);
                 chat_intent.putExtra("studentNumber",studentNumber);
                 chat_intent.putExtra("photo", profile);

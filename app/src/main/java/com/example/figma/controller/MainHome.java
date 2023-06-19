@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.figma.R;
 import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.chat.ChatPerson;
-import com.example.figma.controller.chat.ChattingMain1;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.notice.MainAdapter;
 import com.example.figma.controller.notice.NoticeList;
