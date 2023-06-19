@@ -1,25 +1,22 @@
 
 package com.example.figma.controller.notice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.figma.R;
+import com.example.figma.controller.MainHome;
 import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.chat.ChatPerson;
-import com.example.figma.controller.MainHome;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
+import com.example.figma.databinding.NoticeBoardBinding;
 import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,8 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.example.figma.databinding.NoticeBoardBinding;
 
 public class NoticeList extends AppCompatActivity {
 

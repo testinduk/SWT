@@ -1,41 +1,29 @@
 package com.example.figma.controller.signup;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.figma.R;
 import com.example.figma.controller.Login;
-import com.example.figma.controller.Login;
-import com.example.figma.model.Board;
+import com.example.figma.databinding.SignUpBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.example.figma.databinding.SignUpBinding;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +38,8 @@ public class SignUp extends AppCompatActivity {
     private FirebaseFirestore storageDB;
     private String question;
 
+    StorageReference storageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +50,7 @@ public class SignUp extends AppCompatActivity {
 
         // Firestorage 초기화
         storageDB = FirebaseFirestore.getInstance();
+        storageRef = storage.getReference();
 
         mBinding = SignUpBinding.inflate(getLayoutInflater());
         View view =mBinding.getRoot();
@@ -122,6 +113,7 @@ public class SignUp extends AppCompatActivity {
                 String Position = mBinding.spinnerPositionAnswer.getText().toString();
 
 
+
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() >= 6 && pwdCheck.length() >= 6) {
                     if (strPwd.equals(pwdCheck)) {
                         //가입 진행
@@ -140,13 +132,25 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("answer", answer);
                                     signUp.put("position",Position);
 
-                                    // Firestor에 저장
-                                    storageDB.collection("signUp").document(uid).set(signUp).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                                    storageRef.child("SignUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
-                                        public void onSuccess(Void unused) {
-                                            Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
-                                            startActivity(intent);
+                                        public void onSuccess(Uri uri) {
+                                            if (uri != null) {
+                                                String image_uri = uri.toString();
+                                                Log.i("log", image_uri);
+                                                signUp.put("profileUri", image_uri);
+
+                                                // Firestor에 저장
+                                                storageDB.collection("signUp").document(uid).set(signUp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                            }
                                         }
                                     });
 

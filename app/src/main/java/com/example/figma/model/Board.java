@@ -1,6 +1,9 @@
 package com.example.figma.model;
 
 public class Board {
+    public Board(){
+
+    }
 
     // ------------ bulletin_com_DB --------------//
     private String name;
@@ -16,6 +19,16 @@ public class Board {
     }
 
     private String time;
+
+    public String getProfileUri() {
+        return profileUri;
+    }
+
+    public void setProfileUri(String profileUri) {
+        this.profileUri = profileUri;
+    }
+
+    private String profileUri;
 
 
     public String getStudentNumber() {
@@ -149,7 +162,7 @@ public class Board {
         this.fieldValue = fieldValue;
     }
 
-    public Board() {
+    public Board(String name) {
 
     }
 
@@ -186,8 +199,6 @@ public class Board {
         this.notice_time = notice_time;
     }
 
-
-
     private String IdToken;
 
 
@@ -200,10 +211,6 @@ public class Board {
     public void setNotice_key(String notice_key) {
         this.notice_key = notice_key;
     }
-
-
-
-
 
     // ----notice_com_DB
 
@@ -292,8 +299,6 @@ public class Board {
         this.sign_up_image = sign_up_image;
     }
 
-
-
     public String getEmailId() {
         return emailId;
     }
@@ -309,6 +314,4 @@ public class Board {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

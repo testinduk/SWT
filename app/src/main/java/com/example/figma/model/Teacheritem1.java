@@ -1,12 +1,12 @@
 package com.example.figma.model;
 
 // 데이터를 담을 모듈 생성
-public class Teacheritem {
+public class Teacheritem1 {
     String name;
     String number;
     int resourceId;
 
-    public Teacheritem(int resourceId, String name, String number) {
+    public Teacheritem1(int resourceId, String name, String number) {
         this.name = name;
         this.number = number;
         this.resourceId = resourceId;
