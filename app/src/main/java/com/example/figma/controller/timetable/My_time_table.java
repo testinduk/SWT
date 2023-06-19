@@ -82,8 +82,10 @@ public class My_time_table extends AppCompatActivity {
 
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         List<Board> item_list = new ArrayList<>();
+        List<Board> update_list = new ArrayList<>();
         Select_item_adapter adapter = new Select_item_adapter(item_list);
         mBinding.PicRecycler.setAdapter(adapter);
+
 
         db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
@@ -95,14 +97,16 @@ public class My_time_table extends AppCompatActivity {
 
                 if (snapshots != null && snapshots.exists()) {
                     Map<String, Object> data = snapshots.getData();
+                    List<Board> update_list = new ArrayList<>();
 
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
                         String fieldName = entry.getKey();
                         Object fieldValue = entry.getValue();
                         Board itemfield = new Board(fieldName, fieldValue);
-                        item_list.add(itemfield);
+                        update_list.add(itemfield);
                     }
-
+                    item_list.clear();
+                    item_list.addAll(update_list);
                     adapter.notifyDataSetChanged();
 
                 }

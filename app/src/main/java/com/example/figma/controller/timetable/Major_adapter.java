@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import com.example.figma.R;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,7 +116,9 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
                                     // 데이터가 없는 경우(새로 작성)
                                     String fieldName = String.valueOf(buttonClickCount);
 
-                                    Map<String, Object> create_data = document.getData();
+                                    Log.i("새로 작성 시 fieldName", fieldName);
+                                    Log.i("새로 작성 시 sub_name", sub_name);
+                                    Map<String, Object> create_data = new HashMap<>();
                                     create_data.put(fieldName, sub_name);
                                     documentRef.set(create_data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
