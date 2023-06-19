@@ -10,11 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.figma.R;
-import com.example.figma.controller.chat.ChatPerson;
 import com.example.figma.controller.MainHome;
+import com.example.figma.controller.chat.ChatPerson;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
+import com.example.figma.databinding.BulletinBoardBinding;
 import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.example.figma.databinding.BulletinBoardBinding;
 
 public class BulletinBoard extends Activity {
     private RecyclerView.Adapter adapter;
