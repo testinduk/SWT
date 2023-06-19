@@ -20,10 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import com.example.figma.R;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder> {
+public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> {
     private List<Board> fieldList;
 
     private FirebaseFirestore db;
@@ -31,10 +32,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
     private int buttonClickCount = 1;
     private List<String> fieldValues = new ArrayList<>();
 
-
-
-
-    public Major_adapter(List<Board> fieldList) {
+    public MajorAdapter(List<Board> fieldList) {
         this.fieldList = fieldList;
 
     }
@@ -82,7 +80,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
                     List<String> update_list = new ArrayList<>();
 
 
-                    DocumentReference documentRef = db.collection("Time_table").document(uid);
+                    DocumentReference documentRef = db.collection("timeTable").document(uid);
 
                     documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -93,8 +91,6 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
                                 if (document.exists()) {
                                     Map<String, Object> update = document.getData();
                                     for (Map.Entry<String, Object> entry : update.entrySet()) {
-
-
                                         String check_list = entry.getKey();
                                         update_list.add(check_list);
 
@@ -114,8 +110,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
                                 } else {
                                     // 데이터가 없는 경우(새로 작성)
                                     String fieldName = String.valueOf(buttonClickCount);
-
-                                    Map<String, Object> create_data = document.getData();
+                                    Map<String, Object> create_data = new HashMap<>();
                                     create_data.put(fieldName, sub_name);
                                     documentRef.set(create_data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
