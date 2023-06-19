@@ -2,7 +2,7 @@ package com.example.figma.controller.chat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChattingMain extends AppCompatActivity {
+public class ChattingMain1 extends AppCompatActivity {
 //    private RecyclerView recyclerView;
 //    private RecyclerView.Adapter adapter;
 //    private RecyclerView.LayoutManager layoutManager;

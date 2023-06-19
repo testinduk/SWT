@@ -1,44 +1,143 @@
 package com.example.figma.controller.chat;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.figma.R;
-import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.MainHome;
+import com.example.figma.controller.bulletin.BulletinBoard;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.sharing.SharingBoard;
-import com.example.figma.databinding.BulletinBoardEditBinding;
-import com.example.figma.model.Teacheritem;
+import com.example.figma.databinding.ChatPersonBinding;
+import com.example.figma.model.Board;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.example.figma.databinding.ChatPersonBinding;
+import javax.annotation.Nullable;
 
 public class ChatPerson extends AppCompatActivity {
     private ChatPersonBinding mBinding;
+    private RecyclerView mStudentRecyclerView , mProfessorRecyclerView, mAssistantRecyclerView;
+    private StudentAdapter mAdapter;
+    private ProfessorAdapter mProfessorAdapter;
+    private AssistantAdapter mAssistantAdapter;
+    private List<Board> mStudentList = new ArrayList<Board>();
+    private List<Board> mProfessorList = new ArrayList<Board>();
+    private List<Board> mAssistantList = new ArrayList<Board>();
 
-    private TeacherRecyclerAdapter mRecyclerAdapter; // 아래에 있는 mRecyclerAdapter과 연결
-    private ArrayList<Teacheritem> mTeacherItem;
-
-    // 다른페이지에서 채팅 버튼 눌렀을 때
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         mBinding = ChatPersonBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
 
-        //채팅 버튼
-        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
+        //RecyclerView 촉화
+        mStudentRecyclerView = mBinding.StudentList;
+        mStudentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mStudentRecyclerView.setAdapter(mAdapter);
 
+        mProfessorRecyclerView = mBinding.TeacherList;
+        mProfessorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mProfessorRecyclerView.setAdapter(mProfessorAdapter);
+
+        mAssistantRecyclerView = mBinding.AssistantList;
+        mAssistantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAssistantRecyclerView.setAdapter(mAssistantAdapter);
+
+        FirebaseFirestore studentdb = FirebaseFirestore.getInstance();
+        studentdb.collection("signUp")
+                .whereEqualTo("position", "학생")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                String name = documentSnapshot.getString("userName");
+                                String studentNumber = documentSnapshot.getString("studentNumber");
+                                String photo = documentSnapshot.getString("profileUri");
+
+                                Board student = new Board();
+                                student.setUserName(name);
+                                student.setStudentNumber(studentNumber);
+                                student.setProfileUri(photo);
+
+                                mStudentList.add(student);
+                            }
+                            mAdapter = new StudentAdapter(mStudentList);
+                            mStudentRecyclerView.setAdapter(mAdapter);
+                        }
+
+                    }
+                });
+
+        FirebaseFirestore professordb = FirebaseFirestore.getInstance();
+        professordb.collection("signUp")
+                .whereEqualTo("position", "교수")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                String name = documentSnapshot.getString("userName");
+                                String studentNumber = documentSnapshot.getString("studentNumber");
+                                String photo = documentSnapshot.getString("profileUri");
+
+                                Board student = new Board();
+                                student.setUserName(name);
+                                student.setStudentNumber(studentNumber);
+                                student.setProfileUri(photo);
+
+                                mProfessorList.add(student);
+                            }
+                            mProfessorAdapter = new ProfessorAdapter(mProfessorList);
+                            mProfessorRecyclerView.setAdapter(mProfessorAdapter);
+                        }
+
+                    }
+                });
+        FirebaseFirestore assistantdb = FirebaseFirestore.getInstance();
+        assistantdb.collection("signUp")
+                .whereEqualTo("position", "조교")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                String name = documentSnapshot.getString("userName");
+                                String studentNumber = documentSnapshot.getString("studentNumber");
+                                String photo = documentSnapshot.getString("profileUri");
+
+                                Board student = new Board();
+                                student.setUserName(name);
+                                student.setStudentNumber(studentNumber);
+                                student.setProfileUri(photo);
+
+                                mAssistantList.add(student);
+                            }
+                            mAssistantAdapter = new AssistantAdapter(mAssistantList);
+                            mAssistantRecyclerView.setAdapter(mAssistantAdapter);
+                        }
+
+                    }
+                });
+
+        mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ChatPerson.class);
@@ -46,7 +145,6 @@ public class ChatPerson extends AppCompatActivity {
             }
         });
 
-        // 나눔 버튼
         mBinding.sharingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +153,6 @@ public class ChatPerson extends AppCompatActivity {
             }
         });
 
-        // 홈 버튼
         mBinding.homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,8 +160,6 @@ public class ChatPerson extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // 게시판 버튼
         mBinding.boardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +168,6 @@ public class ChatPerson extends AppCompatActivity {
             }
         });
 
-        // 마이페이지 버튼
         mBinding.mypageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +176,6 @@ public class ChatPerson extends AppCompatActivity {
             }
         });
 
-        // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -91,27 +184,6 @@ public class ChatPerson extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //Adapter와 LayoutManager 연결
-        /* initiate adapter */
-        mRecyclerAdapter = new TeacherRecyclerAdapter();
-
-        /* initiate recyclerview */
-        mBinding.TeacherList.setAdapter(mRecyclerAdapter);
-        mBinding.TeacherList.setLayoutManager(new LinearLayoutManager(this));
-        mBinding.TeacherList.setLayoutManager(new LinearLayoutManager(this));
-
-        /* adapt data 프로필 정보 ㅅ*/
-        mTeacherItem = new ArrayList<>();
-        for(int i=1;i<=10;i++){
-            if(i%2==0)
-                mTeacherItem.add(new Teacheritem(R.drawable.profile,"황선철교수님","02-950-0000"));
-            else
-                mTeacherItem.add(new Teacheritem(R.drawable.profile,i+"번째 사람",i+"번째 상태메시지"));
-
-        }
-        mRecyclerAdapter.setTeacherList(mTeacherItem);
-
     }
-}
 
+}

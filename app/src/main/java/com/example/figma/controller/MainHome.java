@@ -1,22 +1,20 @@
 package com.example.figma.controller;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.figma.R;
 import com.example.figma.controller.bulletin.BulletinBoard;
-import com.example.figma.controller.chat.ChattingMain;
+import com.example.figma.controller.chat.ChatPerson;
+import com.example.figma.controller.chat.ChattingMain1;
 import com.example.figma.controller.mypage.Mypage;
 import com.example.figma.controller.notice.MainAdapter;
 import com.example.figma.controller.notice.NoticeList;
@@ -24,6 +22,7 @@ import com.example.figma.controller.notice.NoticeWriting;
 import com.example.figma.controller.sharing.SharingBoard;
 import com.example.figma.controller.timetable.My_time_table;
 import com.example.figma.controller.timetable.Timetable;
+import com.example.figma.databinding.MainHomeBinding;
 import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,8 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.example.figma.databinding.MainHomeBinding;
 
 public class MainHome extends AppCompatActivity {
     private MainHomeBinding mBinding;
@@ -126,7 +123,7 @@ public class MainHome extends AppCompatActivity {
         mBinding.chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ChattingMain.class);
+                Intent intent = new Intent(getApplicationContext(), ChatPerson.class);
                 startActivity(intent);
             }
         });
