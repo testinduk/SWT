@@ -29,13 +29,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.figma.model.Board;
 import com.example.figma.controller.MainHome;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 
-public class My_time_table extends AppCompatActivity {
+public class MyTimeTable extends AppCompatActivity {
 
     private MyTimeTableBinding mBinding;
     private FirebaseAuth mAuth;
@@ -82,13 +79,10 @@ public class My_time_table extends AppCompatActivity {
 
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         List<Board> item_list = new ArrayList<>();
-        List<Board> update_list = new ArrayList<>();
-        Select_item_adapter adapter = new Select_item_adapter(item_list);
+        SelectItemAdapter adapter = new SelectItemAdapter(item_list);
         mBinding.PicRecycler.setAdapter(adapter);
 
-
-        db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-
+        db.collection("timeTable").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -206,7 +200,7 @@ public class My_time_table extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    Toast.makeText(My_time_table.this, "정보를 선택하세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyTimeTable.this, "정보를 선택하세요", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -334,7 +328,7 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             mjfieldList.add(field);
         }
-        Major_adapter adapter = new Major_adapter(mjfieldList);
+        MajorAdapter adapter = new MajorAdapter(mjfieldList);
         mBinding.MajorRecycler.setAdapter(adapter);
     }
 
@@ -349,7 +343,7 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             gefieldList.add(field);
         }
-        Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
+        GeAdapter ge_adapter = new GeAdapter(gefieldList);
         mBinding.GeRecycler.setAdapter(ge_adapter);
         Log.i("log", "geHandle실행");
 

@@ -1,6 +1,5 @@
 package com.example.figma.controller.timetable;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,25 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.R;
 import com.example.figma.model.Board;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class Ge_adapter extends RecyclerView.Adapter<Ge_adapter.ViewHolder> {
+public class GeAdapter extends RecyclerView.Adapter<GeAdapter.ViewHolder> {
     private List<Board> gefieldList;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private List<String> fieldValues = new ArrayList<>();
 
-    public Ge_adapter(List<Board> gefieldList) {
+    public GeAdapter(List<Board> gefieldList) {
         this.gefieldList = gefieldList;
 
     }

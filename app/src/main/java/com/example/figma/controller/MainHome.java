@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,8 +19,8 @@ import com.example.figma.controller.notice.MainAdapter;
 import com.example.figma.controller.notice.NoticeList;
 import com.example.figma.controller.notice.NoticeWriting;
 import com.example.figma.controller.sharing.SharingBoard;
-import com.example.figma.controller.timetable.My_time_table;
-import com.example.figma.controller.timetable.Timetable;
+import com.example.figma.controller.timetable.MyTimeTable;
+import com.example.figma.controller.timetable.TimeTable;
 import com.example.figma.model.Board;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +53,7 @@ public class MainHome extends AppCompatActivity {
         setContentView(view);
 
         //Fragment 연결
-        Timetable timetable = new Timetable();
+        TimeTable timetable = new TimeTable();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.time_frame, timetable);
         ft.commit();
@@ -99,7 +96,7 @@ public class MainHome extends AppCompatActivity {
         mBinding.btnMyTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), My_time_table.class);
+                Intent intent = new Intent(getApplicationContext(), MyTimeTable.class);
                 startActivity(intent);
             }
         });

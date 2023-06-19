@@ -14,10 +14,10 @@ import com.example.figma.model.Board;
 
 import java.util.List;
 
-public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapter.ViewHolder> {
+public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.ViewHolder> {
     private List<Board> item_list;
 
-    public Select_item_adapter(List<Board> item_list) {
+    public SelectItemAdapter(List<Board> item_list) {
         this.item_list = item_list;
 
     }
@@ -30,7 +30,7 @@ public class Select_item_adapter extends RecyclerView.Adapter<Select_item_adapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Select_item_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SelectItemAdapter.ViewHolder holder, int position) {
         Board item = item_list.get(position);
         // Bind the data to the ViewHolder
         holder.bind(item);

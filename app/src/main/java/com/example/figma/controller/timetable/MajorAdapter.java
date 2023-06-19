@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder> {
+public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> {
     private List<Board> fieldList;
 
     private FirebaseFirestore db;
@@ -35,7 +35,7 @@ public class Major_adapter extends RecyclerView.Adapter<Major_adapter.ViewHolder
 
 
 
-    public Major_adapter(List<Board> fieldList) {
+    public MajorAdapter(List<Board> fieldList) {
         this.fieldList = fieldList;
 
     }
