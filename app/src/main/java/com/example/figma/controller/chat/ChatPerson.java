@@ -44,7 +44,7 @@ public class ChatPerson extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
-        //RecyclerView 촉화
+        //RecyclerView 초기화
         mStudentRecyclerView = mBinding.StudentList;
         mStudentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mStudentRecyclerView.setAdapter(mAdapter);
@@ -69,15 +69,18 @@ public class ChatPerson extends AppCompatActivity {
                                 String name = documentSnapshot.getString("userName");
                                 String studentNumber = documentSnapshot.getString("studentNumber");
                                 String photo = documentSnapshot.getString("profileUri");
+                                String receiverUUID = documentSnapshot.getString("uid");
 
                                 Board student = new Board();
                                 student.setUserName(name);
                                 student.setStudentNumber(studentNumber);
                                 student.setProfileUri(photo);
+                                student.setReceiverUUID(receiverUUID);
+
 
                                 mStudentList.add(student);
                             }
-                            mAdapter = new StudentAdapter(mStudentList);
+                            mAdapter = new StudentAdapter(getApplicationContext(),mStudentList);
                             mStudentRecyclerView.setAdapter(mAdapter);
                         }
 

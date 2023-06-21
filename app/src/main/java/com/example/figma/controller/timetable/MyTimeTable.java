@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
@@ -29,13 +30,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.figma.model.Board;
 import com.example.figma.controller.MainHome;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 
-public class My_time_table extends AppCompatActivity {
+public class MyTimeTable extends AppCompatActivity {
 
     private MyTimeTableBinding mBinding;
     private FirebaseAuth mAuth;
@@ -50,12 +48,10 @@ public class My_time_table extends AppCompatActivity {
 
     private List<Board> mjfieldList = new ArrayList<>();
     private List<Board> gefieldList = new ArrayList<>();
-    private Map<String, Object> geMap = new HashMap<>();
-
+    private List<Board> itemList = new ArrayList<>();
+    private List<Board> updateList = new ArrayList<>();
+    private List<Board> backList = new ArrayList<>();
     private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
-
-
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +62,7 @@ public class My_time_table extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
+        backList.addAll(itemList);
 
         layoutManager_mj = new LinearLayoutManager(this);
         layoutManager2_ge = new LinearLayoutManager(this);
@@ -81,12 +78,11 @@ public class My_time_table extends AppCompatActivity {
 
 
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
-        List<Board> item_list = new ArrayList<>();
-        Select_item_adapter adapter = new Select_item_adapter(item_list);
-        mBinding.PicRecycler.setAdapter(adapter);
+        SelectItemAdapter select_adapter = new SelectItemAdapter(itemList);
+        mBinding.PicRecycler.setAdapter(select_adapter);
 
-        db.collection("Time_table").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
+        db.collection("timeTable").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -96,14 +92,19 @@ public class My_time_table extends AppCompatActivity {
                 if (snapshots != null && snapshots.exists()) {
                     Map<String, Object> data = snapshots.getData();
 
+                    updateList.clear();
+
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
                         String fieldName = entry.getKey();
                         Object fieldValue = entry.getValue();
-                        Board itemfield = new Board(fieldName, fieldValue);
-                        item_list.add(itemfield);
+                        Board itemField = new Board(fieldName, fieldValue);
+                        updateList.add(itemField);
                     }
 
-                    adapter.notifyDataSetChanged();
+                    itemList.clear();
+                    itemList.addAll(updateList);
+
+                    select_adapter.notifyDataSetChanged();
 
                 }
             }
@@ -196,21 +197,24 @@ public class My_time_table extends AppCompatActivity {
                                             mjHandleData(data);
                                         }
                                     } else {
-                                        Log.i("log", "실패");
                                     }
 
                                 }
                             });
                 } else {
-                    Toast.makeText(My_time_table.this, "정보를 선택하세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyTimeTable.this, "정보를 선택하세요", Toast.LENGTH_SHORT).show();
                 }
             }
 
         });
 
         // ---- 교양 리사이클러뷰에 표시 ---- //
+        List<Board> ge_list = new ArrayList<>();
+        GeAdapter geAdapter = new GeAdapter(ge_list);
+        mBinding.GeRecycler.setAdapter(geAdapter);
+
         CollectionReference geClassRef = db.collection("Ge class");
-        geClassRef.document("선택").collection("금").document("5-6")
+        db.collection("GE class").document("선택").collection("금").document("5-6")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -223,96 +227,125 @@ public class My_time_table extends AppCompatActivity {
                         }
                     }
                 });
-//        geClassRef.document("선택").collection("금").document("7-8")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data2 = document.getData();
-//                                geMap.putAll(data2);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        geClassRef.document("선택").collection("목").document("2-3")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data3 = document.getData();
-//                                geMap.putAll(data3);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        geClassRef.document("선택").collection("온라인").document("비대면수업")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data4 = document.getData();
-//                                geMap.putAll(data4);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        geClassRef.document("선택").collection("월").document("1-2")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data5 = document.getData();
-//                                geMap.putAll(data5);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        geClassRef.document("선택").collection("월").document("3-4")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data6 = document.getData();
-//                                geMap.putAll(data6);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        geClassRef.document("필수").collection("온라인").document("비대면수업")
-//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document != null && document.exists()) {
-//                                Map<String, Object> data7 = document.getData();
-//                                geMap.putAll(data7);
-//                            }
-//                        }
-//                    }
-//                });
-//        geHandleData(geMap);
+        db.collection("GE class").document("선택").collection("금").document("7-8")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data2 = document.getData();
+                                geHandleData(data2);
+                            }
+                        }
+                    }
+                });
 
+        db.collection("GE class").document("선택").collection("목").document("2-3")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data3 = document.getData();
+                                geHandleData(data3);
+                            }
+                        }
+                    }
+                });
+
+        db.collection("GE class").document("선택").collection("온라인").document("비대면수업")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data4 = document.getData();
+                                geHandleData(data4);
+                            }
+                        }
+                    }
+                });
+
+        db.collection("GE class").document("선택").collection("월").document("1-2")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data5 = document.getData();
+                                geHandleData(data5);
+                            }
+                        }
+                    }
+                });
+
+        db.collection("GE class").document("선택").collection("월").document("3-4")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data6 = document.getData();
+                                geHandleData(data6);
+                            }
+                        }
+                    }
+                });
+
+        db.collection("GE class").document("필수").collection("온라인").document("비대면수업")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data7 = document.getData();
+                                geHandleData(data7);
+                            }
+                        }
+                    }
+                });
+
+        // 완료 버튼
+        mBinding.timeFinishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainHome.class);
+                startActivity(intent);
+            }
+        });
 
         // 뒤로가기
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("timeTable").document(uid).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Log.i("뒤로가기 클릭 시 데이터 삭제 ", "성공");
+                        } else {
+                            Log.i("뒤로가기 클릭 시 데이터 삭제 ", "성공");
+                        }
+                    }
+                });
+
+                Map<String, Object> timeTableData = new HashMap<>();
+                for (Board board : backList) {
+                    timeTableData.put(board.getFieldName(), board.getFieldValue());
+                }
+                db.collection("timeTable").document(uid).set(timeTableData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.i("새로운 데이터 입력김세미", "성공");
+                    }
+                });
+
                 Intent intent = new Intent(getApplicationContext(), MainHome.class);
                 startActivity(intent);
             }
@@ -330,12 +363,11 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             mjfieldList.add(field);
         }
-        Major_adapter adapter = new Major_adapter(mjfieldList);
-        mBinding.MajorRecycler.setAdapter(adapter);
+        MajorAdapter mj_adapter = new MajorAdapter(mjfieldList);
+        mBinding.MajorRecycler.setAdapter(mj_adapter);
     }
 
     private void geHandleData(Map<String, Object> data) {
-        gefieldList.clear();
 
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             String fieldName = entry.getKey();
@@ -345,9 +377,8 @@ public class My_time_table extends AppCompatActivity {
             Board field = new Board(fieldName, fieldValue);
             gefieldList.add(field);
         }
-        Ge_adapter ge_adapter = new Ge_adapter(gefieldList);
+        GeAdapter ge_adapter = new GeAdapter(gefieldList);
         mBinding.GeRecycler.setAdapter(ge_adapter);
-        Log.i("log", "geHandle실행");
 
     }
 }
