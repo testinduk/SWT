@@ -45,6 +45,8 @@
         <!--bulletin-->
         <activity android:name=".controller.chat.ChatPerson"/>
         <!--chat-->
+        <activity android:name=".controller.chat.ChatMain"/>
+
         <!--comment-->
         <activity android:name=".controller.find.FindId"/>
         <activity android:name=".controller.find.FindPw"/>

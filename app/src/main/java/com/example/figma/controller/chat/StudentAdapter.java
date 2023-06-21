@@ -2,6 +2,7 @@ package com.example.figma.controller.chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
 import com.example.figma.model.Board;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -26,12 +26,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     private FirebaseFirestore database;
 
-    public StudentAdapter(List<Board> studentList){
-        mStudentList = studentList;
-    }
-    public StudentAdapter(Context context, List<Board> StudentList){
+    public StudentAdapter(Context context, List<Board> studentList){
         this.context = context;
-        mStudentList =StudentList;
+        mStudentList = studentList;
     }
 
     @NonNull
@@ -53,6 +50,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         String userName = mStudentList.get(position).getUserName();
         String studentNumber = mStudentList.get(position).getStudentNumber();
         String profile = mStudentList.get(position).getProfileUri();
+        String receiverUUID = mStudentList.get(position).getReceiverUUID();
 
         database = FirebaseFirestore.getInstance();
 
@@ -63,6 +61,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 chat_intent.putExtra("userName", userName);
                 chat_intent.putExtra("studentNumber",studentNumber);
                 chat_intent.putExtra("photo", profile);
+                chat_intent.putExtra("receiverUUID", receiverUUID);
+                Log.e("receiverUUID", receiverUUID);
+
+                chat_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 context.startActivity(chat_intent);
             }
         });
