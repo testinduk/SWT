@@ -13,6 +13,13 @@ public class Board {
         this.receiverUUID = receiverUUID;
 
     }
+    private String timestamp;
+    public String getTimestamp() {
+        return timestamp;
+    }
+    public void setTimestamp(String timestamp){
+        this.timestamp = timestamp;
+    }
 
 
     // -----------chat_DB-------------------------//

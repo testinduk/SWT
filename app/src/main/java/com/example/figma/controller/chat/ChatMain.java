@@ -2,19 +2,24 @@ package com.example.figma.controller.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.databinding.ChatMainBinding;
+import com.example.figma.model.Board;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -23,6 +28,9 @@ import javax.annotation.Nullable;
 public class ChatMain extends AppCompatActivity {
     private ChatMainBinding mBinding;
     private FirebaseFirestore mFireStore;
+    private RecyclerView mChatRecyclerView;
+    private ChatAdapter mChatAdapter;
+    private List<Board> mChatList = new ArrayList<Board>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +47,59 @@ public class ChatMain extends AppCompatActivity {
 
         Intent Chat_intent = getIntent();
         String receiverUUID = Chat_intent.getStringExtra("receiverUUID");
+        String chattingPartner = Chat_intent.getStringExtra("userName");
+
+        mChatRecyclerView = mBinding.chatRecyclerView;
+        mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mChatAdapter = new ChatAdapter(mChatList);
+        mChatRecyclerView.setAdapter(mChatAdapter);
+
+        mBinding.chattingPartner.setText(chattingPartner);
+
+        String chatRoomKey = getChatRoomKeyFromUUID(senderUUID, receiverUUID);
+
+        if(chatRoomKey != null){
+            mFireStore.collection("chat")
+                    .document(chatRoomKey)
+                    .collection(senderUUID)
+                    .addSnapshotListener((value, error) -> {
+                        if(error != null){
+                            Log.e("ChatMain","메세지 에러",error);
+                            return;
+                        }
+                        if (value != null){
+                            mChatList.clear();
+                            for(DocumentSnapshot document : value.getDocuments()){
+                                Board chat = document.toObject(Board.class);
+                                if(chat != null){
+                                    mChatList.add(chat);
+                                }
+                            }
+                            mChatAdapter.notifyDataSetChanged();
+                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
+                        }
+            });
+            mFireStore.collection("chat")
+                    .document(chatRoomKey)
+                    .collection(receiverUUID)
+                    .addSnapshotListener((value, error) -> {
+                        if (error != null){
+                            Log.e("ChatMain","메세지 에러",error);
+                            return;
+                        }
+                        if(value != null){
+                            mChatList.clear();
+                            for(DocumentSnapshot document : value.getDocuments()) {
+                                Board chat = document.toObject(Board.class);
+                                if(chat != null){
+                                    mChatList.add(chat);
+                                }
+                            }
+                            mChatAdapter.notifyDataSetChanged();
+                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
+                        }
+                    });
+        }
 
 
         mBinding.sendButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +120,6 @@ public class ChatMain extends AppCompatActivity {
                             messageData.put("userName", userName);
                             messageData.put("timestamp", current_time);
 
-
                             mFireStore.collection("chat")
                                     .document(chatRoomKey)
                                     .collection(senderUUID)
@@ -69,7 +129,6 @@ public class ChatMain extends AppCompatActivity {
                                         mBinding.chatText.setText(""); //전송 후 입력 필드 초기화
                                     })
                                     .addOnFailureListener(e -> {
-                                        Log.d("fuck", "개같이 멸망... 채팅하지마!!");
                                     });
                         } else {
                             Log.d("Error","ChatRoomKey가 없다.");
@@ -80,7 +139,13 @@ public class ChatMain extends AppCompatActivity {
             }
         });
 
-
+        mBinding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChatPerson.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private String getCurrentTime() {

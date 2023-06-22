@@ -62,7 +62,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 chat_intent.putExtra("studentNumber",studentNumber);
                 chat_intent.putExtra("photo", profile);
                 chat_intent.putExtra("receiverUUID", receiverUUID);
-                Log.e("receiverUUID", receiverUUID);
 
                 chat_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
