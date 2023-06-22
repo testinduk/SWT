@@ -17,8 +17,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -76,6 +78,7 @@ public class ChatMain extends AppCompatActivity {
                                     mChatList.add(chat);
                                 }
                             }
+
                             Collections.sort(mChatList, new Comparator<Board>() {
                                 @Override
                                 public int compare(Board board1, Board board2) {
@@ -86,6 +89,12 @@ public class ChatMain extends AppCompatActivity {
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
                         }
                     });
+
+                            mChatAdapter.notifyDataSetChanged();
+                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
+                        }
+            });
+
             mFireStore.collection("chat")
                     .document(chatRoomKey)
                     .collection(receiverUUID)
@@ -95,18 +104,21 @@ public class ChatMain extends AppCompatActivity {
                             return;
                         }
                         if(value != null){
+
                             for(DocumentSnapshot document : value.getDocuments()) {
                                 Board chat = document.toObject(Board.class);
                                 if(chat != null){
                                     mChatList.add(chat);
                                 }
                             }
+
                             Collections.sort(mChatList, new Comparator<Board>() {
                                 @Override
                                 public int compare(Board board1, Board board2) {
                                     return board1.getTimestamp().compareTo(board2.getTimestamp());
                                 }
                             });
+
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
                         }
