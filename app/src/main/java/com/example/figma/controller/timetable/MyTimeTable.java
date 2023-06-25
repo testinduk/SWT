@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.figma.databinding.MyTimeTableBinding;
 import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
@@ -36,8 +39,8 @@ import com.example.figma.controller.MainHome;
 public class MyTimeTable extends AppCompatActivity {
 
     private MyTimeTableBinding mBinding;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();;
     // 스피너
     private ArrayList<String> dp_sp;
     private ArrayList<String> grade_sp;
@@ -45,6 +48,11 @@ public class MyTimeTable extends AppCompatActivity {
     private String dp_time;
     private String grade_time;
     private String class_time;
+
+    private String uid = mAuth.getCurrentUser().getUid();
+
+    private List<Board> deleteList = new ArrayList<>();
+
 
     private List<Board> mjfieldList = new ArrayList<>();
     private List<Board> gefieldList = new ArrayList<>();
@@ -62,8 +70,6 @@ public class MyTimeTable extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
-        backList.addAll(itemList);
-
         layoutManager_mj = new LinearLayoutManager(this);
         layoutManager2_ge = new LinearLayoutManager(this);
         layoutManager_pic = new LinearLayoutManager(this);
@@ -72,16 +78,35 @@ public class MyTimeTable extends AppCompatActivity {
         mBinding.GeRecycler.setLayoutManager(layoutManager2_ge);
         mBinding.PicRecycler.setLayoutManager(layoutManager_pic);
 
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
-        db = FirebaseFirestore.getInstance();
 
+
+
+        // 백업을 위한 초기 데이터 저장
+        db.collection("timeTable").document(uid)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                Map<String, Object> data = document.getData();
+
+                                backList.clear();
+
+                                for (Map.Entry<String, Object> entry : data.entrySet()) {
+                                    String fieldName = entry.getKey();
+                                    Object fieldValue = entry.getValue();
+                                    Board itemField = new Board(fieldName, fieldValue);
+                                    backList.add(itemField);
+                                }
+                            }
+                        }
+                    }
+                });
 
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         SelectItemAdapter select_adapter = new SelectItemAdapter(itemList);
         mBinding.PicRecycler.setAdapter(select_adapter);
-
-
         db.collection("timeTable").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshots, @Nullable FirebaseFirestoreException error) {
@@ -311,6 +336,26 @@ public class MyTimeTable extends AppCompatActivity {
                     }
                 });
 
+
+        // 선택 삭제 버튼
+        mBinding.timeDelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 선택된 필드 가져오기
+                deleteList = select_adapter.getDeleteList();
+
+                // 가져온 필드 처리
+                for (Board field : deleteList) {
+                    String delFieldName = field.getFieldName();
+                    deleteField(delFieldName);
+                }
+
+                deleteList.clear();
+
+            }
+        });
+
+
         // 완료 버튼
         mBinding.timeFinishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,10 +384,11 @@ public class MyTimeTable extends AppCompatActivity {
                 for (Board board : backList) {
                     timeTableData.put(board.getFieldName(), board.getFieldValue());
                 }
+
                 db.collection("timeTable").document(uid).set(timeTableData).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Log.i("새로운 데이터 입력김세미", "성공");
+                        Log.i("새로운 데이터 입력", "성공");
                     }
                 });
 
@@ -350,6 +396,23 @@ public class MyTimeTable extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void deleteField(String delFieldName) {
+        DocumentReference documentReference = db.collection("timeTable").document(uid);
+        documentReference.update(delFieldName, FieldValue.delete())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i("메소드", "지워진데이터");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("메소드", "실패한데이터");
+                    }
+                });
     }
 
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,11 +31,9 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private int buttonClickCount = 1;
-    private List<String> fieldValues = new ArrayList<>();
 
     public MajorAdapter(List<Board> fieldList) {
         this.fieldList = fieldList;
-
     }
 
     @NonNull
@@ -58,18 +57,21 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private Button fieldName;
         private Button fieldValue;
-
+        private CheckBox selectField;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             fieldName = itemView.findViewById(R.id.timeTableNameDetail);
             fieldValue = itemView.findViewById(R.id.timeTableTimeDetail);
+            selectField = itemView.findViewById(R.id.selectCheckbox);
         }
+
 
         public void bind(Board field) {
             String sub_name = field.getFieldName();
             String sub_value = String.valueOf(field.getFieldValue());
             fieldName.setText(sub_name);
             fieldValue.setText(sub_value);
+
             fieldName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
