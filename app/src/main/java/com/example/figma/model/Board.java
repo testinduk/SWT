@@ -1,7 +1,68 @@
 package com.example.figma.model;
 
+import java.util.List;
+
 public class Board {
-    public Board(){
+    public Board() {
+
+    }
+
+    private String receiverUUID;
+    public String getReceiverUUID(){
+        return receiverUUID;
+    }
+    public void setReceiverUUID(String receiverUUID) {
+        this.receiverUUID = receiverUUID;
+
+    }
+    private String timestamp;
+    public String getTimestamp() {
+        return timestamp;
+    }
+    public void setTimestamp(String timestamp){
+        this.timestamp = timestamp;
+    }
+
+
+    // -----------chat_DB-------------------------//
+    public class Chat{
+        private String content;
+        private String senderUUID;
+        private long timestamp;
+        private String receiverUUID;
+
+        public String getReceiverUUID() {
+            return receiverUUID;
+        }
+
+        public void setReceiverUUID(String receiverUUID) {
+            this.receiverUUID = receiverUUID;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getSenderUUID() {
+            return senderUUID;
+        }
+
+        public void setSenderUUID(String senderUUID) {
+            this.senderUUID = senderUUID;
+        }
+
+        public long getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(long timestamp) {
+            this.timestamp = timestamp;
+        }
+
 
     }
 
@@ -59,7 +120,17 @@ public class Board {
 
 
     // ---------- bulletin_DB --------- //
+    private String className;
 
+    public List getDeleteList() {
+        return deleteList;
+    }
+
+    public void setDeleteList(List deleteList) {
+        this.deleteList = deleteList;
+    }
+
+    private List deleteList;
     private String profile;
     private String id;
     private String userName;
@@ -70,6 +141,14 @@ public class Board {
     private String bulletin_image;
     private String bulletin_key;
     private String bulletin_time;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     public String getBulletin_time() {
         return bulletin_time;

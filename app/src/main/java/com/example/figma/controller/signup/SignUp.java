@@ -131,6 +131,7 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("question", question);
                                     signUp.put("answer", answer);
                                     signUp.put("position",Position);
+                                    signUp.put("uid",uid);
 
 
                                     storageRef.child("SignUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
