@@ -92,8 +92,7 @@ public class ChatMain extends AppCompatActivity {
 
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
-                        }
-            });
+
 
             mFireStore.collection("chat")
                     .document(chatRoomKey)
