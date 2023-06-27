@@ -34,27 +34,25 @@
         android:id="@+id/mypageClassGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="1dp"
         android:text="학번/학년반"
         android:textColor="#000000"
         android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/myInfButton"
         app:layout_constraintEnd_toEndOf="@+id/mypageName"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/mypageName"
-        app:layout_constraintTop_toBottomOf="@+id/mypageName" />
+        app:layout_constraintStart_toEndOf="@+id/mypageName" />
 
     <Button
         android:id="@+id/myInfButton"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="43dp"
         android:backgroundTint="#ffffff"
         android:stateListAnimator="@null"
         android:text="정보수정"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/mypageWrote"
-        app:layout_constraintEnd_toStartOf="@+id/smartClassPageView"
+        app:layout_constraintBottom_toBottomOf="@+id/mypageSharingWrote"
         app:layout_constraintStart_toStartOf="@+id/mypageClassGrade"
         app:layout_constraintTop_toTopOf="@+id/mypageName" />
 
@@ -73,84 +71,132 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/mypageWrote"
+        android:id="@+id/mypageSharingWrote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="내가 쓴 글"
+        android:layout_marginTop="204dp"
+        android:layout_marginBottom="207dp"
+        android:text="내가 쓴 나눔 게시판"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/mypageWroteRecycler"
-        app:layout_constraintTop_toBottomOf="@+id/mypageProfilePicture" />
+        app:layout_constraintBottom_toBottomOf="@+id/mypageNoticeWroteRecycler"
+        app:layout_constraintStart_toStartOf="@+id/mypageSharingWroteRecycler"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mypageSchoolPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginBottom="126dp"
         android:text="학교 페이지"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/schoolPage"
+        app:layout_constraintBottom_toBottomOf="@+id/schoolPageView"
+        app:layout_constraintStart_toStartOf="@+id/mypageBulletinWroteRecycler"
+        app:layout_constraintTop_toTopOf="@+id/mypageBulletinWrote" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypageSharingWroteRecycler"
+        android:layout_width="0dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="143dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/mypage_rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/mypageBulletinWrote"
+        app:layout_constraintEnd_toEndOf="@+id/mypageNoticeWroteRecycler"
+        app:layout_constraintStart_toStartOf="@+id/mypageNoticeWrote"
+        app:layout_constraintTop_toTopOf="@+id/mypageProfilePicture" />
+
+    <TextView
+        android:id="@+id/mypageNoticeWrote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="내가 쓴 공지 게시판"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mypageNoticeWroteRecycler"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mypageWroteRecycler"
+        android:id="@+id/mypageNoticeWroteRecycler"
+        android:layout_width="0dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="285dp"
+        android:layout_marginBottom="285dp"
+        android:background="@drawable/mypage_rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/schoolPageView"
+        app:layout_constraintEnd_toEndOf="@+id/mypageBulletinWroteRecycler"
+        app:layout_constraintStart_toStartOf="@+id/mypageNoticeWrote"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+    <TextView
+        android:id="@+id/mypageBulletinWrote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="내가 쓴 자유 게시판"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/mypageBulletinWroteRecycler"
+        app:layout_constraintTop_toBottomOf="@+id/mypageNoticeWroteRecycler" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypageBulletinWroteRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="19dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/mypage_rectangle"
         app:layout_constraintBottom_toTopOf="@+id/mypageSchoolPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mypageWrote" />
+        app:layout_constraintTop_toTopOf="@+id/mypageBulletinWrote" />
 
     <ImageButton
         android:id="@+id/smartClass"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="111dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginBottom="55dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/laptop"
-        app:layout_constraintBottom_toTopOf="@+id/smartClassPageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/mypageSchoolPage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/smartClassPageView"
+        app:layout_constraintTop_toBottomOf="@+id/mypageBulletinWroteRecycler"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/schoolPageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="16dp"
         android:text="종합정보시스템"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/smartClass" />
+        app:layout_constraintEnd_toStartOf="@+id/logout"
+        app:layout_constraintStart_toStartOf="@+id/backButton" />
 
     <TextView
         android:id="@+id/smartClassPageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="16dp"
         android:text="스마트클래스"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="@+id/smartClass"
-        app:layout_constraintTop_toTopOf="@+id/schoolPageView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/schoolPageView" />
 
     <ImageButton
         android:id="@+id/schoolPage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/school"
         app:layout_constraintBottom_toBottomOf="@+id/smartClass"

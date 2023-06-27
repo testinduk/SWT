@@ -1,6 +1,5 @@
 package com.example.figma.controller.mypage;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,15 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.figma.R;
 import com.example.figma.controller.Login;
 import com.example.figma.controller.MainHome;
 import com.example.figma.controller.myinformation.MyInfDetails;
-import com.example.figma.controller.timetable.SelectItemAdapter;
 import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,28 +29,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Mypage extends AppCompatActivity {
     private MypageBinding mBinding;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();;
-    private LinearLayoutManager myListLayoutManager;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Board> arrayList;
+    private List<Board> sharingList;
+    private List<Board> noticeList;
+    private List<Board> bulletinList;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uid = mAuth.getCurrentUser().getUid();
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private RecyclerView.Adapter MypageAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter sharingAdapter, noticeAdapter, bulletinAdapter;
+    private RecyclerView.LayoutManager sharingLayoutManager, noticeLayoutManager, bulletinLayoutManager;
 
 
 
@@ -89,8 +83,6 @@ public class Mypage extends AppCompatActivity {
         };
         signUpRef.addListenerForSingleValueEvent(valueEventListener);
 
-        myListLayoutManager = new LinearLayoutManager(this);
-        mBinding.mypageWroteRecycler.setLayoutManager(myListLayoutManager);
 
         // 내 프로필 내용 불러오기
         db.collection("signUp").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -113,10 +105,13 @@ public class Mypage extends AppCompatActivity {
                     }
                 });
 
-        // 내가 쓴 글 불러오기
-        arrayList = new ArrayList<>();
-        MypageAdapter = new MypageAdapter(arrayList, this);
-        mBinding.mypageWroteRecycler.setAdapter(MypageAdapter);
+        sharingLayoutManager = new LinearLayoutManager(this);
+        mBinding.mypageSharingWroteRecycler.setLayoutManager(sharingLayoutManager);
+
+        // 내가 쓴 나눔 글 불러오기
+        sharingList = new ArrayList<>();
+        sharingAdapter = new MypageSharingAdapter(sharingList, this);
+        mBinding.mypageSharingWroteRecycler.setAdapter(sharingAdapter);
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("sharing Board");
@@ -128,10 +123,10 @@ public class Mypage extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Board board = dataSnapshot.getValue(Board.class);
                     if(board != null){
-                        arrayList.add(board);
+                        sharingList.add(board);
                     }
                 }
-                MypageAdapter.notifyDataSetChanged();
+                sharingAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -140,27 +135,65 @@ public class Mypage extends AppCompatActivity {
             }
         });
 
-//        Query query = databaseRef.child("SignUp").orderByChild("idToken").equalTo(uid);
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        String userName = snapshot.child("userName").getValue(String.class);
-//                        String studentNumber = snapshot.child("studentNumber").getValue(String.class);
-//
-//                        mBinding.mypageName.setText(userName);
-//                        mBinding.mypageClassGrade.setText(studentNumber);
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        noticeLayoutManager = new LinearLayoutManager(this);
+        mBinding.mypageNoticeWroteRecycler.setLayoutManager(noticeLayoutManager);
 
+        //내가 쓴 공지 글 불러오기
+        noticeList = new ArrayList<>();
+        noticeAdapter = new MypageNoticeAdapter(noticeList, this);
+        mBinding.mypageNoticeWroteRecycler.setAdapter(noticeAdapter);
 
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("notice Board");
+
+        Query query1 = databaseReference.orderByChild("idToken").equalTo(uid);
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Board board = dataSnapshot.getValue(Board.class);
+                    if(board != null){
+                        noticeList.add(board);
+                    }
+                }
+                noticeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        bulletinLayoutManager = new LinearLayoutManager(this);
+        mBinding.mypageBulletinWroteRecycler.setLayoutManager(bulletinLayoutManager);
+
+        //내가 쓴 자유글 불러오기
+        bulletinList = new ArrayList<>();
+        bulletinAdapter = new MypageBulletinAdapter(bulletinList, this);
+        mBinding.mypageBulletinWroteRecycler.setAdapter(bulletinAdapter);
+
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("bulletin Board");
+
+        Query query2 = databaseReference.orderByChild("idToken").equalTo(uid);
+        query2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Board board = dataSnapshot.getValue(Board.class);
+                    if(board != null){
+                        bulletinList.add(board);
+                    }
+                }
+                bulletinAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // 종합정보시스템 버튼 하이퍼 링크
         mBinding.schoolPage.setOnClickListener(new View.OnClickListener() {

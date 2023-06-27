@@ -18,31 +18,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MypageAdapter extends RecyclerView.Adapter<MypageAdapter.MypageViewHolder> {
-    private List<Board> mMypage;
+public class MypageBulletinAdapter extends RecyclerView.Adapter<MypageBulletinAdapter.MypageViewHolder> {
+    private List<Board> mMypageBulletin;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    public MypageAdapter(List<Board> arrayList, Mypage mypage) {
-        this.mMypage = arrayList;
+    public MypageBulletinAdapter(List<Board> arrayList, Mypage mypage) {
+        this.mMypageBulletin = arrayList;
     }
 
     @NonNull
     @Override
-    public MypageAdapter.MypageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MypageBulletinAdapter.MypageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mypage, parent, false);
         MypageViewHolder holder = new MypageViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MypageAdapter.MypageViewHolder holder, int position) {
-        Board board = mMypage.get(position);
+    public void onBindViewHolder(@NonNull MypageBulletinAdapter.MypageViewHolder holder, int position) {
+        Board board = mMypageBulletin.get(position);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("sharing Board");
+        databaseReference = FirebaseDatabase.getInstance().getReference("bulletin Board");
 
         Query query = databaseReference.orderByChild("idToken").equalTo(board.getIdToken());
         query.addValueEventListener(new ValueEventListener() {
@@ -67,7 +66,7 @@ public class MypageAdapter extends RecyclerView.Adapter<MypageAdapter.MypageView
 
     @Override
     public int getItemCount() {
-        return (mMypage != null ? mMypage.size():0);
+        return (mMypageBulletin != null ? mMypageBulletin.size():0);
     }
 
     public class MypageViewHolder extends RecyclerView.ViewHolder {

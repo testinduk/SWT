@@ -81,8 +81,6 @@ public class SharingWriting extends Activity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth를 선언
                 String uid = mAuth.getCurrentUser().getUid(); //현재 사용자 가져오기
 
-
-
                 String current_time = getCurrentTime(); // 현재 시간 메소드 실행
                 String title = mBinding.sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
                 String content = mBinding.sharingBoardContentWrite.getText().toString(); //내용을 가져옴
