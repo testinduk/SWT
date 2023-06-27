@@ -1,5 +1,7 @@
 package com.example.figma.model;
 
+import java.util.List;
+
 public class Board {
     public Board() {
 
@@ -118,7 +120,17 @@ public class Board {
 
 
     // ---------- bulletin_DB --------- //
+    private String className;
 
+    public List getDeleteList() {
+        return deleteList;
+    }
+
+    public void setDeleteList(List deleteList) {
+        this.deleteList = deleteList;
+    }
+
+    private List deleteList;
     private String profile;
     private String id;
     private String userName;
@@ -129,6 +141,14 @@ public class Board {
     private String bulletin_image;
     private String bulletin_key;
     private String bulletin_time;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     public String getBulletin_time() {
         return bulletin_time;
@@ -326,9 +346,29 @@ public class Board {
 
     // -----------sign_up_DB -----------//
     private String emailId;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
     private String password;
     private String chpassword1;
     private String answer;
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    private String position;
 
     private String question;
 
