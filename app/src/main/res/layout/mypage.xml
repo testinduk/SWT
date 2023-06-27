@@ -45,7 +45,7 @@
 
     <Button
         android:id="@+id/myInfButton"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="47dp"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="129dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginStart="33dp"
         android:background="#00ff0000"

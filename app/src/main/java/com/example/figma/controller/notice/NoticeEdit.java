@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -136,29 +137,26 @@ public class NoticeEdit extends Activity {
                     String notice_image1 = third_intent.getStringExtra("image");
 
                     StorageReference storageRef = storage.getReference();
-                    StorageReference oldStorageRef = storage.getReferenceFromUrl(notice_image1);
+                    if (notice_image1 != null && !notice_image1.isEmpty()) {
+                        StorageReference oldStorageRef = storage.getReferenceFromUrl(notice_image1);
 
+                        oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.i("log", "원래 있던 아이미지가 지워졌습니다");
+                            }
+                        });
+                    }
 
-                    oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    StorageReference newImageRef = storageRef.child("notice/" + notice_image_UUID);
+                    newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(Void unused) {
-
-                            StorageReference newImageRef = storageRef.child("notice/" + notice_image_UUID);
-                            newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //이미지 업로드 성공
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    //이미지 업로드 실패
-                                }
-                            });
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //이미지 업로드 성공
                         }
                     });
-                    break;
                 }
+                    break;
         }
     }
 

@@ -74,12 +74,9 @@ public class BulletinBoardWriting extends Activity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
 
-                Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
-                startActivity(intent);
-
                 String current_time = getCurrentTime();
 
-                Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
+                Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
@@ -105,7 +102,7 @@ public class BulletinBoardWriting extends Activity {
                             boardRef.child("bulletin_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(bulletin_board_image_UUID);
 
-                            storageRef.child("bulletin/"+bulletin_board_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            storageRef.child("bulletin/" + bulletin_board_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     if(uri != null){
@@ -123,6 +120,10 @@ public class BulletinBoardWriting extends Activity {
 
                     }
                 });
+
+                Intent intent = new Intent(getApplicationContext(), BulletinBoard.class);
+                startActivity(intent);
+
             }
         });
     }

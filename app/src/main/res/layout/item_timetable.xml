@@ -21,7 +21,7 @@
                 android:textSize="20sp"
                 android:fontFamily="@font/linebold"
                 android:textColor="@color/black"
-                android:background="@color/white" />
+                android:background="@drawable/table_outside" />
 
         </LinearLayout>
 
@@ -37,7 +37,7 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/linemiddl"
                 android:textColor="@color/black"
-                android:background="@color/white" />
+                android:background="@drawable/table_outside" />
 
         </LinearLayout>
 
