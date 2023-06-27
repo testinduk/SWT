@@ -81,8 +81,7 @@ public class SharingWriting extends Activity {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth를 선언
                 String uid = mAuth.getCurrentUser().getUid(); //현재 사용자 가져오기
 
-                Intent intent = new Intent(getApplicationContext(), SharingBoard.class); //새로운 인텐트 객체 생성(getApplicationContext()현재 엑티비티 정보 담김, SharingBoard.class 호출할 컴포넌트)
-                startActivity(intent);
+
 
                 String current_time = getCurrentTime(); // 현재 시간 메소드 실행
                 String title = mBinding.sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
@@ -116,22 +115,7 @@ public class SharingWriting extends Activity {
                 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ---------------------------RealTime 부분 시작------------------------------
-                Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid); //쿼리 작성
+                Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid); //쿼리 작성
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -176,7 +160,8 @@ public class SharingWriting extends Activity {
                     }
                 });
 
----------------------------------종료------------------------------------*/
+                Intent intent = new Intent(getApplicationContext(), SharingBoard.class); //새로운 인텐트 객체 생성(getApplicationContext()현재 엑티비티 정보 담김, SharingBoard.class 호출할 컴포넌트)
+                startActivity(intent);
 
             }
 
