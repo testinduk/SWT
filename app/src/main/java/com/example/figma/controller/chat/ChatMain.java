@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -65,7 +66,6 @@ public class ChatMain extends AppCompatActivity {
 
         if(isFirstLoad){
             mChatList.clear();
-            mChatAdapter.notifyDataSetChanged();
             isFirstLoad = false;
         }
 
@@ -87,12 +87,21 @@ public class ChatMain extends AppCompatActivity {
                                 }
                             }
 
-                            Collections.sort(mChatList, new Comparator<Board>() {
+                            Collections.sort(updatedChatList, new Comparator<Board>() {
                                 @Override
                                 public int compare(Board board1, Board board2) {
-                                    return board1.getTimestamp().compareTo(board2.getTimestamp());
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    try{
+                                        Date date1 = dateFormat.parse(board1.getTimestamp());
+                                        Date date2 = dateFormat.parse(board2.getTimestamp());
+                                        return date1.compareTo(date2);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    return 0;
                                 }
                             });
+                            mChatList.clear();
                             mChatList.addAll(updatedChatList);
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
@@ -118,9 +127,18 @@ public class ChatMain extends AppCompatActivity {
                             Collections.sort(mChatList, new Comparator<Board>() {
                                 @Override
                                 public int compare(Board board1, Board board2) {
-                                    return board1.getTimestamp().compareTo(board2.getTimestamp());
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    try {
+                                        Date date1 = dateFormat.parse(board1.getTimestamp());
+                                        Date date2 = dateFormat.parse(board2.getTimestamp());
+                                        return date1.compareTo(date2);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    return 0;
                                 }
                             });
+
                             mChatList.addAll(updatedChatList);
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
