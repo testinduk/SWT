@@ -35,6 +35,7 @@ public class ChatMain extends AppCompatActivity {
     private RecyclerView mChatRecyclerView;
     private ChatAdapter mChatAdapter;
     private List<Board> mChatList = new ArrayList<Board>();
+    private boolean isFirstLoad = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,12 +56,18 @@ public class ChatMain extends AppCompatActivity {
 
         mChatRecyclerView = mBinding.chatRecyclerView;
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mChatAdapter = new ChatAdapter(mChatList);
+        mChatAdapter = new ChatAdapter(mChatList, senderUUID);
         mChatRecyclerView.setAdapter(mChatAdapter);
 
         mBinding.chattingPartner.setText(chattingPartner);
 
         String chatRoomKey = getChatRoomKeyFromUUID(senderUUID, receiverUUID);
+
+        if(isFirstLoad){
+            mChatList.clear();
+            mChatAdapter.notifyDataSetChanged();
+            isFirstLoad = false;
+        }
 
         if(chatRoomKey != null){
             mFireStore.collection("chat")
@@ -72,10 +79,11 @@ public class ChatMain extends AppCompatActivity {
                             return;
                         }
                         if (value != null){
+                            List<Board> updatedChatList = new ArrayList<>();
                             for(DocumentSnapshot document : value.getDocuments()){
                                 Board chat = document.toObject(Board.class);
                                 if(chat != null){
-                                    mChatList.add(chat);
+                                    updatedChatList.add(chat);
                                 }
                             }
 
@@ -85,15 +93,11 @@ public class ChatMain extends AppCompatActivity {
                                     return board1.getTimestamp().compareTo(board2.getTimestamp());
                                 }
                             });
+                            mChatList.addAll(updatedChatList);
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
                         }
                     });
-
-                            mChatAdapter.notifyDataSetChanged();
-                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
-
-
             mFireStore.collection("chat")
                     .document(chatRoomKey)
                     .collection(receiverUUID)
@@ -103,11 +107,11 @@ public class ChatMain extends AppCompatActivity {
                             return;
                         }
                         if(value != null){
-
+                            List<Board> updatedChatList = new ArrayList<>();
                             for(DocumentSnapshot document : value.getDocuments()) {
                                 Board chat = document.toObject(Board.class);
                                 if(chat != null){
-                                    mChatList.add(chat);
+                                    updatedChatList.add(chat);
                                 }
                             }
 
@@ -117,7 +121,7 @@ public class ChatMain extends AppCompatActivity {
                                     return board1.getTimestamp().compareTo(board2.getTimestamp());
                                 }
                             });
-
+                            mChatList.addAll(updatedChatList);
                             mChatAdapter.notifyDataSetChanged();
                             mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
                         }
@@ -172,7 +176,7 @@ public class ChatMain extends AppCompatActivity {
     }
 
     private String getCurrentTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = new Date();
         return dateFormat.format(date);
     }
