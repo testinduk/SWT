@@ -3,6 +3,16 @@ package com.example.figma.model;
 import java.util.List;
 
 public class Board {
+    private String boardType;
+
+    public String getBoardType() {
+        return boardType;
+    }
+
+    public void setBoardType(String boardType) {
+        this.boardType = boardType;
+    }
+
     public Board() {
 
     }
