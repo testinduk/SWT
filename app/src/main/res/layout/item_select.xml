@@ -21,22 +21,21 @@
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:fontFamily="@font/linebold"
-                android:background="@color/white" />
+                android:background="@drawable/table_outside" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            >
 
             <CheckBox
                 android:id="@+id/selectCheckbox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white" />
+                android:gravity="center"
+                android:background="@drawable/table_outside" />
 
         </LinearLayout>
 

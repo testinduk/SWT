@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import com.example.figma.databinding.SharingEditBinding;
@@ -119,8 +121,11 @@ public class SharingEdit extends Activity {
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("sharing Board").child(shar_key);
+                String current_time = getCurrentTime();
+
                 ref.child("title").setValue(mBinding.sharingBoardContentNameMod.getText().toString());
                 ref.child("content").setValue(mBinding.sharingBoardContentMod.getText().toString());
+                ref.child("sharing_time").setValue(current_time);
 
                 storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -149,5 +154,10 @@ public class SharingEdit extends Activity {
                 startActivity(intent);
             }
         });
+    }
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

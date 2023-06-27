@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import com.example.figma.databinding.BulletinBoardEditBinding;
@@ -119,10 +121,14 @@ public class BulletinBoardEdit extends Activity {
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String uid = mAuth.getCurrentUser().getUid();
+
+                String current_time = getCurrentTime();
+
                 //수정하기 위해 bulletin Board 밑에 현재 선택된 bulletin_key 와 같은 것을 찾아서 title 과 content 에 수정된 글 저장하기.
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bulletin Board").child(bulletin_key);
                 ref.child("title").setValue(mBinding.titleEdit.getText().toString());
                 ref.child("content").setValue(mBinding.contentEdit.getText().toString());
+                ref.child("bulletin_time").setValue(current_time);
 
                 storageRef.child("bulletin/" + bulletin_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -151,5 +157,11 @@ public class BulletinBoardEdit extends Activity {
                 }
             }
         });
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

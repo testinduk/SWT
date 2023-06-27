@@ -79,7 +79,7 @@ public class NoticeWriting extends Activity {
                 //
                 String current_time = getCurrentTime();
 
-                Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
+                Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override

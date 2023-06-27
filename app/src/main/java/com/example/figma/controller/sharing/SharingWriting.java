@@ -179,7 +179,6 @@ public class SharingWriting extends Activity {
                     mBinding.photoImage.setImageURI(uri);
 
                     StorageReference imageRef = storageRef.child("sharing/" + sharing_image_UUID);
-                    Log.i("uuid",sharing_image_UUID);
                     imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
