@@ -22,21 +22,9 @@
             android:textSize="27sp"
             android:textStyle="bold" />
 
-
-        <TextView
-            android:id="@+id/myListContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="left"
-            android:text=" 내 용 "
-            android:textSize="18sp" />
-
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/myListDetail"
         android:layout_width="75dp"
         android:layout_height="50dp"
@@ -48,6 +36,5 @@
         android:stateListAnimator="@null"
         android:text="이동하기"
         android:textColor="@color/black"
-
         android:textSize="16sp" />
 </LinearLayout>
