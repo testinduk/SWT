@@ -84,7 +84,7 @@ public class NoticeBoardComment extends Activity {
         mBinding.sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Query query = databaseReference.child("SignUp").orderByChild("idToken").equalTo(uid);
+                Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid);
                 String comment_content = mBinding.noticeBoardCommentEdit.getText().toString();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
