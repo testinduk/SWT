@@ -1,6 +1,7 @@
 package com.example.figma.controller.chat;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public int getItemViewType(int position){
         Board chat = mChatList.get(position);
         if(chat.getUserName().equals(senderUUID)){
+            Log.e("senderUUID", senderUUID);
+            Log.e("getUserName",chat.getUserName());
             return VIEW_TYPE_SENDER;
         }else {
             return VIEW_TYPE_RECEIVER;
