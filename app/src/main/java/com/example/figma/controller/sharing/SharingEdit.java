@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import com.example.figma.databinding.SharingEditBinding;
@@ -45,30 +47,30 @@ public class SharingEdit extends Activity {
                     String sharing_image1 = four_intent.getStringExtra("image");
 
                     StorageReference storageRef = storage.getReference();
-                    StorageReference oldStorageRef = storage.getReferenceFromUrl(sharing_image1);
+                    if (sharing_image1 != null && !sharing_image1.isEmpty()) {
+                        StorageReference oldStorageRef = storage.getReferenceFromUrl(sharing_image1);
 
-                    oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.i("log", "원래 있던 아이미지가 지워졌습니다");
+                            }
+                        });
+                    }
+
+
+                    StorageReference newImageRef = storageRef.child("sharing/" + sharing_image_UUID);
+                    newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(Void unused) {
-
-                            StorageReference newImageRef = storageRef.child("sharing/" + sharing_image_UUID);
-                            newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //이미지 업로드 성공
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    //이미지 업로드 실패
-                                }
-                            });
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //이미지 업로드 성공
                         }
                     });
-                    break;
                 }
+                break;
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +95,6 @@ public class SharingEdit extends Activity {
 
         mBinding.sharingBoardContentNameMod.setText(shar_title);
         mBinding.sharingBoardContentMod.setText(shar_content);
-        mBinding.sharingBoardContent.setText(shar_name);
         Glide.with(this)
                 .load(shar_image)
                 .into(mBinding.photoImage);
@@ -119,8 +120,11 @@ public class SharingEdit extends Activity {
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("sharing Board").child(shar_key);
+                String current_time = getCurrentTime();
+
                 ref.child("title").setValue(mBinding.sharingBoardContentNameMod.getText().toString());
                 ref.child("content").setValue(mBinding.sharingBoardContentMod.getText().toString());
+                ref.child("sharing_time").setValue(current_time);
 
                 storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -149,5 +153,10 @@ public class SharingEdit extends Activity {
                 startActivity(intent);
             }
         });
+    }
+    private String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

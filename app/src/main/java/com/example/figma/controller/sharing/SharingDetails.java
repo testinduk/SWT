@@ -75,7 +75,9 @@ public class SharingDetails extends Activity {
                         intent.putExtra("title",shar_title);
                         intent.putExtra("content",shar_content);
                         intent.putExtra("key",shar_key);
-                        intent.putExtra("image",sharing_image);
+                        if (sharing_image != null) {
+                            intent.putExtra("image",sharing_image);
+                        }
                         intent.putExtra("username", shar_username);
                         intent.putExtra("time", sharing_time);
                         startActivity(intent);
