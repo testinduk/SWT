@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.figma.R;
@@ -48,9 +49,13 @@ public class Mypage extends AppCompatActivity {
     private MypageBinding mBinding;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();;
     private LinearLayoutManager myListLayoutManager;
-    private List<Board> itemList = new ArrayList<>();
+    private List<Board> arrayList;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uid = mAuth.getCurrentUser().getUid();
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private RecyclerView.Adapter MypageAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
 
 
@@ -63,7 +68,26 @@ public class Mypage extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
+        arrayList = new ArrayList<>();
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String idToken = currentUser.getUid();
+
+        DatabaseReference signUpRef = FirebaseDatabase.getInstance().getReference("signUp").child(idToken);
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String idToken = snapshot.child("idToken").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        signUpRef.addListenerForSingleValueEvent(valueEventListener);
 
         myListLayoutManager = new LinearLayoutManager(this);
         mBinding.mypageWroteRecycler.setLayoutManager(myListLayoutManager);
@@ -90,24 +114,31 @@ public class Mypage extends AppCompatActivity {
                 });
 
         // 내가 쓴 글 불러오기
-        MyListAdapter myListAdapter = new MyListAdapter(itemList);
-        mBinding.mypageWroteRecycler.setAdapter(myListAdapter);
+        arrayList = new ArrayList<>();
+        MypageAdapter = new MypageAdapter(arrayList, this);
+        mBinding.mypageWroteRecycler.setAdapter(MypageAdapter);
 
-        db.collection("board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("sharing Board");
+
+        Query query = databaseReference.orderByChild("idToken").equalTo(uid);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    List<String> documentNames = new ArrayList<>();
-
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        // 문서의 이름을 가져와서 저장 후
-                        String documentType = document.getId();
-                        documentRoute(documentType);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Board board = dataSnapshot.getValue(Board.class);
+                    if(board != null){
+                        arrayList.add(board);
                     }
                 }
+                MypageAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
 
 //        Query query = databaseRef.child("SignUp").orderByChild("idToken").equalTo(uid);
 //        query.addListenerForSingleValueEvent(new ValueEventListener() {
