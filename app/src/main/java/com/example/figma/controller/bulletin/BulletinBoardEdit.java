@@ -100,8 +100,6 @@ public class BulletinBoardEdit extends Activity {
         Log.d("Uid", uid);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        mBinding.writer.setText(bulletin_username);
-        mBinding.date.setText(bulletin_time);
         mBinding.titleEdit.setText(bulletin_title);
         mBinding.contentEdit.setText(bulletin_content);
         Glide.with(this)

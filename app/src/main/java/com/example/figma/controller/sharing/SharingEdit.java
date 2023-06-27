@@ -95,7 +95,6 @@ public class SharingEdit extends Activity {
 
         mBinding.sharingBoardContentNameMod.setText(shar_title);
         mBinding.sharingBoardContentMod.setText(shar_content);
-        mBinding.sharingBoardContent.setText(shar_name);
         Glide.with(this)
                 .load(shar_image)
                 .into(mBinding.photoImage);
