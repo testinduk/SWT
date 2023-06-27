@@ -346,9 +346,29 @@ public class Board {
 
     // -----------sign_up_DB -----------//
     private String emailId;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
     private String password;
     private String chpassword1;
     private String answer;
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    private String position;
 
     private String question;
 
