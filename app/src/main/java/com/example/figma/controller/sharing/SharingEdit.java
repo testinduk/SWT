@@ -45,30 +45,30 @@ public class SharingEdit extends Activity {
                     String sharing_image1 = four_intent.getStringExtra("image");
 
                     StorageReference storageRef = storage.getReference();
-                    StorageReference oldStorageRef = storage.getReferenceFromUrl(sharing_image1);
+                    if (sharing_image1 != null && !sharing_image1.isEmpty()) {
+                        StorageReference oldStorageRef = storage.getReferenceFromUrl(sharing_image1);
 
-                    oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        oldStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.i("log", "원래 있던 아이미지가 지워졌습니다");
+                            }
+                        });
+                    }
+
+
+                    StorageReference newImageRef = storageRef.child("sharing/" + sharing_image_UUID);
+                    newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(Void unused) {
-
-                            StorageReference newImageRef = storageRef.child("sharing/" + sharing_image_UUID);
-                            newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //이미지 업로드 성공
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    //이미지 업로드 실패
-                                }
-                            });
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //이미지 업로드 성공
                         }
                     });
-                    break;
                 }
+                break;
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
