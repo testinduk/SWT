@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.figma.controller.Login;
 import com.example.figma.databinding.SignUpBinding;
+import com.example.figma.model.Board;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,7 +48,7 @@ public class SignUp extends AppCompatActivity {
 
         storage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance(); //선언한 인스턴스를 초기화
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("SignUp");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("signUp");
 
         // Firestorage 초기화
         storageDB = FirebaseFirestore.getInstance();
@@ -122,6 +124,21 @@ public class SignUp extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     String uid = mAuth.getUid();
+                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+                                    Board signUpDb = new Board();
+                                    signUpDb.setEmailId(firebaseUser.getEmail());
+                                    signUpDb.setPassword(strPwd);
+                                    signUpDb.setIdToken(firebaseUser.getUid());
+                                    signUpDb.setUserName(strUserName);
+                                    signUpDb.setStudentNumber(strStudentNumber);
+                                    signUpDb.setAnswer(answer);
+                                    signUpDb.setQuestion(question);
+                                    signUpDb.setPosition(Position);
+
+
+                                    //setValue는 database에 insert 행휘
+                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(signUpDb);
 
                                     Map<String, Object> signUp = new HashMap<>();
                                     signUp.put("userName", strUserName);
@@ -133,8 +150,7 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("position",Position);
                                     signUp.put("uid",uid);
 
-
-                                    storageRef.child("SignUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    storageRef.child("signUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             if (uri != null) {
@@ -178,7 +194,6 @@ public class SignUp extends AppCompatActivity {
 //                            public void onComplete(@NonNull Task<AuthResult> task) {
 //                                if (task.isSuccessful()) {
 //
-//                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
 //                                    Board sign_up_db = new Board();
 //                                    sign_up_db.setEmailId(firebaseUser.getEmail());
 //                                    sign_up_db.setPassword(strPwd);
@@ -191,7 +206,7 @@ public class SignUp extends AppCompatActivity {
 //
 //                                    //setValue는 database에 insert 행휘
 //                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
-//
+
 //                                    Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
 //                                    Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
 //                                    startActivity(intent);
@@ -227,7 +242,7 @@ public class SignUp extends AppCompatActivity {
                     String strEmail1 = mBinding.editTextEmail.getText().toString();
 
                     StorageReference storageRef = storage.getReference();
-                    StorageReference riversRef = storageRef.child("SignUp/" + strEmail1);
+                    StorageReference riversRef = storageRef.child("signUp/" + strEmail1);
                     UploadTask uploadTask = riversRef.putFile(uri);
 
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
