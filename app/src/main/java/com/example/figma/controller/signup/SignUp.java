@@ -155,7 +155,6 @@ public class SignUp extends AppCompatActivity {
                                         public void onSuccess(Uri uri) {
                                             if (uri != null) {
                                                 String image_uri = uri.toString();
-                                                Log.i("log", image_uri);
                                                 signUp.put("profileUri", image_uri);
 
                                                 // Firestor에 저장
