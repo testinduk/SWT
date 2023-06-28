@@ -25,6 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyInfChPW extends Activity {
     private EditText  ch_password1, password1;
@@ -32,6 +37,7 @@ public class MyInfChPW extends Activity {
     private Button CompleteChangeButton;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
+    private FirebaseFirestore mFirestore;
 
 
 
@@ -51,6 +57,7 @@ public class MyInfChPW extends Activity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        mFirestore = FirebaseFirestore.getInstance();
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +74,7 @@ public class MyInfChPW extends Activity {
                 String newPassword = ch_password1.getText().toString();
                 String confirmPassword = password1.getText().toString();
                 if(newPassword.equals(confirmPassword)){
+                    //리얼타임 정보 업데이트
                     DatabaseReference signUpRef = FirebaseDatabase.getInstance().getReference("signUp");
                     Query query = signUpRef.orderByChild("idToken").equalTo(uid);
 
@@ -81,6 +89,20 @@ public class MyInfChPW extends Activity {
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
+                    //파이어스토어 정보 업데이트
+                    Map<String, Object> updateMap = new HashMap<>();
+                    updateMap.put("password", newPassword);
+
+                    mFirestore.collection("signUp").document(uid)
+                                    .set(updateMap, SetOptions.merge())
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+
+                                                    }
+                                                }
+                                            });
                    mAuth.sendPasswordResetEmail(mUser.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
                        @Override
                        public void onComplete(@NonNull Task<Void> task) {

@@ -43,8 +43,8 @@
 
     <ImageButton
         android:id="@+id/SelectImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="49dp"
         android:background="@android:color/transparent"
         android:clickable="true"
         android:onClick="clickImageButton"
@@ -52,17 +52,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/changeImage"
         app:layout_constraintTop_toTopOf="@+id/changeImage"
-        app:srcCompat="@drawable/add_btn" />
+        app:srcCompat="@drawable/camera" />
 
 
     <TextView
         android:id="@+id/info_mod"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="48dp"
         android:text="- 정보 변경"
         android:textColor="#000000"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/grade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -73,11 +73,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint=""
-        android:textSize="10dp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/remove"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
 
     <TextView
         android:id="@id/class1"
@@ -86,23 +88,24 @@
         android:layout_marginStart="16dp"
         android:text="학번"
         android:textColor="#000000"
-        android:textSize="14dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/remove"
         app:layout_constraintStart_toStartOf="@+id/class2"
         app:layout_constraintTop_toTopOf="@+id/changeImage"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintVertical_bias="0.685" />
 
     <EditText
         android:id="@id/class2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint=""
-        android:textSize="10dp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/remove"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeImage"
+        app:layout_constraintVertical_bias="0.72"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -112,7 +115,7 @@
         android:layout_marginStart="19dp"
         android:text="이름"
         android:textColor="#000000"
-        android:textSize="14dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/chname"
         app:layout_constraintStart_toStartOf="@+id/info_mod" />
 
