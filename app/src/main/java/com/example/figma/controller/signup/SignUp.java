@@ -150,11 +150,13 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("position",Position);
                                     signUp.put("uid",uid);
 
+
                                     storageRef.child("signUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             if (uri != null) {
                                                 String image_uri = uri.toString();
+                                                Log.i("image", image_uri);
                                                 signUp.put("profileUri", image_uri);
 
                                                 // Firestor에 저장
