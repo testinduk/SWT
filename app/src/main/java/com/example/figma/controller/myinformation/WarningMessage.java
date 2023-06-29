@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.figma.R;
+import com.example.figma.controller.Login;
 import com.example.figma.controller.mypage.Mypage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -34,6 +38,7 @@ public class WarningMessage extends Activity {
     private DatabaseReference mDatabase;
     private StorageReference mStroage;
     private FirebaseAuth mAuth = null;
+    private FirebaseFirestore mFirestore;
 
     String TAG = "WarningMessage";
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -51,7 +56,7 @@ public class WarningMessage extends Activity {
         mBinding.noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Mypage.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });
@@ -65,6 +70,7 @@ public class WarningMessage extends Activity {
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mStroage = FirebaseStorage.getInstance().getReference();
                 String uid = mAuth.getCurrentUser().getUid();
+                mFirestore = FirebaseFirestore.getInstance();
 
                 // realtime 데이터베이스에 있는 SignUp 삭제(완료)
                 mDatabase.child("SignUp").child(user.getUid()).removeValue();
@@ -129,6 +135,57 @@ public class WarningMessage extends Activity {
 
                     }
                 });
+
+                Query signUp = mDatabase.child("signUp").orderByChild("idToken").equalTo(uid);
+
+                signUp.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            String signUpKey = dataSnapshot.child("idToken").getValue(String.class);
+                            mDatabase.child("signUp").child(signUpKey).removeValue();
+
+                            String signUpimage = dataSnapshot.child("emailId").getValue(String.class);
+                            mStroage.child("signUp/").child(signUpimage).delete();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                mFirestore.collection("signUp").whereEqualTo("uid",uid)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
+                                    documentSnapshot.getReference().delete();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                            }
+                        });
+                mFirestore.collection("chat").whereEqualTo("chatRoomKey"+uid, true)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
+                                    documentSnapshot.getReference().delete();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                            }
+                        });
                 // Firebase Auth(인증)에서 계정 삭제 -> 이건 되는 아이
                 user.delete()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

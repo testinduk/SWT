@@ -48,6 +48,7 @@ public class MyInfDetails extends Activity {
     private String uid;
     private ListenerRegistration profileListenerRegistration;
     private String strEmail;
+    private Uri selectedImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,33 +150,116 @@ public class MyInfDetails extends Activity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-                //파이어스토어 정보 업데이트
-                Map<String, Object> updateMap = new HashMap<>();
-                updateMap.put("userName", newUserName);
-                updateMap.put("studentNumber", newStudentNumber);
-                mStorageRef.child("signUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                DatabaseReference sharingRef = FirebaseDatabase.getInstance().getReference("sharing Board");
+                Query sharingQuery = sharingRef.orderByChild("idToken").equalTo(uid);
+                sharingQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onSuccess(Uri uri) {
-                        if (uri != null) {
-                            String image_uri = uri.toString();
-                            updateMap.put("profileUri", image_uri);
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                            snapshot.getRef().child("userName").setValue(newUserName);
+                            snapshot.getRef().child("studentNumber").setValue(newStudentNumber);
                         }
-                        mFirestore.collection("signUp").document(uid)
-                                .set(updateMap, SetOptions.merge())
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(MyInfDetails.this, "정보가 업데이트 되었습니다.", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(MyInfDetails.this, Mypage.class);
-                                            startActivity(intent);
-                                        }
-                                    }
-                                });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
                     }
                 });
-            }
+                DatabaseReference noticeRef = FirebaseDatabase.getInstance().getReference("notice Board");
+                Query noticeQuery = noticeRef.orderByChild("idToken").equalTo(uid);
+                noticeQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                            snapshot.getRef().child("userName").setValue(newUserName);
+                            snapshot.getRef().child("studentNumber").setValue(newStudentNumber);
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                DatabaseReference bulletinRef = FirebaseDatabase.getInstance().getReference("bulletin Board");
+                Query bulletinQuery = bulletinRef.orderByChild("idToken").equalTo(uid);
+                bulletinQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        for(DataSnapshot snapshot : datasnapshot.getChildren()){
+                            snapshot.getRef().child("userName").setValue(newUserName);
+                            snapshot.getRef().child("studentNumber").setValue(newStudentNumber);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                //파이어스토어 정보 업데이트
+                if (selectedImageUri != null) {
+                    StorageReference imageRef = mStorageRef.child("signUp/" + strEmail);
+
+                    imageRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                imageRef.putFile(selectedImageUri)
+                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri downloadUri) {
+                                                        if (downloadUri != null) {
+                                                            String imageUri = downloadUri.toString();
+                                                            Map<String, Object> updateMap = new HashMap<>();
+                                                            updateMap.put("userName", newUserName);
+                                                            updateMap.put("studentNumber", newStudentNumber);
+                                                            updateMap.put("profileUri", imageUri);
+
+                                                            mFirestore.collection("signUp").document(uid)
+                                                                    .set(updateMap, SetOptions.merge())
+                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                                            if (task.isSuccessful()) {
+                                                                                Toast.makeText(MyInfDetails.this, "정보가 업데이트 되었습니다.", Toast.LENGTH_SHORT).show();
+                                                                                Intent intent = new Intent(MyInfDetails.this, Mypage.class);
+                                                                                startActivity(intent);
+                                                                            }
+                                                                        }
+                                                                    });
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                            }
+                        }
+                    });
+                } else {
+                    //프로필 이미지를 변경하지 않았을 때의 처리
+                    Map<String, Object> updateMap = new HashMap<>();
+                    updateMap.put("userName", newUserName);
+                    updateMap.put("studentNumber", newStudentNumber);
+
+                    mFirestore.collection("signUp").document(uid)
+                            .set(updateMap, SetOptions.merge())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(MyInfDetails.this, "정보가 업데이트 되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MyInfDetails.this, Mypage.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
+                }
+            }
         });
         // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
@@ -211,6 +295,7 @@ public class MyInfDetails extends Activity {
                 if (resultCode == RESULT_OK) {
                     Uri uri = data.getData();
                     mBinding.changeImage.setImageURI(uri);
+                    selectedImageUri = uri;
 
                     StorageReference storageRef = mStorage.getReference();
                     StorageReference riversRef = storageRef.child("signUp/" + strEmail);
