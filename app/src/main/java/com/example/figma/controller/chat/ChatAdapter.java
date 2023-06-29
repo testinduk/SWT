@@ -80,8 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
     public class ChatViewHolder extends RecyclerView.ViewHolder {
-        TextView chattingContent, chattingTime;
-        Button chattingName;
+        TextView chattingContent, chattingTime,chattingName;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/changeImage"
         app:layout_constraintTop_toTopOf="@+id/changeImage"
-        app:srcCompat="@drawable/camera" />
+        android:src="@drawable/camera" />
 
 
     <TextView
