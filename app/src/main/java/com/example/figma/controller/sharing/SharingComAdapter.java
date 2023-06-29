@@ -27,7 +27,7 @@ public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sharing_com, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comment, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -50,10 +50,10 @@ public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_studentNumber = itemView.findViewById(R.id.sharingStudentNumber);
-            this.tv_userName = itemView.findViewById(R.id.sharingUserName);
-            this.tv_content = itemView.findViewById(R.id.sharingContent);
-            this.tv_time = itemView.findViewById(R.id.sharingTime);
+            this.tv_studentNumber = itemView.findViewById(R.id.commentStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.commentUserName);
+            this.tv_content = itemView.findViewById(R.id.commentContent);
+            this.tv_time = itemView.findViewById(R.id.commentTime);
         }
     }
 }

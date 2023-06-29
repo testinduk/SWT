@@ -40,14 +40,14 @@
 
 
                 <TextView
-                    android:id="@+id/sharingUserName"
+                    android:id="@+id/commentUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이름"
                     android:textSize="20sp"
                     android:layout_margin="5dp"/>
                 <TextView
-                    android:id="@+id/sharingStudentNumber"
+                    android:id="@+id/commentStudentNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="학번"
@@ -55,7 +55,7 @@
                     android:layout_margin="5dp"/>
 
                 <TextView
-                    android:id="@+id/sharingTime"
+                    android:id="@+id/commentTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="시간"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/sharingContent"
+                    android:id="@+id/commentContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
