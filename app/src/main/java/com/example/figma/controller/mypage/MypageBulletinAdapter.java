@@ -75,8 +75,6 @@ public class MypageBulletinAdapter extends RecyclerView.Adapter<MypageBulletinAd
         public MypageViewHolder(@NonNull View itemView) {
             super(itemView);
             myListTitle = itemView.findViewById(R.id.myListTitle);
-            myListDetail = itemView.findViewById(R.id.myListDetail);
-
         }
     }
 }
