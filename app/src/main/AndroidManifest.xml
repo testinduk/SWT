@@ -51,6 +51,7 @@
         <activity android:name=".controller.find.FindId"/>
         <activity android:name=".controller.find.FindPw"/>
         <!--find-->
+        <activity android:name=".controller.myinformation.MyInfChPW"/>
         <activity android:name=".controller.myinformation.MyInfDetails"/>
         <activity android:name=".controller.myinformation.WarningMessage"/>
         <!--myinformation-->
