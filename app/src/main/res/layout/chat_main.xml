@@ -1,71 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".controller.chat.ChatMain" >
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/vector"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <TextView
-            android:id="@+id/chattingPartner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="상대방 이름"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="10dp"/>
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/vector"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="589dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
+        android:layout_width="369dp"
+        android:layout_height="580dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/chatText"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="9dp"
+        android:hint="채팅을 입력하세요" />
+
+    <ImageButton
+        android:id="@+id/sendButton"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/send_btn" />
+
+    <TextView
+        android:id="@+id/chattingPartner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="상대방"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
 
-        <EditText
-            android:id="@+id/chatText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:inputType="text"
-            android:imeOptions="flagNoFullscreen"
-            android:maxLines="3"
-            android:gravity="start|bottom"
-            android:scrollHorizontally="false"
-            android:scrollbars="vertical"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/sendButton"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/send_btn"/>
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>
