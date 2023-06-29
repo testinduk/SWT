@@ -5,15 +5,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.figma.databinding.ChatMainBinding;
 import com.example.figma.model.Board;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,29 +39,29 @@ import javax.annotation.Nullable;
 
 public class ChatMain extends AppCompatActivity {
     private ChatMainBinding mBinding;
-    private FirebaseFirestore mFireStore;
+    private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance(); // 파이어베이스 초기화
     private RecyclerView mChatRecyclerView;
     private ChatAdapter mChatAdapter;
-    private List<Board> mChatList = new ArrayList<Board>();
+    private List<Board> mChatList = new ArrayList<>();
     private boolean isFirstLoad = true;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth 선언
+    private String senderUUID = mAuth.getCurrentUser().getUid(); // 보내는 사람의 UUID
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance(); //FirebaseAuth 선언
-        mFireStore = FirebaseFirestore.getInstance(); // 파이어베이스 초기화
-        String senderUUID = mAuth.getCurrentUser().getUid(); // 보내는 사람의 UUID
-
-
         mBinding = ChatMainBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
 
+        // 상대방 uid, name 받아옴
         Intent Chat_intent = getIntent();
         String receiverUUID = Chat_intent.getStringExtra("receiverUUID");
         String chattingPartner = Chat_intent.getStringExtra("userName");
 
+        // RecyclerView 설정
         mChatRecyclerView = mBinding.chatRecyclerView;
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mChatAdapter = new ChatAdapter(mChatList, senderUUID);
@@ -64,87 +71,82 @@ public class ChatMain extends AppCompatActivity {
 
         String chatRoomKey = getChatRoomKeyFromUUID(senderUUID, receiverUUID);
 
-        if(isFirstLoad){
-            mChatList.clear();
-            isFirstLoad = false;
-        }
+//
+//        // 채팅 불러오기
+//        loadMessage(chatRoomKey, receiverUUID);
+//        // 불러온 내용 시간 순으로 정렬
+//        timeCompare(mChatList);
+//        // 어뎁터 내용에 변경사항이 있음을 알림
+//        mChatAdapter.notifyDataSetChanged();
 
-        if(chatRoomKey != null){
-            mFireStore.collection("chat")
-                    .document(chatRoomKey)
-                    .collection(senderUUID)
-                    .addSnapshotListener((value, error) -> {
-                        if(error != null){
-                            Log.e("ChatMain","메세지 에러",error);
+
+        // 새로운 채팅 메시지 있을 경우 그 메시지 불러옴
+        mFireStore.collection("chat")
+                .document(chatRoomKey)
+                .collection(receiverUUID)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@androidx.annotation.Nullable QuerySnapshot value, @androidx.annotation.Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e("chatLog", "receiverUUID 새로운 채팅내용 불러오기 에러");
                             return;
                         }
-                        if (value != null){
-                            List<Board> updatedChatList = new ArrayList<>();
-                            for(DocumentSnapshot document : value.getDocuments()){
-                                Board chat = document.toObject(Board.class);
-                                if(chat != null){
-                                    updatedChatList.add(chat);
+
+                        if (value != null) {
+                            for (DocumentChange dc : value.getDocumentChanges()) {
+                                if(dc.getType() == DocumentChange.Type.ADDED) {
+                                    Log.e("LogADD", "addSnapshotListener ADDED");
+                                    // Data 추가
+                                    Board board = dc.getDocument().toObject(Board.class);
+                                    if (board != null) {
+                                        mChatList.add(board);
+                                    }
+
+                                } else if (dc.getType() == DocumentChange.Type.MODIFIED) {
+                                    Log.e("LogMOD", "addSnapshotListener MODIFIED");
+                                } else if (dc.getType() == DocumentChange.Type.REMOVED){
+                                    Log.e("LogREM", "addSnapshotListener REMOVED");
+                                }
+                            }
+                            sortChatMessages();
+                        }
+                    }
+                });
+
+        mFireStore.collection("chat")
+                .document(chatRoomKey)
+                .collection(senderUUID)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@androidx.annotation.Nullable QuerySnapshot value, @androidx.annotation.Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e("chatLog", "senderUUID 새로운 채팅내용 불러오기 에러");
+                            return;
+                        }
+
+                        if (value != null) {
+                            for (DocumentChange dc : value.getDocumentChanges()) {
+                                if(dc.getType() == DocumentChange.Type.ADDED) {
+                                    Log.e("senderLogADD", "addSnapshotListener ADDED");
+
+                                    // Data 추가
+                                    Board board = dc.getDocument().toObject(Board.class);
+                                    if (board != null) {
+                                        mChatList.add(board);
+                                    }
+
+                                } else if (dc.getType() == DocumentChange.Type.MODIFIED) {
+                                    Log.e("LogMOD", "addSnapshotListener MODIFIED");
+                                } else if (dc.getType() == DocumentChange.Type.REMOVED){
+                                    Log.e("LogREM", "addSnapshotListener REMOVED");
                                 }
                             }
 
-                            Collections.sort(updatedChatList, new Comparator<Board>() {
-                                @Override
-                                public int compare(Board board1, Board board2) {
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                                    try{
-                                        Date date1 = dateFormat.parse(board1.getTimestamp());
-                                        Date date2 = dateFormat.parse(board2.getTimestamp());
-                                        return date1.compareTo(date2);
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                    return 0;
-                                }
-                            });
-                            mChatList.clear();
-                            mChatList.addAll(updatedChatList);
-                            mChatAdapter.notifyDataSetChanged();
-                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
+                            sortChatMessages();
                         }
-                    });
-            mFireStore.collection("chat")
-                    .document(chatRoomKey)
-                    .collection(receiverUUID)
-                    .addSnapshotListener((value, error) -> {
-                        if (error != null){
-                            Log.e("ChatMain","메세지 에러",error);
-                            return;
-                        }
-                        if(value != null){
-                            List<Board> updatedChatList = new ArrayList<>();
-                            for(DocumentSnapshot document : value.getDocuments()) {
-                                Board chat = document.toObject(Board.class);
-                                if(chat != null){
-                                    updatedChatList.add(chat);
-                                }
-                            }
+                    }
+                });
 
-                            Collections.sort(mChatList, new Comparator<Board>() {
-                                @Override
-                                public int compare(Board board1, Board board2) {
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                                    try {
-                                        Date date1 = dateFormat.parse(board1.getTimestamp());
-                                        Date date2 = dateFormat.parse(board2.getTimestamp());
-                                        return date1.compareTo(date2);
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                    return 0;
-                                }
-                            });
-
-                            mChatList.addAll(updatedChatList);
-                            mChatAdapter.notifyDataSetChanged();
-                            mChatRecyclerView.scrollToPosition(mChatList.size() - 1);
-                        }
-                    });
-        }
 
 
         mBinding.sendButton.setOnClickListener(new View.OnClickListener() {
@@ -193,12 +195,16 @@ public class ChatMain extends AppCompatActivity {
         });
     }
 
+
+
+    // 현재 시간 불러오기
     private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
+    // 채팅방 키 값 생성
     private String getChatRoomKeyFromUUID(String senderUUID, String receiverUUID){
         if(senderUUID == null || receiverUUID == null){
             return null;
@@ -211,4 +217,25 @@ public class ChatMain extends AppCompatActivity {
         }
         return chatRoomKey;
     }
+
+    // 시간 비교하기
+    private void sortChatMessages() {
+        Collections.sort(mChatList, new Comparator<Board>() {
+            @Override
+            public int compare(Board board1, Board board2) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                try {
+                    Date date1 = dateFormat.parse(board1.getTimestamp());
+                    Date date2 = dateFormat.parse(board2.getTimestamp());
+                    return date1.compareTo(date2);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
+        mChatAdapter.notifyDataSetChanged();
+    }
+
+
 }
