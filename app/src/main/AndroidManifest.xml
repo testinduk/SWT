@@ -78,10 +78,6 @@
         <activity android:name=".controller.timetable.TimeTable" />
         <!--timetable-->
         <activity android:name=".controller.MainHome"/>
-
-
-
-
     </application>
 
 </manifest>
