@@ -43,7 +43,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/loginExplain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginID" />
+        app:layout_constraintTop_toBottomOf="@+id/loginID"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/loginID"
@@ -60,7 +61,8 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/loginExplain"
@@ -104,7 +106,8 @@
         app:layout_constraintBottom_toTopOf="@+id/loginFindPW"
         app:layout_constraintEnd_toEndOf="@+id/loginFindPW"
         app:layout_constraintStart_toStartOf="@+id/loginFindPW"
-        app:layout_constraintTop_toBottomOf="@+id/loginSignUpButton" /> <!-- 버튼 그림자없애기 -->
+        app:layout_constraintTop_toBottomOf="@+id/loginSignUpButton"
+        tools:ignore="TouchTargetSizeCheck" /> <!-- 버튼 그림자없애기 -->
 
     <Button
         android:id="@+id/loginFindPW"
@@ -118,7 +121,8 @@
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginSignUpButton" />
+        app:layout_constraintTop_toBottomOf="@+id/loginSignUpButton"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 

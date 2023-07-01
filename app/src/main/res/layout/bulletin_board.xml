@@ -17,7 +17,9 @@
         android:src="@drawable/chat"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sharingButton" />
+        app:layout_constraintTop_toTopOf="@+id/sharingButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:contentDescription="TODO" />
 
     <ImageButton
         android:id="@+id/sharingButton"
@@ -31,7 +33,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toStartOf="@+id/homeText"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
-        app:layout_constraintTop_toTopOf="@+id/boardButton" />
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -44,7 +47,8 @@
         app:layout_constraintBottom_toTopOf="@+id/homeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bulletinBoardRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/bulletinBoardRecyclerView"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -58,18 +62,20 @@
         app:layout_constraintBottom_toTopOf="@+id/boardText"
         app:layout_constraintEnd_toEndOf="@+id/mypageText"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bulletinBoardTitle" />
+        app:layout_constraintStart_toStartOf="@+id/bulletinBoardTitle"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/mypageButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="#ffffff"
         android:src="@drawable/mypage"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toEndOf="@+id/mypageText"
         app:layout_constraintStart_toStartOf="@+id/mypageText"
-        app:layout_constraintTop_toTopOf="@+id/boardButton" />
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bulletinBoardRecyclerView"
@@ -85,8 +91,8 @@
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="3dp"
@@ -94,7 +100,8 @@
         android:src="@drawable/back"
         app:layout_constraintEnd_toEndOf="@+id/chatButton"
         app:layout_constraintStart_toStartOf="@+id/chatText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/chatText"
@@ -171,12 +178,13 @@
         android:background="@drawable/searching"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writingButton" />
+        app:layout_constraintTop_toBottomOf="@+id/writingButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:backgroundTint="#FFFFFF"
         android:stateListAnimator="@null"
         android:text="검색"

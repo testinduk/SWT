@@ -282,7 +282,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinnerPosition"
         app:layout_constraintEnd_toEndOf="@+id/spinnerSelectQuestion"
         app:layout_constraintStart_toStartOf="@+id/spinnerSelectQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/textViewId" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewId"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textViewSelectQuestion"
@@ -353,7 +354,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/spinnerPositionAnswer"
         app:layout_constraintEnd_toEndOf="@+id/spinnerAnswer2"
         app:layout_constraintStart_toStartOf="@+id/spinnerPositionAnswer"
-        app:layout_constraintTop_toTopOf="@+id/spinnerAnswer2" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerAnswer2"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
