@@ -73,7 +73,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="116dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/time_grade"
@@ -92,7 +93,8 @@
         android:layout_marginTop="115dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
     <TextView
@@ -112,7 +114,8 @@
         android:layout_marginTop="115dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MajorRecycler"
@@ -159,7 +162,8 @@
         android:backgroundTint="#ffffff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/time_finish_btn"

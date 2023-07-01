@@ -63,7 +63,6 @@ public class MainHome extends AppCompatActivity {
         ft.replace(R.id.time_frame, timetable);
         ft.commit();
 
-
         mBinding.noticeBoardRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         mBinding.noticeBoardRecyclerView.setLayoutManager(layoutManager);
@@ -72,12 +71,10 @@ public class MainHome extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         databaseReference = database.getReference("notice Board");
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
-
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
                     Board user = snapshot.getValue(Board.class);

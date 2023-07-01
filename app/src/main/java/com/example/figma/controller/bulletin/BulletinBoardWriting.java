@@ -153,9 +153,6 @@ public class BulletinBoardWriting extends Activity {
                 }
                 break;
         }
-
-
-
     }
 
     private String getCurrentTime() {

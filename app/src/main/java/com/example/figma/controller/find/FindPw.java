@@ -91,10 +91,5 @@ public class FindPw extends Activity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 }

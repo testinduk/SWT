@@ -152,7 +152,6 @@ public class BulletinBoardComment extends Activity {
             }
         });
 
-
         adapter = new BulletinComAdapter(arrayList, this);
         mBinding.bulletinBoardCommentRecyclerView.setAdapter(adapter);
 

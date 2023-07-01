@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -103,10 +104,10 @@
             android:id="@+id/button1_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1_2"
             android:layout_width="0dp"
@@ -122,10 +123,10 @@
             android:id="@+id/button1_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1_4"
             android:layout_width="0dp"
@@ -137,14 +138,15 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button1_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView26"
@@ -161,10 +163,10 @@
             android:id="@+id/button2_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2_2"
@@ -225,10 +227,10 @@
             android:id="@+id/button3_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3_2"
@@ -251,6 +253,7 @@
             android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"  />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3_4"
             android:layout_width="0dp"
@@ -258,7 +261,7 @@
             android:background="@drawable/g_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button3_5"
@@ -287,10 +290,10 @@
             android:id="@+id/button4_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button4_2"
@@ -318,10 +321,10 @@
             android:id="@+id/button4_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button4_5"
@@ -329,7 +332,8 @@
             android:layout_height="0dp"
             android:background="@drawable/e_outside"
             app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <TextView
@@ -347,18 +351,19 @@
             android:id="@+id/button5_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5_3"
             android:layout_width="0dp"
@@ -369,23 +374,24 @@
             android:text="전광일\n106"
             android:textSize="10sp"
             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView30"
@@ -402,9 +408,10 @@
             android:id="@+id/button6_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button6_2"
@@ -421,9 +428,10 @@
             android:id="@+id/button6_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button6_4"
             android:layout_width="0dp"
@@ -435,14 +443,15 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button6_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView31"
@@ -460,9 +469,10 @@
             android:id="@+id/button7_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7_2"
@@ -479,10 +489,10 @@
             android:id="@+id/button7_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7_4"
@@ -495,14 +505,15 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView32"
@@ -520,27 +531,30 @@
             android:id="@+id/button8_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8_4"
             android:layout_width="0dp"
@@ -549,15 +563,16 @@
             android:textSize="10sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
         <TextView
             android:id="@+id/textView33"
             android:layout_width="0dp"
@@ -573,42 +588,46 @@
             android:id="@+id/button9_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button9_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button9_3"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button9_4"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button9_5"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/table_outside"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            android:background="@drawable/table_outside"
-            />
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
 

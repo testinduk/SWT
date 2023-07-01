@@ -29,7 +29,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/findQuestionId"
-        app:layout_constraintTop_toTopOf="@+id/studentId" />
+        app:layout_constraintTop_toTopOf="@+id/studentId"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/backButton"
@@ -45,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/findIdTitle"
         app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/name"

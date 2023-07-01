@@ -18,13 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-
     private ArrayList<Board> arrayList;
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-
-
 
     public MainAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -43,7 +40,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.tv_time.setText(arrayList.get(position).getNotice_time());
@@ -55,7 +51,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         String idToken = arrayList.get(position).getIdToken();
         String notice_key = arrayList.get(position).getKey();
         String notice_image = arrayList.get(position).getNotice_image();
-
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
@@ -70,7 +65,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView tv_title, tv_userName, tv_time;
 
         public ViewHolder(@NonNull View itemView) {

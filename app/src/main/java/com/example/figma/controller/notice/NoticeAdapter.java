@@ -24,20 +24,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder> {
-
     private ArrayList<Board> arrayList;
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-
-
     public NoticeAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
-
-
     @NonNull
     @Override
     public NoticeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,8 +40,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         NoticeAdapter.ViewHolder holder = new NoticeAdapter.ViewHolder(view);
         return holder;
     }
-
-
     @Override
     public void onBindViewHolder(@NonNull NoticeAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -65,8 +58,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         String idToken = arrayList.get(position).getIdToken();
         String notice_key = arrayList.get(position).getKey();
         String notice_image = arrayList.get(position).getNotice_image();
-
-
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("notice Board");
@@ -92,10 +83,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         Date date = new Date();
         return dateFormat.format(date);
     }
-
-
-
-
     @Override
     public int getItemCount() {
         return (arrayList != null ? arrayList.size():0);
@@ -103,21 +90,15 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_profile;
-        Button tv_title;
-        Button tv_studentNumber;
-        Button tv_userName, tv_time;
-
-        Button tv_detail;
+        Button tv_title, tv_studentNumber, tv_userName, tv_time, tv_detail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.noticeProfile);
             this.tv_title = itemView.findViewById(R.id.noticeTitle);
             this.tv_time = itemView.findViewById(R.id.noticeTime);
-
             this.tv_studentNumber = itemView.findViewById(R.id.noticeStudentNumber);
             this.tv_userName = itemView.findViewById(R.id.noticeUserName);
-
             this.tv_detail = itemView.findViewById(R.id.noticeDetail);
         }
 

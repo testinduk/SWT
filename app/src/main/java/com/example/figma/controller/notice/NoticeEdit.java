@@ -36,8 +36,6 @@ public class NoticeEdit extends Activity {
     String notice_image_UUID = UUID.randomUUID().toString();     // 랜덤 UUID 생성
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -85,7 +83,6 @@ public class NoticeEdit extends Activity {
                 String uid = mAuth.getCurrentUser().getUid();
 
                 String current_time = getCurrentTime();
-
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notice Board").child(notice_key);
                 ref.child("title").setValue(mBinding.noticeBoardContentNameMod.getText().toString());
