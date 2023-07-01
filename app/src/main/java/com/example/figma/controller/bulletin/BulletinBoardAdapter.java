@@ -104,8 +104,6 @@ public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdap
             this.tv_userName = itemView.findViewById(R.id.bulletinUserName);
             this.tv_detail = itemView.findViewById(R.id.bulletinDetail);
             this.tv_time = itemView.findViewById(R.id.bulletinTime);
-//            iv_profile.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//            iv_profile.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
     }

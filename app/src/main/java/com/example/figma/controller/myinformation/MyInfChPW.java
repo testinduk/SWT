@@ -39,8 +39,6 @@ public class MyInfChPW extends Activity {
     private FirebaseUser mUser; //안드로이드와 파이어베이스 사이의 인증을 확인하기 위한 인스턴스 선언
     private FirebaseFirestore mFirestore;
 
-
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class MyInfChPW extends Activity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mFirestore = FirebaseFirestore.getInstance();
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -41,10 +41,7 @@ public class MyTimeTable extends AppCompatActivity {
     private MyTimeTableBinding mBinding;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();;
-    // 스피너
-    private ArrayList<String> dp_sp;
-    private ArrayList<String> grade_sp;
-    private ArrayList<String> class_sp;
+    private ArrayList<String> dp_sp, grade_sp, class_sp;
     private String dp_time;
     private String grade_time;
     private String class_time;
@@ -52,15 +49,12 @@ public class MyTimeTable extends AppCompatActivity {
     private String uid = mAuth.getCurrentUser().getUid();
 
     private List<Board> deleteList = new ArrayList<>();
-
-
     private List<Board> mjfieldList = new ArrayList<>();
     private List<Board> gefieldList = new ArrayList<>();
     private List<Board> itemList = new ArrayList<>();
     private List<Board> updateList = new ArrayList<>();
     private List<Board> backList = new ArrayList<>();
     private LinearLayoutManager layoutManager_mj, layoutManager2_ge, layoutManager_pic;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +71,6 @@ public class MyTimeTable extends AppCompatActivity {
         mBinding.MajorRecycler.setLayoutManager(layoutManager_mj);
         mBinding.GeRecycler.setLayoutManager(layoutManager2_ge);
         mBinding.PicRecycler.setLayoutManager(layoutManager_pic);
-
-
-
 
         // 백업을 위한 초기 데이터 저장
         db.collection("timeTable").document(uid)
@@ -103,7 +94,6 @@ public class MyTimeTable extends AppCompatActivity {
                         }
                     }
                 });
-
         // ----선택한 과목 리사이클러뷰에 표시 ---- //
         SelectItemAdapter select_adapter = new SelectItemAdapter(itemList);
         mBinding.PicRecycler.setAdapter(select_adapter);
@@ -134,8 +124,6 @@ public class MyTimeTable extends AppCompatActivity {
                 }
             }
         });
-
-
 
         // 스피너
         dp_sp = new ArrayList<>();
@@ -355,7 +343,6 @@ public class MyTimeTable extends AppCompatActivity {
             }
         });
 
-
         // 완료 버튼
         mBinding.timeFinishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,6 +429,5 @@ public class MyTimeTable extends AppCompatActivity {
         }
         GeAdapter ge_adapter = new GeAdapter(gefieldList);
         mBinding.GeRecycler.setAdapter(ge_adapter);
-
     }
 }

@@ -56,7 +56,8 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/noticeBoardContentMod"
@@ -65,7 +66,6 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="41dp"
         android:background="@drawable/writing_bubble"
         android:ems="10"
         android:inputType="textPersonName"
@@ -74,7 +74,8 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/noticeBoardContent" />
+        app:layout_constraintTop_toTopOf="@+id/noticeBoardContent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/noticeBoardModComplete"
@@ -87,7 +88,8 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/photo_imageView"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/backButton"
@@ -98,7 +100,8 @@
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/cameraButton"
@@ -109,7 +112,8 @@
         android:src="@drawable/add_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/photo_imageView"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@id/photo_imageView"
@@ -129,6 +133,7 @@
         android:backgroundTint="#ffffff"
         android:src="@drawable/attach"
         app:layout_constraintStart_toEndOf="@+id/cameraButton"
-        app:layout_constraintTop_toTopOf="@+id/cameraButton" />
+        app:layout_constraintTop_toTopOf="@+id/cameraButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

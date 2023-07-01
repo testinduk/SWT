@@ -32,7 +32,6 @@ public class Login extends Activity {
     private LoginBinding mBinding;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Boolean saveLogin;
@@ -46,17 +45,6 @@ public class Login extends Activity {
         setContentView(view);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        //이전에 로그인 정보 저장되어 있는 경우 자동 로그인
-//        sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-//        editor = sharedPreferences.edit();
-//        saveLogin = sharedPreferences.getBoolean("saveLogin", false);
-//        if (saveLogin) {
-//            mBinding.loginID.setText(sharedPreferences.getString("username", ""));
-//            mBinding.loginPassword.setText(sharedPreferences.getString("password", ""));
-//            mBinding.loginAuto.setChecked(true);
-//            loginUser(mBinding.loginID.getText().toString(), mBinding.loginPassword.getText().toString());
-//        }
 
         mBinding.loginFindPW.setOnClickListener(new View.OnClickListener() {
             @Override

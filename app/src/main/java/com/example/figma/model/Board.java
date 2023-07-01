@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Board {
     private String boardType;
-
     public String getBoardType() {
         return boardType;
     }
@@ -14,7 +13,6 @@ public class Board {
     }
 
     public Board() {
-
     }
 
     private String receiverUUID;
@@ -32,7 +30,6 @@ public class Board {
     public void setTimestamp(String timestamp){
         this.timestamp = timestamp;
     }
-
 
     // -----------chat_DB-------------------------//
     public class Chat{
@@ -126,8 +123,6 @@ public class Board {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     // ---------- bulletin_DB --------- //
     private String className;

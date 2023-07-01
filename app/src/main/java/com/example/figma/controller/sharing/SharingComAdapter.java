@@ -15,7 +15,6 @@ import com.example.figma.model.Board;
 import java.util.ArrayList;
 
 public class SharingComAdapter extends RecyclerView.Adapter<SharingComAdapter.ViewHolder> {
-
     private ArrayList<Board> arrayList;
     private Context context;
 

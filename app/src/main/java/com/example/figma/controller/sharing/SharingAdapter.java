@@ -23,11 +23,8 @@ import java.util.ArrayList;
 public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomViewHolder> {
     private ArrayList<Board> arrayList;
     private Context context;
-
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-
-
 
     public SharingAdapter(ArrayList<Board> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -57,7 +54,6 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
         String title = arrayList.get(position).getTitle();
         String content = arrayList.get(position).getContent();
         String sharing_image = arrayList.get(position).getSharing_image();
-
         String idToken = arrayList.get(position).getIdToken();
         String shar_key = arrayList.get(position).getKey(); //키값 가져오기
         String sharing_time = arrayList.get(position).getSharing_time();
@@ -65,7 +61,6 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
         database = FirebaseDatabase.getInstance();
 
         databaseReference = database.getReference("sharing Board");
-
 
         holder.tv_detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +78,6 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
                 context.startActivity(shar_intent);
             }
         });
-
-
     }
 
     @Override
@@ -94,11 +87,7 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_profile;
-        Button tv_title;
-        Button tv_studentNumber;
-        Button tv_userName;
-        Button tv_detail;
-        Button tv_time;
+        Button tv_title,tv_studentNumber, tv_userName,tv_detail,tv_time;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -32,7 +32,6 @@ public class GeAdapter extends RecyclerView.Adapter<GeAdapter.ViewHolder> {
 
     public GeAdapter(List<Board> gefieldList) {
         this.gefieldList = gefieldList;
-
     }
 
     @NonNull
@@ -77,7 +76,6 @@ public class GeAdapter extends RecyclerView.Adapter<GeAdapter.ViewHolder> {
                     String fieldName = "sub" + buttonClickCount;
                     List<String> update_list = new ArrayList<>();
 
-
                     DocumentReference documentRef = db.collection("timeTable").document(uid);
 
                     documentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -104,7 +102,6 @@ public class GeAdapter extends RecyclerView.Adapter<GeAdapter.ViewHolder> {
                                             Log.e("log", "데이터 입력 성공");
                                         }
                                     });
-
                                 } else {
                                     // 데이터가 없는 경우(새로 작성)
                                     String fieldName = String.valueOf(buttonClickCount);
@@ -115,7 +112,6 @@ public class GeAdapter extends RecyclerView.Adapter<GeAdapter.ViewHolder> {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             buttonClickCount++;
                                             Log.i("데이터 새로 생성 후 +1", String.valueOf(buttonClickCount));
-
                                         }
                                     });
                                 }

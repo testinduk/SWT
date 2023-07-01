@@ -11,11 +11,6 @@ public class sharing_DB {
     private String userName;
     private String studentNumber;
     private String sharing_image;
-//    private String timestamp;
-//    String title; //제목
-//    String content; //내용
-//    String uid;
-//    String timestamp;
 
     public sharing_DB(String title, String content){}
 
@@ -56,16 +51,6 @@ public class sharing_DB {
 
         this.uid = uid;
     }
-
-//    public String getTimestamp(){
-//
-//        return timestamp;
-//    }
-//
-//    public void setTimestamp(String timestamp){
-//
-//        this.timestamp = timestamp;
-//    }
 
     //값을 추가할때 쓰는 함수, sharing_writing에서 sharing_DB함수에서 사용할 것임.
     public sharing_DB(String title, String content, String uid){

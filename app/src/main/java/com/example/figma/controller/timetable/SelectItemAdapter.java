@@ -18,7 +18,6 @@ import java.util.List;
 
 public class SelectItemAdapter extends RecyclerView.Adapter<SelectItemAdapter.ViewHolder> {
     private List<Board> item_list;
-
     private List<Board> deleteList = new ArrayList<>();
 
     public SelectItemAdapter(List<Board> item_list) {
