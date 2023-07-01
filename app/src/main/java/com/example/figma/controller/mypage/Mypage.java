@@ -232,7 +232,7 @@ public class Mypage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("로그아웃버튼",": 클릭");
-                FirebaseAuth.getInstance().signOut();
+//                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
 
