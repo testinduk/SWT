@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MypageNoticeAdapter extends RecyclerView.Adapter<MypageNoticeAdapter.MypageViewHolder> {
@@ -47,13 +48,20 @@ public class MypageNoticeAdapter extends RecyclerView.Adapter<MypageNoticeAdapte
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> titles = new ArrayList<>();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     Board matchingBoard = snapshot1.getValue(Board.class);
                     if(matchingBoard != null){
                         String title = matchingBoard.getTitle();
-                        holder.myListTitle.setText(title);
+                        titles.add(title);
+
                     }
                 }
+                if(!titles.isEmpty()){
+                    String title = titles.get(holder.getAdapterPosition());
+                    holder.myListTitle.setText(title);
+                }
+
             }
 
             @Override
@@ -71,12 +79,9 @@ public class MypageNoticeAdapter extends RecyclerView.Adapter<MypageNoticeAdapte
 
     public class MypageViewHolder extends RecyclerView.ViewHolder {
         public TextView myListTitle;
-        public Button myListDetail;
         public MypageViewHolder(@NonNull View itemView) {
             super(itemView);
             myListTitle = itemView.findViewById(R.id.myListTitle);
-            myListDetail = itemView.findViewById(R.id.myListDetail);
-
         }
     }
 }

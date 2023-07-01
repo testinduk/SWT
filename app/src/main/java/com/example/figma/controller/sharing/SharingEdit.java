@@ -57,8 +57,6 @@ public class SharingEdit extends Activity {
                             }
                         });
                     }
-
-
                     StorageReference newImageRef = storageRef.child("sharing/" + sharing_image_UUID);
                     newImageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -70,8 +68,6 @@ public class SharingEdit extends Activity {
                 break;
         }
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

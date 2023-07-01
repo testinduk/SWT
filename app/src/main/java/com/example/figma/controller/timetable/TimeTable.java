@@ -26,15 +26,15 @@ public class TimeTable extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = TimetableBinding.inflate(inflater, container, false);
-
         mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
+
+
+        String uid = currentUid();
         db  = FirebaseFirestore.getInstance();
 
         db.collection("timeTable").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -372,6 +372,15 @@ public class TimeTable extends Fragment {
         });
 
         return mBinding.getRoot();
+    }
+
+    private String currentUid() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Log.i("currentUser", "오류 발생");
+        }
+        String uid = currentUser.getUid();
+        return uid;
     }
 
 

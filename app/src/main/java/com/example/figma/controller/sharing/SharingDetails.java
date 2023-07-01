@@ -45,14 +45,12 @@ public class SharingDetails extends Activity {
         String sharing_image = second_intent.getStringExtra("image");
         String sharing_time = second_intent.getStringExtra("time");
 
-
         FirebaseAuth mAuth = FirebaseAuth.getInstance(); //현재 사용자의 파이어베이스 정보 불러오기
         String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         FirebaseFirestore fs_db = FirebaseFirestore.getInstance();
         String sharing_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
-
 
         mBinding.sharingBoardContentWriter.setText(shar_username);
         mBinding.sharingBoardContent.setText(shar_content);
@@ -102,18 +100,15 @@ public class SharingDetails extends Activity {
                                 Toast.makeText(SharingDetails.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         });
-
                         builder.setNegativeButton("취소",null);
                         builder.create().show();
                     }
                 }
             });
-
         } else {
             mBinding.sharingBoardContentMod.setEnabled(false);
             mBinding.sharingBoardContentDelete.setEnabled(false);
         }
-
         // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override

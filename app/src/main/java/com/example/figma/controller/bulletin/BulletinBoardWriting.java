@@ -86,6 +86,7 @@ public class BulletinBoardWriting extends Activity {
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String userName = dataSnapshot.child("userName").getValue(String.class);
+                            String position = dataSnapshot.child("position").getValue(String.class);
 
                             String title = mBinding.writingTitle.getText().toString();
                             String content = mBinding.writingContent.getText().toString();
@@ -101,6 +102,8 @@ public class BulletinBoardWriting extends Activity {
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("bulletin_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(bulletin_board_image_UUID);
+                            boardRef.child("position").setValue(position);
+
 
                             storageRef.child("bulletin/" + bulletin_board_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
@@ -153,9 +156,6 @@ public class BulletinBoardWriting extends Activity {
                 }
                 break;
         }
-
-
-
     }
 
     private String getCurrentTime() {

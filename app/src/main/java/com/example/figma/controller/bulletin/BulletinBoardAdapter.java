@@ -44,11 +44,19 @@ public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdap
     @Override
     public void onBindViewHolder(@NonNull BulletinBoardAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+        String rank = arrayList.get(position).getPosition();
+
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getBulletin_image())
+                .load(arrayList.get(position).getSharing_image())
                 .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+
+        if(rank.contains("교수")) {
+            holder.tv_studentNumber.setText(arrayList.get(position).getPosition());
+        } else {
+            holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+        }
+        holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.tv_time.setText(arrayList.get(position).getBulletin_time());
 
@@ -104,8 +112,6 @@ public class BulletinBoardAdapter extends RecyclerView.Adapter<BulletinBoardAdap
             this.tv_userName = itemView.findViewById(R.id.bulletinUserName);
             this.tv_detail = itemView.findViewById(R.id.bulletinDetail);
             this.tv_time = itemView.findViewById(R.id.bulletinTime);
-//            iv_profile.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//            iv_profile.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
     }

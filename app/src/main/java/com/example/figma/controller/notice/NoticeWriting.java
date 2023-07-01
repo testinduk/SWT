@@ -76,11 +76,9 @@ public class NoticeWriting extends Activity {
                 Intent intent = new Intent(getApplicationContext(), NoticeList.class);
                 startActivity(intent);
 
-                //
                 String current_time = getCurrentTime();
 
                 Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid);
-
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,11 +87,11 @@ public class NoticeWriting extends Activity {
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String username = dataSnapshot.child("userName").getValue(String.class);
+                            String position = dataSnapshot.child("position").getValue(String.class);
 
 
                             String title = mBinding.noticeBoardContentNameWrite.getText().toString();
                             String content = mBinding.noticeBoardContentWrite.getText().toString();
-
 
                             DatabaseReference boardRef = databaseReference.child("notice Board").push();
                             String boardKey = boardRef.getKey(); //키 값 가져오기.
@@ -106,6 +104,8 @@ public class NoticeWriting extends Activity {
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("notice_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(notice_image_UUID);
+                            boardRef.child("position").setValue(position);
+
 
                             storageRef.child("notice/" + notice_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override

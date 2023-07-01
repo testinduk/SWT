@@ -43,13 +43,12 @@ import com.example.figma.databinding.SharingBoardCommentBinding;
 
 public class SharingBoardComment extends Activity {
     private SharingBoardCommentBinding mBinding;
-
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,10 +93,9 @@ public class SharingBoardComment extends Activity {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String username = dataSnapshot.child("userName").getValue(String.class);
-
                             String current_time = getCurrentTime();
-
                             String comment_UUID = UUID.randomUUID().toString();
+
                             Map<String, Object> sharing_comment = new HashMap<>();
                             sharing_comment.put("name", username);
                             sharing_comment.put("studentNumber", studentNumber);
@@ -117,13 +115,10 @@ public class SharingBoardComment extends Activity {
                                     }
                                 }
                             });
-
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 
@@ -144,16 +139,11 @@ public class SharingBoardComment extends Activity {
                 }
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(arrayList);
-
                 adapter.notifyDataSetChanged();
             }
         });
-
-
         adapter = new SharingComAdapter(arrayList, this);
         mBinding.sharingBoardCommentRecycler.setAdapter(adapter);
-
-
     }
 
     private String getCurrentTime() {
