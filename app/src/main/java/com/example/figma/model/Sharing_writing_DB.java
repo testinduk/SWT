@@ -35,8 +35,6 @@ public class Sharing_writing_DB {
         return key;
     }
 
-
-
     public void setKey(String key) {
         this.key = key;
     }

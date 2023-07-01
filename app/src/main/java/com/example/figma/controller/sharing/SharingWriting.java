@@ -108,10 +108,8 @@ public class SharingWriting extends Activity {
                                         Log.i("log", "성공");
                                     }
                                 });
-
                     }
                 });
-
 
                 Query query = databaseReference.child("signUp").orderByChild("idToken").equalTo(uid); //쿼리 작성
                 query.addListenerForSingleValueEvent(new ValueEventListener() { //SignUp 노드 불러오기
@@ -138,8 +136,6 @@ public class SharingWriting extends Activity {
                             boardRef.child("sharing_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(sharing_image_UUID);
 
-
-
                             storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
@@ -151,16 +147,13 @@ public class SharingWriting extends Activity {
 
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 
                 Intent intent = new Intent(getApplicationContext(), SharingBoard.class); //새로운 인텐트 객체 생성(getApplicationContext()현재 엑티비티 정보 담김, SharingBoard.class 호출할 컴포넌트)
                 startActivity(intent);
-
             }
 
         });

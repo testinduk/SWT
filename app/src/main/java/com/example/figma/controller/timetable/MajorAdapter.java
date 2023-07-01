@@ -27,7 +27,6 @@ import java.util.Map;
 
 public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> {
     private List<Board> fieldList;
-
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private int buttonClickCount = 1;
@@ -80,7 +79,6 @@ public class MajorAdapter extends RecyclerView.Adapter<MajorAdapter.ViewHolder> 
                     String uid = mAuth.getCurrentUser().getUid();
                     String fieldName = "sub" + buttonClickCount;
                     List<String> update_list = new ArrayList<>();
-
 
                     DocumentReference documentRef = db.collection("timeTable").document(uid);
 

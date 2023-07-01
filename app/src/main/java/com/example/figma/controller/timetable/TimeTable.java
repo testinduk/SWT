@@ -26,7 +26,6 @@ public class TimeTable extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

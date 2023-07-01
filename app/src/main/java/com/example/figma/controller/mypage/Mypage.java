@@ -51,9 +51,6 @@ public class Mypage extends AppCompatActivity {
     private RecyclerView.Adapter sharingAdapter, noticeAdapter, bulletinAdapter;
     private RecyclerView.LayoutManager sharingLayoutManager, noticeLayoutManager, bulletinLayoutManager;
 
-
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +79,6 @@ public class Mypage extends AppCompatActivity {
             }
         };
         signUpRef.addListenerForSingleValueEvent(valueEventListener);
-
-
         // 내 프로필 내용 불러오기
         db.collection("signUp").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -212,7 +207,6 @@ public class Mypage extends AppCompatActivity {
                 startActivity(urlIntent);
             }
         });
-
 
         // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
