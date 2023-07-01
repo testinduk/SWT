@@ -87,6 +87,8 @@ public class NoticeWriting extends Activity {
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String username = dataSnapshot.child("userName").getValue(String.class);
+                            String position = dataSnapshot.child("position").getValue(String.class);
+
 
                             String title = mBinding.noticeBoardContentNameWrite.getText().toString();
                             String content = mBinding.noticeBoardContentWrite.getText().toString();
@@ -102,6 +104,8 @@ public class NoticeWriting extends Activity {
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("notice_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(notice_image_UUID);
+                            boardRef.child("position").setValue(position);
+
 
                             storageRef.child("notice/" + notice_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override

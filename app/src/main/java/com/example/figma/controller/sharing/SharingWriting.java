@@ -120,6 +120,7 @@ public class SharingWriting extends Activity {
                             String idToken = dataSnapshot.child("idToken").getValue(String.class);
                             String studentNumber = dataSnapshot.child("studentNumber").getValue(String.class);
                             String username = dataSnapshot.child("userName").getValue(String.class);
+                            String position = dataSnapshot.child("position").getValue(String.class);
 
                             String title = mBinding.sharingBoardContentNameWrite.getText().toString(); //제목을 가져옴
                             String content = mBinding.sharingBoardContentWrite.getText().toString(); //내용을 가져옴
@@ -135,6 +136,7 @@ public class SharingWriting extends Activity {
                             boardRef.child("key").setValue(boardKey);
                             boardRef.child("sharing_time").setValue(current_time);
                             boardRef.child("image_UUID").setValue(sharing_image_UUID);
+                            boardRef.child("position").setValue(position);
 
                             storageRef.child("sharing/" + sharing_image_UUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override

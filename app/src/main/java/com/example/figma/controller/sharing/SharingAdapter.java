@@ -42,11 +42,20 @@ public class SharingAdapter extends RecyclerView.Adapter<SharingAdapter.CustomVi
     @Override
     public void onBindViewHolder(@NonNull SharingAdapter.CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+
+        String rank = arrayList.get(position).getPosition();
+
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getSharing_image())
                 .into(holder.iv_profile);
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+
+        if(rank.contains("교수")) {
+            holder.tv_studentNumber.setText(arrayList.get(position).getPosition());
+        } else {
+            holder.tv_studentNumber.setText(arrayList.get(position).getStudentNumber());
+        }
+
         holder.tv_userName.setText(arrayList.get(position).getUserName());
         holder.tv_time.setText(arrayList.get(position).getSharing_time());
 

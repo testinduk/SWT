@@ -15,6 +15,7 @@ import com.example.figma.databinding.TimetableBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,11 +31,10 @@ public class TimeTable extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = TimetableBinding.inflate(inflater, container, false);
+        mAuth = FirebaseAuth.getInstance();
 
 
         String uid = currentUid();
-
-
         db  = FirebaseFirestore.getInstance();
 
         db.collection("timeTable").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -375,8 +375,11 @@ public class TimeTable extends Fragment {
     }
 
     private String currentUid() {
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Log.i("currentUser", "오류 발생");
+        }
+        String uid = currentUser.getUid();
         return uid;
     }
 
