@@ -50,10 +50,10 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.Prof
                 .load(mProfessorList.get(position).getProfileUri())
                 .into(holder.photo);
         holder.nameTextView.setText(mProfessorList.get(position).getUserName());
-        holder.numberTextView.setText(mProfessorList.get(position).getStudentNumber());
+        holder.numberTextView.setText(mProfessorList.get(position).getPosition());
 
         String userName = mProfessorList.get(position).getUserName();
-        String studentNumber = mProfessorList.get(position).getStudentNumber();
+        String studentNumber = mProfessorList.get(position).getPosition();
         String profile = mProfessorList.get(position).getProfileUri();
 
         database = FirebaseFirestore.getInstance();
