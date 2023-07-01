@@ -26,7 +26,7 @@ public class BulletinComAdapter extends RecyclerView.Adapter<BulletinComAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bulletin_com, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comment, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -49,10 +49,10 @@ public class BulletinComAdapter extends RecyclerView.Adapter<BulletinComAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_studentNumber = itemView.findViewById(R.id.bulletinCommentStudentNumber);
-            this.tv_userName = itemView.findViewById(R.id.bulletinCommentName);
-            this.tv_content = itemView.findViewById(R.id.bulletinCommentContent);
-            this.tv_time = itemView.findViewById(R.id.bulletinBoardDay);
+            this.tv_studentNumber = itemView.findViewById(R.id.commentStudentNumber);
+            this.tv_userName = itemView.findViewById(R.id.commentUserName);
+            this.tv_content = itemView.findViewById(R.id.commentContent);
+            this.tv_time = itemView.findViewById(R.id.commentTime);
         }
     }
 }

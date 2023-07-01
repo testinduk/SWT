@@ -97,12 +97,12 @@ public class ChatPerson extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 String name = documentSnapshot.getString("userName");
-                                String studentNumber = documentSnapshot.getString("studentNumber");
+                                String position = documentSnapshot.getString("position");
                                 String photo = documentSnapshot.getString("profileUri");
 
                                 Board student = new Board();
                                 student.setUserName(name);
-                                student.setStudentNumber(studentNumber);
+                                student.setPosition(position);
                                 student.setProfileUri(photo);
 
                                 mProfessorList.add(student);

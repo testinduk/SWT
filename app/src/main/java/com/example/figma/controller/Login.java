@@ -143,6 +143,7 @@ public class Login extends Activity {
         super.onStart();
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -150,8 +151,7 @@ public class Login extends Activity {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }
     }
-    private class override {
-    }
+
     @Override
     public void onBackPressed(){
     }
