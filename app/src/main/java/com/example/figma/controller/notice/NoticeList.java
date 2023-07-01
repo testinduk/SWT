@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class NoticeList extends AppCompatActivity {
-
     private NoticeBoardBinding mBinding;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -56,7 +55,6 @@ public class NoticeList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
-
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String uid = snapshot.getKey();
                     Board user = snapshot.getValue(Board.class);
@@ -64,7 +62,6 @@ public class NoticeList extends AppCompatActivity {
                 }
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(arrayList);
-
                 adapter.notifyDataSetChanged();
             }
 
@@ -77,8 +74,6 @@ public class NoticeList extends AppCompatActivity {
 
         adapter = new NoticeAdapter(arrayList, this);
         mBinding.noticeBoardRecyclerView.setAdapter(adapter);
-
-
         // 검색
         mBinding.noticeBoardSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,10 +90,8 @@ public class NoticeList extends AppCompatActivity {
                         filteredList.add(notice);
                     }
                 }
-
                 // -----시간 정렬 (역순)-----
                 Collections.reverse(filteredList);
-
                 adapter = new NoticeAdapter(filteredList, NoticeList.this);
                 mBinding.noticeBoardRecyclerView.setAdapter(adapter);
 

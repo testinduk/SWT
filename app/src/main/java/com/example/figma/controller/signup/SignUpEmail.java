@@ -48,14 +48,12 @@ public class SignUpEmail extends Activity {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignUpEmail.this, "이메일을 발송하였습니다.", Toast.LENGTH_SHORT).show();
                                 mBinding.btnMoveLogin.setEnabled(true);
-
                             }else {
                                 Toast.makeText(SignUpEmail.this, "이메일을 다시 입력하세요.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
-
         });
         mBinding.btnMoveLogin.setOnClickListener(new View.OnClickListener() {
             @Override

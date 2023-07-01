@@ -43,13 +43,12 @@ import com.example.figma.databinding.NoticeBoardCommentBinding;
 
 public class NoticeBoardComment extends Activity {
     private NoticeBoardCommentBinding mBinding;
-
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

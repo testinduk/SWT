@@ -15,7 +15,6 @@ import com.example.figma.model.Board;
 import java.util.ArrayList;
 
 public class BulletinComAdapter extends RecyclerView.Adapter<BulletinComAdapter.ViewHolder> {
-
     private ArrayList<Board> arrayList;
     private Context context;
 

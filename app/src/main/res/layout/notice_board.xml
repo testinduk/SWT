@@ -17,7 +17,8 @@
         android:src="@drawable/chat"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sharingButton" />
+        app:layout_constraintTop_toTopOf="@+id/sharingButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/sharingButton"
@@ -34,7 +35,8 @@
         app:layout_constraintStart_toEndOf="@+id/chatButton"
 
 
-        app:layout_constraintTop_toTopOf="@+id/boardButton" />
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -47,7 +49,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/homeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noticeBoardRecyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/noticeBoardRecyclerView"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/boardButton"
@@ -58,7 +61,8 @@
         android:src="@drawable/plus"
         app:layout_constraintBottom_toTopOf="@+id/boardText"
         app:layout_constraintEnd_toEndOf="@+id/boardText"
-        app:layout_constraintStart_toStartOf="@+id/boardText" />
+        app:layout_constraintStart_toStartOf="@+id/boardText"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/mypageButton"
@@ -72,7 +76,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toEndOf="@+id/noticeBoardRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/mypageText"
-        app:layout_constraintTop_toTopOf="@+id/boardButton" />
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noticeBoardRecyclerView"
@@ -98,7 +103,8 @@
         android:src="@drawable/back"
         app:layout_constraintEnd_toEndOf="@+id/chatButton"
         app:layout_constraintStart_toStartOf="@+id/chatText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/chatText"
@@ -181,7 +187,8 @@
         android:background="@drawable/searching"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writingButton" />
+        app:layout_constraintTop_toBottomOf="@+id/writingButton"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/noticeBoardSearchButton"
@@ -195,7 +202,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/noticeBoardSearch"
         app:layout_constraintEnd_toEndOf="@+id/writingButton"
         app:layout_constraintStart_toEndOf="@+id/noticeBoardSearch"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/writingButton"

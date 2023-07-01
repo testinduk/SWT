@@ -29,7 +29,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
-//import com.google.android.auth.AuthResult;
 
 public class SignUp extends AppCompatActivity {
     private SignUpBinding mBinding;
@@ -80,7 +79,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-
         mBinding.selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +89,6 @@ public class SignUp extends AppCompatActivity {
         });
 
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -114,8 +111,6 @@ public class SignUp extends AppCompatActivity {
                 String question = mBinding.spinnerSelectQuestion.getText().toString();
                 String Position = mBinding.spinnerPositionAnswer.getText().toString();
 
-
-
                 if (strUserName.length() > 0 && strStudentNumber.length() > 0 && strEmail.length() > 0 && strPwd.length() >= 6 && pwdCheck.length() >= 6) {
                     if (strPwd.equals(pwdCheck)) {
                         //가입 진행
@@ -136,7 +131,6 @@ public class SignUp extends AppCompatActivity {
                                     signUpDb.setQuestion(question);
                                     signUpDb.setPosition(Position);
 
-
                                     //setValue는 database에 insert 행휘
                                     mDatabaseRef.child(firebaseUser.getUid()).setValue(signUpDb);
 
@@ -149,7 +143,6 @@ public class SignUp extends AppCompatActivity {
                                     signUp.put("answer", answer);
                                     signUp.put("position",Position);
                                     signUp.put("uid",uid);
-
 
                                     storageRef.child("signUp/" + strEmail).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
@@ -178,48 +171,6 @@ public class SignUp extends AppCompatActivity {
                                 }
                             }
                         });
-
-                                /*mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            }
-                        });*/
-
-
-                                //FirebaseAuth 진행
-
-                                //---------FirebaseRealTime-Database 이용 방법--------
-//                        mAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//
-//                                    Board sign_up_db = new Board();
-//                                    sign_up_db.setEmailId(firebaseUser.getEmail());
-//                                    sign_up_db.setPassword(strPwd);
-//                                    sign_up_db.setIdToken(firebaseUser.getUid());
-//                                    sign_up_db.setUserName(strUserName);
-//                                    sign_up_db.setStudentNumber(strStudentNumber);
-//                                    sign_up_db.setAnswer(answer);
-//                                    sign_up_db.setQuestion(question);
-//
-//
-//                                    //setValue는 database에 insert 행휘
-//                                    mDatabaseRef.child(firebaseUser.getUid()).setValue(sign_up_db);
-
-//                                    Toast.makeText(SignUp.this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), SignUpEmail.class);
-//                                    startActivity(intent);
-//
-//                                } else {
-//                                    Toast.makeText(SignUp.this, "회원가입에 실패하셨습니다", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-
-                                //-------------------------------------------
-
                     } else {
                         Toast.makeText(SignUp.this, "비밀번호가 일치 하지 않습니다.", Toast.LENGTH_SHORT).show();
                     }

@@ -79,7 +79,6 @@ public class MypageNoticeAdapter extends RecyclerView.Adapter<MypageNoticeAdapte
 
     public class MypageViewHolder extends RecyclerView.ViewHolder {
         public TextView myListTitle;
-        public Button myListDetail;
         public MypageViewHolder(@NonNull View itemView) {
             super(itemView);
             myListTitle = itemView.findViewById(R.id.myListTitle);

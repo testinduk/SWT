@@ -54,7 +54,6 @@ public class NoticeDetails extends Activity {
         FirebaseFirestore fs_db = FirebaseFirestore.getInstance();
         String notice_comment_UUID = UUID.randomUUID().toString();//랜덤함수로 이미지 이름 지정
 
-
         mBinding.noticeBoardContent.setText(notice_content);
         mBinding.noticeBoardContentName.setText(notice_title);
         mBinding.noticeBoardUserName.setText(notice_username);
@@ -63,11 +62,9 @@ public class NoticeDetails extends Activity {
                 .into(mBinding.photoImage);
         mBinding.noticeBoardDay.setText(notice_time);
 
-
         if(uid.equals(notice_idToken)) {
             mBinding.noticeBoardContentDelete.setEnabled(true);
             mBinding.noticeBoardContentMod.setEnabled(true);
-
             mBinding.noticeBoardContentMod.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -85,12 +82,11 @@ public class NoticeDetails extends Activity {
                     }
                 }
             });
-            // trash button
+            // 삭제하기
             mBinding.noticeBoardContentDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (notice_idToken != null) {
-
                         AlertDialog.Builder builder = new AlertDialog.Builder(NoticeDetails.this);
                         builder.setTitle("경고메시지");
                         builder.setMessage("정말로 삭제하시겠습니까?");
@@ -103,10 +99,8 @@ public class NoticeDetails extends Activity {
                                 Toast.makeText(NoticeDetails.this, "관련 내용이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         });
-
                         builder.setNegativeButton("취소",null);
                         builder.create().show();
-
                     }
                 }
             });
@@ -114,19 +108,14 @@ public class NoticeDetails extends Activity {
             mBinding.noticeBoardContentMod.setEnabled(false);
             mBinding.noticeBoardContentDelete.setEnabled(false);
         }
-                // 뒤로가기 버튼
+        // 뒤로가기 버튼
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeList.class);
                 startActivity(intent);
             }
         });
-
-        //채팅창 이동버튼 추가하기(김한용)
-
-
         // 댓글창 이동 버튼
         mBinding.noticeBoardContentComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,10 +125,7 @@ public class NoticeDetails extends Activity {
                 startActivity(intent);
             }
         });
-
-
     }
-
     private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
