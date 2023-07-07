@@ -75,7 +75,7 @@ public class NoticeBoardComment extends Activity {
         mBinding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NoticeDetails.class);
+                Intent intent = new Intent(getApplicationContext(), NoticeList.class);
                 startActivity(intent);
             }
         });
