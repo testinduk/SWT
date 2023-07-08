@@ -7,13 +7,15 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="81dp"
-        android:src="@drawable/profile"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/profile"
+        app:layout_constraintEnd_toStartOf="@+id/selectImage"
+        app:layout_constraintStart_toEndOf="@+id/textViewSelectProfile"
         app:layout_constraintTop_toBottomOf="@+id/spinnerPositionAnswer"
-        app:layout_constraintStart_toEndOf="@+id/textViewSelectProfile"/>
+        android:scaleType="fitCenter"/>
 
     <android.widget.Button
         android:id="@+id/btnFinish"
@@ -33,12 +35,12 @@
 
     <ImageButton
         android:id="@+id/selectImage"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="68dp"
+        android:layout_height="60dp"
         android:background="#00ff0000"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/profileImage"
-        app:layout_constraintStart_toEndOf="@+id/profileImage"
-        android:layout_marginStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/camera"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -46,24 +48,24 @@
         android:id="@+id/textViewSelectProfile"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="프로필 사진 선택"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/selectedPosition"
         app:layout_constraintTop_toBottomOf="@+id/selectedPosition" />
 
     <EditText
         android:id="@+id/editTextUserName"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="@drawable/rectangle27"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewUserName"
         app:layout_constraintTop_toTopOf="@id/textViewUserName"
-        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -75,21 +77,21 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
-        app:layout_constraintStart_toStartOf="@+id/textViewUserName" />
+        app:layout_constraintStart_toStartOf="@+id/textViewUserName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
 
     <TextView
         android:id="@+id/textViewQuestion"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="6dp"
         android:text="아이디 찾기 질문"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPasswdCheck"
-        app:layout_constraintStart_toStartOf="@+id/textViewPasswdCheck"/>
+        app:layout_constraintStart_toStartOf="@+id/textViewPasswdCheck"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswdCheck" />
 
     <TextView
         android:id="@+id/textViewId"
@@ -100,51 +102,54 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudentNumber"
         app:layout_constraintStart_toStartOf="@+id/textViewStudentNumber"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStudentNumber" />
 
     <EditText
         android:id="@+id/editTextPasswordCheck"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewPasswdCheck"
         app:layout_constraintTop_toTopOf="@+id/textViewPasswdCheck"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/spinnerSelectQuestion"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
-        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSelectQuestion"
         app:layout_constraintTop_toTopOf="@+id/textViewSelectQuestion"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/spinnerPositionAnswer"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="@drawable/rectangle30"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/selectedPosition"
-        app:layout_constraintTop_toTopOf="@+id/selectedPosition"/>
+        app:layout_constraintTop_toTopOf="@+id/selectedPosition" />
 
     <EditText
         android:id="@+id/spinnerAnswer2"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle30"
         android:ems="10"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@+id/textViewAnswer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewAnswer"
+        app:layout_constraintTop_toTopOf="@+id/textViewAnswer"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -157,33 +162,34 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintHorizontal_bias="0.01"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
 
     <EditText
         android:id="@+id/editTextStudentNumber"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewStudentNumber"
         app:layout_constraintTop_toTopOf="@+id/textViewStudentNumber"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle29"
         android:ems="10"
         android:hint=" 6자리 이상 입력하세요."
         android:inputType="textPassword"
-        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewPasswd"
         app:layout_constraintTop_toTopOf="@+id/textViewPasswd"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -192,35 +198,36 @@
         android:id="@+id/textViewPasswd"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="비밀번호"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewId"
-        app:layout_constraintStart_toStartOf="@+id/textViewId"/>
+        app:layout_constraintStart_toStartOf="@+id/textViewId"
+        app:layout_constraintTop_toBottomOf="@+id/textViewId" />
 
     <TextView
         android:id="@+id/textViewPasswdCheck"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="비밀번호 확인"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPasswd"
-        app:layout_constraintStart_toStartOf="@+id/textViewPasswd"/>
+        app:layout_constraintStart_toStartOf="@+id/textViewPasswd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswd" />
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:background="@drawable/rectangle27"
         android:ems="10"
         android:hint=" 이메일을 입력하세요."
         android:inputType="textEmailAddress"
-        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewId"
         app:layout_constraintTop_toTopOf="@+id/textViewId"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -253,11 +260,11 @@
 
     <Spinner
         android:id="@+id/spinnerQuestion"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="131dp"
-        android:entries="@array/아이디찾기"
         android:layout_marginStart="10dp"
+        android:entries="@array/아이디찾기"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewQuestion"
         app:layout_constraintTop_toTopOf="@+id/textViewQuestion"
         tools:ignore="TouchTargetSizeCheck" />
@@ -266,26 +273,26 @@
         android:id="@+id/textViewSelectQuestion"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="2dp"
         android:text="선택한 질문지"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion"
-        app:layout_constraintStart_toStartOf="@+id/textViewQuestion"/>
+        app:layout_constraintStart_toStartOf="@+id/textViewQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
 
     <TextView
         android:id="@+id/textViewAnswer"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="질문에 대한 답"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@+id/textViewSelectQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSelectQuestion"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewSelectQuestion" />
 
     <TextView
         android:id="@+id/selectedPosition"
@@ -297,29 +304,29 @@
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/selectPosition"
-        app:layout_constraintTop_toBottomOf="@+id/selectPosition"/>
+        app:layout_constraintTop_toBottomOf="@+id/selectPosition" />
 
     <TextView
         android:id="@+id/selectPosition"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="직책"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@+id/textViewAnswer"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
 
     <Spinner
         android:id="@+id/spinnerPosition"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="46dp"
-        android:entries="@array/직책"
         android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@+id/selectPosition"
+        android:entries="@array/직책"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/selectPosition"
+        app:layout_constraintTop_toTopOf="@+id/selectPosition"
         tools:ignore="TouchTargetSizeCheck" />
 
 
