@@ -28,7 +28,6 @@
         android:text="로그인"
         android:textColor="#000000"
         android:textSize="12dp"
-        app:iconTintMode="src_over"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +97,7 @@
         app:layout_constraintStart_toStartOf="@+id/loginFindPW"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.2"
-
-        tools:ignore="TextSizeCheck" />
+        tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/loginFindID"

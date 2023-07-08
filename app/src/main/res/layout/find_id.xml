@@ -38,7 +38,7 @@
         android:src="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.03"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="이름"
-        android:textSize="20sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="학번"
-        android:textSize="20sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="선택된 질문지"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/findQuestionId"
         app:layout_constraintTop_toBottomOf="@+id/findQuestionId" />
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="질문에 대한 답"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/selectQuestion"
         app:layout_constraintTop_toBottomOf="@+id/selectQuestion" />
@@ -153,16 +153,15 @@
         app:layout_constraintTop_toTopOf="@+id/answer"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/findButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
-        android:background="@drawable/rectangle12"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="#7C587BA6"
         android:text="찾기"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
