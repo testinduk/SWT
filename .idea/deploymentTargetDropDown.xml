@@ -7,12 +7,15 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\CookAndroid\.android\avd\small_3.2_QVGA_ADP2_API_29.avd" />
+            <value value="C:\Users\박지영\.android\avd\Pixel_4_API_33_2.avd" />
+
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-07-13T08:30:17.545431600Z" />
+
+    <timeTargetWasSelectedWithDropDown value="2023-07-13T09:04:00.327051800Z" />
+
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
