@@ -6,25 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".controller.sharing.SharingBoard">
 
-
     <ImageButton
         android:id="@+id/chatButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="13dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
         android:background="#ffffff"
         android:onClick="chatButton"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
-        app:srcCompat="@drawable/chat"
+        android:src="@drawable/chat"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/sharingButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:background="#ffffff"
         android:onClick="sharingButton"
@@ -33,13 +32,13 @@
         app:layout_constraintEnd_toStartOf="@+id/homeButton"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/heart"
+        android:src="@drawable/heart"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/homeButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="#ffffff"
@@ -49,33 +48,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1"
-        app:srcCompat="@drawable/hut"
+        android:src="@drawable/hut"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/boardButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="#ffffff"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/homeButton"
         app:layout_constraintEnd_toStartOf="@+id/mypageButton"
         app:layout_constraintStart_toEndOf="@+id/homeButton"
         app:layout_constraintTop_toTopOf="@+id/homeButton"
-        app:srcCompat="@drawable/plus"
+        android:src="@drawable/plus"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/mypageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="13dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="15dp"
         android:background="#ffffff"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
-        app:srcCompat="@drawable/mypage"
+        android:src="@drawable/mypage"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -143,6 +142,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/mypageButton"
         app:layout_constraintStart_toStartOf="@+id/mypageButton" />
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:menu="@menu/bottom_navigation_menu"-->
+<!--        app:labelVisibilityMode="labeled"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bulletinBoardRecyclerView"

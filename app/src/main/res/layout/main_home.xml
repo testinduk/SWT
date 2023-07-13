@@ -115,9 +115,9 @@
 
         <ImageButton
             android:id="@+id/chatButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="13dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
             android:background="#ffffff"
             android:onClick="chatButton"
             android:scaleType="fitCenter"
@@ -130,7 +130,7 @@
         <ImageButton
             android:id="@+id/sharingButton"
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:background="#ffffff"
             android:onClick="sharingButton"
@@ -144,8 +144,8 @@
 
         <ImageButton
             android:id="@+id/homeButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="#ffffff"
@@ -159,8 +159,8 @@
 
         <ImageButton
             android:id="@+id/boardButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="#ffffff"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="@+id/homeButton"
@@ -172,9 +172,9 @@
 
         <ImageButton
             android:id="@+id/mypageButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="13dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
             android:background="#ffffff"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="@+id/boardButton"
