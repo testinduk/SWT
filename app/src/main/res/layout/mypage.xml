@@ -98,10 +98,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypageSharingWroteRecycler"
             android:layout_width="0dp"
-            android:layout_height="81dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="40dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/mypage_rectangle"
+            android:background="#FFF7FBFF"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/mypageSharingWrote"
             app:layout_constraintTop_toBottomOf="@+id/mypageSharingWrote" />
@@ -120,9 +121,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypageNoticeWroteRecycler"
             android:layout_width="0dp"
-            android:layout_height="81dp"
+            android:layout_height="80dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/mypage_rectangle"
+            android:background="#FFF7FBFF"
             app:layout_constraintEnd_toEndOf="@+id/mypageSharingWroteRecycler"
             app:layout_constraintStart_toStartOf="@+id/mypageNoticeWrote"
             app:layout_constraintTop_toBottomOf="@+id/mypageNoticeWrote" />
@@ -141,8 +142,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypageBulletinWroteRecycler"
             android:layout_width="0dp"
-            android:layout_height="81dp"
-            android:background="@drawable/mypage_rectangle"
+            android:layout_height="80dp"
+            android:background="#F7FBFF"
             app:layout_constraintEnd_toEndOf="@+id/mypageNoticeWroteRecycler"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/mypageBulletinWrote"
