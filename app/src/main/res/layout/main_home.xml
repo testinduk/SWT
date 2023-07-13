@@ -1,268 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.MainHome">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/main_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!--    <Button-->
-        <!--        android:id="@+id/btn_timetable"-->
-        <!--        android:layout_width="150dp"-->
-        <!--        android:layout_height="40dp"-->
-        <!--        android:layout_marginTop="52dp"-->
-        <!--        android:layout_marginEnd="12dp"-->
-        <!--        android:backgroundTint="#FFFFFF"-->
-        <!--        android:text="내 시간표 설정"-->
-        <!--        android:textColor="#000000"-->
-        <!--        android:textSize="12dp"-->
-        <!--        app:layout_constraintEnd_toEndOf="@+id/tableLayout2"-->
-        <!--        app:layout_constraintTop_toTopOf="parent"-->
-        <!--        android:stateListAnimator="@null"/>-->
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
 
-
-        <FrameLayout
-            android:id="@+id/time_frame"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_my_time">
-
-            <!--        <androidx.viewpager2.widget.ViewPager2-->
-            <!--            android:id="@+id/viewpager"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="match_parent" />-->
-        </FrameLayout>
-
-
-        <Button
-            android:id="@+id/show_notice_more"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="#FFFFFF"
-            android:onClick="show_more_notice"
-            android:stateListAnimator="@null"
-            android:text="더보기"
-            android:textColor="#000000"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_frame"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="1dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notice_title">
-
-        </LinearLayout>
+            android:layout_height="match_parent">
+            <!--    <Button-->
+            <!--        android:id="@+id/btn_timetable"-->
+            <!--        android:layout_width="150dp"-->
+            <!--        android:layout_height="40dp"-->
+            <!--        android:layout_marginTop="52dp"-->
+            <!--        android:layout_marginEnd="12dp"-->
+            <!--        android:backgroundTint="#FFFFFF"-->
+            <!--        android:text="내 시간표 설정"-->
+            <!--        android:textColor="#000000"-->
+            <!--        android:textSize="12dp"-->
+            <!--        app:layout_constraintEnd_toEndOf="@+id/tableLayout2"-->
+            <!--        app:layout_constraintTop_toTopOf="parent"-->
+            <!--        android:stateListAnimator="@null"/>-->
 
 
+            <FrameLayout
+                android:id="@+id/time_frame"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_my_time">
 
-        <TextView
-            android:id="@+id/notice_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="공지"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/show_notice_more" />
-
-        <Button
-            android:id="@+id/show_notice_writing"
-            android:layout_width="90dp"
-            android:layout_height="35dp"
-            android:backgroundTint="#FFFFFF"
-            android:shadowColor="#ffffff"
-            android:stateListAnimator="@null"
-            android:text="등록하기"
-            android:textColor="#000000"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toStartOf="@+id/show_notice_more"
-            app:layout_constraintTop_toTopOf="@+id/show_notice_more"
-            tools:ignore="TouchTargetSizeCheck" />
+                <!--        <androidx.viewpager2.widget.ViewPager2-->
+                <!--            android:id="@+id/viewpager"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="match_parent" />-->
+            </FrameLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/noticeBoardRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/show_notice_more"
-            tools:ignore="MissingConstraints" />
+            <Button
+                android:id="@+id/show_notice_more"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="show_more_notice"
+                android:stateListAnimator="@null"
+                android:text="더보기"
+                android:textColor="#000000"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_frame"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="1dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notice_title">
+
+            </LinearLayout>
 
 
-        <ImageButton
-            android:id="@+id/chatButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="15dp"
-            android:background="#ffffff"
-            android:onClick="chatButton"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/sharingButton"
-            app:srcCompat="@drawable/chat"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/notice_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="공지"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/show_notice_more" />
 
-        <ImageButton
-            android:id="@+id/sharingButton"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:background="#ffffff"
-            android:onClick="sharingButton"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/homeButton"
-            app:layout_constraintEnd_toStartOf="@+id/homeButton"
-            app:layout_constraintStart_toEndOf="@+id/chatButton"
-            app:layout_constraintTop_toTopOf="@+id/homeButton"
-            app:srcCompat="@drawable/heart"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <ImageButton
-            android:id="@+id/homeButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="#ffffff"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/texthome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noticeBoardRecyclerView"
-            app:srcCompat="@drawable/hut"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <ImageButton
-            android:id="@+id/boardButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#ffffff"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/homeButton"
-            app:layout_constraintEnd_toStartOf="@+id/mypageButton"
-            app:layout_constraintStart_toEndOf="@+id/homeButton"
-            app:layout_constraintTop_toTopOf="@+id/homeButton"
-            app:srcCompat="@drawable/plus"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/mypageButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="15dp"
-            android:background="#ffffff"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/boardButton"
-            app:srcCompat="@drawable/mypage"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <TextView
-            android:id="@+id/textchat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:text="채팅"
-            android:textColor="#000000"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/chatButton"
-            app:layout_constraintStart_toStartOf="@+id/chatButton" />
-
-        <TextView
-            android:id="@+id/textsharing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:text="나눔"
-            android:textColor="#000000"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/sharingButton"
-            app:layout_constraintStart_toStartOf="@+id/sharingButton"
-            tools:layout_editor_absoluteY="776dp" />
-
-        <TextView
-            android:id="@+id/texthome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:text="홈"
-            android:textColor="#000000"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/homeButton"
-            app:layout_constraintStart_toStartOf="@+id/homeButton" />
-
-        <TextView
-            android:id="@+id/textboard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="9dp"
-            android:text="게시판"
-            android:textColor="#000000"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/boardButton"
-            app:layout_constraintStart_toStartOf="@+id/boardButton" />
-
-        <TextView
-            android:id="@+id/textmypage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="마이페이지"
-            android:textColor="#000000"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            android:layout_marginBottom="9dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/mypageButton"
-            app:layout_constraintStart_toStartOf="@+id/mypageButton" />
+            <Button
+                android:id="@+id/show_notice_writing"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:backgroundTint="#FFFFFF"
+                android:shadowColor="#ffffff"
+                android:stateListAnimator="@null"
+                android:text="등록하기"
+                android:textColor="#000000"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toStartOf="@+id/show_notice_more"
+                app:layout_constraintTop_toTopOf="@+id/show_notice_more"
+                tools:ignore="TouchTargetSizeCheck" />
 
 
-        <Button
-            android:id="@+id/btn_my_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/black"
-            android:text="시간표 설정"
-            android:backgroundTint="#7C587BA6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/noticeBoardRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/show_notice_more"
+                tools:ignore="MissingConstraints" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_my_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#7C587BA6"
+                android:text="시간표 설정"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/chatButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        android:background="#ffffff"
+        android:onClick="chatButton"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sharingButton"
+        app:srcCompat="@drawable/chat"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/sharingButton"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff"
+        android:onClick="sharingButton"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
+        app:layout_constraintEnd_toStartOf="@+id/homeButton"
+        app:layout_constraintStart_toEndOf="@+id/chatButton"
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
+        app:srcCompat="@drawable/heart"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/texthome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/hut"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/boardButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
+        app:layout_constraintEnd_toStartOf="@+id/mypageButton"
+        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
+        app:srcCompat="@drawable/plus"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/mypageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="15dp"
+        android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/boardButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        app:srcCompat="@drawable/mypage"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textchat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="채팅"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chatButton"
+        app:layout_constraintStart_toStartOf="@+id/chatButton" />
+
+    <TextView
+        android:id="@+id/textsharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="나눔"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sharingButton"
+        app:layout_constraintStart_toStartOf="@+id/sharingButton"
+        tools:layout_editor_absoluteY="776dp" />
+
+    <TextView
+        android:id="@+id/texthome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="홈"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/homeButton"
+        app:layout_constraintStart_toStartOf="@+id/homeButton" />
+
+    <TextView
+        android:id="@+id/textboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:text="게시판"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/boardButton"
+        app:layout_constraintStart_toStartOf="@+id/boardButton" />
+
+    <TextView
+        android:id="@+id/textmypage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마이페이지"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/mypageButton"
+        app:layout_constraintStart_toStartOf="@+id/mypageButton" />
 
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
