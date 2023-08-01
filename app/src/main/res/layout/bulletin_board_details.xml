@@ -1,158 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.bulletin.BulletinBoardDetails">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/detailsScroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:backgroundTint="#ffffff"
-        android:src="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/BulletinBoardDetailsTitle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="제목"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/writer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="글쓴이"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/BulletinBoardDetailsTitle"
-        app:layout_constraintTop_toBottomOf="@+id/BulletinBoardDetailsTitle" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="날짜"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toBottomOf="@+id/writer"
-            app:layout_constraintStart_toEndOf="@id/writer"
-            tools:ignore="TextSizeCheck" />
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:backgroundTint="#ffffff"
+                android:src="@drawable/back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.03"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/writingButton"
-        android:layout_width="37dp"
-        android:layout_height="25dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/pen"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/deleteButton"
-        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/BulletinBoardDetailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="제목"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
-    <ImageButton
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/trash"
-        app:layout_constraintBottom_toTopOf="@+id/BulletinBoardDetailsTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="글쓴이"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/BulletinBoardDetailsTitle"
+                app:layout_constraintTop_toBottomOf="@+id/BulletinBoardDetailsTitle" />
 
-    <ImageView
-        android:id="@id/imageView"
-        android:layout_width="270dp"
-        android:layout_height="270dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/writer"
-        app:layout_constraintTop_toBottomOf="@id/writer" />
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="날짜"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/writer"
+                app:layout_constraintStart_toEndOf="@id/writer"
+                tools:ignore="TextSizeCheck" />
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:text="내용"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/writer"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            <ImageButton
+                android:id="@+id/writingButton"
+                android:layout_width="37dp"
+                android:layout_height="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/pen"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/deleteButton"
+                app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <Button
-            android:id="@+id/attachFileButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:backgroundTint="#ffffff"
-            android:gravity="left"
-            android:text="첨부파일"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/content"
-            app:layout_constraintTop_toBottomOf="@+id/content"
-            tools:ignore="TouchTargetSizeCheck" />
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/trash"
+                app:layout_constraintBottom_toTopOf="@+id/BulletinBoardDetailsTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@id/imageView"
+                android:layout_width="270dp"
+                android:layout_height="270dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/writer"
+                app:layout_constraintTop_toBottomOf="@id/writer" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginEnd="10dp"
+                android:text="내용"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/writer"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <Button
+                android:id="@+id/attachFileButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#ffffff"
+                android:gravity="left"
+                android:text="첨부파일"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/content"
+                app:layout_constraintTop_toBottomOf="@+id/content"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/commentMove"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#e6e6fa"
-        android:text="댓글창 이동"
         android:drawableRight="@drawable/comment"
+        android:text="댓글창 이동"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/attachFileButton"
+        app:layout_constraintVertical_bias="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsScroll"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/chatButton"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="4dp"
         android:backgroundTint="#C8C8FF"
         android:drawableRight="@drawable/chat"
         android:text="채팅하기"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/commentMove" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
