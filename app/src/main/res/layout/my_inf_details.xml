@@ -10,36 +10,42 @@
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="@+id/my_inf_title"
-        app:layout_constraintEnd_toStartOf="@+id/my_inf_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/my_inf_title"
-        android:layout_width="267dp"
-        android:layout_height="63dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="내 정보 수정"
-        android:textAlignment="center"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/changeImage"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
 
     <ImageView
         android:id="@+id/changeImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="52dp"
         android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@+id/info_mod"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
     <ImageButton
         android:id="@+id/SelectImageButton"
@@ -48,118 +54,100 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:onClick="clickImageButton"
+        app:layout_constraintStart_toEndOf="@+id/changeImage"
         app:layout_constraintBottom_toBottomOf="@+id/changeImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/changeImage"
-        app:layout_constraintTop_toTopOf="@+id/changeImage"
         android:src="@drawable/camera" />
 
-
-    <TextView
-        android:id="@+id/info_mod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:text="- 정보 변경"
-        android:textColor="#000000"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/grade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@id/chname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint=""
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/remove"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintStart_toStartOf="@+id/grade"
+        app:layout_constraintTop_toBottomOf="@+id/grade"/>
 
     <TextView
         android:id="@id/class1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="학번"
+        android:text="- 학번 -"
         android:textColor="#000000"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/remove"
-        app:layout_constraintStart_toStartOf="@+id/class2"
-        app:layout_constraintTop_toTopOf="@+id/changeImage"
-        app:layout_constraintVertical_bias="0.685" />
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/grade"
+        app:layout_constraintTop_toBottomOf="@+id/chname" />
 
     <EditText
         android:id="@id/class2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint=""
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/remove"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeImage"
-        app:layout_constraintVertical_bias="0.72"
+        app:layout_constraintStart_toStartOf="@+id/class1"
+        app:layout_constraintTop_toBottomOf="@+id/class1"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@id/grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:text="이름"
+        android:text="- 이름 -"
         android:textColor="#000000"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/chname"
-        app:layout_constraintStart_toStartOf="@+id/info_mod" />
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.45" />
 
     <Button
         android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="9dp"
         android:backgroundTint="@color/white"
         android:text="회원탈퇴"
         android:textColor="#ff0000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/changPW" />
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CompleteChangeButton"
+        app:layout_constraintEnd_toStartOf="@+id/CompleteChangeButton" />
 
 
     <Button
         android:id="@+id/changPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/white"
         android:text="비밀번호 변경"
         android:textColor="#ff0000"
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/CompleteChangeButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/remove" />
+        app:layout_constraintBottom_toBottomOf="@+id/remove"
+        app:layout_constraintEnd_toStartOf="@+id/remove" />
 
     <Button
         android:id="@+id/CompleteChangeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="9dp"
         android:backgroundTint="@color/white"
         android:onClick="onButton1Click"
         android:text="수정완료"
         android:textColor="@color/black"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.95"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

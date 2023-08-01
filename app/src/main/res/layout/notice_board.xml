@@ -11,211 +11,222 @@
         android:id="@+id/chatButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         android:background="#ffffff"
         android:onClick="chatButton"
-        android:src="@drawable/chat"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sharingButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sharingButton"
+        android:src="@drawable/chat"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
     <ImageButton
         android:id="@+id/sharingButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="54dp"
+        android:layout_marginTop="5dp"
         android:background="#ffffff"
         android:onClick="sharingButton"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constraintEnd_toStartOf="@+id/homeText"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
+        app:layout_constraintEnd_toStartOf="@+id/homeButton"
         app:layout_constraintStart_toEndOf="@+id/chatButton"
-
-
-        app:layout_constraintTop_toTopOf="@+id/boardButton"
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
+        android:src="@drawable/heart"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:background="#ffffff"
-        android:src="@drawable/hut"
-        app:layout_constraintBottom_toBottomOf="@+id/homeText"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/homeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noticeBoardRecyclerView"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        android:src="@drawable/hut"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/boardButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="12dp"
         android:background="#ffffff"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
+        app:layout_constraintEnd_toStartOf="@+id/mypageButton"
+        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
         android:src="@drawable/plus"
-        app:layout_constraintBottom_toTopOf="@+id/boardText"
-        app:layout_constraintEnd_toEndOf="@+id/boardText"
-        app:layout_constraintStart_toStartOf="@+id/boardText"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
 
     <ImageButton
         android:id="@+id/mypageButton"
         android:layout_width="30dp"
-
         android:layout_height="30dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="15dp"
         android:background="#ffffff"
-        android:src="@drawable/mypage"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/boardButton"
-        app:layout_constraintEnd_toEndOf="@+id/noticeBoardRecyclerView"
-        app:layout_constraintStart_toStartOf="@+id/mypageText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/boardButton"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        android:src="@drawable/mypage"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noticeBoardRecyclerView"
-        android:layout_width="373dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/chatButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noticeBoardSearchButton"
+        app:layout_constraintTop_toBottomOf="@+id/noticeBoardSearch"
         tools:ignore="MissingConstraints" />
 
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="3dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/back"
-        app:layout_constraintEnd_toEndOf="@+id/chatButton"
-        app:layout_constraintStart_toStartOf="@+id/chatText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
 
     <TextView
         android:id="@+id/chatText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="9dp"
         android:text="채팅"
         android:textColor="#000000"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/chatButton"
+        app:layout_constraintStart_toStartOf="@+id/chatButton" />
+
 
     <TextView
         android:id="@+id/sharingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="9dp"
         android:text="나눔"
         android:textColor="#000000"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sharingButton" />
+        app:layout_constraintEnd_toEndOf="@+id/sharingButton"
+        app:layout_constraintStart_toStartOf="@+id/sharingButton"
+        tools:layout_editor_absoluteY="776dp" />
 
 
     <TextView
         android:id="@+id/homeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="9dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="9dp"
         android:text="홈"
         android:textColor="#000000"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/homeButton"
         app:layout_constraintStart_toStartOf="@+id/homeButton" />
-
 
 
     <TextView
         android:id="@+id/boardText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="9dp"
         android:text="게시판"
         android:textColor="#000000"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mypageText" />
+        app:layout_constraintEnd_toEndOf="@+id/boardButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/boardButton" />
+
 
 
     <TextView
         android:id="@+id/mypageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="9dp"
         android:text="마이페이지"
         android:textColor="#000000"
         android:textSize="13dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/mypageButton"
+        app:layout_constraintStart_toStartOf="@+id/mypageButton" />
+
 
 
     <EditText
         android:id="@+id/noticeBoardSearch"
-        android:layout_width="225dp"
-        android:layout_height="30dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/searching"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writingButton"
+        app:layout_constraintBottom_toBottomOf="@+id/noticeBoardSearchButton"
+        app:layout_constraintEnd_toStartOf="@+id/noticeBoardSearchButton"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
     <Button
         android:id="@+id/noticeBoardSearchButton"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="#FFFFFF"
         android:stateListAnimator="@null"
         android:text="검색"
         android:textColor="#000000"
-        android:textSize="10dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/noticeBoardSearch"
-        app:layout_constraintEnd_toEndOf="@+id/writingButton"
-        app:layout_constraintStart_toEndOf="@+id/noticeBoardSearch"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/writingButton"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/writingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#FFFFFF"
         android:stateListAnimator="@null"
         android:text="글쓰기"
         android:textColor="#000000"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noticeListTitle"
         tools:ignore="MissingConstraints" />
 
 
@@ -223,12 +234,13 @@
         android:id="@+id/noticeListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:text="공지사항"
         android:textColor="#000000"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
