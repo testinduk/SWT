@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:254615151059:android:b95fdf40ead930ec69cf26",
         "android_client_info": {
-          "package_name": "com.example.figma"
+          "package_name": "com.swt.figma"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "254615151059-n5n3r6brjq5b0p1sn482nlvbe5f0q3h3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.figma",
+            "package_name": "com.swt.figma",
             "certificate_hash": "c155ecc8d95ba366ba67d31db2e5ff19777683b7"
           }
         },
